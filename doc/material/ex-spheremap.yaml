@@ -23,7 +23,7 @@ styles:
         extends: polygons
         material:
             diffuse:
-                texture: /doc/material/sem.jpg
+                texture: ./doc/material/sem.jpg
                 mapping: spheremap
 
 sources:

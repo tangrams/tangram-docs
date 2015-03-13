@@ -23,7 +23,7 @@ styles:
         extends: polygons
         material:
             diffuse:
-                texture: /doc/material/grid.jpg
+                texture: ./doc/material/grid.jpg
                 mapping: triplanar
                 scale: 0.01
 

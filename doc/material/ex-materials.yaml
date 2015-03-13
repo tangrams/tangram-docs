@@ -23,7 +23,7 @@ styles:
         extends: polygons
         material:
             normal:
-                texture: /doc/material/rock.jpg
+                texture: ./doc/material/rock.jpg
                 mapping: uv
             ambient: 0.8
             diffuse: 1
@@ -34,7 +34,7 @@ styles:
         material:
             ambient: [.2,.7,0]
             diffuse:
-                texture: /doc/material/grass01.jpg
+                texture: ./doc/material/grass01.jpg
                 mapping: triplanar
                 scale: 0.005
                 amount: 0.5
@@ -43,7 +43,7 @@ styles:
         extends: polygons
         material:
             emission:
-                texture: /doc/material/road.jpg
+                texture: ./doc/material/road.jpg
                 mapping: uv
 
     water:
@@ -52,7 +52,7 @@ styles:
         material:
             ambient: .7
             diffuse:
-                texture: /doc/material/sky.jpg
+                texture: ./doc/material/sky.jpg
                 mapping: spheremap
         shaders:
             transforms:

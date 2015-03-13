@@ -25,7 +25,7 @@ styles:
         material:
             ambient: .7
             diffuse:
-                texture: /doc/material/sky.jpg
+                texture: ./doc/material/sky.jpg
                 mapping: spheremap
         shaders:
             transforms:
