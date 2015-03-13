@@ -1,0 +1,105 @@
+cameras:
+    camera1:
+        type: perspective
+        focal_length: [[16, 2], [20, 6]] # pairs of [zoom, focal len]
+        vanishing_point: [-250, -250] # relative to center of screen, in pixels
+
+lights:
+    light1:
+        type: directional
+        direction: [0, 1, -.5]
+        diffuse: 1.
+        ambient: .3
+
+sources:
+    osm:
+        type: GeoJSONTileSource
+        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+
+layers:
+    earth:
+        geometry:
+            source: osm
+            filter: earth
+        style:
+            order: 0
+            color: '#ddeeee'
+    landuse:
+        geometry:
+            source: osm
+            filter: landuse
+        style:
+            order: 1
+            color: '#aaffaa'
+            interactive: true
+
+    water:
+        geometry:
+            source: osm
+            filter: water
+        style:
+            order: 2
+            color: '#88bbee'
+
+    roads:
+        geometry:
+            source: osm
+            filter: roads
+        style:
+            order: 3
+            color: gray    
+            width: 8
+        highway:
+            filter:
+                kind: highway
+            style:
+                color: '#cc6666'
+                width: 12
+                outline:
+                    color: grey
+                    width: 3
+        tunnel:
+            filter:
+                is_tunnel: yes
+            style:
+                color: tan
+            rail:
+                filter:
+                    kind: rail
+                style:
+                    width: 0
+        minor_road:
+            filter:
+                kind: minor_road
+            style:
+                color: lightgrey
+                width: 5
+        path:
+            filter:
+                kind: path
+            style:
+                color: [0.8, 0.8, 0.8]
+                width: 3
+        rail:
+            filter:
+                kind: rail
+                is_tunnel: no
+            style:
+                color: pink
+                width: 3
+    
+    buildings:
+        geometry:
+            source: osm
+            filter: buildings
+        style:
+            order: 4
+            color: |
+                function () {
+                    var h = feature.height || 20;
+                    h = Math.min((h + 50)/ 250, .8);
+                    h = Math.max(h, .4);
+                    return [h, h, h];
+                }
+            extrude: true
+
