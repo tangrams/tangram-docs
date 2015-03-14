@@ -23,28 +23,11 @@ styles:
         extends: polygons
         material:
             normal:
-                texture: ./doc/material/rock.jpg
+                texture: ./material/rock.jpg
                 mapping: uv
             ambient: 0.8
             diffuse: 1
             specular: 0
-
-    grass:
-        extends: polygons
-        material:
-            ambient: [.2,.7,0]
-            diffuse:
-                texture: ./doc/material/grass01.jpg
-                mapping: triplanar
-                scale: 0.005
-                amount: 0.5
-    
-    roads:
-        extends: polygons
-        material:
-            emission:
-                texture: ./doc/material/road.jpg
-                mapping: uv
 
     water:
         extends: polygons
@@ -52,7 +35,7 @@ styles:
         material:
             ambient: .7
             diffuse:
-                texture: ./doc/material/sky.jpg
+                texture: ./material/sky.jpg
                 mapping: spheremap
         shaders:
             transforms:
@@ -125,7 +108,6 @@ layers:
             source: osm
             filter: landuse
         style:
-            name: grass
             order: 1
             color: '#aaffaa'
             interactive: true
@@ -135,7 +117,7 @@ layers:
             source: osm
             filter: water
         style:
-            name: water
+            # name: water
             order: 2
             color: '#88bbee'
 
@@ -151,12 +133,11 @@ layers:
             filter:
                 kind: highway
             style:
-                name: roads
                 color: '#cc6666'
                 width: 12
-                # outline:
-                #     color: grey
-                #     width: 3
+                outline:
+                    color: grey
+                    width: 3
         tunnel:
             filter:
                 is_tunnel: yes

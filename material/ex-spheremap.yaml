@@ -23,8 +23,8 @@ styles:
         extends: polygons
         material:
             diffuse:
-                texture: ./doc/material/grid.jpg
-                mapping: uv
+                texture: ./material/sem.jpg
+                mapping: spheremap
 
 sources:
     osm:

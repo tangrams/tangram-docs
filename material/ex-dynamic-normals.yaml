@@ -19,23 +19,13 @@ lights:
         specular: .2
 
 styles:
-    rock:
-        extends: polygons
-        material:
-            normal:
-                texture: ./doc/material/rock.jpg
-                mapping: uv
-            ambient: 0.8
-            diffuse: 1
-            specular: 0
-
     water:
         extends: polygons
         animated: true
         material:
             ambient: .7
             diffuse:
-                texture: ./doc/material/sky.jpg
+                texture: ./material/sky.jpg
                 mapping: spheremap
         shaders:
             transforms:
@@ -117,7 +107,7 @@ layers:
             source: osm
             filter: water
         style:
-            # name: water
+            name: water
             order: 2
             color: '#88bbee'
 
@@ -173,7 +163,6 @@ layers:
             source: osm
             filter: buildings
         style:
-            name: rock
             order: 4
             color: |
                 function () {
