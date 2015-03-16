@@ -59,38 +59,18 @@ styles:
                                 (d - b) * u.x * u.y;
                     }
 
-                    float random (in float _x) {
-                        return fract(sin(_x)*1e4);
-                    }
-
-                    float noise (in float _x) {
-                        float i = floor(_x);
-                        float f = fract(_x);
-                        float u = f * f * (3.0 - 2.0 * f);
-                        return mix(random(i), random(i + 1.0), u);
-                    }
-
-                    float getBrightness(in vec3 _rgb){
-                        return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
-                    }
-
-                    float getCrossHatch(in vec2 _pos, float _angle, float _brigtness){
+                    float getHatch(in vec2 _pos, float _angle, float _brigtness){
                         float scale = 20.0;
                         _pos *= scale;
                         _pos = rotate2d( _angle ) * _pos;
-                        return 1.0-smoothstep(-1.+_brigtness*2.0,1.,abs(sin(_pos.x*3.1415)));
+                        return smoothstep(0.0,0.5+_brigtness*0.5,abs((sin(_pos.x*3.1415)+_brigtness*2.0))*0.5);//smoothstep(-1.+_brigtness*2.0,1.,abs(sin(_pos.x*3.1415)));
                     }
-                # normal: |
-                #     vec3 pct = step(vec3(0.1),fract(v_world_position.xyz*0.2));
-                #     normal = mix(normal,v_normal,max(pct.x+pct.y+pct.z,1.0) );
-                filter: |
-                    float b = getBrightness(g_light_accumulator_diffuse.rgb);
+                color: |
                     vec3 pos = v_world_position.xyz*0.01;
+                    float pattern = getHatch( color.br*20.0+pos.xy+noise(pos.xy)*(2.0*(1.0-color.g)),color.r, noise(color.rg*10.0+v_texcoord) );
 
-                    float pattern = getCrossHatch( pos.xy+noise(vec2(pos.x,pos.z*2.))*2.0, 0.8, b );
-                    
-                    color.rgb = vec3( 1.0-smoothstep(0.0,0.3,pattern) );
-
+                    color.rgb = vec3( mix(vec3(color.r*0.25,color.g*0.133,color.g*0.063), vec3(0.578,0.351,0.171)+color.r,pattern) );
+                    color.rgb = mix(vec3(0.2+color.r*0.5,0.1+color.g*0.15,color.b*0.2)*1.5,color.rgb,smoothstep(0.0,color.g,pattern));
 
 sources:
     osm:
@@ -176,11 +156,12 @@ layers:
         style:
             name: rock
             order: 4
-            color: |
-                function () {
-                    var h = feature.height || 20;
-                    h = Math.min((h + 50)/ 250, .8);
-                    h = Math.max(h, .4);
-                    return [h, h, h];
-                }
+            color: Style.color.pseudoRandomColor()
+            # color: |
+            #     function () {
+            #         var h = feature.height || 20;
+            #         h = Math.min((h + 50)/ 250, .8);
+            #         h = Math.max(h, .4);
+            #         return [h, h, h];
+            #     }
             extrude: true
