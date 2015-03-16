@@ -23,7 +23,7 @@ styles:
         extends: polygons
         material:
             normal:
-                texture: /doc/procedural/rock.jpg
+                texture: procedural/rock.jpg
                 mapping: uv
             ambient: 0.8
             diffuse: 1
@@ -83,15 +83,13 @@ styles:
                 # normal: |
                 #     vec3 pct = step(vec3(0.1),fract(v_world_position.xyz*0.2));
                 #     normal = mix(normal,v_normal,max(pct.x+pct.y+pct.z,1.0) );
-                color: |
+                filter: |
                     float b = getBrightness(g_light_accumulator_diffuse.rgb);
                     vec3 pos = v_world_position.xyz*0.01;
 
-                    float pattern = getCrossHatch( pos.xy+noise(pos.xz)*2.0, 0.2,b );
+                    float pattern = getCrossHatch( pos.xy+noise(vec2(pos.x,pos.z*2.))*2.0, 0.8,b );
 
-                    color.rgb *= vec3( mix( vec3(0.282,0.133,0.063), vec3(0.4, 0.3, 0.2) ,  pattern) );
-                    color.rgb = mix(vec3(0.2,0.15,0.1),color.rgb,smoothstep(0.0,0.2,pattern));
-                    color.rgb = mix(color.rgb,vec3(0.878,0.651,0.471),smoothstep(0.8,1.0,pattern))*1.2;
+                    color.rgb = vec3( 1.0-smoothstep(0.0,0.3,pattern) );
 
 
 sources:

@@ -23,7 +23,7 @@ styles:
         extends: polygons
         material:
             normal:
-                texture: /doc/procedural/rock.jpg
+                texture: procedural/rock.jpg
                 mapping: uv
             ambient: 0.8
             diffuse: 1
