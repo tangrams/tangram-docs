@@ -90,11 +90,11 @@ void main(){
     vec3 normal = normalize(sphereNormal(st)*2.0-1.0);
     vec3 pos = normal*1.0;
     
-    material.emission = vec3(0.9);
+    material.emission = vec3(0.0);
     material.bounce.ambient = vec3(0.0);
     material.bounce.diffuse = vec3(0.0); 
-    material.bounce.specular = vec3(0.0);
-    material.shininess = 0.0;
+    material.bounce.specular = vec3(1.0);
+    material.shininess = 200.0;
     computeLight(pLight,material,pos,normal,l);
   
     color = calculate(material,l);
