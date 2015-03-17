@@ -59,7 +59,7 @@
         var url_search = window.location.search.slice(1);
         if (url_search.length > 0) {
             var ext = url_search.substr(url_search.lastIndexOf('.') + 1);
-            if (ext == "yaml") {  
+            if (ext == "yaml" || ext == "yaml/") {
                 style_file = url_search;
                 console.log('LOADING' + url_search + ' STYLE'); 
             }  
