@@ -24,7 +24,7 @@ styles:
         extends: polygons
         texcoords: true
         shaders:
-            transforms:
+            blocks:
                 globals: |
                     mat2 rotate2d(float _angle){
                         return mat2(cos(_angle),-sin(_angle),
@@ -45,7 +45,7 @@ styles:
     grid:
         extends: polygons
         shaders:
-            transforms:
+            blocks:
                 globals: |
                     float getBrightness(in vec3 _rgb){
                         return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
@@ -66,7 +66,7 @@ styles:
         extends: polygons
         texcoords: true
         shaders:
-            transforms:
+            blocks:
                 globals: |
                     float getBrightness(in vec3 _rgb){
                         return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
@@ -109,7 +109,7 @@ styles:
         texcoords: true
         blend: add
         shaders:
-            transforms:
+            blocks:
                 globals: |
                     float getBrightness(in vec3 _rgb){
                         return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
@@ -148,17 +148,17 @@ sources:
 
 layers:
     earth:
-        geometry:
+        data:
             source: osm
-            filter: earth
+            layer: earth
         style:
             name: grid
             order: 0
             color: '#ddeeee'
     landuse:
-        geometry:
+        data:
             source: osm
-            filter: landuse
+            layer: landuse
         style:
             name: grid
             order: 1
@@ -166,9 +166,9 @@ layers:
             interactive: true
 
     water:
-        geometry:
+        data:
             source: osm
-            filter: water
+            layer: water
         style:
             name: tiledCross
             order: 2
@@ -179,9 +179,9 @@ layers:
                 tile_edges: false
 
     roads:
-        geometry:
+        data:
             source: osm
-            filter: roads
+            layer: roads
         style:
             name: roads
             order: 3
@@ -228,9 +228,9 @@ layers:
                 width: 3
     
     buildings:
-        geometry:
+        data:
             source: osm
-            filter: buildings
+            layer: buildings
         style:
             name: walls
             order: 4

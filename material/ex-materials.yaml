@@ -55,7 +55,7 @@ styles:
                 texture: ./material/sky.jpg
                 mapping: spheremap
         shaders:
-            transforms:
+            blocks:
                 globals: |
                         vec3 random3(vec3 c) {
                             float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
@@ -114,16 +114,16 @@ sources:
 
 layers:
     earth:
-        geometry:
+        data:
             source: osm
-            filter: earth
+            layer: earth
         style:
             order: 0
             color: '#ddeeee'
     landuse:
-        geometry:
+        data:
             source: osm
-            filter: landuse
+            layer: landuse
         style:
             name: grass
             order: 1
@@ -131,18 +131,18 @@ layers:
             interactive: true
 
     water:
-        geometry:
+        data:
             source: osm
-            filter: water
+            layer: water
         style:
             name: water
             order: 2
             color: '#88bbee'
 
     roads:
-        geometry:
+        data:
             source: osm
-            filter: roads
+            layer: roads
         style:
             order: 3
             color: gray    
@@ -188,9 +188,9 @@ layers:
                 width: 3
     
     buildings:
-        geometry:
+        data:
             source: osm
-            filter: buildings
+            layer: buildings
         style:
             name: rock
             order: 4
