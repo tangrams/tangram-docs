@@ -4,19 +4,19 @@ cameras:
         focal_length: [[16, 2], [20, 6]] # pairs of [zoom, focal len]
         vanishing_point: [-250, -250] # relative to center of screen, in pixels
 
-lights:
-    light1:
-        type: directional
-        direction: [0, 1, -.5]
-        diffuse: .5
-        ambient: .2
-    light2:
-        type: point
-        position: [0, 0, 500px]
-        origin: ground
-        ambient: .3
-        diffuse: .5
-        specular: .2
+# lights:
+#     light1:
+#         type: directional
+#         direction: [0, 1, -.5]
+#         diffuse: .5
+#         ambient: .2
+#     light2:
+#         type: point
+#         position: [0, 0, 500px]
+#         origin: ground
+#         ambient: .3
+#         diffuse: .5
+#         specular: .2
 
 styles:
     roads:
@@ -40,7 +40,7 @@ styles:
                 color: |
                     vec3 pos = v_world_position.xyz*0.01;
                     float pattern = getHatch( u_time*0.1+v_texcoord.xy*0.5, 3.1415*0.5, 0.5);
-                    color.rgb = vec3(1.000,0.865,0.387)*pattern*sin(v_texcoord.x*3.1415);
+                    color.rgb = vec3(1.000,0.865,0.387)*pattern*sin(smoothstep(0.0,1.,v_texcoord.x)*3.1415);
 
     grid:
         extends: polygons
@@ -59,7 +59,50 @@ styles:
                     }
                 filter: |
                     vec2 pos = v_world_position.xy*0.01;
-                    color.rgb = v_color.rgb*grid(pos,10.,(1.0-getBrightness(v_color.rgb))*0.1)*0.5;
+                    float b = getBrightness(v_color.rgb);
+                    color.rgb = v_color.rgb*grid(pos,10.,0.05+b*0.05)*(1.0-b);
+
+    tiledCross:
+        extends: polygons
+        texcoords: true
+        shaders:
+            transforms:
+                globals: |
+                    float getBrightness(in vec3 _rgb){
+                        return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
+                    }
+
+                    float box(in vec2 _st, in vec2 _size){
+                        _size = vec2(0.5) - _size*0.5;
+                        vec2 uv = smoothstep(_size,
+                                            _size+vec2(0.001),
+                                            _st);
+                        uv *= smoothstep(_size,
+                                        _size+vec2(0.001),
+                                        vec2(1.0)-_st);
+                        return uv.x*uv.y;
+                    }
+
+                    float cross(in vec2 _st, float _size){
+                        return  box(_st, vec2(_size*0.5,_size*0.125)) + 
+                                box(_st, vec2(_size*0.125,_size*0.5));
+                    }
+
+                    float grid (in vec2 _pos, in float _zoom, in float _lineWidth){
+                        _pos = fract(_pos*_zoom);
+                        vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) - 
+                                 smoothstep(vec2(0.5),vec2(0.5+_lineWidth),_pos);
+                        return clamp(g.x+g.y,0.0,1.0);
+                    }
+                filter: |
+                    vec2 pos = v_world_position.xy*0.01;
+                    if ( v_color.rgb == vec3(0.0) ) {
+                        float pct = clamp(cross(fract(pos),0.2),0.0,1.0);
+                        color.rgb = mix(vec3(0.051,0.071,0.278),vec3(0.654,0.897,1.000),pct);
+                    } else {
+                        color.rgb = vec3(0.654,0.897,1.000);
+                    }
+                    
 
     walls:
         extends: polygons
@@ -89,9 +132,9 @@ styles:
                     vec3 pos = v_world_position.xyz*0.01;
 
                     if ( v_color.rgb == vec3(0.0) ) {
-                        float pct = grid(v_texcoord,10.,getBrightness(g_light_accumulator_diffuse.rgb*0.1));
-                        color.rgb = mix(vec3(0.051,0.071,0.278),vec3(0.239,0.431,0.718),pct)*0.5;
-                        //color.rgb = vec3(0.239,0.431,0.718)*grid(pos,10.,0.05);
+                        float pct = grid(v_texcoord,10.,0.1)*0.5;
+                        //float pct = grid(pos.xy,10.,0.1);
+                        color.rgb = mix(vec3(0.051,0.071,0.278)*0.8,vec3(0.239,0.431,0.718)*0.6,pct)*0.5;
                     } else {
                         color.rgb = vec3(0.305,0.637,1.000);
                     }
@@ -127,12 +170,13 @@ layers:
             source: osm
             filter: water
         style:
+            name: tiledCross
             order: 2
-            color: '#0D1247'
+            color: [0,0,0]
             outline:
                 color: [1, 1, 1]
                 width: 1px
-                tile_edges: true
+                tile_edges: false
 
     roads:
         geometry:
