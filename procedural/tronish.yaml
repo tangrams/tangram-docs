@@ -19,16 +19,10 @@ lights:
         specular: .2
 
 styles:
-    rock:
+    roads:
         animated: true
         extends: polygons
-        material:
-            normal:
-                texture: procedural/rock.jpg
-                mapping: uv
-            ambient: 0.8
-            diffuse: 1
-            specular: 0
+        texcoords: true
         shaders:
             transforms:
                 globals: |
@@ -37,35 +31,69 @@ styles:
                                     sin(_angle),cos(_angle));
                     }
 
-                    float random (in vec2 _st) { 
-                        return fract(sin(dot(_st.xy,
-                                             vec2(12.9898,78.233)))* 
-                            43758.5453123);
-                    }
-
-                    float getBrightness(in vec3 _rgb){
-                        return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
-                    }
-
                     float getHatch(in vec2 _pos, float _angle, float _brigtness){
                         float scale = 20.0;
                         _pos *= scale;
                         _pos = rotate2d( _angle ) * _pos;
                         return 1.0-smoothstep(-1.+_brigtness*2.0,1.,abs(sin(_pos.x*3.1415)));
                     }
-                normal:
-                    normal = v_normal;
                 color: |
+                    vec3 pos = v_world_position.xyz*0.01;
+                    float pattern = getHatch( u_time*0.1+v_texcoord.xy*0.5, 3.1415*0.5, 0.5);
+                    color.rgb = vec3(1.000,0.865,0.387)*pattern*sin(v_texcoord.x*3.1415);
+
+    grid:
+        extends: polygons
+        shaders:
+            transforms:
+                globals: |
+                    float getBrightness(in vec3 _rgb){
+                        return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
+                    }
+
+                    float grid (in vec2 _pos, in float _zoom, in float _lineWidth){
+                        _pos = fract(_pos*_zoom);
+                        vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) - 
+                                 smoothstep(vec2(0.5),vec2(0.5+_lineWidth),_pos);
+                        return clamp(g.x+g.y,0.0,1.0);
+                    }
+                filter: |
+                    vec2 pos = v_world_position.xy*0.01;
+                    color.rgb = v_color.rgb*grid(pos,10.,(1.0-getBrightness(v_color.rgb))*0.1)*0.5;
+
+    walls:
+        extends: polygons
+        texcoords: true
+        blend: add
+        shaders:
+            transforms:
+                globals: |
+                    float getBrightness(in vec3 _rgb){
+                        return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
+                    }
+
+                    float grid (in vec2 _pos, in float _zoom, in float _lineWidth){
+                        _pos = fract(_pos*_zoom);
+                        vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) - 
+                                 smoothstep(vec2(0.5),vec2(0.5+_lineWidth),_pos);
+                        return clamp(g.x+g.y,0.0,1.0);
+                    }
+
+                    float grid (in vec3 _pos, in float _zoom, in float _lineWidth){
+                        _pos = fract(_pos*_zoom);
+                        vec3 g = smoothstep(vec3(0.5-_lineWidth),vec3(0.5),_pos) - 
+                                 smoothstep(vec3(0.5),vec3(0.5+_lineWidth),_pos);
+                        return clamp(g.x+g.y+g.z,0.0,1.0);
+                    }
+                filter: |
                     vec3 pos = v_world_position.xyz*0.01;
 
                     if ( v_color.rgb == vec3(0.0) ) {
-                        vec3 grid = step(vec3(0.01), fract(pos*1.0));
-                        vec3 gridSmall = step(vec3(0.025), fract(pos*10.0));
-                        color.rgb = (1.0-(vec3(grid.x*grid.y*grid.z)*vec3(gridSmall.x*gridSmall.y*gridSmall.z)))*vec3(0.276,0.963,0.118);
-
+                        float pct = grid(v_texcoord,10.,getBrightness(g_light_accumulator_diffuse.rgb*0.1));
+                        color.rgb = mix(vec3(0.051,0.071,0.278),vec3(0.239,0.431,0.718),pct)*0.5;
+                        //color.rgb = vec3(0.239,0.431,0.718)*grid(pos,10.,0.05);
                     } else {
-                        float pattern = getHatch( u_time*0.1+v_texcoord.xy*0.5, 3.1415*0.5, 0.5);
-                        color.rgb = vec3( pattern*vec3(0.276,0.963,0.118) );
+                        color.rgb = vec3(0.305,0.637,1.000);
                     }
                     
 
@@ -81,6 +109,7 @@ layers:
             source: osm
             filter: earth
         style:
+            name: grid
             order: 0
             color: '#ddeeee'
     landuse:
@@ -88,8 +117,9 @@ layers:
             source: osm
             filter: landuse
         style:
+            name: grid
             order: 1
-            color: '#aaffaa'
+            color: '#ff00ff'
             interactive: true
 
     water:
@@ -98,25 +128,31 @@ layers:
             filter: water
         style:
             order: 2
-            color: '#88bbee'
+            color: '#0D1247'
+            outline:
+                color: [1, 1, 1]
+                width: 1px
+                tile_edges: true
 
     roads:
         geometry:
             source: osm
             filter: roads
         style:
+            name: roads
             order: 3
-            color: gray    
+            color: [0, 0, 0]
             width: 8
         highway:
             filter:
                 kind: highway
             style:
-                color: '#cc6666'
+                name: roads
+                color: [0, 0, 0]
                 width: 12
                 outline:
-                    color: grey
-                    width: 3
+                    color: [1, 1, 1]
+                    width: 1
         tunnel:
             filter:
                 is_tunnel: yes
@@ -131,20 +167,20 @@ layers:
             filter:
                 kind: minor_road
             style:
-                color: lightgrey
+                color: [0,0,0]
                 width: 5
         path:
             filter:
                 kind: path
             style:
-                color: [0.8, 0.8, 0.8]
+                color: [0, 0, 0]
                 width: 3
         rail:
             filter:
                 kind: rail
                 is_tunnel: no
             style:
-                color: pink
+                color: [0, 0, 0]
                 width: 3
     
     buildings:
@@ -152,11 +188,11 @@ layers:
             source: osm
             filter: buildings
         style:
-            name: rock
+            name: walls
             order: 4
             color: [0, 0, 0]
             outline:
                 color: [1, 1, 1]
-                width: 2px
+                width: 1px
                 tile_edges: true
             extrude: true
