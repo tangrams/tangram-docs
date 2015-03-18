@@ -82,6 +82,7 @@ styles:
 
     roads:
         extends: polygons
+        animated: true
         texcoords: true
         material:
             normal:
@@ -89,20 +90,64 @@ styles:
                 mapping: planar
                 scale: 0.01
             ambient: 0.8
-            diffuse: 1
-            specular: 0
+            diffuse: [0.933,0.890,0.839]
+            specular: 1
         shaders:
             blocks:
                 globals: |
-                    vec3 sphereNormal(vec2 uv) {
-                        uv = fract(uv)*2.0-1.0; 
-                        vec3 ret;
-                        ret.xy = sqrt(uv * uv) * sign(uv);
-                        ret.z = sqrt(abs(1.0 - dot(ret.xy,ret.xy)));
-                        return ret * 0.5 + 0.5;
-                    }
+                    vec3 random3(vec3 c) {
+                            float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
+                            vec3 r;
+                            r.z = fract(512.0*j);
+                            j *= .125;
+                            r.x = fract(512.0*j);
+                            j *= .125;
+                            r.y = fract(512.0*j);
+                            return r-0.5;
+                        }
+
+                        const float F3 =  0.3333333;
+                        const float G3 =  0.1666667;
+                        float snoise(vec3 p) {
+
+                            vec3 s = floor(p + dot(p, vec3(F3)));
+                            vec3 x = p - s + dot(s, vec3(G3));
+
+                            vec3 e = step(vec3(0.0), x - x.yzx);
+                            vec3 i1 = e*(1.0 - e.zxy);
+                            vec3 i2 = 1.0 - e.zxy*(1.0 - e);
+
+                            vec3 x1 = x - i1 + G3;
+                            vec3 x2 = x - i2 + 2.0*G3;
+                            vec3 x3 = x - 1.0 + 3.0*G3;
+
+                            vec4 w, d;
+
+                            w.x = dot(x, x);
+                            w.y = dot(x1, x1);
+                            w.z = dot(x2, x2);
+                            w.w = dot(x3, x3);
+
+                            w = max(0.6 - w, 0.0);
+
+                            d.x = dot(random3(s), x);
+                            d.y = dot(random3(s + i1), x1);
+                            d.z = dot(random3(s + i2), x2);
+                            d.w = dot(random3(s + 1.0), x3);
+
+                            w *= w;
+                            w *= w;
+                            d *= w;
+
+                            return dot(d, vec4(52.0));
+                        }
                 normal: |
-                    normal = mix(v_normal, normal, 1.0-sin(v_texcoord.x*3.1415) );
+                    float pct = sin(v_texcoord.x*3.1415);
+                    vec3 waterNormal = v_normal + snoise(vec3(v_world_position.xy*0.1,u_time*.5));
+                    normal = mix(normal, waterNormal, pct );
+                color: |
+                    color.rgb = mix(vec3(.6), vec3(0.400,0.576,0.718), pow(pct,2.));
+
 
     sand:
         extends: polygons
@@ -114,10 +159,6 @@ styles:
             ambient: 0.8
             diffuse: 1
             specular: 0
-        # shaders:
-        #     blocks:
-        #         globals: |
-        #         color: |
     wood:
         extends: polygons
         material:
