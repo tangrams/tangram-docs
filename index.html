@@ -59,9 +59,9 @@
         var style_file = 'styles.yaml';
         var url_search = window.location.search.slice(1);
         if (url_search.length > 0) {
-            var ext = url_search.substr(url_search.lastIndexOf('.') + 1);
-            if (ext == "yaml" || ext == "yaml/") {
-                style_file = url_search;
+            var ext = url_search.lastIndexOf('yaml');
+            if (ext > -1) {
+                style_file = url_search.substr(0, ext + 4);
             }
         }
 
