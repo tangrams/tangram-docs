@@ -14,8 +14,8 @@ lights:
 
 sources:
     osm:
-        type: GeoJSONTileSource
-        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+        type: MVTSource
+        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox
 
 layers:
     earth:
