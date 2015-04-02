@@ -6,34 +6,42 @@ lights:
     light1:
         type: directional
         direction: [0, 1, -.5]
-        diffuse: .5
-        ambient: .5
+        diffuse: .1
+        ambient: .2
     light2:
         type: point
-        position: [0, 0, 300]
+        position: [0, 0, 700]
         origin: ground
-        ambient: .3
-        diffuse: .3
+        ambient: .2
+        diffuse: .9
 
 styles:
     buildings:
         extends: polygons
         animated: true
-        texcoords: true
         material:
             ambient: 1.0
             diffuse: 1.0
         shaders:
             blocks:
-                position: |
-                    vec3 pos = v_world_position.xyz*0.1;
-                    if(position.z > 0.){
-                        position.xyz += vec3(cos(pos.x+u_time)*5.,
-                                         sin(pos.y+u_time)*5.,
-                                         sin(pos.x+u_time)*10.+
-                                         cos(pos.y+u_time)*5. );
+                globals: |
+                    float random(in vec3 _st){ 
+                        return fract(sin(dot(_st.xyz,
+                                             vec3(12.9898,78.233,32.4355)))* 
+                            43758.5453123);
                     }
-                    
+
+                    vec3 hsb2rgb( in float hue, in float sat, in float bri ){
+                        vec3 rgb = clamp(abs(mod(hue*6.0+vec3(0.0,4.0,2.0),
+                                                 6.0)-3.0)-1.0, 
+                                         0.0, 
+                                         1.0 );
+                        rgb = rgb*rgb*(3.0-2.0*rgb);
+                        return bri * mix(vec3(1.0), rgb, sat);
+                    }
+                filter: |
+                    vec3 pos = v_world_position.xyz*0.05;
+                    color.xyz = hsb2rgb( random(abs(floor(pos))) , .5, .8 );
                     
 sources:
     osm:
@@ -118,9 +126,10 @@ layers:
         style:
             name: buildings
             order: 4
-            color: [.7,.7,.7]
+            color: white
+            # color: Style.color.pseudoRandomColor
             outline:
-                color: gray
+                color: black
                 width: 1px
             extrude: true
 
