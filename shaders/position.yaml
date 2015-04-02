@@ -19,7 +19,6 @@ styles:
     buildings:
         extends: polygons
         animated: true
-        texcoords: true
         material:
             ambient: 1.0
             diffuse: 1.0
