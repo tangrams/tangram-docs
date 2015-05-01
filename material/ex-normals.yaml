@@ -20,7 +20,7 @@ lights:
 
 styles:
     rock:
-        extends: polygons
+        base: polygons
         material:
             normal:
                 texture: ./material/rock.jpg
@@ -30,7 +30,7 @@ styles:
             specular: 0
 
     water:
-        extends: polygons
+        base: polygons
         animated: true
         material:
             ambient: .7
@@ -92,7 +92,7 @@ styles:
 
 sources:
     osm:
-        type: MVTSource
+        type: MVT
         url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox
 
 layers:

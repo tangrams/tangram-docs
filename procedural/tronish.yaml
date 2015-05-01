@@ -5,7 +5,7 @@ cameras:
 styles:
     roads:
         animated: true
-        extends: polygons
+        base: polygons
         texcoords: true
         shaders:
             blocks:
@@ -27,7 +27,7 @@ styles:
                     color.rgb = vec3(1.000,0.865,0.387)*pattern*sin(smoothstep(0.0,1.,v_texcoord.x)*3.1415);
 
     grid:
-        extends: polygons
+        base: polygons
         shaders:
             blocks:
                 globals: |
@@ -47,7 +47,7 @@ styles:
                     color.rgb = v_color.rgb*grid(pos,10.,0.05+b*0.05)*(1.0-b);
 
     tiledCross:
-        extends: polygons
+        base: polygons
         texcoords: true
         shaders:
             blocks:
@@ -89,7 +89,7 @@ styles:
                     
 
     walls:
-        extends: polygons
+        base: polygons
         texcoords: true
         blend: add
         shaders:
@@ -127,7 +127,7 @@ styles:
 
 sources:
     osm:
-        type: MVTSource
+        type: MVT
         url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox
 
 layers:

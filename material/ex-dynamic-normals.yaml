@@ -20,7 +20,7 @@ lights:
 
 styles:
     water:
-        extends: polygons
+        base: polygons
         animated: true
         material:
             ambient: .7
@@ -82,7 +82,7 @@ styles:
 
 sources:
     osm:
-        type: MVTSource
+        type: MVT
         url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox
 
 layers:
