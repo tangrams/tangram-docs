@@ -1,20 +1,20 @@
+# Author @patriciogv - 2015
+
 cameras:
     camera1:
         type: perspective
-
 styles:
     roads:
+        base: lines
         animated: true
-        base: polygons
         texcoords: true
         shaders:
             blocks:
-                globals: |
+                global: |
                     mat2 rotate2d(float _angle){
                         return mat2(cos(_angle),-sin(_angle),
                                     sin(_angle),cos(_angle));
                     }
-
                     float getHatch(in vec2 _pos, float _angle, float _brigtness){
                         float scale = 20.0;
                         _pos *= scale;
@@ -25,16 +25,14 @@ styles:
                     vec3 pos = v_world_position.xyz*0.01;
                     float pattern = getHatch( u_time*0.1+v_texcoord.xy*0.5, 3.1415*0.5, 0.5);
                     color.rgb = vec3(1.000,0.865,0.387)*pattern*sin(smoothstep(0.0,1.,v_texcoord.x)*3.1415);
-
     grid:
         base: polygons
         shaders:
             blocks:
-                globals: |
+                global: |
                     float getBrightness(in vec3 _rgb){
                         return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
                     }
-
                     float grid (in vec2 _pos, in float _zoom, in float _lineWidth){
                         _pos = fract(_pos*_zoom);
                         vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) - 
@@ -45,17 +43,12 @@ styles:
                     vec2 pos = v_world_position.xy*0.01;
                     float b = getBrightness(v_color.rgb);
                     color.rgb = v_color.rgb*grid(pos,10.,0.05+b*0.05)*(1.0-b);
-
     tiledCross:
         base: polygons
         texcoords: true
         shaders:
             blocks:
-                globals: |
-                    float getBrightness(in vec3 _rgb){
-                        return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
-                    }
-
+                global: |
                     float box(in vec2 _st, in vec2 _size){
                         _size = vec2(0.5) - _size*0.5;
                         vec2 uv = smoothstep(_size,
@@ -66,156 +59,149 @@ styles:
                                         vec2(1.0)-_st);
                         return uv.x*uv.y;
                     }
-
                     float cross(in vec2 _st, float _size){
                         return  box(_st, vec2(_size*0.5,_size*0.125)) + 
                                 box(_st, vec2(_size*0.125,_size*0.5));
                     }
-
-                    float grid (in vec2 _pos, in float _zoom, in float _lineWidth){
-                        _pos = fract(_pos*_zoom);
-                        vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) - 
-                                 smoothstep(vec2(0.5),vec2(0.5+_lineWidth),_pos);
-                        return clamp(g.x+g.y,0.0,1.0);
-                    }
                 filter: |
                     vec2 pos = v_world_position.xy*0.01;
-                    if ( v_color.rgb == vec3(0.0) ) {
-                        float pct = clamp(cross(fract(pos),0.2),0.0,1.0);
-                        color.rgb = mix(vec3(0.051,0.071,0.278),vec3(0.654,0.897,1.000),pct);
-                    } else {
-                        color.rgb = vec3(0.654,0.897,1.000);
-                    }
+                    float pct = clamp(cross(fract(pos),0.2),0.0,1.0);
+                    color.rgb = mix(vec3(0.051,0.071,0.278),vec3(0.654,0.897,1.000),pct);
                     
-
     walls:
         base: polygons
         texcoords: true
         blend: add
         shaders:
             blocks:
-                globals: |
-                    float getBrightness(in vec3 _rgb){
-                        return 0.212655 * _rgb.r + 0.715158 * _rgb.g + 0.072187 * _rgb.b;
-                    }
-
+                global: |
                     float grid (in vec2 _pos, in float _zoom, in float _lineWidth){
                         _pos = fract(_pos*_zoom);
                         vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) - 
                                  smoothstep(vec2(0.5),vec2(0.5+_lineWidth),_pos);
                         return clamp(g.x+g.y,0.0,1.0);
                     }
-
-                    float grid (in vec3 _pos, in float _zoom, in float _lineWidth){
-                        _pos = fract(_pos*_zoom);
-                        vec3 g = smoothstep(vec3(0.5-_lineWidth),vec3(0.5),_pos) - 
-                                 smoothstep(vec3(0.5),vec3(0.5+_lineWidth),_pos);
-                        return clamp(g.x+g.y+g.z,0.0,1.0);
-                    }
                 filter: |
-                    vec3 pos = v_world_position.xyz*0.01;
-
-                    if ( v_color.rgb == vec3(0.0) ) {
-                        float pct = grid(v_texcoord,10.,0.1)*0.5;
-                        //float pct = grid(pos.xy,10.,0.1);
-                        color.rgb = mix(vec3(0.051,0.071,0.278)*0.8,vec3(0.239,0.431,0.718)*0.6,pct)*0.5;
-                    } else {
-                        color.rgb = vec3(0.305,0.637,1.000);
-                    }
-                    
-
-
+                    float pct = grid(v_texcoord,10.,0.1)*0.5;
+                    color.rgb = mix(vec3(0.051,0.071,0.278)*0.8,vec3(0.239,0.431,0.718)*0.6,pct)*0.5;
 sources:
     osm:
-        type: MVT
-        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox
-
+        type: TopoJSONTiles
+        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
 layers:
     earth:
         data:
             source: osm
-        style:
-            name: grid
-            order: 0
-            color: '#ddeeee'
+        draw:
+            grid:
+                order: 0
+                color: '#ddeeee'
     landuse:
         data:
             source: osm
-        style:
-            name: grid
-            order: 1
-            color: '#ff00ff'
-            interactive: true
-
+        draw:
+            grid:
+                order: 1
+                color: '#ff00ff'
+                interactive: true
     water:
         data:
             source: osm
-        style:
-            name: tiledCross
-            order: 2
-            color: [0,0,0]
+        draw:
+            tiledCross:
+                order: 2
+                color: [0,0,0]
             outline:
-                color: [1, 1, 1]
+                order: 3
+                style: lines
+                color: [0.654,0.897,1.000]
                 width: 1px
                 tile_edges: false
-
     roads:
         data:
             source: osm
-        style:
-            name: roads
-            order: 3
-            color: [0, 0, 0]
-            width: 8
+        draw:
+            roads:
+                order: 4
+                color: [0, 0, 0]
+                width: 8
         highway:
             filter:
                 kind: highway
-            style:
-                name: roads
-                color: [0, 0, 0]
-                width: 12
+            draw:
+                roads:
+                    order: 5
+                    color: [0, 0, 0]
+                    width: 12
                 outline:
-                    color: [1, 1, 1]
-                    width: 1
+                    style: lines
+                    order: 4
+                    color: [0.654,0.897,1.000]
+                    width: 13
         tunnel:
             filter:
                 is_tunnel: yes
-            style:
-                color: tan
+            draw:
+                roads:
+                    color: tan
             rail:
                 filter:
                     kind: rail
-                style:
-                    width: 0
+                draw:
+                    roads:
+                        width: 0
         minor_road:
             filter:
                 kind: minor_road
-            style:
-                color: [0,0,0]
-                width: 5
+            draw:
+                roads:
+                    color: [0,0,0]
+                    width: 5
         path:
             filter:
                 kind: path
-            style:
-                color: [0, 0, 0]
-                width: 3
+            draw:
+                roads:
+                    color: [0, 0, 0]
+                    width: 3
         rail:
             filter:
                 kind: rail
                 is_tunnel: no
-            style:
-                color: [0, 0, 0]
-                width: 3
-    
+            draw:
+                roads:
+                    color: [0, 0, 0]
+                    width: 3
     buildings:
         data:
             source: osm
-        style:
-            name: walls
-            order: 4
-            color: [0, 0, 0]
+        draw:
+            walls:
+                order: 6
+                color: [0, 0, 0]
+                extrude: true
             outline:
-                color: [1, 1, 1]
+                order: 7
+                style: lines
+                color: [0.305,0.637,1.000]
                 width: 1px
                 tile_edges: true
-            extrude: true
+                extrude: true
+    # road_labels:
+    #     data: { source: osm, layer: roads }
+    #     filter: { name: true, $zoom: { min: 14 } }
+    #     draw:
+    #         text:
+    #             font:
+    #                 typeface: Italic 12px Helvetica
+    #                 fill: [.9,.9,1.]
+    #                 stroke: { color: black , width: 3 }
+    # places:
+    #     data: { source: osm }
+    #     filter: { name: true }
+    #     draw:
+    #         text:
+    #             font:
+    #                 typeface: Bold 18px Helvetica
+    #                 fill: black
+    #                 stroke: { color: white , width: 5 }
