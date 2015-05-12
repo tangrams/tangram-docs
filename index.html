@@ -32,7 +32,6 @@
 
   <body>
     <div id="map"></div>
-    <!--
     <div id="ui-locator">
         <div id="citylocator">
             <div class="citylocate-input-container">
@@ -45,7 +44,6 @@
             <div class="geolocate-button" title="Get current location"><span class="geolocate-icon"></span></div>
         </div>
     </div>
-    -->
 
     <!-- 3rd party libraries -->
     <script src="./src/leaflet/leaflet.js"></script>
@@ -58,7 +56,7 @@
 
     <!-- Demo module -->
     <script type="text/javascript">
-    (function () {
+    map = (function () {
         'use strict';
 
         var map_start_location = [40.70531887544228, -74.00976419448853, 16];
@@ -115,6 +113,9 @@
             // Scene initialized
             layer.addTo(map);
         });
+
+        return map;
+
     }());
     </script>
 
@@ -133,12 +134,11 @@
       ga('send', 'pageview');
     </script>
 
-    <!-- Locator js 
+    <!-- Locator js -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
     <script src="lib/locator/geolocate.js"></script>
     <script src="lib/locator/findcity.js"></script>
--->
 
     <!-- Mapzen bug -->
     <script src='//s3.amazonaws.com/assets-staging.mapzen.com/ui/components/bug/bug.min.js'></script>
