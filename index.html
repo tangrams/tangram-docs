@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vector map</title>
     <link rel="stylesheet" href="./src/leaflet/leaflet.css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     <style>
         body {
             margin: 0px;
@@ -22,11 +23,27 @@
         #map {
             background: rgba(0, 0, 0, 0);
         }
+
+        #ui-locator {
+            display: none;
+        }
     </style>
   </head>
 
   <body>
     <div id="map"></div>
+    <div id="ui-locator">
+        <div id="citylocator">
+            <div class="citylocate-input-container">
+                <select class="js-citylocate-select2">
+                    <option disabled selected>Search</option>
+                </select>
+            </div>
+        </div>
+        <div id="geolocator">
+            <div class="geolocate-button" title="Get current location"><span class="geolocate-icon"></span></div>
+        </div>
+    </div>
 
     <!-- 3rd party libraries -->
     <script src="./src/leaflet/leaflet.js"></script>
@@ -113,6 +130,12 @@
       ga('create', 'UA-47035811-1', 'auto');
       ga('send', 'pageview');
     </script>
+
+    <!-- Locator js -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+    <script src="lib/locator/geolocate.js"></script>
+    <script src="lib/locator/findcity.js"></script>
 
     <!-- Mapzen bug -->
     <script src='//s3.amazonaws.com/assets-staging.mapzen.com/ui/components/bug/bug.min.js'></script>
