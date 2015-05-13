@@ -23,7 +23,7 @@ styles:
         base: polygons
         material:
             diffuse:
-                texture: ./material/sem.jpg
+                texture: sem.jpg
                 mapping: spheremap
 
 sources:

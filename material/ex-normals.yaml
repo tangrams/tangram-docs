@@ -23,7 +23,7 @@ styles:
         base: polygons
         material:
             normal:
-                texture: ./material/rock.jpg
+                texture: rock.jpg
                 mapping: uv
             ambient: 0.8
             diffuse: 1
@@ -35,7 +35,7 @@ styles:
         material:
             ambient: .7
             diffuse:
-                texture: ./material/sky.jpg
+                texture: sky.jpg
                 mapping: spheremap
         shaders:
             blocks:

@@ -23,7 +23,7 @@ styles:
         base: polygons
         material:
             diffuse:
-                texture: ./material/grid.jpg
+                texture: grid.jpg
                 mapping: uv
 
 sources:
