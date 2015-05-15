@@ -22,6 +22,9 @@
 
         #map {
             background: rgba(0, 0, 0, 0);
+            height: 100%;
+            width: 100%;
+            position: absolute;
         }
 
         #ui-locator {
@@ -98,16 +101,6 @@
 
         map.setView(map_start_location.slice(0, 2), map_start_location[2]);
         var hash = new L.Hash(map);
-
-        // Resize map to window
-        function resizeMap() {
-            document.getElementById('map').style.width = window.innerWidth + 'px';
-            document.getElementById('map').style.height = window.innerHeight + 'px';
-            map.invalidateSize(false);
-        }
-
-        window.addEventListener('resize', resizeMap);
-        resizeMap();
 
         window.addEventListener('load', function () {
             // Scene initialized
