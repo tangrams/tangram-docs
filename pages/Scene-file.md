@@ -70,4 +70,4 @@ In this example, all three elements are included – this will produce a (very s
 ## Examples
 For more examples of scene files, check out our [demos](https://github.com/tangrams?query=demo) – ours are usually named `styles.yaml`.
 
-For even more amazing examples, check out Patricio Gonzalez Vivo's [Tangram Sandbox](http://patriciogonzalezvivo.github.io/tangram-sandbox/)!
+For even more amazing examples, check out the [Tangram Sandbox](http://tangrams/tangram-sandbox/)!
