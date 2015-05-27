@@ -15,24 +15,24 @@ Here are a few demos of the library in action:
 
 These pages offer an introduction to the concepts behind Tangram:
 
-- The [[Scene File]]  
-- [[Filters|Filters Overview]]  
-- [[Lights|Lights Overview]]  
-- [[Cameras|Cameras Overview]]  
-- [[Materials|Materials Overview]]  
-- [[Shaders|Shaders Overview]]  
-- [[Styles|Styles Overview]]  
+- The [Scene File](Scene-file.md)
+- [Filters](Filters-overview.md)  
+- [Lights](Lights-overview.md)  
+- [Cameras](Cameras-overview.md)  
+- [Materials](Materials-overview.md)  
+- [Shaders](Shaders-overview.md)  
+- [Styles](Styles-overview.md)  
 
 ### Technical Reference
 
 These pages list the objects and parameters of the scene file, as well as their acceptable values.
 
-- [[yaml]]  
-- [[sources]]  
-- [[cameras]]  
-- [[lights]]   
-- [[materials]]  
-- [[styles]]  
-- [[layers]]  
-- [[draw]]  
-- [[shaders]]  
+- [yaml](yaml.md)  
+- [sources](sources.md)  
+- [cameras](cameras.md)  
+- [lights](lights.md)   
+- [materials](materials.md)  
+- [styles](styles.md)  
+- [layers](layers.md)  
+- [draw](draw.md)  
+- [shaders](shaders.md)  
