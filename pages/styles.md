@@ -1,7 +1,7 @@
-*This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [[Styles Overview]].*
+*This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`styles`
-The `styles` element is an optional top-level element in the [[scene file]]. Individual styles are defined by a *style name* under this element. They can then be referenced inside a [[draw]] group.
+The `styles` element is an optional top-level element in the [scene file](scene-file.md). Individual styles are defined by a *style name* under this element. They can then be referenced inside a [draw](draw.md) group.
 ```yaml
 styles:
     buildings-style:
@@ -15,7 +15,7 @@ buildings:
 ```
 
 ### style name
-Required _string_. Can be anything except the [[reserved keywords|yaml#reserved keywords]]. Defines a new custom style. No default.
+Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). Defines a new custom style. No default.
 ```yaml
 styles:
     buildings:
@@ -66,7 +66,7 @@ styles:
 ####`texcoords`
 Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `material`s which use `texture`s.
 
-Note that `texture` objects must be accompanied by a `mapping` parameter – for more, see [[textures]].
+Note that `texture` objects must be accompanied by a `mapping` parameter – for more, see [textures](textures.md).
 ```yaml
 styles:
     monsters:
@@ -75,7 +75,7 @@ styles:
 ```
 
 ####`shaders`
-Optional _string_. Begins the shaders definition object. For more on materials, see the [[shaders technical reference|shaders]].
+Optional _string_. Begins the shaders definition object. For more on materials, see the [shaders technical reference](shaders.md).
 
 ```yaml
 styles:
@@ -87,7 +87,7 @@ styles:
 ```
 
 ####`material`
-Optional parameter. Starts a material definition block. For more on materials, see the [[materials technical reference|materials]].
+Optional parameter. Starts a material definition block. For more on materials, see the [materials technical reference](materials.md).
 
 ```yaml
 styles:
@@ -98,7 +98,7 @@ styles:
 ```
 
 ####`url`
-Optional _URL_. Imports a style definition from a URL. The URL should point to a YAML file that includes one or more style definitions, in the same format they appear under the top-level `styles` element in the [[scene file]].
+Optional _URL_. Imports a style definition from a URL. The URL should point to a YAML file that includes one or more style definitions, in the same format they appear under the top-level `styles` element in the [scene file](scene-file.md).
 
 ```yaml
 styles:

@@ -1,16 +1,16 @@
-*This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [[Styles Overview]].*
+*This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`draw`
-The `draw` element is a required element in the [[layer|layers]] and [[sublayer|layers#sublayer-name]] elements. It defines the beginning of a _draw group_. There can be only one `draw` group per `layer` or sublayer.
+The `draw` element is a required element in the [layer](layers.md) and [sublayer](layers.md#sublayer-name) elements. It defines the beginning of a _draw group_. There can be only one `draw` group per `layer` or sublayer.
 
 ####drawing style
-A _drawing style_ must be named under a [[draw]] group. It defines the beginning of a draw block.
+A _drawing style_ must be named under a [draw](draw.md) group. It defines the beginning of a draw block.
 
 The _drawing style_ is named either one of the four styles, or a custom name, with a `style` sub-element naming a pre-defined style.
 
 Rules defined in `draw` blocks will descend into any sublayers.
 
-*Note*: This is not to be confused with the [[styles]] element, which is a top-level element in the scene file used to define [[materials]] and [[shaders]].
+*Note*: This is not to be confused with the [styles](styles.md) element, which is a top-level element in the scene file used to define [materials](materials.md) and [shaders](shaders.md).
 
 ```yaml
 layers:
@@ -24,7 +24,7 @@ layers:
 ## style parameters
 
 ####`name`
-Optional _string_, naming a style defined in the [[styles]] block. Any style named here will be applied after and using the parameters defined in the `style` block. For more on this interaction, see [[Materials Overview]] and [[Shaders Overview]].
+Optional _string_, naming a style defined in the [styles](styles.md) block. Any style named here will be applied after and using the parameters defined in the `style` block. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
 ```yaml
 style:
     name: normalripples
@@ -51,7 +51,7 @@ layers:
 ####`interactive`
 Optional _boolean_ or _function_ returning `true` or `false`. Default is `false`.
 
-When `true`, activates _Feature Selection_ – the feature can be queried via the [[Javascript API]].
+When `true`, activates _Feature Selection_ – the feature can be queried via the [JavaScript API](Javascript-API.md).
 
 ```yaml
 draw:
@@ -101,12 +101,12 @@ draw:
 ```
 
 ####`outline`
-Optional element. Defines the start of an outline style block. See [[styling-rules#outline-parameters]].
+Optional element. Defines the start of an outline style block. See [styling-rules#outline-parameters](styling-rules.md#outline-parameters).
 
 Can take the `draw` style parameters `color` and `width`, as defined above.
 
 ####`font`
-Optional element. Defines the start of a font style block. See [[styling-rules#font-parameters]].
+Optional element. Defines the start of a font style block. See [styling-rules#font-parameters](styling-rules.md#font-parameters).
 
 Enables labels.
 
@@ -199,7 +199,7 @@ font:
 ```
 
 ####`fill`
-Optional _color_. Follows the specs of [[color|styling-rules#color]]. Default is `[0, 0, 0]`.
+Optional _color_. Follows the specs of [color#styling-rules](color.md#styling-rules). Default is `[0, 0, 0]`.
 
 Sets the fill color of the label.
 
@@ -209,7 +209,7 @@ font:
 ```
 
 ####`stroke`
-Optional _color_ or _{color, width}_. _colors_ follow the specs of [[color|styling-rules#color]]. Default is `[1.0, 1.0, 1.0]`.
+Optional _color_ or _{color, width}_. _colors_ follow the specs of [color#styling-rules](color.md#styling-rules). Default is `[1.0, 1.0, 1.0]`.
 
 Sets the stroke color (and optionally, width) of the label.
 

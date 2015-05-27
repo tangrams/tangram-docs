@@ -1,7 +1,7 @@
-*This is the technical documentation for the "layers" block in Tangram's scene file. For a conceptual overview of the way Tangram applies styles to data, see the [[Filters Overview]] and the [[Styles Overview]].*
+*This is the technical documentation for the "layers" block in Tangram's scene file. For a conceptual overview of the way Tangram applies styles to data, see the [Filters Overview](Filters-Overview.md) and the [Styles Overview](Styles-Overview.md).*
 
 ####`layers`
-The `layers` element is a required top-level element in the [[scene file]]. Individual layers are defined by a *layer name* under this element.
+The `layers` element is a required top-level element in the [scene file](scene-file.md). Individual layers are defined by a *layer name* under this element.
 
 ```yaml
 layers:
@@ -10,7 +10,7 @@ layers:
 ```
 
 ### layer name
-Required _string_. Can be anything except the [[reserved keywords|yaml#reserved keywords]]. No default.
+Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
 
 ```yaml
 layers:
@@ -30,7 +30,7 @@ layers:
 ####`filter`
 Optional _object_ or _function_. No default.
 
-A `filter` element may be included once in any layer or sublayer. Only features matching the filter will be included in that layer (and its sublayers). For more on the filtering system, see [[Filters Overview]].
+A `filter` element may be included once in any layer or sublayer. Only features matching the filter will be included in that layer (and its sublayers). For more on the filtering system, see [Filters Overview](Filters-Overview.md).
 
 ```yaml
 layers:
@@ -40,7 +40,7 @@ layers:
 ```
 
 ####`draw`
-Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [[styling rules]] section.
+Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [styling rules](styling-rules.md) section.
 ```yaml
 layers:
     landuse:
@@ -50,9 +50,9 @@ layers:
 ```
 
 ####sublayer name
-Optional _string_. Can be anything except the [[reserved keywords|yaml#reserved keywords]]. No default.
+Optional _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
 
-Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested. `draw` and `filter` definitions are inherited, and match simultaneously – see the [[Filters Overview]].
+Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested. `draw` and `filter` definitions are inherited, and match simultaneously – see the [Filters Overview](Filters-Overview.md).
 
 ```yaml
 layers:
@@ -91,7 +91,7 @@ buildings:
 ## `data` parameters
 
 ####`source`
-Required _string_, naming one of the sources defined in the [[sources]] block.
+Required _string_, naming one of the sources defined in the [sources](sources.md) block.
 
 ```yaml
 data:
@@ -118,4 +118,4 @@ Because the _layer name_ is the same as the name of the GeoJSON object, the `dat
 
 ## `draw` parameters
 
-See the [[styling rules]] section.
+See the [styling rules](styling-rules.md) section.

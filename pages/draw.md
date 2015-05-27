@@ -1,15 +1,15 @@
-*This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [[Styles Overview]].*
+*This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`draw`
-The `draw` element is a required element in the [[layer|layers]] and [[sublayer|layers#sublayer-name]] elements. It defines the beginning of a _draw group_. There can be only one `draw` group per `layer` or _sublayer_.
+The `draw` element is a required element in the [layer](layers.md) and [sublayer](layers.md#sublayer) elements. It defines the beginning of a _draw group_. There can be only one `draw` group per `layer` or _sublayer_.
 
 ####drawing style
-A _drawing style_ must be named under a [[draw]] group. It defines the beginning of a _draw block_.
+A _drawing style_ must be named under a [draw](draw.md) group. It defines the beginning of a _draw block_.
 
 The name of the style must be either:
 
 - one of the four built-in styles ("polygons", "lines", "sprites", or "text")
-- a custom name, with a `style` sub-element naming a custom style defined in the [[styles]] element.
+- a custom name, with a `style` sub-element naming a custom style defined in the [styles](styles.md) element.
 
 An example of using a built-in draw style:
 ```yaml
@@ -34,7 +34,7 @@ layers:
 
 Rules defined in `draw` blocks will descend into any sublayers.
 
-*Note*: This is not to be confused with the [[styles]] element, which is a top-level element in the scene file used to define [[materials]] and [[shaders]].
+*Note*: This is not to be confused with the [styles](styles.md) element, which is a top-level element in the scene file used to define [materials](materials.md) and [shaders](shaders.md).
 ```yaml
 layers:
     water:
@@ -47,7 +47,7 @@ layers:
 ## style parameters
 
 ####`style`
-Optional _string_, naming a style defined in the [[styles]] block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that color will be available to any `shader` defined in the `style`. For more on this interaction, see [[Materials Overview]] and [[Shaders Overview]].
+Optional _string_, naming a style defined in the [styles](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that color will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
 ```yaml
 draw:
     style: normalripples
@@ -74,7 +74,7 @@ layers:
 ####`interactive`
 Optional _boolean_ or _function_ returning `true` or `false`. Default is `false`.
 
-When `true`, activates _Feature Selection_ – the feature can be queried via the [[Javascript API]].
+When `true`, activates _Feature Selection_ – the feature can be queried via the [JavaScript API](Javascript-API.md).
 
 ```yaml
 draw:
@@ -124,12 +124,12 @@ draw:
 ```
 
 ####`outline`
-Optional element. Defines the start of an outline style block. See [[draw#outline-parameters]].
+Optional element. Defines the start of an outline style block. See [draw#outline-parameters](draw.md#outline-parameters).
 
 Can take the `draw` style parameters `color` and `width`, as defined above.
 
 ####`font`
-Optional element. Defines the start of a font style block. See [[draw#font-parameters]].
+Optional element. Defines the start of a font style block. See [draw#font-parameters](draw.md#font-parameters).
 
 Enables labels.
 
@@ -222,7 +222,7 @@ font:
 ```
 
 ####`fill`
-Optional _color_. Follows the specs of [[color|draw#color]]. Default is `[0, 0, 0]`.
+Optional _color_. Follows the specs of [color](draw.md#color). Default is `[0, 0, 0]`.
 
 Sets the fill color of the label.
 
@@ -232,7 +232,7 @@ font:
 ```
 
 ####`stroke`
-Optional _color_ or _{color, width}_. _colors_ follow the specs of [[color|draw#color]]. Default is `[1.0, 1.0, 1.0]`.
+Optional _color_ or _{color, width}_. _colors_ follow the specs of [color](draw.md#color). Default is `[1.0, 1.0, 1.0]`.
 
 Sets the stroke color (and optionally, width) of the label.
 

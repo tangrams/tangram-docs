@@ -1,8 +1,8 @@
-*This is the technical documentation for Tangram’s materials. For a conceptual overview of the material system, see the [[Materials Overview]].*
+*This is the technical documentation for Tangram’s materials. For a conceptual overview of the material system, see the [Materials Overview](Materials-Overview.md).*
 
 #### `material`
 
-Optional parameter. Begins a material block under a named [[style|styles]].
+Optional parameter. Begins a material block under a named [style](styles.md).
 
 ```yaml
 styles:
@@ -89,7 +89,7 @@ material:
 
 #### `texture`
 
-Optional _string_, defining a _path_ `"complete/texture/url.png"` or _named [[texture|textures]]_. No default.
+Optional _string_, defining a _path_ `"complete/texture/url.png"` or _named [texture](textures.md)_. No default.
 
 If a texture is identified by _path_, a `mapping` mode must be specified.
 
@@ -99,7 +99,7 @@ diffuse:
     mapping: spheremap
 ```
 
-If a texture is referenced by _name_, the `mapping` parameter must be defined in the associated _named [[texture|textures]]_ block.
+If a texture is referenced by _name_, the `mapping` parameter must be defined in the associated _named [texture](textures.md)_ block.
 ```yaml
 textures:
     sky:
@@ -110,4 +110,4 @@ diffuse:
     texture: sky
 ```
 
-See also: [[texture parameters|textures#texture-parameters]].
+See also: [texture parameters](textures.md#texture-parameters).

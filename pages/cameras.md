@@ -1,8 +1,8 @@
-*This is the technical documentation for Tangram's cameras. For a conceptual overview of the camera system, see the [[Cameras Overview]].*
+*This is the technical documentation for Tangram's cameras. For a conceptual overview of the camera system, see the [Cameras Overview](Cameras-Overview.md).*
 
 ####`cameras`
 
-The `cameras` element is a required top-level element in the [[scene file]]. Individual cameras are defined by a *camera name* under this element.
+The `cameras` element is a required top-level element in the [scene file](scene-file.md). Individual cameras are defined by a *camera name* under this element.
 ```yaml
 cameras:
     camera1:
@@ -14,7 +14,7 @@ cameras:
 ```
 
 #### camera names
-Required _string_. Can be anything except the [[reserved keywords|yaml#reserved keywords]]. No default.
+Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
 
 ```yaml
 cameras:
@@ -61,7 +61,7 @@ camera1:
 ####`active`
 Optional _boolean_. `true` or `false`. No default.
 
-Sets the camera which provides the active view of the map when it is first loaded. If multiple cameras are active, the camera defined first in the scene file will take precedence. The [[Javascript API]] can be used to [[get|Javascript API#getactivecamera]] or [[set|Javascript API#setactivecamera]] the active camera.
+Sets the camera which provides the active view of the map when it is first loaded. If multiple cameras are active, the camera defined first in the scene file will take precedence. The [JavaScript API](Javascript-API.md) can be used to [get](Javascript-API.md#get) or [set](Javascript-API.md#set) the active camera.
 
 ```yaml
 camera1:
@@ -71,7 +71,7 @@ camera1:
 ##perspective camera parameters
 
 ####`focal_length`
-Optional _number_ or _[[stops|yaml#stops]]_. Unitless. Defaults to `[[16, 2], [17, 2.5], [18, 3], [19, 4], [20, 6]]`.
+Optional _number_ or _[stops](yaml.md#stops)_. Unitless. Defaults to `[[16, 2], [17, 2.5], [18, 3], [19, 4], [20, 6]]`.
 
 Sets the amount of vertical exaggeration in the z-plane. Changes the apparent height of extruded elements. Lower values = more exaggeration. Also see `fov`.
 

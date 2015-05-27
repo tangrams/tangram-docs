@@ -22,7 +22,7 @@ A material can define *diffuse*, *specular*, and *ambient* properties, which det
 
 So in order to get high specular we need a material with high specular values too; ambient light will only reflect from a material with an ambient property, and diffuse light bounces off of a diffuse material.
 
-For more, see our [[Materials Overview]].
+For more, see our [Materials Overview](Materials-Overview.md).
 
 ## Additive lighting
 

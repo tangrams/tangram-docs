@@ -139,13 +139,13 @@ For instance, in a `width` block, if no units are specified, each pair is interp
 Stops may be used in `color`, `width`, `focal_length`, and `fov`.
 
 ```yaml
-color: [[10, [0.3, 0.4, 0.3]], [14, [0.5, 0.825, 0.5]]]
+color: [10, [0.3, 0.4, 0.3], [14, [0.5, 0.825, 0.5]]]
 width: [[13, 0px], [14, 3px], [16, 5px], [18, 10px]]
 ```
 
 Note that stops define settings to be used when tile geometry is built. Typically, this only happens when the tile is loaded, at a tile integer change (or sometimes halfway between integer zooms) – so incremental zooming won't cause style changes until the next tile is loaded.
 
-## reserved keywords
+##[reserved keywords](yaml.md#reserved-keywords)
 
 Our YAML parser detects certain keywords contextually based on the element or parameter in which they are used.
 
@@ -156,13 +156,13 @@ Additionally, all of the named scene file elements are officially _reserved keyw
 Strings starting with `function` will be passed to the style builder as JavaScript in certain contexts: `color`, `width`, `order`, `interactive`, `visible`, `filter`, `size`, `fill`, and `stroke`.
 
 ```yaml
-# Single-line Javascript example:
+# Single-line JavaScript example:
 width: function () { return 2.5 * Math.log(zoom); }
 ```
 
 #### `$` keywords
 
-There are two keywords with a `$` prefix, available for use in [[filters]].
+There are two keywords with a `$` prefix, available for use in [filters](filters.md).
 
 The `$zoom` keyword may be used to define filters with optional `min` and `max` parameters.
 
@@ -201,7 +201,7 @@ element:
 This lets us put code straight into an attribute value, and it still looks like code:
 
 ```yaml
-# Multi-line Javascript example:
+# Multi-line JavaScript example:
 style:
     color: [0.5, 0.5, 0.5]
     width: |

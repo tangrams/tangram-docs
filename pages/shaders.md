@@ -99,11 +99,11 @@ TANGRAM_SPOTLIGHT_ATTENUATION_OUTER_RADIUS
 ## `uniforms`
 Optional parameter. Defines the start of a `uniforms` block.
 
-The `uniforms` block allows shortcuts for declaring globally-accessible _uniform_ variables, for use in the `global`, `position`, `normal`, `color` and `filter` blocks. Uniforms declared here may also be accessed and manipulated through the [[JavaScript API]].
+The `uniforms` block allows shortcuts for declaring globally-accessible _uniform_ variables, for use in the `global`, `position`, `normal`, `color` and `filter` blocks. Uniforms declared here may also be accessed and manipulated through the [JavaScript API](JavaScript-API.md).
 
 A "uniform" is a GLSL variable which is constant across all vertices and fragments (aka pixels).
 
-Uniforms are declared as key-value pairs; types are inferred by the [[YAML]] parser, and the corresponding uniform declarations are injected into the shaders automatically.
+Uniforms are declared as key-value pairs; types are inferred by the [YAML](yaml.md) parser, and the corresponding uniform declarations are injected into the shaders automatically.
 
 ```yaml
 shaders:
@@ -112,7 +112,7 @@ shaders:
         u_speed: 2.5
 ```
 
-See also: [[built-in uniforms]] and [[varyings]].
+See also: [built-in uniforms](built-in-uniforms.md) and [varyings](varyings.md).
 
 ## `blocks`
 Optional parameter. Defines the start of a `blocks` block.
@@ -232,7 +232,7 @@ varying vec2 v_texcoord;
 
 ## material parameters
 
-Certain other _uniforms_, global variables, and global functions are set when their corresponding [[material]] properties are defined:
+Certain other _uniforms_, global variables, and global functions are set when their corresponding [material](material.md) properties are defined:
 
 ```glsl
 vec4 diffuse;
@@ -259,7 +259,7 @@ vec4 g_light_accumulator_diffuse = vec4(0.0);
 vec4 g_light_accumulator_specular = vec4(0.0);
 ```
 
-When [[UV maps]] are used, the following functions are available for use in shader blocks:
+When [UV maps](UV-maps.md) are used, the following functions are available for use in shader blocks:
 
 ```glsl
 vec4 getSphereMap (in sampler2D _tex, in vec3 _eyeToPoint, in vec3 _normal, in vec2 _skew );

@@ -1,10 +1,10 @@
-*This is the technical documentation for Tangram's `sources` block. For a conceptual overview of the way Tangram works with data sources, see the [[Filters Overview]].*
+*This is the technical documentation for Tangram's `sources` block. For a conceptual overview of the way Tangram works with data sources, see the [Filters Overview](Filters-Overview.md).*
 
 ## `sources`
 The `sources` element is a top-level element in a Tangram scene file. It declares the beginning of a `sources` block. It takes only one kind of parameter: the _source name_. Any number of _source names_ can be declared.
 
 #### source names
-Required _string_. Can be anything except the [[reserved keywords|yaml#reserved keywords]]. Specifies the beginning of a source block.
+Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). Specifies the beginning of a source block.
 
 The source below is named `osm`:
 ```yaml

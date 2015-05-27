@@ -1,4 +1,4 @@
-The **scene file** is a [YAML](http://en.wikipedia.org/wiki/YAML) document which organizes all of the elements Tangram uses to draw a map. YAML is a data format similar in many ways to JSON, but it has some unique features which we thought made it more friendly and easy to use for our purposes. (See the [[YAML]] entry for more about those features.)
+The **scene file** is a [YAML](http://en.wikipedia.org/wiki/YAML) document which organizes all of the elements Tangram uses to draw a map. YAML is a data format similar in many ways to JSON, but it has some unique features which we thought made it more friendly and easy to use for our purposes. (See the [YAML](yaml.md) entry for more about those features.)
 
 ## Top-level Elements
 
@@ -13,32 +13,32 @@ Optional parameter. Sets a number of scene-wide parameters:
 ####`sources`
 Required parameter. The `sources` block identifies datasources.
 
-See [[sources]].
+See [sources](sources.md).
 
 ####`styles`
-Optional parameter. The `styles` block defines rendering styles, which are composed of [[materials]] and [[shaders]].
+Optional parameter. The `styles` block defines rendering styles, which are composed of [materials](materials.md) and [shaders](shaders.md).
 
-See [[Styles Overview]] and [[styles]].
+See [Styles Overview](Styles-Overview.md) and [styles](styles.md).
 
 ####`layers`
 Required parameter. The `layers` block divides the data into layers and assigns styling parameters.
 
-See [[Styles Overview]], [[layers]], and [[styling rules]].
+See [Styles Overview](Styles-Overview.md), [layers](layers.md), and [styling rules](styling-rules.md).
 
 ####`cameras`
 Optional parameter. The `cameras` block allows modifications to the view of the map.
 
-See [[Cameras Overview]] and [[cameras]].
+See [Cameras Overview](Cameras-Overview.md) and [cameras](cameras.md).
 
 ####`lights`
 Optional parameter. The `lights` block allows control of the lighting of the map.
 
-See [[Lights Overview]] and [[lights]].
+See [Lights Overview](Lights-Overview.md) and [lights](lights.md).
 
 ####`textures`
-Optional parameter. The `textures` block allows for advanced configuration of textures within [[materials]].
+Optional parameter. The `textures` block allows for advanced configuration of textures within [materials](materials.md).
 
-See [[Materials Overview]] and [[textures]].
+See [Materials Overview](Materials-Overview.md) and [textures](textures.md).
 
 
 ## The basics

@@ -1,8 +1,8 @@
-*This is the technical documentation for Tangram’s lights. For a conceptual overview of the lighting system, see the [[Lights Overview]].*
+*This is the technical documentation for Tangram’s lights. For a conceptual overview of the lighting system, see the [Lights Overview](Lights-Overview.md).*
 
 #### `Lights`
 
-The `lights` element is a top-level element in the [[scene file]]. Individual lights are defined by a *light name* under this element.
+The `lights` element is a top-level element in the [scene file](scene-file.md). Individual lights are defined by a *light name* under this element.
 
 ```yaml
 lights:
@@ -11,7 +11,7 @@ lights:
 ```
 
 #### Light names
-Required _string_. Can be anything except the [[reserved keywords|yaml#reserved-keywords]]. No default.
+Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
 
 ```yaml
 lights:
@@ -170,23 +170,23 @@ light1:
 
 #### `direction`
 
-This is the same as the _[directional light](#directional-light-properties)_'s [[direction|lights#direction]] property.
+This is the same as the _[directional light](#directional-light-properties)_'s [direction](direction|lights#direction.md) property.
 
 #### `position`
 
-This is the same as the _[point light](#point-light-properties)_'s [[position|lights#position]] property.
+This is the same as the _[point light](#point-light-properties)_'s [position|lights#position](position|lights#position.md) property.
 
 #### `origin`
 
-This is the same as the _[point light](#point-light-properties)_'s [[origin|lights#origin]] property.
+This is the same as the _[point light](#point-light-properties)_'s [origin|lights#origin](origin|lights#origin.md) property.
 
 #### `radius`
 
-This is the same as the _[point light](#point-light-properties)_'s [[radius|lights#radius]] property.
+This is the same as the _[point light](#point-light-properties)_'s [radius|lights#radius](radius|lights#radius.md) property.
 
 #### `attenuation`
 
-This is the same as the _[point light](#point-light-properties)_'s [[attenuation|lights#attenuation]] property.
+This is the same as the _[point light](#point-light-properties)_'s [attenuation|lights#attenuation](attenuation|lights#attenuation.md) property.
 
 #### `angle`
 

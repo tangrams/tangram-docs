@@ -12,7 +12,7 @@ This “shaders” are code using a “shading language” in our case, the open
 
 ## Shaders inside Tangram
 
-Each one of the [[styles|styles-overview]] on Tangram is related to both a geometry builder and a shader. The geometries that builders produce (from incoming data source) is formatted in a specific way and pushed to the GPU where the shader receive it, processed and display it. This series of process and steps is known as a pipeline.
+Each one of the [styles](styles-overview.md) on Tangram is related to both a geometry builder and a shader. The geometries that builders produce (from incoming data source) is formatted in a specific way and pushed to the GPU where the shader receive it, processed and display it. This series of process and steps is known as a pipeline.
 
 ### Geometry Builders
 
@@ -237,7 +237,7 @@ TANGRAM_SPOTLIGHT_ATTENUATION_INNER_RADIUS
 TANGRAM_SPOTLIGHT_ATTENUATION_OUTER_RADIUS
 ```
 
-**Uniforms**, on other side, are declared as key-value pairs; types are inferred by the [[YAML]] parser, and the corresponding uniform declarations are injected into the shaders automatically.
+**Uniforms**, on other side, are declared as key-value pairs; types are inferred by the [YAML](yaml.md) parser, and the corresponding uniform declarations are injected into the shaders automatically.
 
 ```yaml
 shaders:

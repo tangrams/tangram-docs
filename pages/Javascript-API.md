@@ -3,7 +3,7 @@
 In the process of constructing the web map, Tangram mirrors much of the structure of the scene file in a JavaScript object called `window.scene`. Most of its properties and functions objects are used internally by the library, but a few are designed to be referenceable and modifiable, to allow easier design and interactivity.
 
 #### `config`
-This contains the JavaScript version of the [[scene file]]:
+This contains the JavaScript version of the [scene file](scene-file.md):
 ```javascript
 > scene.config
 <- Object {cameras: Object,

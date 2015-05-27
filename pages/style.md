@@ -23,7 +23,7 @@ roads:
 All properties are optional, though if no `color` is applied, the layer may fail to draw.
 
 #### `name`
-- ascii string -  associates a `style` with an object defined in the [[styles]] block.
+- ascii string -  associates a `style` with an object defined in the [styles](styles.md) block.
 
 #### `order`
 Allowed values:
@@ -49,7 +49,7 @@ Defines the `width` of a line or outline.
 #### `interactive`
 - `True` or `False`, or any function which returns either value.
 
-When `True` this value triggers functionality defined in style.js. Currently this defaults to Tangram's [[feature selection]] behavior.
+When `True` this value triggers functionality defined in style.js. Currently this defaults to Tangram's [feature selection](feature-selection.md) behavior.
 
 #### `outline`
 This special `outline` property can have any of the above properties. It will inherit properties only from parent `outline` elements.

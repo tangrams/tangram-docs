@@ -1,8 +1,8 @@
-*This is the technical documentation for Tangram's `textures` block. For a conceptual overview of the texturing system, see the [[Materials Overview]].*
+*This is the technical documentation for Tangram's `textures` block. For a conceptual overview of the texturing system, see the [Materials Overview](Materials-Overview.md).*
 
 ##`textures`
 
-The `textures` element is an optional top-level element in the [[scene file]]. Textures allow image files to be used in the `ambient`, `diffuse`, `specular`, and `normal` parameters of a [[material|materials]]. A texture requires, at the minimum, a `url` path and a `mapping` mode.
+The `textures` element is an optional top-level element in the [scene file](scene-file.md). Textures allow image files to be used in the `ambient`, `diffuse`, `specular`, and `normal` parameters of a [material](materials.md). A texture requires, at the minimum, a `url` path and a `mapping` mode.
 
 The `texture` element has only one kind of sub-element: the *texture name*.
 
@@ -17,7 +17,7 @@ textures:
 ```
 
 #### texture names
-Required _string_. Can be anything except the [[reserved keywords|yaml#reserved keywords]]. No default.
+Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
 
 ### texture parameters
 
@@ -74,7 +74,7 @@ Optional parameter. Defines the start of a `sprites` block.
 May contain only one kind of parameter: the _sprite name_.
 
 #### sprite name
-Required _string_. Can be anything except the [[reserved keywords|yaml#reserved keywords]].
+Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords).
 
 Defines an area of a texture to be used as an individual sprite, as _[x origin, y origin, width, height]_ in pixels. 
 
