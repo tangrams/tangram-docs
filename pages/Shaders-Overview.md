@@ -41,13 +41,13 @@ Each one of the [styles](styles-overview.md) on Tangram is related to both a geo
 
 In this step the data coming from the data source is located on a mercator projection, extruded and tessellated.
 
-![](https://raw.githubusercontent.com/tangrams/tangram-docs-assets/gh-pages/shaders/geometry-builder.jpg)
+![](../shaders/geometry-builder.jpg)
 
 ### Shader
 
 The Tangram Engine is design to let the user interact and modify this pipeline in specific points. In order to customize your own shaders is important first to know what this pipeline looks like and where you can change things.
 
-![](https://raw.githubusercontent.com/tangrams/tangram-docs-assets/gh-pages/shaders/shader.jpg)
+![](../shaders/shader.jpg)
 
 Looking closely to the steps on the previous diagram you will note some red arrows, they correspond to the *position*, *normal*, *color* and *filter* steps. Those steps are moments where the user can add a `block` of code.
 
@@ -77,7 +77,7 @@ styles:
                     }
 ```
 
-[ ![](https://raw.githubusercontent.com/tangrams/tangram-docs-assets/gh-pages/shaders/position.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/position.yaml)
+[ ![](../shaders/position.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/position.yaml)
 
 #### `normal`
 
@@ -104,7 +104,7 @@ styles:
                     normal = normalize(normal);
 ```
 
-[ ![](https://raw.githubusercontent.com/tangrams/tangram-docs-assets/gh-pages/shaders/normal.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/normal.yaml)
+[ ![](../shaders/normal.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/normal.yaml)
 
 #### `color`
 
@@ -140,7 +140,7 @@ styles:
                     color.xyz *= hsb2rgb( random(abs(floor(pos))) , .5, .8 );
 ```
 
-[ ![](https://raw.githubusercontent.com/tangrams/tangram-docs-assets/gh-pages/shaders/color.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/color.yaml)
+[ ![](../shaders/color.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/color.yaml)
 
 #### `filter`
 
@@ -176,7 +176,7 @@ styles:
                     color.xyz = hsb2rgb( random(abs(floor(pos))) , .5, .8 );
 ```
 
-[ ![](https://raw.githubusercontent.com/tangrams/tangram-docs-assets/gh-pages/shaders/filter.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/filter.yaml)
+[ ![](../shaders/filter.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/filter.yaml)
 
 #### Defines and Uniforms
 

@@ -145,7 +145,7 @@ width: [[13, 0px], [14, 3px], [16, 5px], [18, 10px]]
 
 Note that stops define settings to be used when tile geometry is built. Typically, this only happens when the tile is loaded, at a tile integer change (or sometimes halfway between integer zooms) – so incremental zooming won't cause style changes until the next tile is loaded.
 
-##[reserved keywords](yaml.md#reserved-keywords)
+## reserved keywords
 
 Our YAML parser detects certain keywords contextually based on the element or parameter in which they are used.
 
