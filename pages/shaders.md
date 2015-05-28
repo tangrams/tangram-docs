@@ -236,19 +236,19 @@ Certain other _uniforms_, global variables, and global functions are set when th
 
 ```glsl
 vec4 diffuse;
-vec3 diffuseScale; # when diffuse is used with a texture
+vec3 diffuseScale; // when diffuse is used with a texture
 
 uniform vec4 ambient;
-vec3 ambientScale; # when ambient is used with a texture
+vec3 ambientScale; // when ambient is used with a texture
 
 uniform vec4 emission;
-uniform vec3 emissionScale; # when emission is used with a texture
+uniform vec3 emissionScale; // when emission is used with a texture
 
 vec4 specular;
 float shininess;
-vec3 specularScale; # when specular is used with a texture
+vec3 specularScale; // when specular is used with a texture
 
-vec3 normalScale; # normals can only be manipulated with a texture
+vec3 normalScale; // normals can only be manipulated with a texture
 float normalAmount;
 
 uniform Material u_material;
