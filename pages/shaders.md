@@ -29,7 +29,7 @@ styles:
         shaders:
             blocks:
                 global: |
-            	    float getGrayscale(vec3 p) { return (p.r + p.g + p.b) / 3.0; }
+                    float getGrayscale(vec3 p) { return (p.r + p.g + p.b) / 3.0; }
                 position: |
                     position.z *= (sin(position.z + u_time * u_speed) + 1.0);
                 color: |
@@ -167,8 +167,8 @@ This block has access to the `normal` variable, which takes the form `vec3(x, y,
 ```yaml
 blocks:
     normal: |
-				normal += vec3(sin(u_time)*0.5,cos(u_time)*0.5,1.);
-				normal = normalize(normal);
+        normal += vec3(sin(u_time)*0.5,cos(u_time)*0.5,1.);
+        normal = normalize(normal);
 ```
 
 #### `color`
