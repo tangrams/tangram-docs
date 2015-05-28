@@ -144,9 +144,9 @@ Defines uniforms and functions to be available globally (for both _fragment_ and
 
 ```yaml
 shaders:
-        blocks:
-                global:
-                    float getGrayscale(vec3 p) { return (p[0] + p[1] + p[2]) / 3.0; }
+    blocks:
+        global: |
+            float getGrayscale(vec3 p) { return (p[0] + p[1] + p[2]) / 3.0; }
 ```
 
 #### `position`
