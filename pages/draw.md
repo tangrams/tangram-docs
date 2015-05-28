@@ -124,12 +124,12 @@ draw:
 ```
 
 ####`outline`
-Optional element. Defines the start of an outline style block. See [draw#outline-parameters](draw.md#outline-parameters).
+Optional element. Defines the start of an outline style block. See [outline-parameters](draw.md#outline-parameters).
 
 Can take the `draw` style parameters `color` and `width`, as defined above.
 
 ####`font`
-Optional element. Defines the start of a font style block. See [draw#font-parameters](draw.md#font-parameters).
+Optional element. Defines the start of a font style block. See [font-parameters](draw.md#font-parameters).
 
 Enables labels.
 
