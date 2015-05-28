@@ -11,20 +11,23 @@ styles:
         shaders:
             blocks:
                 global: |
-                    mat2 rotate2d(float _angle){
-                        return mat2(cos(_angle),-sin(_angle),
-                                    sin(_angle),cos(_angle));
-                    }
                     float getHatch(in vec2 _pos, float _angle, float _brigtness){
-                        float scale = 20.0;
-                        _pos *= scale;
-                        _pos = rotate2d( _angle ) * _pos;
+                        _pos *= 20.;
+                        _pos = _pos.yx;
                         return 1.0-smoothstep(-1.+_brigtness*2.0,1.,abs(sin(_pos.x*3.1415)));
                     }
                 color: |
-                    vec3 pos = v_world_position.xyz*0.01;
-                    float pattern = getHatch( u_time*0.1+v_texcoord.xy*0.5, 3.1415*0.5, 0.5);
-                    color.rgb = vec3(1.000,0.865,0.387)*pattern*sin(smoothstep(0.0,1.,v_texcoord.x)*3.1415);
+                    vec2 st = v_texcoord.xy;
+                    float dir = -0.1;
+                    if ( v_color.r < 0.5) {
+                        if (st.x < 0.5) {
+                          dir *= -1.;
+                        }
+                        st.x = fract(st.x*2.0);
+                    }
+                    float pattern = getHatch( u_time*dir+st.xy*0.5, 3.1415*0.5, 0.5);
+                    color.rgb = vec3(1.000,0.865,0.387)* pattern*sin(smoothstep(0.0,1.,st.x)*3.1415);
+
     grid:
         base: polygons
         shaders:
@@ -35,12 +38,21 @@ styles:
                     }
                     float grid (in vec2 _pos, in float _zoom, in float _lineWidth){
                         _pos = fract(_pos*_zoom);
-                        vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) - 
+                        vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) -
                                  smoothstep(vec2(0.5),vec2(0.5+_lineWidth),_pos);
                         return clamp(g.x+g.y,0.0,1.0);
                     }
+                    vec2 getConstantPos(vec2 fragCoord){
+                        const float pixel_scale = 695.;
+                        float meter_pixels = u_meters_per_pixel / u_device_pixel_ratio;
+                        vec2 st = fragCoord.xy/pixel_scale;
+                        const float dot_wrap = 1000.;
+                        st += mod(u_map_position.xy / meter_pixels, dot_wrap)/pixel_scale;
+                        return st;
+                    }
                 filter: |
-                    vec2 pos = v_world_position.xy*0.01;
+                    //vec2 pos = v_world_position.xy*0.01;
+                    vec2 pos = getConstantPos(gl_FragCoord.xy)*4.0;
                     float b = getBrightness(v_color.rgb);
                     color.rgb = v_color.rgb*grid(pos,10.,0.05+b*0.05)*(1.0-b);
     tiledCross:
@@ -60,14 +72,23 @@ styles:
                         return uv.x*uv.y;
                     }
                     float cross(in vec2 _st, float _size){
-                        return  box(_st, vec2(_size*0.5,_size*0.125)) + 
+                        return  box(_st, vec2(_size*0.5,_size*0.125)) +
                                 box(_st, vec2(_size*0.125,_size*0.5));
                     }
+                    vec2 getConstantPos(vec2 fragCoord){
+                        const float pixel_scale = 695.;
+                        float meter_pixels = u_meters_per_pixel / u_device_pixel_ratio;
+                        vec2 st = fragCoord.xy/pixel_scale;
+                        const float dot_wrap = 1000.;
+                        st += mod(u_map_position.xy / meter_pixels, dot_wrap)/pixel_scale;
+                        return st;
+                    }
                 filter: |
-                    vec2 pos = v_world_position.xy*0.01;
+                    //vec2 pos = v_world_position.xy*0.01;
+                    vec2 pos = getConstantPos(gl_FragCoord.xy)*4.0;
                     float pct = clamp(cross(fract(pos),0.2),0.0,1.0);
                     color.rgb = mix(vec3(0.051,0.071,0.278),vec3(0.654,0.897,1.000),pct);
-                    
+
     walls:
         base: polygons
         texcoords: true
@@ -77,7 +98,7 @@ styles:
                 global: |
                     float grid (in vec2 _pos, in float _zoom, in float _lineWidth){
                         _pos = fract(_pos*_zoom);
-                        vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) - 
+                        vec2 g = smoothstep(vec2(0.5-_lineWidth),vec2(0.5),_pos) -
                                  smoothstep(vec2(0.5),vec2(0.5+_lineWidth),_pos);
                         return clamp(g.x+g.y,0.0,1.0);
                     }
@@ -103,7 +124,6 @@ layers:
             grid:
                 order: 1
                 color: '#ff00ff'
-                interactive: true
     water:
         data:
             source: osm
@@ -125,13 +145,16 @@ layers:
                 order: 4
                 color: [0, 0, 0]
                 width: 8
+        oneway:
+            filter: { oneway: yes }
+            draw: { roads: { color: red } }
+
         highway:
             filter:
                 kind: highway
             draw:
                 roads:
                     order: 5
-                    color: [0, 0, 0]
                     width: 12
                 outline:
                     style: lines
@@ -141,28 +164,21 @@ layers:
         tunnel:
             filter:
                 is_tunnel: yes
-            draw:
-                roads:
-                    color: tan
             rail:
                 filter:
                     kind: rail
-                draw:
-                    roads:
-                        width: 0
+                visible: false
         minor_road:
             filter:
                 kind: minor_road
             draw:
                 roads:
-                    color: [0,0,0]
                     width: 5
         path:
             filter:
                 kind: path
             draw:
                 roads:
-                    color: [0, 0, 0]
                     width: 3
         rail:
             filter:
@@ -170,7 +186,6 @@ layers:
                 is_tunnel: no
             draw:
                 roads:
-                    color: [0, 0, 0]
                     width: 3
     buildings:
         data:
@@ -179,29 +194,35 @@ layers:
             walls:
                 order: 6
                 color: [0, 0, 0]
-                extrude: true
             outline:
                 order: 7
                 style: lines
-                color: [0.305,0.637,1.000]
+                color: [0.654,0.897,1.000]
                 width: 1px
                 tile_edges: true
-                extrude: true
-    # road_labels:
-    #     data: { source: osm, layer: roads }
-    #     filter: { name: true, $zoom: { min: 14 } }
-    #     draw:
-    #         text:
-    #             font:
-    #                 typeface: Italic 12px Helvetica
-    #                 fill: [.9,.9,1.]
-    #                 stroke: { color: black , width: 3 }
-    # places:
-    #     data: { source: osm }
-    #     filter: { name: true }
-    #     draw:
-    #         text:
-    #             font:
-    #                 typeface: Bold 18px Helvetica
-    #                 fill: black
-    #                 stroke: { color: white , width: 5 }
+        3d-buildings:
+            filter: { $zoom: { min: 15 } }
+            draw:
+                walls:
+                    extrude: function () { return feature.height > 20 || $zoom >= 16; }
+                outline:
+                    extrude: function () { return feature.height > 20 || $zoom >= 16; }
+
+    road_labels:
+        data: { source: osm, layer: roads }
+        filter: { name: true, $zoom: { min: 14 } }
+        draw:
+            text:
+                font:
+                    typeface: Italic 12px Helvetica
+                    fill: [.9,.9,1.]
+                    stroke: { color: black , width: 3 }
+    places:
+        data: { source: osm }
+        filter: { name: true }
+        draw:
+            text:
+                font:
+                    typeface: Bold 18px Helvetica
+                    fill: black
+                    stroke: { color: white , width: 5 }
