@@ -13,6 +13,7 @@ parameter: value
 When nested, YAML calls this a "collection" – we usually call it an _element_:
 ```yaml
 element:
+
     parameter1: value
     parameter2: value
 ```
@@ -171,7 +172,7 @@ outline:
    filter: { $zoom: { min: 15, max: 20 } }
 ```
 
-The `$geometry` keyword can specify a filter to match a specific geometry type, for cases with a FeatureCollection includes multiple geometry types:
+The `$geometry` keyword can specify a filter to match a specific geometry type, for cases when a FeatureCollection includes multiple geometry types:
 
 ```yaml
 labels:
