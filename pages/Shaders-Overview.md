@@ -77,7 +77,7 @@ styles:
                     }
 ```
 
-[ ![](../shaders/position.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/position.yaml)
+[ ![](../shaders/position.png) ](http://tangrams.github.io/tangram-docs/?shaders/position.yaml)
 
 #### `normal`
 
@@ -104,7 +104,7 @@ styles:
                     normal = normalize(normal);
 ```
 
-[ ![](../shaders/normal.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/normal.yaml)
+[ ![](../shaders/normal.png) ](http://tangrams.github.io/tangram-docs/?shaders/normal.yaml)
 
 #### `color`
 
@@ -140,7 +140,7 @@ styles:
                     color.xyz *= hsb2rgb( random(abs(floor(pos))) , .5, .8 );
 ```
 
-[ ![](../shaders/color.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/color.yaml)
+[ ![](../shaders/color.png) ](http://tangrams.github.io/tangram-docs/?shaders/color.yaml)
 
 #### `filter`
 
@@ -176,7 +176,7 @@ styles:
                     color.xyz = hsb2rgb( random(abs(floor(pos))) , .5, .8 );
 ```
 
-[ ![](../shaders/filter.png) ](http://tangrams.github.io/tangram-docs-assets/?shaders/filter.yaml)
+[ ![](../shaders/filter.png) ](http://tangrams.github.io/tangram-docs/?shaders/filter.yaml)
 
 #### Defines and Uniforms
 

@@ -125,7 +125,7 @@ material:
         texture: ./material/grid.jpg
         mapping: uv
 ```
-[ ![](../material/ex-uv.png) ](http://tangrams.github.io/tangram-docs-assets/?material/ex-uv.yaml#19/40.70533/-74.00975)
+[ ![](../material/ex-uv.png) ](http://tangrams.github.io/tangram-docs/?material/ex-uv.yaml#19/40.70533/-74.00975)
 
 ###`mapping: planar`
 Planar mapping uses only 2D world coordinates. As you can see the pattern is constant across surfaces that face up but is stretched on the sides of geometries.
@@ -138,7 +138,7 @@ material:
         scale: 0.01
 ```
 
-[ ![](../material/ex-planar.png) ](http://tangrams.github.io/tangram-docs-assets/?material/ex-planar.yaml#19/40.70533/-74.00975)
+[ ![](../material/ex-planar.png) ](http://tangrams.github.io/tangram-docs/?material/ex-planar.yaml#19/40.70533/-74.00975)
 
 ###`mapping: triplanar`
 This is similar to `planar`, but along all three world-space axes. Where a face does not point directly along one axis, the result will be a blend of more than one axis; thus it is computationally more expensive.
@@ -151,7 +151,7 @@ material:
         scale: 0.01
 ```
 
-[ ![](../material/ex-triplanar.png) ](http://tangrams.github.io/tangram-docs-assets/?material/ex-triplanar.yaml#19/40.70533/-74.00975)
+[ ![](../material/ex-triplanar.png) ](http://tangrams.github.io/tangram-docs/?material/ex-triplanar.yaml#19/40.70533/-74.00975)
 
 ###`mapping: spheremap`
 A "spherical environment map", or "spheremap", is an unusual kind of mapping which is dependent on camera position. It uses a texture to color faces depending on their relative angle to the camera. You can think of a spheremap as a hemisphere over the scene, on which the texture has been painted – each polygon in the scene is colored depending on the part of the texture at which it points.
@@ -167,7 +167,7 @@ material:
         mapping: spheremap
 ```
 
-[ ![](../material/ex-spheremap.png) ](http://tangrams.github.io/tangram-docs-assets/?material/ex-spheremap.yaml#19/40.70533/-74.00975)
+[ ![](../material/ex-spheremap.png) ](http://tangrams.github.io/tangram-docs/?material/ex-spheremap.yaml#19/40.70533/-74.00975)
 
 ###Other properties
 Each `texture` can also have the following properties:
@@ -201,7 +201,7 @@ material:
     specular: 0
 ```
 
-[ ![](../material/ex-normals.png) ](http://tangrams.github.io/tangram-docs-assets/?material/ex-normals.yaml#19/40.70533/-74.00975)
+[ ![](../material/ex-normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-normals.yaml#19/40.70533/-74.00975)
 
 #Composition
 
@@ -269,4 +269,4 @@ shaders:
             normal += snoise(vec3(v_world_position.xy*0.08,u_time*.5))*0.02;
 ```
 
-[ ![](../material/ex-dynamic-normals.png) ](http://tangrams.github.io/tangram-docs-assets/?material/ex-dynamic-normals.yaml)
+[ ![](../material/ex-dynamic-normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-dynamic-normals.yaml)

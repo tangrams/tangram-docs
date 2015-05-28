@@ -21,7 +21,7 @@ cameras:
         type: perspective
 ```
 
-[ ![](../cameras/perspective.png) ](http://tangrams.github.io/tangram-docs-assets/?cameras/perspective.yaml)
+[ ![](../cameras/perspective.png) ](http://tangrams.github.io/tangram-docs/?cameras/perspective.yaml)
 
 #### `focal_length`
 The `focal_length` parameter is connected to the camera's height, and they modify each other in order to maintain a consistent view area. This allows the "zoom level" of a particular map view to remain constant unless changed directly. (You might know this trick as a "dolly zoom", first used in Hitchcock's Vertigo, and frequently used by Kubrick.)
@@ -43,7 +43,7 @@ cameras:
         focal_length: 2
 ```
 
-[ ![](../cameras/focal_length.png) ](http://tangrams.github.io/tangram-docs-assets/?cameras/focal_length.yaml)
+[ ![](../cameras/focal_length.png) ](http://tangrams.github.io/tangram-docs/?cameras/focal_length.yaml)
 
 #### `vanishing_point`
 The perspective camera also allows the apparent origin of perspective (aka the vanishing point) to be changed – this produces an effect you would normally only get by pointing the camera somewhere else and cropping the resulting view.
@@ -55,7 +55,7 @@ cameras:
         vanishing_point: [1000,-1000]
 ```
 
-[ ![](../cameras/vanishing_point.png) ](http://tangrams.github.io/tangram-docs-assets/?cameras/vanishing_point.yaml)
+[ ![](../cameras/vanishing_point.png) ](http://tangrams.github.io/tangram-docs/?cameras/vanishing_point.yaml)
 
 ### isometric camera
 
@@ -64,7 +64,7 @@ More properly called an orthographic or parallel projection, the **isometric** c
 ![](../cameras/isometric.jpg)
 ![](../cameras/isometric-view.jpg)
 
-[ ![](../cameras/isometric.png) ](http://tangrams.github.io/tangram-docs-assets/?cameras/isometric.yaml)
+[ ![](../cameras/isometric.png) ](http://tangrams.github.io/tangram-docs/?cameras/isometric.yaml)
 
 ```yaml
 cameras:
@@ -82,7 +82,7 @@ cameras:
         axis: [1, 1]
 ```
 
-[ ![](../cameras/axis.png) ](http://tangrams.github.io/tangram-docs-assets/?cameras/axis.yaml)
+[ ![](../cameras/axis.png) ](http://tangrams.github.io/tangram-docs/?cameras/axis.yaml)
 
 ## flat camera
 
@@ -93,5 +93,5 @@ cameras:
     camera1:
         type: flat
 ```
-[ ![](../cameras/flat.png) ](http://tangrams.github.io/tangram-docs-assets/?cameras/flat.yaml)
+[ ![](../cameras/flat.png) ](http://tangrams.github.io/tangram-docs/?cameras/flat.yaml)
 
