@@ -193,10 +193,12 @@ element:
         It even has an empty line!
         Sublime.
 
-          Indents don't matter
-            As long as they don't
-                start at the parent's level
-                        or less.
+                Indents don't matter
+              As long as they don't
+            start
+          before
+        here.
+                     Clear?
 ```
 
 This lets us put code straight into an attribute value, and it still looks like code:
