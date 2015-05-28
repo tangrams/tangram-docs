@@ -4,9 +4,9 @@ Tangram's drawing engine is built using WebGL, which is a JavaScript API for con
 
 OpenGL operates by sending self-contained graphics programs called "shaders" to the graphics card. Shaders come in two flavors: "vertex shaders", which control the position of a 3D face's vertices, and "fragment shaders", which control the color of the pixels which fill in a 3D face.
 
-Every system of 3D graphics which uses OpenGL, including Tangram has both a vertex and a fragment shader.
+Every system of 3D graphics which uses OpenGL, including Tangram, has both a vertex and a fragment shader.
 
-Tangram's shading system has been designed so that its shaders to be modified by its scene file at certain stages in their construction, by "injecting" shader code which modifies the shaders on their way to the graphics card. These stages allow the construction of sophisticated shading and compositing techniques similar to those used in video games and film VFX.
+Tangram's shading system has been designed so that its shaders may be modified by the scene file at certain stages in their construction, by "injecting" shader code which modifies the shaders on their way to the graphics card. These stages allow the construction of sophisticated shading and compositing techniques similar to those used in video games and film VFX.
 
 ## `shaders`
 
