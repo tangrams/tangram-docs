@@ -10,12 +10,12 @@ Tangram's shading system has been designed so that its shaders may be modified b
 
 ## `shaders`
 
-The `shaders` element is an optional element in a _style_. It allows custom GPU code to be defined.
+The `shaders` element is an optional element in a _style_. It defines the start of a _shader block_, which allows the definition of custom GPU code.
 
 The `shaders` block has three optional elements.
 
 - `defines` - allows preprocessing switches to be set before shader compilation.
-- `uniforms` - a shortcut block for defining _uniforms_.
+- `uniforms` - a shortcut block for defining special shader variables called _uniforms_.
 - `blocks` - allows direct injection of shader code.
 
 ```yaml
