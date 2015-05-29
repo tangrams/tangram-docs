@@ -291,7 +291,7 @@ vec4 g_light_accumulator_diffuse = vec4(0.0);
 vec4 g_light_accumulator_specular = vec4(0.0);
 ```
 
-When [UV maps](UV-maps.md) are used, the following functions are available for use in shader blocks:
+When [UV maps](Materials-Overview.md#mapping-uv) are used, the following functions are available for use in shader blocks:
 
 ```glsl
 vec4 getSphereMap (in sampler2D _tex, in vec3 _eyeToPoint, in vec3 _normal, in vec2 _skew );
