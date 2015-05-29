@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram’s shader injection system. Shaders are a vast topic – if you are new to GLSL we recommend starting with our own Patricio Gonzalez Vivo’s [The Book of Shaders](http://patriciogonzalezvivo.com/2015/thebookofshaders/). For a technical reference, see the [OpenGL ES Shading Language reference card](https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf).*
+*This is the technical documentation for Tangram’s shader  system. Shaders are a vast topic – if you are new to GLSL we recommend starting with our own Patricio Gonzalez Vivo’s [The Book of Shaders](http://patriciogonzalezvivo.com/2015/thebookofshaders/). For a technical reference, see the [OpenGL ES Shading Language reference card](https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf).*
 
 Tangram's drawing engine is built using WebGL, which is a JavaScript API for controlling a web browser's OpenGL capabilities. OpenGL is itself an API, designed to allow direct control of a graphics card's output.
 
