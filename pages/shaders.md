@@ -51,7 +51,7 @@ shaders:
 
 In Tangram's shader code, that gets expanded to:
 
-```yaml
+```glsl
 #define EFFECT_NOISE_ANIMATED
 ```
 
