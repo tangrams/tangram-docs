@@ -1,2 +1,0 @@
-# tangram-doc
-Tangram Documentation
