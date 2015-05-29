@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram’s shader  system. Shaders are a vast topic – if you are new to GLSL we recommend starting with our own Patricio Gonzalez Vivo’s [The Book of Shaders](http://patriciogonzalezvivo.com/2015/thebookofshaders/). For a technical reference, see the [OpenGL ES Shading Language reference card](https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf).*
+*This is the technical documentation for Tangram’s shader system. Shaders are a vast topic – if you are new to GLSL we recommend starting with our own Patricio Gonzalez Vivo’s [The Book of Shaders](http://patriciogonzalezvivo.com/2015/thebookofshaders/). For a technical reference, see the [OpenGL ES Shading Language reference card](https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf).*
 
 Tangram's drawing engine is built using WebGL, which is a JavaScript API for controlling a web browser's OpenGL capabilities. OpenGL is itself an API, designed to allow direct control of a graphics card's output.
 
@@ -12,11 +12,11 @@ Tangram's shading system has been designed so that its shaders may be modified b
 
 The `shaders` element is an optional element in a _style_. It defines the start of a _shader block_, which allows the definition of custom GPU code.
 
-The `shaders` block has three optional elements.
+The `shaders` block has three optional elements:
 
-- `defines` - allows preprocessing switches to be set before shader compilation.
-- `uniforms` - a shortcut block for defining special shader variables called _uniforms_.
-- `blocks` - allows direct injection of shader code.
+- [`defines`](shaders.md#defines) - allows preprocessing switches to be set before shader compilation.
+- [uniforms](shaders.md#uniforms) - a shortcut block for defining special shader variables called _uniforms_.
+- [blocks](shaders.md#blocks) - allows direct injection of shader code.
 
 ```yaml
 styles:
@@ -41,9 +41,7 @@ styles:
 ## `defines`
 Optional parameter. Defines the start of a `defines` block.
 
-“Defines” are GLSL preprocessor directives, which are injected into Tangram's shader code at compilation time. The `defines` block allows you to set and define custom statements, useful for changing the functionality of a shader without modifying the shader code directly.
-
-For more on defines, see [link](link).
+“Defines” are GLSL preprocessor directives, similar to those found in C, which are injected into Tangram's shader code at compilation time. The `defines` block allows you to set and define custom statements, which are useful for changing the functionality of a shader without modifying the shader code directly.
 
 ```yaml
 shaders:
@@ -51,6 +49,38 @@ shaders:
         EFFECT_NOISE_ANIMATED: true
 ```
 
+In Tangram's shader code, that gets expanded to:
+
+```yaml
+#define EFFECT_NOISE_ANIMATED
+```
+
+In cases where non-boolean values are specified, eg:
+
+```yaml
+shaders:
+    defines:
+        EFFECT_NOISE_THRESHOLD: 100
+```
+
+This becomes:
+
+```yaml
+#define EFFECT_NOISE_THRESHOLD 100
+```
+
+These defines are then usable by other directives, such as conditional statements, inside a shader:
+
+```glsl
+#ifdef EFFECT_NOISE_ANIMATED
+   ...
+#endif
+
+#if EFFECT_NOISE_THRESHOLD>10
+   ...
+#endif
+```
+### reserved defines
 The following is a list of reserved defines used by the Tangram Engine:
 
 ```
@@ -96,10 +126,12 @@ TANGRAM_SPOTLIGHT_ATTENUATION_INNER_RADIUS
 TANGRAM_SPOTLIGHT_ATTENUATION_OUTER_RADIUS
 ```
 
+For more on defines, see [http://www.cprogramming.com/reference/preprocessor/define.html](http://www.cprogramming.com/reference/preprocessor/define.html).
+
 ## `uniforms`
 Optional parameter. Defines the start of a `uniforms` block.
 
-The `uniforms` block allows shortcuts for declaring globally-accessible _uniform_ variables, for use in the `global`, `position`, `normal`, `color` and `filter` blocks. Uniforms declared here may also be accessed and manipulated through the [JavaScript API](JavaScript-API.md).
+The `uniforms` block allows shortcuts for declaring globally-accessible _uniform_ variables, for use in the `global`, `position`, `normal`, `color` and `filter` blocks. Uniforms declared here may also be accessed and manipulated through the [JavaScript API](Javascript-API.md).
 
 A "uniform" is a GLSL variable which is constant across all vertices and fragments (aka pixels).
 
@@ -112,7 +144,7 @@ shaders:
         u_speed: 2.5
 ```
 
-See also: [built-in uniforms](built-in-uniforms.md) and [varyings](varyings.md).
+See also: [built-in uniforms](shaders.md#built-in-uniforms) and [built-in varyings](shaders.md#built-in-varyings.md).
 
 ## `blocks`
 Optional parameter. Defines the start of a `blocks` block.
