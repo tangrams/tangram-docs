@@ -13,7 +13,6 @@ parameter: value
 When nested, YAML calls this a "collection" – we usually call it an _element_:
 ```yaml
 element:
-
     parameter1: value
     parameter2: value
 ```
@@ -148,9 +147,9 @@ Note that stops define settings to be used when tile geometry is built. Typicall
 
 ## reserved keywords
 
-Our YAML parser detects certain keywords contextually based on the element or parameter in which they are used.
+Our YAML parser detects certain keywords contextually based on the element or parameter in which they are used. In these contexts, these words are _reserved keywords_ and can't be used as custom element names.
 
-Additionally, all of the named scene file elements are officially _reserved keywords_ and can't be used as element names.
+For example, the [layers](layers.md) element has three possible parameters: `data`, `filter`, and `draw`. It also allows custom _sub-layers_, which can be named anything except "data", "filter", or "draw".
 
 #### `function`
 
@@ -161,18 +160,18 @@ Strings starting with `function` will be passed to the style builder as JavaScri
 width: function () { return 2.5 * Math.log(zoom); }
 ```
 
-#### `$` keywords
+#### `$zoom`
 
-There are two keywords with a `$` prefix, available for use in [filters](filters.md).
-
-The `$zoom` keyword may be used to define filters with optional `min` and `max` parameters.
+The `$zoom` keyword may be used to define [filters](filters.md) with optional `min` and `max` parameters.
 
 ```yaml
 outline:
    filter: { $zoom: { min: 15, max: 20 } }
 ```
 
-The `$geometry` keyword can specify a filter to match a specific geometry type, for cases when a FeatureCollection includes multiple geometry types:
+#### `$geometry`
+
+The `$geometry` keyword can specify a [filter](filters.md) to match a specific type of geometry, for cases when a FeatureCollection includes multiple geometry types:
 
 ```yaml
 labels:
@@ -181,7 +180,7 @@ labels:
 
 ## multiline strings
 
-One of the reasons we chose YAML is its ability to handle multi-line strings with a minimum of fuss. In _whitespace syntax_ only, start an parameter's value with a "pipe" character (`|`) followed by a newline, and everything that isn't indented _less_ after that will be treated as a single string value, newlines included:
+One of the reasons we chose YAML as our scene file format is its ability to handle multi-line strings with a minimum of fuss. In _whitespace syntax_ only, start an parameter's value with a "pipe" character (`|`) followed by a newline, and everything that isn't indented _less_ after that will be treated as a single string value, newlines included:
 
 ```yaml
 element:
