@@ -144,7 +144,7 @@ shaders:
         u_speed: 2.5
 ```
 
-See also: [built-in uniforms](shaders.md#built-in-uniforms) and [built-in varyings](shaders.md#built-in-varyings.md).
+See also: [built-in uniforms](shaders.md#built-in-uniforms) and [built-in varyings](shaders.md#built-in-varyings).
 
 ## `blocks`
 Optional parameter. Defines the start of a `blocks` block.
