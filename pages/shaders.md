@@ -15,8 +15,8 @@ The `shaders` element is an optional element in a _style_. It defines the start 
 The `shaders` block has three optional elements:
 
 - [`defines`](shaders.md#defines) - allows preprocessing switches to be set before shader compilation.
-- [uniforms](shaders.md#uniforms) - a shortcut block for defining special shader variables called _uniforms_.
-- [blocks](shaders.md#blocks) - allows direct injection of shader code.
+- [`uniforms`](shaders.md#uniforms) - a shortcut block for defining special shader variables called _uniforms_.
+- [`blocks`](shaders.md#blocks) - allows direct injection of shader code.
 
 ```yaml
 styles:
