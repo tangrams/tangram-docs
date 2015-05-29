@@ -65,7 +65,7 @@ shaders:
 
 This becomes:
 
-```yaml
+```glsl
 #define EFFECT_NOISE_THRESHOLD 100
 ```
 
