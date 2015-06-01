@@ -68,6 +68,6 @@ layers:
 In this example, all three elements are included – this will produce a (very simple) map!
 
 ## Examples
-For more examples of scene files, check out our [demos](https://github.com/tangrams?query=demo) – ours are usually named `styles.yaml`.
+For more examples of scene files, check out our [demos](https://github.com/tangrams?query=demo) – ours are usually named `scene.yaml`.
 
 For even more amazing examples, check out the [Tangram Sandbox](http://tangrams.github.io/tangram-sandbox/)!
