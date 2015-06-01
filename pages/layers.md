@@ -40,7 +40,7 @@ layers:
 ```
 
 ####`draw`
-Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [styling rules](styling-rules.md) section.
+Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [draw](draw.md) entry.
 ```yaml
 layers:
     landuse:
@@ -118,4 +118,4 @@ Because the _layer name_ is the same as the name of the GeoJSON object, the `dat
 
 ## `draw` parameters
 
-See the [styling rules](styling-rules.md) section.
+See the [draw](draw.md) entry.
