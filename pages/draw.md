@@ -34,7 +34,7 @@ layers:
 
 Rules defined in `draw` blocks will descend into any sublayers.
 
-*Note*: This is not to be confused with the [styles](styles.md) element, which is a top-level element in the scene file used to define [materials](materials.md) and [shaders](shaders.md).
+*Note*: This is not to be confused with the [`styles`](styles.md) element, which is a top-level element in the scene file used to define [materials](materials.md) and [shaders](shaders.md).
 ```yaml
 layers:
     water:
@@ -47,7 +47,7 @@ layers:
 ## style parameters
 
 ####`style`
-Optional _string_, naming a style defined in the [styles](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that color will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
+Optional _string_, naming a style defined in the [`styles`](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that color will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
 ```yaml
 draw:
     style: normalripples
@@ -57,7 +57,7 @@ draw:
 ####`order`
 Required _integer_ or _function_. No default.
 
-Sets the drawing order of the draw style, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child rules override parent rules.
+Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child rules override parent rules.
 
 ```yaml
 layers:
