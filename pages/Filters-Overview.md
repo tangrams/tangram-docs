@@ -86,7 +86,7 @@ filter:
 
 Every filter is a proposition: "This statement is true". Each feature is tested against each top-level filter, and if the feature's data doesn't contradict the filter, that feature will be drawn in any associated [[draw]] styles, and passed on to any _sublayers_.
 
-for example, assume we have a piece of data, in the form of a feature with a single property called "height":
+For example, assume we have a piece of data, in the form of a feature with a single property called "height":
 
 ```json
 { "type":"Feature", "properties":{ "height":200 } }
@@ -94,7 +94,7 @@ for example, assume we have a piece of data, in the form of a feature with a sin
 
 This feature will match these filters:
 
-``yaml
+```yaml
 filter: { height: 200 }
 filter: { height: { max: 300 } }
 filter: { not: { height: 100 } }
@@ -106,7 +106,7 @@ filter: function() { return true; }
 
 And will not match these filters:
 
-``yaml
+```yaml
 filter: { height: 100 }
 filter: { height: { min: 300 } }
 filter: { not: { height: 200 } }
@@ -130,7 +130,7 @@ filter: function() { return feature.unicycle === true; }
 
 ## Filter functions
 
-We support a number of named filter functions: 
+We support a number of named filter functions:
 
 - `min`
 - `max`
