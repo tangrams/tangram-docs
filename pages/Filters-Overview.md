@@ -82,6 +82,52 @@ filter:
     function() { return feature.area > 100000 }
 ```
 
+## Truth
+
+Every filter is a proposition: "This statement is true". Each feature is tested against each top-level filter, and if the feature's data doesn't contradict the filter, that feature will be drawn in any associated [[draw]] styles, and passed on to any _sublayers_.
+
+for example, assume we have a piece of data, in the form of a feature with a single property called "height":
+
+```json
+{ "type":"Feature", "properties":{ "height":200 } }
+```
+
+This feature will match these filters:
+
+``yaml
+filter: { height: 200 }
+filter: { height: { max: 300 } }
+filter: { not: { height: 100 } }
+filter: { height: true }
+filter: { unicycle: false }
+filter: function() { return feature.height >= 100; }
+filter: function() { return true; }
+```
+
+And will not match these filters:
+
+``yaml
+filter: { height: 100 }
+filter: { height: { min: 300 } }
+filter: { not: { height: 200 } }
+filter: { height: false }
+filter: { unicycle: true }
+filter: function() { return feature.height <= 100; }
+filter: function() { return false; }
+```
+
+#### Booleans
+
+Note that in the above examples, the values `true` and `false` are used to test for the existence of a property. To test for literal Boolean values, use either list syntax or a JavaScript function:
+
+```yaml
+# list syntax
+filter: { unicycle: [true] }
+
+# JavaScript function
+filter: function() { return feature.unicycle === true; }
+```
+
 ## Filter functions
 
 We support a number of named filter functions: 
@@ -148,20 +194,23 @@ filter:
         - $zoom: { min: 13 }
 ```
 
-#### Other keywords
-We also allow a few special keywords:
-
-- `$zoom` matches the current zoom level
-- `$geometry` matches the feature's geometry type, for cases when a featureCollection includes more than one type of kind of geometry.
+#### `$zoom`
+The keyword `$zoom` matches the current zoom level.
 
 ```yaml
 filter: { $zoom: { min: 10 } }
 
 filter:
-    $zoom: { min: 12 }
-    $geometry: polygon
+    $zoom: { min: 12, max: 15 }
+```
 
+#### `$geometry`
+The keyword `$geometry` matches the feature's geometry type, for cases when a featureCollection includes more than one type of kind of geometry.
+
+```yaml
 filter: { $geometry: point }
+
+filter: { $geometry: polygon }
 ```
 
 #### Sublayer filters
@@ -179,11 +228,13 @@ layers:
             style: ...
 ```
 
-Here, a sublayer named `highway` is declared, with its own `filter` and `style`. With this setup, the first `style` block will apply to all features in the "roads" layer, and the second `style` block will apply only to roads which match `kind: highway`.
+Here, a sublayer named `highway` is declared, with its own `filter` and `style`. With this setup, the first `style` block will apply to all features in the "roads" layer, functioning as a kind of "default" style. The second, nested `style` block will apply only to roads which match `kind: highway`.
 
 #### Inheritance
 
 Because higher-level filters continue to apply at lower levels, higher-level styles will be inherited by lower levels, unless the lower level explicitly overrides it.
+
+Using sublayers and inheritance, you may specify increasingly-specific filters and styles to account for as many special cases as you like.
 
 #### Matching collisions
 
