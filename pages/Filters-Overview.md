@@ -1,6 +1,6 @@
 Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](sources.md) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
 
-The Tangram scene file uses filters in two ways: as top-level **layer filters** and lower-level **feature filters**.
+The Tangram scene file filters data in two ways: with top-level **layer filters** and with lower-level **feature filters**.
 
 ## Layer filters
 
@@ -8,7 +8,7 @@ Vector tiles typically contain top-level structures which can be thought of as "
 
 ```yaml
 layers:
-    roads:
+    my-roads-layer:
         data:
             source: osm
             layer: roads
@@ -24,7 +24,7 @@ Specifying `layer: roads` in the [`data`](data.md) block matches this GeoJSON ob
     ]}
 }
 ```
-If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this case, the layer name "roads" will match, so the `filter` line can be omitted:
+If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this case, we can achieve the same filtering behavior as the example above with the following:
 
 ```yaml
 layers:
@@ -34,7 +34,7 @@ layers:
         style: ...
 ```
 
-Now all styles in the "roads" layer will apply only to data matching the filter.
+Now all styles in the styling layer called "roads" will apply only to features in the data layer called "roads".
 
 ## Feature filters
 
