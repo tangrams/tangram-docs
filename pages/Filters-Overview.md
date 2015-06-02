@@ -15,7 +15,7 @@ layers:
         style: ...
 ```
 
-Specifying `layer: roads` in the `data` block matches this GeoJSON object:
+Specifying `layer: roads` in the [`data`](data.md) block matches this GeoJSON object:
 
 ```json
 {"roads":
@@ -118,7 +118,7 @@ filter: function() { return false; }
 
 #### Booleans
 
-Note that in the above examples, the values `true` and `false` are used to test for the existence of a property. To test for literal Boolean values, use either list syntax or a JavaScript function:
+Note that as in the above examples, the values `true` and `false` are used to test for the existence of a property. To test for literal Boolean values, use either list syntax or a JavaScript function:
 
 ```yaml
 # list syntax
@@ -251,7 +251,7 @@ roads:
         style: { color: blue }
 ```
 
-With this style, if any section of road is both a "highway" and a "bridge", it will match twice. Because YAML lists are technically "orderless", there's no way to guarantee that one of these styles will consistently be shown over the other. The solution here is to restructure the styles so that each case matches explicitly:
+In this case, "highways" are colored red, and "bridges" are blue. However, if any feature is both a "highway" *and* a "bridge", it will match twice. Because YAML lists are technically "orderless", there's no way to guarantee that one of these styles will consistently be shown over the other. The solution here is to restructure the styles so that each case matches explicitly:
 
 ```yaml
 roads:
