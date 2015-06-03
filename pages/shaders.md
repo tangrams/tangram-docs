@@ -21,12 +21,12 @@ The `shaders` block has three optional elements:
 ```yaml
 styles:
     water:
-        defines:
-            EFFECT_GRAY: true
-        uniforms:
-            u_color: [.5, .5, .5]
-            u_speed: 2.5
         shaders:
+            defines:
+                EFFECT_GRAY: true
+            uniforms:
+                u_color: [.5, .5, .5]
+                u_speed: 2.5
             blocks:
                 global: |
                     float getGrayscale(vec3 p) { return (p.r + p.g + p.b) / 3.0; }
