@@ -1,10 +1,10 @@
 Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](sources.md) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
 
-The Tangram scene file filters data in two ways: with top-level **layer filters** and with lower-level **feature filters**.
+The Tangram scene file filters data in two ways: with top-level **layer filters** and lower-level **feature filters**.
 
 ## Layer filters
 
-Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Tangram's top-level filter allows you to split the data by layer, by matching against the layer name:
+Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layer`](layer.md) object allows you to split the data by layer, by matching against the layer name.
 
 ```yaml
 layers:
@@ -24,7 +24,7 @@ Specifying `layer: roads` in the [`data`](data.md) block matches this GeoJSON ob
     ]}
 }
 ```
-If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this case, we can achieve the same filtering behavior as the example above with the following:
+If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this example, the layer name "roads" matches a layer in the data:
 
 ```yaml
 layers:
@@ -33,8 +33,6 @@ layers:
             source: osm
         style: ...
 ```
-
-Now all styles in the styling layer called "roads" will apply only to features in the data layer called "roads".
 
 ## Feature filters
 
@@ -71,11 +69,13 @@ Feature properties in a GeoJSON datasource are listed in a JSON member specifica
 ```
 Analogous property structures exist in other data formats such as TopoJSON and Mapbox Vector Tiles.
 
-### A feature filter is a true statement about features it passes
+## Matching
+
+Every filter is a proposition: "This statement is true". Each feature is tested against each top-level filter, and if the feature's data doesn't contradict the filter, that feature will be drawn in any associated [`draw`](draw.md) styles, and passed on to any _sublayers_.
 
 The simplest type of feature filter is a statement about one named property of a feature.
 
-A property can match an exact value:
+A filter can match an exact value:
 ```yaml
 filter:
     kind: residential
@@ -90,10 +90,11 @@ or a value in a numeric range:
 filter:
     area: { min: 100, max: 500 }
 ```
-A boolean value of "true" will pass a feature that contains the named property and ignore the property's value. "false" will pass a feature that does _not_ contain the named property:
+A Boolean value of "true" will pass a feature that contains the named property, ignoring the property's value. A value of "false" will pass a feature that does _not_ contain the named property:
 ```yaml
 filter:
-    area: true
+    kind: true
+    area: false
 ```
 To match a property whose value is a boolean, use the list syntax:
 ```yaml
@@ -108,9 +109,11 @@ filter:
 
 #### Keyword properties
 
-The keyword `$zoom` matches the current zoom level.
+The keyword `$zoom` matches the current zoom level. It can be used with the `min` and `max` functions.
 
 ```yaml
+filter: { $zoom: 14 }
+
 filter: { $zoom: { min: 10 } }
 
 filter:
@@ -125,38 +128,10 @@ filter: { $geometry: point }
 filter: { $geometry: polygon }
 ```
 
-#### Simple feature filter examples
-To summarize, let's consider a feature with a single property called "height":
+#### filter functions
 
-```json
-{ "type":"Feature", "properties":{ "height":200 } }
-```
-
-This feature will pass these filters:
-
-```yaml
-filter: { height: 200 }
-filter: { height: { max: 300 } }
-filter: { height: true }
-filter: { unicycle: false }
-filter: function() { return feature.height >= 100; }
-filter: function() { return true; }
-```
-
-and will not pass these filters:
-
-```yaml
-filter: { height: 100 }
-filter: { height: { min: 300 } }
-filter: { height: false }
-filter: { unicycle: true }
-filter: function() { return feature.height <= 100; }
-filter: function() { return false; }
-```
-
-### Feature filters can be combined using boolean functions
-
-The following functions combine one or more feature filters into a new feature filter:
+- 
+The following Boolean filter functions combine one or more feature filters into a new feature filter:
 
 - `not`
 - `any`
@@ -257,4 +232,35 @@ roads:
     other-bridges:
         filter: { kind: bridge, not: { kind: highway} }
         style: { color: green }
+```
+
+
+#### Examples
+
+Consider a feature with a single property called "height":
+
+```json
+{ "type":"Feature", "properties":{ "height":200 } }
+```
+
+This feature will pass these filters:
+
+```yaml
+filter: { height: 200 }
+filter: { height: { max: 300 } }
+filter: { height: true }
+filter: { unicycle: false }
+filter: function() { return feature.height >= 100; }
+filter: function() { return true; }
+```
+
+and will not pass these filters:
+
+```yaml
+filter: { height: 100 }
+filter: { height: { min: 300 } }
+filter: { height: false }
+filter: { unicycle: true }
+filter: function() { return feature.height <= 100; }
+filter: function() { return false; }
 ```
