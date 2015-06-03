@@ -1,6 +1,6 @@
 Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](sources.md) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
 
-The Tangram scene file uses filters in two ways: as top-level **layer filters** and lower-level **feature filters**.
+The Tangram scene file filters data in two ways: with top-level **layer filters** and with lower-level **feature filters**.
 
 ## Layer filters
 
@@ -8,7 +8,7 @@ Vector tiles typically contain top-level structures which can be thought of as "
 
 ```yaml
 layers:
-    roads:
+    my-roads-layer:
         data:
             source: osm
             layer: roads
@@ -24,7 +24,7 @@ Specifying `layer: roads` in the [`data`](data.md) block matches this GeoJSON ob
     ]}
 }
 ```
-If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this case, the layer name "roads" will match, so the `filter` line can be omitted:
+If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this case, we can achieve the same filtering behavior as the example above with the following:
 
 ```yaml
 layers:
@@ -34,11 +34,11 @@ layers:
         style: ...
 ```
 
-Now all styles in the "roads" layer will apply only to data matching the filter.
+Now all styles in the styling layer called "roads" will apply only to features in the data layer called "roads".
 
 ## Feature filters
 
-Once a top-level filter has been applied, feature-level filters can be applied, to further narrow down the data of interest:
+Once a top-level filter has been applied, feature-level filters can be applied to further narrow down the data of interest:
 
 ```yaml
 layers:
@@ -51,7 +51,7 @@ layers:
         style: ...
 ```
 
-Specifying a filter at this level means that within the "roads" layer, only features with the property "kind" and value "highway" will pass through to the styles.
+Specifying a filter at this level means that within the "roads" layer, only features with a property named "kind" that has value "highway" will pass through to the styles and to any _sublayers_.
 
 Feature filters can match any named feature property in the data, as well as a few special _reserved keywords_.
 
@@ -69,88 +69,103 @@ Feature properties in a GeoJSON datasource are listed in a JSON member specifica
         "height": 63.4000000
     }
 ```
+Analogous property structures exist in other data formats such as TopoJSON and Mapbox Vector Tiles.
 
-Feature filters can match any of these named properties, either exactly or with conditions returned by a function:
+### A feature filter is a true statement about features it passes
 
+The simplest type of feature filter is a statement about one named property of a feature.
+
+A property can match an exact value:
 ```yaml
 filter:
     kind: residential
 ```
-
+any value in a list:
+```yaml
+filter:
+    kind: [residential, commercial]
+```
+or a value in a numeric range:
+```yaml
+filter:
+    area: { min: 100, max: 500 }
+```
+A boolean value of "true" will pass a feature that contains the named property and ignore the property's value. "false" will pass a feature that does _not_ contain the named property:
+```yaml
+filter:
+    area: true
+```
+To match a property whose value is a boolean, use the list syntax:
+```yaml
+filter:
+    bridge: [true]
+```
+A feature filter can also evaluate one or more properties in a JavaScript function:
 ```yaml
 filter:
     function() { return feature.area > 100000 }
 ```
 
-## Truth
+#### Keyword properties
 
-Every filter is a proposition: "This statement is true". Each feature is tested against each top-level filter, and if the feature's data doesn't contradict the filter, that feature will be drawn in any associated [[draw]] styles, and passed on to any _sublayers_.
+The keyword `$zoom` matches the current zoom level.
 
-for example, assume we have a piece of data, in the form of a feature with a single property called "height":
+```yaml
+filter: { $zoom: { min: 10 } }
+
+filter:
+    $zoom: { min: 12, max: 15 }
+```
+
+The keyword `$geometry` matches the feature's geometry type, for cases when a FeatureCollection includes more than one type of kind of geometry.
+
+```yaml
+filter: { $geometry: point }
+
+filter: { $geometry: polygon }
+```
+
+#### Simple feature filter examples
+To summarize, let's consider a feature with a single property called "height":
 
 ```json
 { "type":"Feature", "properties":{ "height":200 } }
 ```
 
-This feature will match these filters:
+This feature will pass these filters:
 
-``yaml
+```yaml
 filter: { height: 200 }
 filter: { height: { max: 300 } }
-filter: { not: { height: 100 } }
 filter: { height: true }
 filter: { unicycle: false }
 filter: function() { return feature.height >= 100; }
 filter: function() { return true; }
 ```
 
-And will not match these filters:
+and will not pass these filters:
 
-``yaml
+```yaml
 filter: { height: 100 }
 filter: { height: { min: 300 } }
-filter: { not: { height: 200 } }
 filter: { height: false }
 filter: { unicycle: true }
 filter: function() { return feature.height <= 100; }
 filter: function() { return false; }
 ```
 
-#### Booleans
+### Feature filters can be combined using boolean functions
 
-Note that as in the above examples, the values `true` and `false` are used to test for the existence of a property. To test for literal Boolean values, use either list syntax or a JavaScript function:
+The following functions combine one or more feature filters into a new feature filter:
 
-```yaml
-# list syntax
-filter: { unicycle: [true] }
-
-# JavaScript function
-filter: function() { return feature.unicycle === true; }
-```
-
-## Filter functions
-
-We support a number of named filter functions: 
-
-- `min`
-- `max`
 - `not`
 - `any`
 - `all`
 - `none` (a combination of `not` and `any`)
 
-These functions expect a few types of inputs: `min` and `max` expect plain values, `not` expects an _object_, and `any`, `all`, and `none` expect lists of _objects_. (A _function_ counts as an _object_ in these cases.)
+`not` takes a single filter object as its input and `any`, `all`, and `none` take lists of filter objects, as in the examples here:
 
 ```yaml
-filter:
-    height: { min: 20 }
-
-filter:
-    area: { max: 10000 }
-
-filter:
-    area: { min: 100, max: 10000 }
-
 filter: { not: { kind: restaurant } }
 
 filter:
@@ -163,27 +178,24 @@ filter:
 
 filter:
     any:
-        - { $zoom: { min: 10 }, area: { min: 10000000 } }
-        - { $zoom: { min: 12 }, area: { min: 1000000 } }
-        - { $zoom: { min: 15 }, area: { min: 10000 } }
-        - { $zoom: { min: 17 } }
+        - { height: { min: 100 } }
+        - { name: true }
 ```
 
 #### Lists imply `any`, Objects imply `all`
 
-Matching against a _list_ implies `any`. These two filters are equivalent:
+A _list_ of several filters is a shortcut for using the `any` function. These two filters are equivalent:
 
 ```yaml
-filter: { kind: [park, forest, cemetery] }
+filter: [kind: minor_road, railway: true]
 
 filter:
     any:
-        - kind: park
-        - kind: forest
-        - kind: cemetery
+        - kind: minor_road
+        - railway: true
 ```
 
-Matching against an _object_ implies all. These two filters are equivalent:
+An _object_ of several filters is a shortcut for using the `all` function. These two filters are equivalent:
 
 ```yaml
 filter: { kind: hamlet, $zoom: { min: 13 } }
@@ -192,25 +204,6 @@ filter:
     all:
         - kind: hamlet
         - $zoom: { min: 13 }
-```
-
-#### `$zoom`
-The keyword `$zoom` matches the current zoom level.
-
-```yaml
-filter: { $zoom: { min: 10 } }
-
-filter:
-    $zoom: { min: 12, max: 15 }
-```
-
-#### `$geometry`
-The keyword `$geometry` matches the feature's geometry type, for cases when a featureCollection includes more than one type of kind of geometry.
-
-```yaml
-filter: { $geometry: point }
-
-filter: { $geometry: polygon }
 ```
 
 #### Sublayer filters
@@ -234,7 +227,7 @@ Here, a sublayer named `highway` is declared, with its own `filter` and `style`.
 
 Because higher-level filters continue to apply at lower levels, higher-level styles will be inherited by lower levels, unless the lower level explicitly overrides it.
 
-Using sublayers and inheritance, you may specify increasingly-specific filters and styles to account for as many special cases as you like.
+Using sublayers and inheritance, you may specify increasingly specific filters and styles to account for as many special cases as you like.
 
 #### Matching collisions
 
