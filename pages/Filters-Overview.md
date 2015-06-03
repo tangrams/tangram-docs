@@ -237,7 +237,7 @@ roads:
 
 #### Examples
 
-Consider a feature with a single property called "height":
+Let's say we have a feature with a single property called "height":
 
 ```json
 { "type":"Feature", "properties":{ "height":200 } }
