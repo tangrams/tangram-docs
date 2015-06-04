@@ -220,7 +220,7 @@ This block has access to the `color` variable after lighting has been applied â€
 
 ```yaml
 blocks:
-    color: color.rgb = vec3(1.0, .5, .5);
+    filter: color.rgb = vec3(1.0, .5, .5);
 ```
 
 ## Built-ins, defaults, and presets
