@@ -64,10 +64,16 @@ material:
 ``` 
 
 #### `filtering`
-Optional _string_, one of `mipmap`, or `nearest`.
+Optional _string_, one of `linear`, `nearest`, or `mipmap`. Defaults to `linear`.
 
-Sets the filtering mode for sprites, which determines quality at various zoom levels.
+Sets the filtering mode for the texture, which determines quality at various zoom levels.
 
+```yaml
+    ghost:
+        url: demos/images/ghost.png
+        filtering: mipmap
+```
+        
 #### `sprites`
 Optional parameter. Defines the start of a `sprites` block.
 
