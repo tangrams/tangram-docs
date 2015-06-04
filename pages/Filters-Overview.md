@@ -1,6 +1,6 @@
 Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](sources.md) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
 
-The Tangram scene file filters data in two ways: with top-level **layer filters** and lower-level **sublayer filters**.
+The Tangram scene file filters data in two ways: with top-level **layer filters** and lower-level **feature filters**.
 
 ## Layer filters
 
