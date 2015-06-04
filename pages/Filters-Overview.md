@@ -1,6 +1,6 @@
 Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](sources.md) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
 
-The Tangram scene file filters data in two ways: with top-level **layer filters** and lower-level **feature filters**.
+The Tangram scene file filters data in two ways: with top-level **layer filters** and lower-level **sublayer filters**.
 
 ## Layer filters
 
@@ -36,20 +36,33 @@ layers:
 
 ## Feature filters
 
-Once a top-level filter has been applied, feature-level filters can be applied to further narrow down the data of interest:
+Once a top-level `layer` filter has been applied, feature-level `filter` objects can be defined to further narrow down the data of interest and refine the styles applied to the data.
 
 ```yaml
 layers:
     roads:
-        data:
-            source: osm
-            layer: roads
-        filter:
-            kind: highway
+        data: { source: osm }
         style: ...
+
+        highway:
+            filter:
+                kind: highway
+            style: ...
 ```
 
-Specifying a filter at this level means that within the "roads" layer, only features with a property named "kind" that has value "highway" will pass through to the styles and to any _sublayers_.
+Here, a top-level layer named "roads" matches the "roads" layer in the "osm" data source. It has a `style` block, which will apply to all features in the "roads" layer unless it is overridden, functioning as a kind of "default" style.
+
+Then, a _sublayer_ named "highway" is declared, with its own `filter` and `style`. Its `style` block will apply only to roads which match its `filter` – in this case, those with the property "kind", with a value of "highway".
+
+#### Inheritance
+
+Higher-level filters continue to apply at lower levels, which means that higher-level styles will be inherited by lower levels, unless the lower level explicitly overrides it.
+
+Using sublayers and inheritance, you may specify increasingly specific filters and styles to account for as many special cases as you like.
+
+## Matching
+
+Each feature in a `layer` is first tested against each top-level `filter`, and if the feature's data matches the filter, that feature will be assigned any associated [`draw`](draw.md) styles, and passed on to any _sublayers_. If any _sublayer_ filters match the feature, that _sublayer_'s `draw` styles will overwrite any previously-assigned styling rules for those matching features, and so on down the chain of inheritance.
 
 Feature filters can match any named feature property in the data, as well as a few special _reserved keywords_.
 
@@ -67,11 +80,16 @@ Feature properties in a GeoJSON datasource are listed in a JSON member specifica
         "height": 63.4000000
     }
 ```
-Analogous property structures exist in other data formats such as TopoJSON and Mapbox Vector Tiles.
+Analogous property structures exist in other data formats such as TopoJSON and Mapbox Vector Tiles. Tangram makes these structures available to `filter` blocks by property name, and also to any JavaScript filter functions under the `feature` keyword.
 
-## Matching
+The json feature above will match these two filters:
 
-Every filter is a proposition: "This statement is true". Each feature is tested against each top-level filter, and if the feature's data doesn't contradict the filter, that feature will be drawn in any associated [`draw`](draw.md) styles, and passed on to any _sublayers_.
+```yaml
+filter:
+    kind: commercial
+
+filter: function() { return feature.kind == "commercial"; }
+```
 
 The simplest type of feature filter is a statement about one named property of a feature.
 
@@ -107,6 +125,34 @@ filter:
     function() { return feature.area > 100000 }
 ```
 
+For example, let's say we have a feature with a single property called "height":
+
+```json
+{ "type":"Feature", "properties":{ "height":200 } }
+```
+
+This feature will match these filters:
+
+```yaml
+filter: { height: 200 }
+filter: { height: { max: 300 } }
+filter: { height: true }
+filter: { unicycle: false }
+filter: function() { return feature.height >= 100; }
+filter: function() { return true; }
+```
+
+and will not match these filters:
+
+```yaml
+filter: { height: 100 }
+filter: { height: { min: 300 } }
+filter: { height: false }
+filter: { unicycle: true }
+filter: function() { return feature.height <= 100; }
+filter: function() { return false; }
+```
+
 #### Keyword properties
 
 The keyword `$zoom` matches the current zoom level. It can be used with the `min` and `max` functions.
@@ -128,24 +174,41 @@ filter: { $geometry: point }
 filter: { $geometry: polygon }
 ```
 
-#### filter functions
+#### Filter functions
 
-- 
-The following Boolean filter functions combine one or more feature filters into a new feature filter:
+The filter functions `min` and `max` are equivalent to `>=` and `<=` in a JavaScript function, and can be used in combination.
+
+```yaml
+filter:
+    area: { max: 10000 } }
+
+filter:
+    height: { min: 70 } }
+
+filter:
+    $zoom: { min: 5, max: 10 }
+```
+
+The following Boolean filter functions are also available:
 
 - `not`
 - `any`
 - `all`
 - `none` (a combination of `not` and `any`)
 
-`not` takes a single filter object as its input and `any`, `all`, and `none` take lists of filter objects, as in the examples here:
+`not` takes a single filter object as its input:
 
 ```yaml
-filter: { not: { kind: restaurant } }
+filter:
+    not: { kind: restaurant }
 
 filter:
     not: { kind: [bar, pub] }
+```
 
+ `any`, `all`, and `none` take lists of filter objects:
+
+```yaml
 filter:
     all:
         - { kind: museum }
@@ -155,6 +218,12 @@ filter:
     any:
         - { height: { min: 100 } }
         - { name: true }
+
+filter:
+    none:
+        - { kind: cemetery }
+        - { kind: graveyard }
+        - { kind: aerodrome }
 ```
 
 #### Lists imply `any`, Objects imply `all`
@@ -162,7 +231,7 @@ filter:
 A _list_ of several filters is a shortcut for using the `any` function. These two filters are equivalent:
 
 ```yaml
-filter: [kind: minor_road, railway: true]
+filter: [ kind: minor_road, railway: true ]
 
 filter:
     any:
@@ -180,29 +249,6 @@ filter:
         - kind: hamlet
         - $zoom: { min: 13 }
 ```
-
-#### Sublayer filters
-
-Feature filters can also be applied to a sublayer:
-
-```yaml
-layers:
-    roads:
-        data: { source: osm }
-        style: ...
-        highway:
-            filter:
-                kind: highway
-            style: ...
-```
-
-Here, a sublayer named `highway` is declared, with its own `filter` and `style`. With this setup, the first `style` block will apply to all features in the "roads" layer, functioning as a kind of "default" style. The second, nested `style` block will apply only to roads which match `kind: highway`.
-
-#### Inheritance
-
-Because higher-level filters continue to apply at lower levels, higher-level styles will be inherited by lower levels, unless the lower level explicitly overrides it.
-
-Using sublayers and inheritance, you may specify increasingly specific filters and styles to account for as many special cases as you like.
 
 #### Matching collisions
 
@@ -232,35 +278,4 @@ roads:
     other-bridges:
         filter: { kind: bridge, not: { kind: highway} }
         style: { color: green }
-```
-
-
-#### Examples
-
-Let's say we have a feature with a single property called "height":
-
-```json
-{ "type":"Feature", "properties":{ "height":200 } }
-```
-
-This feature will pass these filters:
-
-```yaml
-filter: { height: 200 }
-filter: { height: { max: 300 } }
-filter: { height: true }
-filter: { unicycle: false }
-filter: function() { return feature.height >= 100; }
-filter: function() { return true; }
-```
-
-and will not pass these filters:
-
-```yaml
-filter: { height: 100 }
-filter: { height: { min: 300 } }
-filter: { height: false }
-filter: { unicycle: true }
-filter: function() { return feature.height <= 100; }
-filter: function() { return false; }
 ```
