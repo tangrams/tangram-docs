@@ -30,7 +30,7 @@ And when writing an inline-style under a `layer`, they are referenced in _draw g
 roads:
     draw:
         polygons:
-            color: blur
+            color: blue
         lines:
             color: red
 ```
