@@ -176,7 +176,7 @@ filter: { $geometry: polygon }
 
 #### Filter functions
 
-The filter functions `min` and `max` are equivalent to `>=` and `<=` in a JavaScript function, and can be used in combination.
+The filter functions `min` and `max` are equivalent to `>=` and `<` in a JavaScript function, and can be used in combination.
 
 ```yaml
 filter:
