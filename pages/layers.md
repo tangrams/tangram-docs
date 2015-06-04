@@ -1,7 +1,7 @@
 *This is the technical documentation for the "layers" block in Tangram's scene file. For a conceptual overview of the way Tangram applies styles to data, see the [Filters Overview](Filters-Overview.md) and the [Styles Overview](Styles-Overview.md).*
 
 ####`layers`
-The `layers` element is a required top-level element in the [scene file](scene-file.md). Individual layers are defined by a *layer name* under this element.
+The `layers` element is a required top-level element in the [scene file](scene-file.md). It has only one kind of sub-element: a *layer name*, which defines individual layers with a layer filter.
 
 ```yaml
 layers:
@@ -10,7 +10,7 @@ layers:
 ```
 
 ### layer name
-Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
+Required _string_. Can be anything. No default.
 
 ```yaml
 layers:
@@ -50,7 +50,7 @@ layers:
 ```
 
 ####sublayer name
-Optional _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
+Optional _string_. Can be anything except the other sublayer parameter: "draw", "filter", and "properties". No default.
 
 Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested. `draw` and `filter` definitions are inherited, and match simultaneously – see the [Filters Overview](Filters-Overview.md).
 
@@ -72,7 +72,7 @@ layers:
 ```
 
 #### `properties`
-Optional parameter. Defines the beginning of a _properties block_. The `properties` block has one kind of sub-element: _custom properties_, which are a key-value pair. Keys can be anything except the _reserved keywords_.
+Optional parameter. Defines the beginning of a _properties block_. The `properties` block has one kind of sub-element: _custom properties_, which are a key-value pair. Keys can be any string.
 
 Custom properties may be defined here for use in filter and shader effects. These properties may be accessed through the JavaScript API, or through filter and style functions with the `properties` keyword, as a convenient way to allow interactivity.
 
@@ -99,7 +99,7 @@ data:
 ```
 
 ####`layer`
-Optional _string_, naming a top-level named object in the source datalayer. In Mapzen's Vector Tile Service, this is a _FeatureCollection_. If a `layer` is not specified, the _layer name_ will be used.
+Optional _string_, naming a top-level named object in the source datalayer. In GeoJSON, this is a _FeatureCollection_. If a `layer` is not specified, the _layer name_ will be used.
 ```yaml
 data:
     source: osm

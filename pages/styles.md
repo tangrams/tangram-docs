@@ -1,7 +1,9 @@
 *This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`styles`
-The `styles` element is an optional top-level element in the [scene file](scene-file.md). Individual styles are defined by a *style name* under this element. They can then be referenced inside a [draw](draw.md) group.
+The `styles` element is an optional top-level element in the [scene file](scene-file.md). It takes only one kind of element, the _style name_.
+
+Styles defined under this element can be referenced by name inside a [draw](draw.md) group with the `style` parameter.
 ```yaml
 styles:
     buildings-style:
@@ -15,7 +17,9 @@ buildings:
 ```
 
 ### style name
-Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). Defines a new custom style. No default.
+Required _string_, can be anything. No default.
+
+Defines a new custom style. 
 ```yaml
 styles:
     buildings:

@@ -2,9 +2,10 @@
 
 ##`textures`
 
-The `textures` element is an optional top-level element in the [scene file](scene-file.md). Textures allow image files to be used in the `ambient`, `diffuse`, `specular`, and `normal` parameters of a [material](materials.md). A texture requires, at the minimum, a `url` path and a `mapping` mode.
+The `textures` element is an optional top-level element in the [scene file](scene-file.md). It has only one kind of sub-element: a _texture name_.
 
-The `texture` element has only one kind of sub-element: the *texture name*.
+Textures allow image files to be used in the `ambient`, `diffuse`, `specular`, and `normal` parameters of a [material](materials.md). A texture requires, at the minimum, a `url` path and a `mapping` mode.
+
 
 ```yaml
 textures:
@@ -17,7 +18,7 @@ textures:
 ```
 
 #### texture names
-Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
+Required _string_, can be anything. No default.
 
 ### texture parameters
 
@@ -77,10 +78,10 @@ Sets the filtering mode for the texture, which determines quality at various zoo
 #### `sprites`
 Optional parameter. Defines the start of a `sprites` block.
 
-May contain only one kind of parameter: the _sprite name_.
+`sprites` take only one kind of parameter: the _sprite name_. Any number of sprites may be defined.
 
 #### sprite name
-Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords).
+Required _string_. Can be anything. No default.
 
 Defines an area of a texture to be used as an individual sprite, as _[x origin, y origin, width, height]_ in pixels. 
 

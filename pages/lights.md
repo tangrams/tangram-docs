@@ -11,7 +11,7 @@ lights:
 ```
 
 #### Light names
-Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
+Required _string_. Can be anythingNo default.
 
 ```yaml
 lights:
