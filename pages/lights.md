@@ -11,7 +11,7 @@ lights:
 ```
 
 #### Light names
-Required _string_. Can be anythingNo default.
+Required _string_. Can be anything. No default.
 
 ```yaml
 lights:
