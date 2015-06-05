@@ -116,23 +116,3 @@ halftone:
     base: polygons
     ...
 ```
-
-####`style`
-Optional _string_. References a _named style_ defined either in the `styles` block, or from an external file, in conjunction with the `url` parameter.
-
-By default, the `url` parameter attempts to import a style with the same name it appears under; the `style` parameter overrides that.
-
-Add a style named "toner", using the style named "halftone" from the `styles` block:
-```yaml
-styles:
-    toner:
-        style: halftone
-```
-
-Add a style named "toner", by importing a style named "halftone" from the file `halftone.yaml`:
-```yaml
-styles:
-    toner:
-        url: halftone.yaml
-        style: halftone
-```
