@@ -3,12 +3,12 @@
 ####`draw`
 The `draw` element is a required element in the [layer](layers.md) and [sublayer](layers.md#sublayer) elements. It defines the beginning of a _draw group_. There can be only one `draw` group per `layer` or _sublayer_.
 
-####drawing style
-A _drawing style_ must be named under a [draw](draw.md) group. It defines the beginning of a _draw block_.
+####draw style
+A previously-defined _draw style_ must be named under a [draw](draw.md) group. It defines the beginning of a _draw block_.
 
 The name of the style must be either:
 
-- one of the four built-in styles ("polygons", "lines", "sprites", or "text")
+- one of the four built-in _draw styles_ ("polygons", "lines", "sprites", or "text")
 - a custom name, with a `style` sub-element naming a custom style defined in the [styles](styles.md) element.
 
 An example of using a built-in draw style:
@@ -21,7 +21,7 @@ layers:
                 ...
 ```
 
-An example of using a custom draw name:
+An example of using a custom draw style:
 ```yaml
 layers:
     water:
