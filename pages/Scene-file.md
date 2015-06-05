@@ -7,8 +7,7 @@ There are a variety of top-level elements allowed in a scene file. Each defines 
 ####`scene`
 Optional parameter. Sets a number of scene-wide parameters:
 
-- `background`: sets the map's background color
-- `animated`: a boolean toggle to force per-frame updates.
+See [scene](scene.md).
 
 ####`sources`
 Required parameter. The `sources` block identifies datasources.
