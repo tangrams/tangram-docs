@@ -51,8 +51,6 @@ Copies properties from other custom styles.
 
 ```yaml
 styles:
-    geo:
-        base: polygon
     geo-variant:
         mix: geo
 ```
