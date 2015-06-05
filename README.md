@@ -28,6 +28,7 @@ These pages offer an introduction to the concepts behind Tangram:
 These pages list the objects and parameters of the scene file, as well as their acceptable values.
 
 - [yaml](pages/yaml.md)  
+- [scene](pages/scene.md)  
 - [sources](pages/sources.md)  
 - [cameras](pages/cameras.md)  
 - [lights](pages/lights.md)   
