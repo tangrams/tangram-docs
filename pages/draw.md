@@ -34,16 +34,6 @@ layers:
 
 Rules defined in `draw` blocks will descend into any sublayers.
 
-*Note*: This is not to be confused with the [`styles`](styles.md) element, which is a top-level element in the scene file used to define [materials](materials.md) and [shaders](shaders.md).
-```yaml
-layers:
-    water:
-        data: { source: osm }
-        draw:
-            polygons:
-                ...
-```
-
 ## style parameters
 
 ####`style`
