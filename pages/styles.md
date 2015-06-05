@@ -19,6 +19,8 @@ buildings:
 ### style name
 Required _string_, can be anything. No default.
 
+A custom `style` must specify either a `base` or `mix` parameter, or both.
+
 Defines a new custom style. 
 ```yaml
 styles:
@@ -27,27 +29,44 @@ styles:
 ```
 ## style parameters
 
-####`base` and `mix`
-Required _string_, naming one of the available style objects. Defines a style to inherit from. Tangram's built-in styles are `polygons`, `lines`, `sprites`, and `text`. No default.
+####`base`
+Optional _string_, naming one of the built-in _draw styles_. No default.
 
-If a named style is based on one of the built-in styles, `base` is used.
+Defines the expected input geometry of the custom style, which determines what other kinds of parameters the style can take. Tangram's built-in styles are `polygons`, `lines`, `points`, and `text`. No default.
+
 ```yaml
 styles:
     geo:
         base: polygon
-    sprites:
-        base: sprites
+    icons:
+        base: points
 ```
 
-A named style may also descend from another named style. In this case, `mix` is used.
+For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
+
+####`mix`
+Optional _string_ or _list_, naming one or more custom styles. No default.
+
+Copies properties from other custom styles.
+
 ```yaml
 styles:
     geo:
         base: polygon
-
     geo-variant:
         mix: geo
 ```
+
+Can also be used to combine multiple styles:
+
+```yaml
+styles:
+    custom:
+        mix: [styleA, styleB, styleC]
+```
+
+For more, see the [Styles Overview](Styles-Overview.md#style-composition-with-mix).
+
 
 ####`animated`
 Optional _boolean_, `true` or `false`. When `true`, the renderer will attempt to redraw the style every frame.
@@ -74,7 +93,7 @@ Note that `texture` objects must be accompanied by a `mapping` parameter – for
 ```yaml
 styles:
     monsters:
-        base: sprites
+        base: points
         texcoords: true
 ```
 

@@ -37,7 +37,7 @@ roads:
 
 In this way, the same data can be drawn in multiple styles simultaneously.
 
-## polygons
+### polygons
 The *polygons* draw style requires a datasource containing coordinates connected by lines into a "closed" shape. If the lines of the polygon start and stop at different places, it is an "open" shape, and the `polygons` draw style can't use it. But if a sequence of lines connects back onto its own starting point, it is considered "closed", and can be extruded into a 3D shape.
 
 #### `polygons` parameters
@@ -52,7 +52,7 @@ Styles which are extensions of the `polygons` draw style can take the following 
 #### `polygons` shader specs
 The `polygons` style allows [shaders](shaders.md) to be written which take advantage of certain unique attributes and uniforms.
 
-## lines
+### lines
 The *lines* style requires a datasource containing connected coordinates. Thus it can accept either linear or polygonal input data. It draws a rectangle along each line segment, and can optionally draw special `joins` and `caps`.
 
 #### `lines` parameters
@@ -67,7 +67,7 @@ Styles which are extensions of the `lines` draw style can take the following par
 #### `lines` shader specs
 The `lines` draw style allows [shaders](shaders.md) to be written which take advantage of certain unique attributes and uniforms.
 
-## points
+### points
 The `points` draw style is used to draw dots or sprites at points of interest. It also builds a rectangle at a point, and can be colored in a variety of ways:
 
 - with a special shader designed to draw a circle
@@ -78,7 +78,7 @@ If the point is used to draw a dot, the size and color of this circle can be spe
 
 Points styles have access to a variety of special uniforms and parameters.
 
-## text
+### text
 The `text` style is similar to the `sprites` style, in that it builds a rectangle at a point. However, instead of being colored with a custom texture, this style builds its own texture, containing text.
 
 The content of the text is based on a parameter specified in the scene file, which can be useful for debugging.
@@ -90,3 +90,73 @@ Styles which are extensions of the `text` style can take the following special p
 
 - `text_source` - Defaults to "name", accepts other parameter name or function.
 - `font` - Sets font's typeface, style, size, color, and outline.
+
+## style composition with `mix`
+
+The `mix` parameter copies the properties of the named style (or styles) to a new style. In this way, new styles can be "forked" from existing styles.
+
+This allows styles to be made which vary only slightly from each other, without having to manually duplicate everything else in the style code. It also allows a style to act as a "base" or "foundation" style, to be mixed into others.
+
+The following example creates a style named "geo2" by copying all the properties of the "geo" style:
+
+```yaml
+styles:
+    geo:
+        base: polygon
+    geo2:
+        mix: geo
+```
+
+These two styles are identical.
+
+#### modifications
+
+Once you've mix'ed in a style, you can add or modify any properties you like.
+
+For example, you could create a new style called styleB that "inherits from" an existing style called styleA, and then adds custom shader blocks:
+
+``yaml
+styleB:
+   mix: styleA
+   shaders:
+      blocks:
+         color: ...
+```
+
+Or you could mix in an existing style, but disable lighting:
+
+```yaml
+fancy-but-no-lighting:
+    base: fancy
+    lighting: false
+```
+
+You can even modify the mix'ed-in style's `base`. For example, if you have a polygon-based style with custom shader blocks that you want to apply to lines instead, you can create a line-based version like this:
+
+```yaml
+fancy-lines:
+    mix: fancy-polygons
+    base: lines # change the base to lines
+```
+
+Note that in this case, any properties which were special to the `polygons` draw style will still be copied, but will be ignored by the renderer.
+
+
+#### combinations
+
+The `mix` parameter can also be given a list of styles – this makes it possible to mix multiple effects together, e.g. to apply both the windows and halftone effects simultaneously:
+
+```yaml
+halftone-windows:
+    mix: [ windows, halftone ]
+```
+
+Styles in a list will be copied in the order listed – so if a property is common to multiple named styles, styles named last in the list will take precedence.
+
+```yaml
+styles:
+    custom:
+        mix: [styleA, styleB, styleC]
+```
+
+Here, styleC's properties will override any it has in common with the other listed styles.
