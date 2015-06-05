@@ -78,6 +78,8 @@ Optional RGB _[number, number, number]_, _hexcolor_, _web color name_, _stops_, 
 
 Specifies the vertex color of the feature. This color will be passed to any active shaders and used in any light calculations as "color".
 
+`[RGBA]`/`vec4()` colors are legal, but custom alpha values are currently ignored by the renderer – alpha is set to `1.0` in every case.
+
 ```yaml
 draw:
     polygons:
