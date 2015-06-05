@@ -19,7 +19,7 @@ styles:
 
 #### `diffuse`
 
-Optional parameter. _number_, `[R, G, B]`, `hex-color`, `css color name`, or _texture_. Numerical values go from `0` to `1`. Defaults to the geometry's `color` value. 
+Optional parameter. Can be a _number_ from `0`-`1`, `[R, G, B]`, `hex-color`, `css color name`, or `texture`. Defaults to the geometry's `color` value.
 
 ```yaml
 styles:
@@ -31,7 +31,7 @@ styles:
 
 
 #### `ambient` 
-Optional parameter. _number_, `[R, G, B]`, `hex-color`, `css color name`, or _texture_. Numerical values go from `0` to `1`. Defaults to the `diffuse` value. 
+Optional parameter. Can be a _number_ from `0`-`1`, `[R, G, B]`, `hex-color`, `css color name`, or _texture_. Defaults to the `diffuse` value.
 
 ```yaml
 styles:
@@ -43,7 +43,7 @@ styles:
 
 #### `specular`
 
-Optional parameter. _number_, `[R, G, B]`, `hex-color`, `css color name`, or _texture_. Numerical values go from `0` to `1`. Defaults to `[1.0, 1.0, 1.0]`.
+Optional parameter. Can be a _number_ from `0`-`1`, `[R, G, B]`, `hex-color`, `css color name`, or _texture_. Defaults to `[1.0, 1.0, 1.0]`.
 
 ```yaml
 styles:
