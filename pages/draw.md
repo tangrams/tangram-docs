@@ -37,7 +37,7 @@ Rules defined in `draw` blocks will descend into any sublayers.
 ## style parameters
 
 ####`style`
-Optional _string_, naming a style defined in the [`styles`](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that color will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
+Optional _string_, naming a style defined in the [`styles`](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that alpha will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
 ```yaml
 draw:
     style: normalripples
@@ -74,11 +74,11 @@ draw:
 
 ####`color`
 
-Optional RGB _[number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values. RGB value range is 0-1. Default is `[1, 1, 1]` (white).
+Optional RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values or _[r, g, b, a]_ values. RGB/RGBA value range is 0-1. Default is `[1, 1, 1]` (white).
 
 Specifies the vertex color of the feature. This color will be passed to any active shaders and used in any light calculations as "color".
 
-`[RGBA]`/`vec4()` colors are legal, but custom alpha values are currently ignored by the renderer – alpha is set to `1.0` in every case.
+(Note that currently, alpha values are ignored in every `blending` mode except `overlay`, which is the default blending mode of the `points` and `text` draw styles.)
 
 ```yaml
 draw:
@@ -102,6 +102,12 @@ draw:
 draw:
     polygons:
         color: function() { return [$zoom, .5, .5]; }
+```
+
+```yaml
+draw:
+    points:
+        color: [1.0, .5, .5, .5] # 50% alpha
 ```
 
 ####`width`
