@@ -4,7 +4,7 @@
 
 The `textures` element is an optional top-level element in the [scene file](scene-file.md). It has only one kind of sub-element: a _texture name_.
 
-Textures allow image files to be used in the `ambient`, `diffuse`, `specular`, and `` parameters of a [material](materials.md). A texture requires, at the minimum, a `url` path.
+Textures allow image files to be used in the `ambient`, `diffuse`, `specular`, and `normal` parameters of a [material](materials.md). A texture requires, at the minimum, a `url` path.
 
 
 ```yaml
