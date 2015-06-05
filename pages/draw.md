@@ -78,7 +78,7 @@ Optional RGB _[number, number, number]_, RGBA _[number, number, number, number]_
 
 Specifies the vertex color of the feature. This color will be passed to any active shaders and used in any light calculations as "color".
 
-(Note that currently, alpha values are ignored in every `blending` mode except `overlay`, which is the default blending mode of the `points` and `text` draw styles.)
+(Note that currently, alpha values are ignored in every `blend` mode except `overlay`, which is the default blend mode of the `points` and `text` draw styles.)
 
 ```yaml
 draw:
