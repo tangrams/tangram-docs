@@ -115,7 +115,7 @@ Once you've mix'ed in a style, you can add or modify any properties you like.
 
 For example, you could create a new style called styleB that "inherits from" an existing style called styleA, and then adds custom shader blocks:
 
-``yaml
+```yaml
 styleB:
    mix: styleA
    shaders:
