@@ -89,6 +89,20 @@ styles:
         blend: multiply
 ```
 
+####`lighting`
+Optional _string_, one of `fragment`, `vertex`, or `false`. Sets the lighting type of the style. Default is `fragment`.
+
+- `fragment`: lighting will be calculated once per pixel.
+- `vertex`: lighting will be calculated once per vertex, and values between vertices will be interpolated.
+- `false`: lighting will not be calculated.
+
+```yaml
+styles:
+    flat_polygons:
+        base: polygon
+        lighting: false
+```
+
 ####`texcoords`
 Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `material`s which use `texture`s.
 
