@@ -179,6 +179,19 @@ draw:
         join: round
 ```
 
+####`tile_edges`
+Optional _boolean_, one of `true` or `false`. Default is `false`.
+
+Enables borders on the edges of tiles.
+
+```yaml
+draw:
+    water:
+        outline:
+            tile_edges: true
+```
+
+
 ## font parameters
 
 ####`size`
