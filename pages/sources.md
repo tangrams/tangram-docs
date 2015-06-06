@@ -17,14 +17,16 @@ sources:
 ```
 
 #### type
-Required _string_, no default. Three options are currently supported:
+Required _string_. Sets the type of the datasource. No default.
+
+Three options are currently supported:
 
 - `TopoJSONTiles`
 - `GeoJSONTiles`
 - `MVT` (Mapbox Vector Tiles)
 
 #### url
-Required _string_. Specifies the source's _URL_.
+Required _string_. Specifies the source's _URL_. No default.
 
 ```yaml
 sources:
@@ -43,7 +45,6 @@ sources:
 ```
 
 ##### layers
-
 Depending on the datasource, you may be able to request specific layers from the tiles by modifying the url:
 
 ```yaml
@@ -55,7 +56,6 @@ http://vector.mapzen.com/osm/buildings/{z}/{x}/{y}.json
 ```
 
 ##### curly braces
-
 When tiles are requested, Tangram will parse the datasource url and interpret items in curly braces according to the convention used by Leaflet and others,  replacing e.g. `{z}` with the appropriate zoom level.
 
 ##### access tokens
@@ -67,8 +67,8 @@ mapbox:
     url: http://{s:[a,b,c,d]}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1IjoiYmNhbXBlciIsImJiOiJWUmh3anY0In0.1fgSTNWpQV8-5sBjGbBzGg
 ```
 
-#### `max-zoom`
-Optional _integer_.
+#### `max_zoom`
+Optional _integer_. No default.
 
 Sets the highest zoom level which will be requested from the datasource. At higher zoom levels, the data from this zoom level will continue to be displayed.
 

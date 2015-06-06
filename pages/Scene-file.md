@@ -2,40 +2,40 @@ The **scene file** is a [YAML](http://en.wikipedia.org/wiki/YAML) document which
 
 ## Top-level Elements
 
-There are a variety of top-level elements allowed in a scene file. Each defines the beginning of a _block_ named for the parameter.
+There are a variety of top-level elements allowed in a scene file. Each defines the beginning of a _block_ named for the element.
 
 ####`scene`
-Optional parameter. Sets a number of scene-wide parameters:
+Optional element. The `scene` block sets various scene-wide parameters.
 
 See [scene](scene.md).
 
 ####`sources`
-Required parameter. The `sources` block identifies datasources.
+Required element. The `sources` block identifies datasources.
 
 See [sources](sources.md).
 
 ####`styles`
-Optional parameter. The `styles` block defines rendering styles, which are composed of [materials](materials.md) and [shaders](shaders.md).
+Optional element. The `styles` block defines rendering styles, which are composed of [materials](materials.md) and [shaders](shaders.md).
 
 See [Styles Overview](Styles-Overview.md) and [styles](styles.md).
 
 ####`layers`
-Required parameter. The `layers` block divides the data into layers and assigns styling parameters.
+Required element. The `layers` block divides the data into layers and assigns styling parameters.
 
 See [Styles Overview](Styles-Overview.md), [layers](layers.md), and [styling rules](styling-rules.md).
 
 ####`cameras`
-Optional parameter. The `cameras` block allows modifications to the view of the map.
+Optional element. The `cameras` block allows modifications to the view of the map.
 
 See [Cameras Overview](Cameras-Overview.md) and [cameras](cameras.md).
 
 ####`lights`
-Optional parameter. The `lights` block allows control of the lighting of the map.
+Optional element. The `lights` block allows control of the lighting of the map.
 
 See [Lights Overview](Lights-Overview.md) and [lights](lights.md).
 
 ####`textures`
-Optional parameter. The `textures` block allows for advanced configuration of textures within [materials](materials.md).
+Optional element. The `textures` block allows for advanced configuration of textures within [materials](materials.md).
 
 See [Materials Overview](Materials-Overview.md) and [textures](textures.md).
 
