@@ -60,7 +60,7 @@ In this block you can move vertices of the geometry. This block will be added to
 ```yaml
 styles:
     buildings:
-        extends: polygons
+        base: polygons
         animated: true
         material:
             ambient: 1.0
@@ -86,7 +86,7 @@ In this `block` you can change the `normal` value of a surface pixel by pixel, b
 ```yaml
 styles:
     buildings:
-        extends: polygons
+        base: polygons
         animated: true
         material:
             ambient: 1.0
@@ -113,7 +113,7 @@ In this `block` you can change the `color` value of a surface pixel by pixel, be
 ```yaml
 styles:
     buildings:
-        extends: polygons
+        base: polygons
         animated: true
         material:
             ambient: 1.0
@@ -149,7 +149,7 @@ In this `block` you can change the `color` value after the lightening of a surfa
 ```yaml
 styles:
     buildings:
-        extends: polygons
+        base: polygons
         animated: true
         material:
             ambient: 1.0

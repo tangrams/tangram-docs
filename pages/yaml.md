@@ -213,7 +213,7 @@ style:
 
 # GLSL Example:
 elevator:
-    extends: polygons
+    base: polygons
     animated: true
     shaders:
         blocks:
@@ -254,7 +254,7 @@ When the `url` parameter is used in the `styles` block, the linked `.yaml` file 
 ```yaml
 # styles/dots.yaml
 dots:
-    extends: polygons
+    base: polygons
     shaders:
         uniforms:
             ...

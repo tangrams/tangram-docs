@@ -7,7 +7,7 @@ Optional parameter. Begins a material block under a named [style](styles.md).
 ```yaml
 styles:
     water:
-        extends: polygons
+        base: polygons
         animated: true
         material:
             ambient: .7
@@ -24,7 +24,7 @@ Optional parameter. Can be a _number_ from `0`-`1`, `[R, G, B]`, `hex-color`, `c
 ```yaml
 styles:
     red-wall:
-        extends: polygons
+        base: polygons
         material:
             diffuse: red 
 ```
@@ -36,7 +36,7 @@ Optional parameter. Can be a _number_ from `0`-`1`, `[R, G, B]`, `hex-color`, `c
 ```yaml
 styles:
     surface:
-        extends: polygons
+        base: polygons
         material:
             ambient: .7
 ```
@@ -48,7 +48,7 @@ Optional parameter. Can be a _number_ from `0`-`1`, `[R, G, B]`, `hex-color`, `c
 ```yaml
 styles:
     water:
-        extends: polygons
+        base: polygons
         material:
             ambient: .7
             diffuse: [0,0,1]
@@ -63,7 +63,7 @@ Optional _number_. Defaults to `0.2`.
 ```yaml
 styles:
     water:
-        extends: polygons
+        base: polygons
         material:
             ambient: .7
             diffuse: [0,0,1]
