@@ -39,6 +39,16 @@ layers:
         filter: { kind: highway }
 ```
 
+####`visible`
+Optional _Boolean_. Allows layer to be turned off and on. Default is `true`.
+
+```yaml
+layers:
+    landuse:
+        data: { source: osm }
+        visible: false
+```
+
 ####`draw`
 Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [draw](draw.md) entry.
 ```yaml
