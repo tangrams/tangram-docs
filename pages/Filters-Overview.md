@@ -155,7 +155,7 @@ filter: function() { return false; }
 
 #### Keyword properties
 
-The keyword `$zoom` matches the current zoom level. It can be used with the `min` and `max` functions.
+The keyword `$zoom` matches the current zoom level of the map. It can be used with the `min` and `max` functions.
 
 ```yaml
 filter: { $zoom: 14 }
