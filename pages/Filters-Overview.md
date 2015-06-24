@@ -160,18 +160,22 @@ The keyword `$zoom` matches the current zoom level of the map. It can be used wi
 ```yaml
 filter: { $zoom: 14 }
 
-filter: { $zoom: { min: 10 } }
+filter: { $zoom: { min: 10 } }  # matches zooms 10 and up
 
 filter:
-    $zoom: { min: 12, max: 15 }
+    $zoom: { min: 12, max: 15 } # matches zooms 12-14
 ```
 
-The keyword `$geometry` matches the feature's geometry type, for cases when a FeatureCollection includes more than one type of kind of geometry.
+The keyword `$geometry` matches the feature's geometry type, for cases when a FeatureCollection includes more than one type of kind of geometry. Valid geometry types are:
+
+- `point`: matches `Point`, `MultiPoint`
+- `line`: matches `LineString`, `MultiLineString`
+- `polygon`: matches `Polygon`, `MultiPolygon`
 
 ```yaml
-filter: { $geometry: point }
+filter: { $geometry: polygon }          # matches polygons only
 
-filter: { $geometry: polygon }
+filter: { $geometry: [point, line] }    # matches points and lines, but not polygons
 ```
 
 #### Filter functions
@@ -180,13 +184,13 @@ The filter functions `min` and `max` are equivalent to `>=` and `<` in a JavaScr
 
 ```yaml
 filter:
-    area: { max: 10000 } }
+    area: { max: 10000 } }      # matches areas up to 1000 sq meters
 
 filter:
-    height: { min: 70 } }
+    height: { min: 70 } }       # matches heights 70 and up
 
 filter:
-    $zoom: { min: 5, max: 10 }
+    $zoom: { min: 5, max: 10 }  # matches zooms 5-9
 ```
 
 The following Boolean filter functions are also available:
