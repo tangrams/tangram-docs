@@ -129,7 +129,38 @@ Can take the `draw` style parameters `color` and `width`, as defined above.
 ####`font`
 Optional element. Defines the start of a font style block. See [font-parameters](draw.md#font-parameters).
 
-Enables labels.
+Enables labels for features drawn with the `text` style (or a custom style with `base: text`).
+
+####`text_source`
+Optional _string_, or _function_. Default is `name`.
+
+Defines which label text is used, for features drawn with the `text` style (or a custom style with `base: text`). Ignored for other styles.
+
+When the value is a string, it specifies a feature property to use as the label text. For example, the default `name` value will draw labels showing the names of features (e.g. any that have a `name` field). An example of an alternative feature property label is to label buildings with their heights:
+
+```yaml
+draw:
+    text:
+        text_source: height
+        ...
+```
+
+When the value is a function, the return value will be used as the text of the label. For example, to label buildings as 'high' and 'low':
+
+```yaml
+draw:
+    text:
+        text_source: |
+            function() {
+                if (feature.height > 100) {
+                    return 'high';  // features taller than 100m will be labeled 'high'
+                }
+                else {
+                    return 'low';   // features 100m or shorter will be labeled 'low'
+                }
+            }
+        ...
+```
 
 ####`sprite`
 Optional _string_, one of any named `sprites` in a `texture` element.
