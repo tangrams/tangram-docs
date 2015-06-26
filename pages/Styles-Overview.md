@@ -90,6 +90,7 @@ Styles which are extensions of the `text` style can take the following special p
 
 - `text_source` - Defaults to the feature's "name" property, accepts other parameter names or a function.
 - `font` - Sets font's typeface, style, size, color, and outline.
+- `priority` - Sets the label priority of the feature.
 
 See the [draw](draw.md#text) entry.
 
