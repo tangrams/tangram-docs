@@ -162,6 +162,25 @@ draw:
         ...
 ```
 
+####`priority`
+Required _integer_. No default.
+
+Sets the label priority of the feature, when drawing with the `text` style (or a custom style with `base: text`).
+
+Lower values will have higher priority, e.g. `priority: 1` labels will be drawn before those with `priority: 2`.
+
+For example, to set a `places` labels to have priority over others:
+
+```yaml
+places:
+    data: { source: osm }
+    draw:
+        text:
+            priority: 1
+            font:
+                ...
+```
+
 ####`sprite`
 Optional _string_, one of any named `sprites` in a `texture` element.
 
