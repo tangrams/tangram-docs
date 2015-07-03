@@ -8,7 +8,7 @@ Styles defined under this element can be referenced by name inside a [draw](draw
 styles:
     buildings-style:
         base: polygon
-            shaders: ...
+        shaders: ...
 
 buildings:
     draw:
