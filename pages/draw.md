@@ -182,7 +182,7 @@ places:
 ```
 
 ####`sprite`
-Optional _string_, one of any named `sprites` in a `texture` element.
+Optional _string_, one of any named `sprites` in the style's `texture` element. Or a _function_ returning such a string.
 
 Sets the sprite to be used when drawing a `sprites` style.
 
@@ -191,6 +191,13 @@ draw:
     icons:
         size: 32px
         sprite: museum
+```
+
+```yaml
+draw:
+    icons:
+        size: 32px
+        sprite: function() { return feature.kind } # look for a sprite matching the feature's 'kind' property
 ```
 
 ####`size`
