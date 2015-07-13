@@ -60,9 +60,11 @@ layers:
 ```
 
 ####sublayer name
-Optional _string_. Can be anything except the other sublayer parameter: "draw", "filter", and "properties". No default.
+Optional _string_. Can be anything except the other sublayer parameters: "draw", "filter", and "properties". No default.
 
-Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested. `draw` and `filter` definitions are inherited, and match simultaneously – see the [Filters Overview](Filters-Overview.md).
+Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested.
+
+All parameters not explicitly defined in a sublayer will be inherited from the parent layer, including `draw`, `properties`, and `filter` definitions. Note that `filter` objects in different sublayers may match simultaneously – see the [Filters Overview](Filters-Overview.md).
 
 ```yaml
 layers:
