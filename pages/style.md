@@ -49,7 +49,7 @@ Defines the `width` of a line or outline.
 #### `interactive`
 - `True` or `False`, or any function which returns either value.
 
-When `True` this value triggers functionality defined in style.js. Currently this defaults to Tangram's [feature selection](feature-selection.md) behavior.
+When `True` this value triggers functionality defined in style.js. Currently this defaults to Tangram's "feature selection" behavior.
 
 #### `outline`
 This special `outline` property can have any of the above properties. It will inherit properties only from parent `outline` elements.
