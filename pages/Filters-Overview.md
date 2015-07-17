@@ -263,10 +263,10 @@ roads:
     data: { source: osm }
     highway:
         filter: { kind: highway }
-        style: { color: red }
+        draw: { lines: { color: red } }
     bridges:
         filter: { kind: bridge }
-        style: { color: blue }
+        draw: { lines: { color: blue } }
 ```
 
 In this case, "highways" are colored red, and "bridges" are blue. However, if any feature is both a "highway" *and* a "bridge", it will match twice. Because YAML lists are technically "orderless", there's no way to guarantee that one of these styles will consistently be shown over the other. The solution here is to restructure the styles so that each case matches explicitly:
@@ -275,11 +275,11 @@ In this case, "highways" are colored red, and "bridges" are blue. However, if an
 roads:
     highway:
         filter: { kind: highway }
-        style: { color: red }
+        draw: { lines: { color: red } }
         highway-bridges:
             filter: { kind: bridge }
-            style: { color: blue }
+            draw: { lines: { color: blue } }
     other-bridges:
         filter: { kind: bridge, not: { kind: highway} }
-        style: { color: green }
+        draw: { lines: { color: green } }
 ```
