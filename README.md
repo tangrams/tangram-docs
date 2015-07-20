@@ -1,6 +1,6 @@
 # Tangram Documentation
 
-Tangram is a flexible browser-based mapping engine, designed for real-time rendering of 2D and 3D maps from vector tiles.
+[Tangram](http://mapzen.com/tangram) is a flexible browser-based mapping engine, designed for real-time rendering of 2D and 3D maps from vector tiles.
 
 ### Getting Started
 
