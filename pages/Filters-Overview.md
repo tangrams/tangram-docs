@@ -230,7 +230,7 @@ filter:
         - { kind: aerodrome }
 ```
 
-#### Lists imply `any`, Objects imply `all`
+#### Lists imply `any`, Mappings imply `all`
 
 A _list_ of several filters is a shortcut for using the `any` function. These two filters are equivalent:
 
@@ -243,7 +243,7 @@ filter:
         - railway: true
 ```
 
-An _object_ of several filters is a shortcut for using the `all` function. These two filters are equivalent:
+A _mapping_ of several filters is a shortcut for using the `all` function. These two filters are equivalent:
 
 ```yaml
 filter: { kind: hamlet, $zoom: { min: 13 } }
