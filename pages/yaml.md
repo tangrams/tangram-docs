@@ -234,7 +234,7 @@ elevator:
                     position.z *= (sin(position.z + u_time) + 1.0);
                 }
 ```
-## Comments
+## comments
 
 ```yaml
 # This is a YAML comment.
