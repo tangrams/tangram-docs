@@ -2,9 +2,9 @@
 
 Here are the most important YAML features to know about when writing Tangram scene files.
 
-## object types
+## mappings
 
-Tangram makes heavy use of the YAML structures known as "mappings," known elsewhere as "[associative arrays](https://en.wikipedia.org/wiki/Associative_array)", "dictionaries", or "key/value pairs" – in these docs, we usually call these _parameters_, because that's how we use them:
+Tangram makes heavy use of the YAML structures known as "mappings," known elsewhere as "[associative arrays](https://en.wikipedia.org/wiki/Associative_array)" or "dictionaries". They are made up of "key/value pairs" – in these docs, we usually call these _parameters_, because that's how we use them:
 
 ```yaml
 parameter: value
