@@ -53,7 +53,7 @@ Sets the drawing order of the _draw style_, to be used in case of depth collisio
 layers:
     roads:
         draw:
-            lines: 
+            lines:
                 order: 1
         sublayer:
             draw:
@@ -251,20 +251,8 @@ draw:
 
 ## font parameters
 
-####`size`
-Required _number_, in `px`, `pt`, or `em`. No default.
-
-Sets the size of the label.
-
-```yaml
-draw:
-    text:
-        font:
-            size: 12px
-```
-
 ####`typeface`
-Required _string_, naming either a _typeface_ or a _font declaration_. Sets the typeface or font of the label. No default.
+Required _string_, naming either a _typeface_ or a _font declaration_. Sets the typeface or font of the label. Default is `Helvetica 12px`.
 
 A _font_ declaration has the format _style_, _weight_, _size_, _typeface_. The properties mostly follow standard CSS conventions for font-style, font-weight, and font-family. All properties are optional.
 
@@ -276,7 +264,7 @@ A _font_ declaration has the format _style_, _weight_, _size_, _typeface_. The p
 
 ```yaml
 font:
-    typeface: Ariel
+    typeface: Arial
 ```
 
 ```yaml
@@ -290,7 +278,7 @@ font:
 ```
 
 ####`fill`
-Optional _color_. Follows the specs of [color](draw.md#color). Default is `[0, 0, 0]`.
+Optional _color_. Follows the specs of [color](draw.md#color). Default is `white`.
 
 Sets the fill color of the label.
 
@@ -300,9 +288,9 @@ font:
 ```
 
 ####`stroke`
-Optional _color_ or _{color, width}_. _colors_ follow the specs of [color](draw.md#color). Default is `[1.0, 1.0, 1.0]`.
+Optional _color_ or _{color, width}_. _colors_ follow the specs of [color](draw.md#color). No default.
 
-Sets the stroke color (and optionally, width) of the label.
+Sets the stroke color (and optionally, width) of the label, width size is in pixel.
 
 ```yaml
 font:
@@ -311,13 +299,13 @@ font:
 
 ```yaml
 font:
-    stroke: { color: white, width: 2px }
+    stroke: { color: white, width: 2 }
 ```
 
 ####`capitalized`
 Optional _Boolean_, `true` or `false`.
 
-Writes labels in all caps.
+Writes labels in all caps. Default is `false`
 
 ```yaml
 font:
