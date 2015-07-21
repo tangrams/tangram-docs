@@ -71,12 +71,22 @@ styles:
         texture: images/ghost.png
 ```
 
-## `texture` parameters
+## texture parameters
 
 ####`url`
+Required _string_. Defines the path to an image file. No default.
 
-URL
+URLs can be absolute or relative.
 
+```yaml
+    ghost:
+        url: demos/images/ghost.png
+```
+
+```yaml
+    ghost:
+        url: http://ghostimages.com/ghost.png
+```
 
 #### `filtering`
 Optional _string_, one of `linear`, `nearest`, or `mipmap`. Defaults to `linear`.
