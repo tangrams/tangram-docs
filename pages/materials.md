@@ -135,16 +135,4 @@ material:
         amount: 0.5
 ``` 
 
-#### `filtering`
-Optional _string_, one of `linear`, `nearest`, or `mipmap`. Defaults to `linear`.
-
-Sets the filtering mode for the texture, which determines quality at various zoom levels.
-
-```yaml
-    ghost:
-        url: demos/images/ghost.png
-        filtering: mipmap
-```
-    
-
 See also: [texture parameters](textures.md#texture-parameters).
