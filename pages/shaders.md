@@ -267,28 +267,39 @@ varying vec2 v_texcoord;
 Certain other _uniforms_, global variables, and global functions are set when their corresponding [material](material.md) properties are defined:
 
 ```glsl
-vec4 diffuse;
-vec3 diffuseScale; // when diffuse is used with a texture
 
-uniform vec4 ambient;
-vec3 ambientScale; // when ambient is used with a texture
+struct Material {
+        vec4 emission;          // available emission is define
+        vec3 emissionScale;     // available only if a emission texture is pass
 
-uniform vec4 emission;
-uniform vec3 emissionScale; // when emission is used with a texture
+        vec4 ambient;
+        vec3 ambientScale;      // available only if a ambient texture is pass
 
-vec4 specular;
-float shininess;
-vec3 specularScale; // when specular is used with a texture
+        vec4 diffuse;
+        vec3 diffuseScale;      // available only if a diffuse texture is pass
 
-vec3 normalScale; // normals can only be manipulated with a texture
-float normalAmount;
+        vec4 specular;          // available specular is define
+        float shininess;        // available specular is define
+        vec3 specularScale;     // available only if a specular texture is pass
+        
+        vec3 normalScale;       // available only if a normal texture is pass
+        float normalAmount;     // available only if a normal texture is pass
+};
+
+uniform sampler2D u_material_emission_texture;  // available only if a emission texture is pass
+uniform sampler2D u_material_ambient_texture;   // available only if a ambient texture is pass
+uniform sampler2D u_material_diffuse_texture;   // available only if a diffuse texture is pass
+uniform sampler2D u_material_specular_texture;  // available only if a specular texture is pass
+uniform sampler2D u_material_normal_texture;    // available only if a normal texture is pass
 
 uniform Material u_material;
 Material g_material = u_material;
 
-vec4 g_light_accumulator_ambient = vec4(0.0);
-vec4 g_light_accumulator_diffuse = vec4(0.0);
-vec4 g_light_accumulator_specular = vec4(0.0);
+// Global light accumulators for each term
+vec4 light_accumulator_ambient = vec4(0.0);
+vec4 light_accumulator_diffuse = vec4(0.0);
+vec4 light_accumulator_specular = vec4(0.0);    // available specular is define
+
 ```
 
 When [UV maps](Materials-Overview.md#mapping-uv) are used, the following functions are available for use in shader blocks:
