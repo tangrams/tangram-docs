@@ -1,7 +1,7 @@
-*This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
+*This is the technical documentation for Tangram's `styles` object. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`styles`
-The `styles` element is an optional top-level element in the [scene file](scene-file.md). It takes only one kind of element, the _style name_.
+The `styles` element is an optional top-level element in the [scene file](scene-file.md). It takes only one kind of element, a named _style object_.
 
 Styles defined under this element can be referenced by name inside a [draw](draw.md) group with the `style` parameter.
 ```yaml
@@ -103,10 +103,23 @@ styles:
         lighting: false
 ```
 
-####`texcoords`
-Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `material`s which use `texture`s.
+####`texture`
+Optional _URL_, _texture object_, or _named texture_ on the "points" _draw style_. No default.
 
-Note that `texture` objects must be accompanied by a `mapping` parameter – for more, see [textures](textures.md).
+Assigns a _texture_ for use as the color of the point.
+
+```yaml
+styles:
+    ghosts:
+        base: points
+        texture: images/ghost.png
+```
+
+For more, see [textures#texture](textures.md#texture).
+
+####`texcoords`
+Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `texture` objects in combination with the `mapping` parameter – for more, see [textures](textures.md).
+
 ```yaml
 styles:
     monsters:
