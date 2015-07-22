@@ -174,19 +174,19 @@ This is the same as the _[directional light](#directional-light-properties)_'s [
 
 #### `position`
 
-This is the same as the _[point light](#point-light-properties)_'s [position|lights#position](position|lights#position.md) property.
+This is the same as the _[point light](#point-light-properties)_'s [position](lights.md#position) property.
 
 #### `origin`
 
-This is the same as the _[point light](#point-light-properties)_'s [origin|lights#origin](origin|lights#origin.md) property.
+This is the same as the _[point light](#point-light-properties)_'s [origin](lights.md#origin) property.
 
 #### `radius`
 
-This is the same as the _[point light](#point-light-properties)_'s [radius|lights#radius](radius|lights#radius.md) property.
+This is the same as the _[point light](#point-light-properties)_'s [radius](lights.md#radius) property.
 
 #### `attenuation`
 
-This is the same as the _[point light](#point-light-properties)_'s [attenuation|lights#attenuation](attenuation|lights#attenuation.md) property.
+This is the same as the _[point light](#point-light-properties)_'s [attenuation](lights.md#attenuation) property.
 
 #### `angle`
 
