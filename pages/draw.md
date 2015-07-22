@@ -290,7 +290,7 @@ font:
 ####`stroke`
 Optional _color_ or _{color, width}_. _colors_ follow the specs of [color](draw.md#color). No default.
 
-Sets the stroke color (and optionally, width) of the label, width size is in pixel.
+Sets the stroke color (and optionally, width) of the label. Width is specified in pixels.
 
 ```yaml
 font:
