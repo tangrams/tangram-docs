@@ -134,13 +134,29 @@ The `uniforms` block allows shortcuts for declaring globally-accessible _uniform
 
 A "uniform" is a GLSL variable which is constant across all vertices and fragments (aka pixels).
 
-Uniforms are declared as key-value pairs; types are inferred by the [YAML](yaml.md) parser, and the corresponding uniform declarations are injected into the shaders automatically.
+Uniforms are declared as key-value pairs. Types are inferred by Tangram, and the corresponding uniform declarations are injected into the shaders automatically.
+
+For example, float and vector uniform types can be added as follows:
 
 ```yaml
 shaders:
     uniforms:
-        u_color: vec3(.5, .5, .5)
         u_speed: 2.5
+        u_color: [.5, 1.5, 0]
+```
+
+The uniforms `u_speed` and `u_color` are injected into the shader as these types:
+
+```yaml
+float u_speed;
+vec3 u_color;
+```
+
+And are then assigned the following values:
+
+```yaml
+u_speed = 2.5;
+u_color = vec3(0.5, 1.5, 0.0);
 ```
 
 See also: [built-in uniforms](shaders.md#built-in-uniforms) and [built-in varyings](shaders.md#built-in-varyings).
