@@ -195,9 +195,9 @@ shaders:
 The following is a list of reserved defines used by the Tangram Engine:
 
 ```
-TEXTURE_COORDS
-FEATURE_SELECTION
-WORLD_POSITION_WRAP
+TANGRAM_TEXTURE_COORDS
+TANGRAM_FEATURE_SELECTION
+TANGRAM_WORLD_POSITION_WRAP
 
 TANGRAM_MATERIAL_EMISSION
 TANGRAM_MATERIAL_EMISSION_TEXTURE
@@ -237,13 +237,29 @@ TANGRAM_SPOTLIGHT_ATTENUATION_INNER_RADIUS
 TANGRAM_SPOTLIGHT_ATTENUATION_OUTER_RADIUS
 ```
 
-**Uniforms**, on other side, are declared as key-value pairs; types are inferred by the [YAML](yaml.md) parser, and the corresponding uniform declarations are injected into the shaders automatically.
+**Uniforms**, on the other hand, are declared as key-value pairs. Types are inferred by Tangram, and the corresponding uniform declarations are injected into the shaders automatically.
+
+For example, float and vector uniform types can be added as follows:
 
 ```yaml
 shaders:
     uniforms:
-        u_color: vec3(.5, .5, .5)
         u_speed: 2.5
+        u_color: [.5, 1.5, 0]
+```
+
+The uniforms `u_speed` and `u_color` are injected into the shader as these types:
+
+```yaml
+float u_speed;
+vec3 u_color;
+```
+
+And are then assigned the following values:
+
+```yaml
+u_speed = 2.5;
+u_color = vec3(0.5, 1.5, 0.0);
 ```
 
 The following are default uniforms present on the _vertex_ and _fragment_ shaders:
