@@ -84,10 +84,9 @@ These defines are then usable by other directives, such as conditional statement
 The following is a list of reserved defines used by the Tangram Engine:
 
 ```
-TEXTURE_COORDS
-FEATURE_SELECTION
-WORLD_POSITION_WRAP
-
+TANGRAM_TEXTURE_COORDS
+TANGRAM_FEATURE_SELECTION
+TANGRAM_WORLD_POSITION_WRAP
 TANGRAM_MATERIAL_EMISSION
 TANGRAM_MATERIAL_EMISSION_TEXTURE
 TANGRAM_MATERIAL_EMISSION_TEXTURE_UV
