@@ -1,4 +1,4 @@
-##Walkthrough: Make a map with Tangram
+#Walkthrough: Make a map with Tangram
 
 With the [Tangram map renderer](https://mapzen.com/projects/tangram), you quickly can make beautiful and useful 2D and 3D maps. With easy customizations, you can have fine control over almost every aspect of your map's appearance, including symbols, lighting, geometry, and feature labels, and see your changes immediately. Tangram is free and [open source](https://github.com/tangrams/tangram), and supports several vector data formats.
 
