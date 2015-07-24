@@ -11,7 +11,7 @@ lights:
 ```
 
 #### Light names
-Required _string_. Can be anything. No default.
+Required _string_. Can be anything*. No default.
 
 ```yaml
 lights:
@@ -22,6 +22,7 @@ lights:
     point-light:
         type: point
 ```
+* For technical reasons, hyphens in light names are converted to underscores internally. Thus "light-1" becomes "light_1". For this reason, you may not have two lights whose names are identical except for a hyphen in one case and an underscore in the same place in the other (eg "light-1" and "light_1"a) as they will be interpreted as the same name.
 
 ## Common light parameters
 
