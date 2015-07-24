@@ -19,20 +19,24 @@ sources:
 #### type
 Required _string_. Sets the type of the datasource. No default.
 
-Three options are currently supported:
+Five options are currently supported:
 
 - `TopoJSONTiles`
+- `TopoJSON` (untiled)
 - `GeoJSONTiles`
+- `GeoJSON` (untiled)
 - `MVT` (Mapbox Vector Tiles)
 
 #### url
 Required _string_. Specifies the source's _URL_. No default.
 
+_URLs_ should be "schemeless," meaning without the "http:" at the beginning – this ensures that they will be loaded correctly under both http and https.
+
 ```yaml
 sources:
     osm:
         type: MVT
-        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
 Other datasources may have different URL schemes:
@@ -41,8 +45,19 @@ Other datasources may have different URL schemes:
 sources:
     local:
         type: GeoJSONTiles
-        url:  http://localhost:8000/tiles/{x}-{y}-{z}.json
+        url:  //localhost:8000/tiles/{x}-{y}-{z}.json
 ```
+
+An untiled datasource will have a simple _URL_ to a single file:
+
+```yaml
+sources:
+    overlay:
+        type: GeoJSON
+        url:  overlay.json
+```
+
+Relative _URLs_ are relative to the scene file's location. In the above example, "overlay.json" should be in the same directory as the scene file.
 
 ##### layers
 Depending on the datasource, you may be able to request specific layers from the tiles by modifying the url:
