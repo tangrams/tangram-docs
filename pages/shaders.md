@@ -12,11 +12,12 @@ Tangram's shading system has been designed so that its shaders may be modified b
 
 The `shaders` element is an optional element in a _style_. It defines the start of a _shader block_, which allows the definition of custom GPU code.
 
-The `shaders` block has three optional elements:
+The `shaders` block has several optional elements:
 
 - [`defines`](shaders.md#defines) - allows preprocessing switches to be set before shader compilation.
 - [`uniforms`](shaders.md#uniforms) - a shortcut block for defining special shader variables called _uniforms_.
 - [`blocks`](shaders.md#blocks) - allows direct injection of shader code.
+- [`extensions`](shaders.md#extensions) - allows the shader to enable WebGL extensions.
 
 ```yaml
 styles:
@@ -237,6 +238,41 @@ This block has access to the `color` variable after lighting has been applied â€
 blocks:
     filter: color.rgb = vec3(1.0, .5, .5);
 ```
+
+## `extensions`
+Optional parameter.
+
+Styles can enable [WebGL extensions](https://www.khronos.org/registry/webgl/extensions/) with the `extensions` property. For example, this style uses the `OES_standard_derivatives` extension:
+
+```yaml
+styles:
+    grid:
+        base: polygons
+        lighting: false
+        shaders:
+            extensions: OES_standard_derivatives
+            blocks:
+                color: |
+                    // From: http://madebyevan.com/shaders/grid/
+                    // Pick a coordinate to visualize in a grid
+                    vec3 coord = v_world_position.xyz / 10.;
+                    // Compute anti-aliased world-space grid lines
+                    vec3 grid = abs(fract(coord - 0.5) - 0.5) / fwidth(coord);
+                    float line = min(min(grid.x, grid.y), grid.z);
+                    // Just visualize the grid lines directly
+                    color = vec4(vec3(1.0 - min(line, 1.0)), 1.0);
+```
+                    
+`extensions` is either a single extension name, or a list of one or more requested extensions, e.g. for multiple extensions:
+
+`extensions: [OES_standard_derivatives, EXT_frag_depth]`
+
+For each available extension, a `#define` with the following form will be set: `TANGRAM_EXTENSION_${name}`, e.g.
+
+`#define TANGRAM_EXTENSION_OES_standard_derivatives`
+
+Setting `#define` flags for each extension allows shader authors to take advantage of extensions when they are available on the user's machine, while still writing fallback code to support machines that don't have these extensions. (If a fallback isn't implemented and the style fails to compile, then any geometry with that style will not render, as is true any other invalid rendering style.)
+
 
 ## Built-ins, defaults, and presets
 
