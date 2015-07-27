@@ -12,20 +12,20 @@ The source below is named `osm`:
 ```yaml
 sources:
     osm:
-        type: GeoJSONTiles
+        type: GeoJson
         url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 ```
 
 #### type
 Required _string_. Sets the type of the datasource. No default.
 
-Five options are currently supported:
+Three options are currently supported:
 
-- `TopoJSONTiles`
-- `TopoJSON` (untiled)
-- `GeoJSONTiles`
-- `GeoJSON` (untiled)
+- `TopoJSON`
+- `GeoJSON`
 - `MVT` (Mapbox Vector Tiles)
+
+As of v0.2, Tangram supports either tiled or untiled datasources.
 
 #### url
 Required _string_. Specifies the source's _URL_. No default.
@@ -39,12 +39,12 @@ sources:
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
-Other datasources may have different URL schemes:
+The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Various tilesources may have differing URL schemes.
 
 ```yaml
 sources:
     local:
-        type: GeoJSONTiles
+        type: GeoJSON
         url:  //localhost:8000/tiles/{x}-{y}-{z}.json
 ```
 
@@ -90,7 +90,7 @@ Sets the highest zoom level which will be requested from the datasource. At high
 ```yaml
 sources:
     local:
-        type: GeoJSONTiles
+        type: GeoJson
         url: localhost:8000//tiles/{x}-{y}-{z}.json
         max-zoom: 15
 ```
@@ -103,11 +103,11 @@ mapzen:
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 
 mapzen-geojson:
-    type: GeoJSONTiles
+    type: GeoJson
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 
 local:
-    type: GeoJSONTiles
+    type: GeoJson
     url: http://localhost:8080/all/{z}/{x}/{y}.json
 
 mapzen-topojson:
@@ -115,7 +115,7 @@ mapzen-topojson:
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
 
 osm:
-    type: GeoJSONTiles
+    type: GeoJson
     url: http://tile.openstreetmap.us/vectiles-all/{z}/{x}/{y}.json
 
 mapbox:
