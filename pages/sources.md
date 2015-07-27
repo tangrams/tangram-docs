@@ -12,7 +12,7 @@ The source below is named `osm`:
 ```yaml
 sources:
     osm:
-        type: GeoJSONTiles
+        type: GeoJson
         url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 ```
 
@@ -21,28 +21,43 @@ Required _string_. Sets the type of the datasource. No default.
 
 Three options are currently supported:
 
-- `TopoJSONTiles`
-- `GeoJSONTiles`
+- `TopoJSON`
+- `GeoJSON`
 - `MVT` (Mapbox Vector Tiles)
+
+As of v0.2, Tangram supports either tiled or untiled datasources.
 
 #### url
 Required _string_. Specifies the source's _URL_. No default.
+
+_URLs_ should be "schemeless," meaning without the "http:" at the beginning – this ensures that they will be loaded correctly under both http and https.
 
 ```yaml
 sources:
     osm:
         type: MVT
-        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
-Other datasources may have different URL schemes:
+The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Various tilesources may have differing URL schemes.
 
 ```yaml
 sources:
     local:
-        type: GeoJSONTiles
-        url:  http://localhost:8000/tiles/{x}-{y}-{z}.json
+        type: GeoJSON
+        url:  //localhost:8000/tiles/{x}-{y}-{z}.json
 ```
+
+An untiled datasource will have a simple _URL_ to a single file:
+
+```yaml
+sources:
+    overlay:
+        type: GeoJSON
+        url:  overlay.json
+```
+
+Relative _URLs_ are relative to the scene file's location. In the above example, "overlay.json" should be in the same directory as the scene file.
 
 ##### layers
 Depending on the datasource, you may be able to request specific layers from the tiles by modifying the url:
@@ -75,7 +90,7 @@ Sets the highest zoom level which will be requested from the datasource. At high
 ```yaml
 sources:
     local:
-        type: GeoJSONTiles
+        type: GeoJson
         url: localhost:8000//tiles/{x}-{y}-{z}.json
         max-zoom: 15
 ```
@@ -88,11 +103,11 @@ mapzen:
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 
 mapzen-geojson:
-    type: GeoJSONTiles
+    type: GeoJson
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 
 local:
-    type: GeoJSONTiles
+    type: GeoJson
     url: http://localhost:8080/all/{z}/{x}/{y}.json
 
 mapzen-topojson:
@@ -100,7 +115,7 @@ mapzen-topojson:
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
 
 osm:
-    type: GeoJSONTiles
+    type: GeoJson
     url: http://tile.openstreetmap.us/vectiles-all/{z}/{x}/{y}.json
 
 mapbox:

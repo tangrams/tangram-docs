@@ -52,7 +52,7 @@ Here's a very simple scene file:
 ```yaml
 sources:
     osm:
-        type: GeoJSONTileSource
+        type: GeoJSON
         url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 
 layers:

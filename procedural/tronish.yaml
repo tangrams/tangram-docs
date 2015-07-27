@@ -107,7 +107,7 @@ styles:
                     color.rgb = mix(vec3(0.051,0.071,0.278)*0.8,vec3(0.239,0.431,0.718)*0.6,pct)*0.5;
 sources:
     osm:
-        type: TopoJSONTiles
+        type: TopoJSON
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 layers:
     earth:
