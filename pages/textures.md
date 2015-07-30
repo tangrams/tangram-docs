@@ -32,7 +32,7 @@ styles:
 ```
 
 A _texture object_ may also be defined inline, anywhere a `texture` parameter may be specified:
-```
+```yaml
 # defining a texture 
 styles:
     rock:
