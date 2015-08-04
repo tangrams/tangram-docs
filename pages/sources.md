@@ -107,7 +107,7 @@ sources:
    osm:
         type: GeoJSON
         url:  http://vector.someothertileservice.com/osm/all/{z}/{x}/{y}.json
-        enforce_winding: true # reverse the default, because this source has problems with windind
+        enforce_winding: true # reverse the default, because this source has winding problems
     schools:
         type: GeoJSON
         url: demos/data/school-districts-polygon.geojson
