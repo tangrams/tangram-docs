@@ -182,7 +182,7 @@ places:
 ```
 
 ####`sprite`
-Optional _string_, one of any named `sprites` in the style's `texture` element. Or a _function_ returning such a string.
+Optional _string_, one of any named `sprites` in the style's `texture` element, or a _function_ returning such a string.
 
 Sets the sprite to be used when drawing a `sprites` style.
 
@@ -209,6 +209,19 @@ draw:
         size: 32px
         sprite: museum
 ```
+
+####`sprite_default`
+Optional _string_. Sets a default sprite for cases when the matching function fails.
+
+```yaml
+poi-icons:
+    draw:
+        icons:
+            sprite: function() { return feature.kind }
+            sprite_default: generic
+```
+
+
 
 ## outline parameters
 
