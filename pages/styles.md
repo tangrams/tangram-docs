@@ -76,7 +76,7 @@ styles:
 ```
 
 ####`blend`
-Optional _string_, one of `add`, `multiply`, `overlay`, or `inlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have no default and do not apply any blending.
+Optional _string_, one of `add`, `multiply`, `overlay`, or `inlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have no default, and no blending will be applied to them if this parameter is not specified.
 
 When set, features drawn with this style will be composited into the scene using the method specified, for a transparent effect.
 
