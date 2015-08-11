@@ -22,7 +22,7 @@ See [Styles Overview](Styles-Overview.md) and [styles](styles.md).
 ####`layers`
 Required element. The `layers` block divides the data into layers and assigns styling parameters.
 
-See [Styles Overview](Styles-Overview.md), [layers](layers.md), and [styling rules](styling-rules.md).
+See [Styles Overview](Styles-Overview.md) and [layers](layers.md).
 
 ####`cameras`
 Optional element. The `cameras` block allows modifications to the view of the map.
