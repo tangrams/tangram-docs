@@ -4,7 +4,7 @@ The Tangram scene file filters data in two ways: with top-level **layer filters*
 
 ## Layer filters
 
-Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layer`](layer.md) object allows you to split the data by layer, by matching against the layer name.
+Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layers`](layers.md) object allows you to split the data by layer, by matching against the layer name.
 
 ```yaml
 layers:
@@ -15,7 +15,7 @@ layers:
         style: ...
 ```
 
-Specifying `layer: roads` in the [`data`](data.md) block matches this GeoJSON object:
+Specifying `layer: roads` in the [`data`](layers.md#data) block matches this GeoJSON object:
 
 ```json
 {"roads":
@@ -36,7 +36,7 @@ layers:
 
 ## Feature filters
 
-Once a top-level `layer` filter has been applied, feature-level `filter` objects can be defined to further narrow down the data of interest and refine the styles applied to the data.
+Once a top-level `layer` filter has been applied, feature-level [`filter`](layers.md#filter) objects can be defined to further narrow down the data of interest and refine the styles applied to the data.
 
 ```yaml
 layers:
