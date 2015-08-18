@@ -77,9 +77,9 @@ These defines are then usable by other directives, such as conditional statement
    ...
 #endif
 
-#if EFFECT_NOISE_THRESHOLD>10
+if (value > EFFECT_NOISE_THRESHOLD) {
    ...
-#endif
+}
 ```
 ### reserved defines
 The following is a list of reserved defines used by the Tangram Engine:
