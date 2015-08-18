@@ -1,6 +1,16 @@
 *This is the technical documentation for Tangram's JavaScript API.*
 
-In the process of constructing the web map, Tangram mirrors much of the structure of the scene file in a JavaScript object called `window.scene`. Most of its properties and functions objects are used internally by the library, but a few are designed to be referenceable and modifiable, to allow easier design and interactivity.
+In the process of constructing the web map, Tangram mirrors much of the structure of the scene file in a JavaScript object. Most of its properties and functions objects are used internally by the library, but a few are designed to be referenceable and modifiable, to allow easier design and interactivity.
+
+#### `scene`
+When using the Leaflet plugin, you can access the scene object as a property on the Leaflet layer:
+
+```javascript
+> layer = Tangram.leafletLayer({ scene: url, ... });
+> layer.scene
+<- Scene {initialized: true, ...}
+```
+
 
 #### `config`
 This contains the JavaScript version of the [scene file](scene-file.md):
