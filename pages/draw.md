@@ -131,7 +131,7 @@ Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the p
 
 Extrudes elements drawn with the `polygons` draw style into 3D space along the z-axis. This will also raise elements drawn with the `lines` draw style straight up from the ground plane.
 
-If the value is `true`, polygons will be extruded using the value in the `height` property, if it exists, interpreted as units `m`.
+If the value is `true`, features drawn in the `polygons` draw style will be extruded using the values in the feature's `height` and `min_height` properties, if those properties exist, as a `[min, max]` array of units `m`.
 
 The `lines` style does not currently support the `[min, max]` array syntax.
 
