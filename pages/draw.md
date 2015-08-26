@@ -111,9 +111,9 @@ draw:
 ```
 
 ####`width`
-Optional _number_, _stops_, or _function_, in meters `m` or pixels `px`. No default. Default units are `m`.
+Required _number_, _stops_, or _function_, when using the `line` draw style. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Sets the width of a line feature, such as a road.
+Sets the width of a feature drawn with the `line` draw style.
 
 ```yaml
 draw:
