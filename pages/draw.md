@@ -127,7 +127,7 @@ Optional element. Defines the start of an outline style block. See [outline-para
 Can take the `draw` style parameters `color` and `width`, as defined above.
 
 ####`extrude`
-Optional _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
+Optional _boolean_, _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
 Extrudes elements drawn with the `polygons` or `lines` draw styles into 3D space along the z-axis.
 
