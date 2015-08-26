@@ -127,9 +127,13 @@ Optional element. Defines the start of an outline style block. See [outline-para
 Can take the `draw` style parameters `color` and `width`, as defined above.
 
 ####`extrude`
-Optional _boolean_, _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
+Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Extrudes elements drawn with the `polygons` draw style into 3D space along the z-axis. It will also raise elements drawn with the `lines` draw style straight up from the ground plane.
+Extrudes elements drawn with the `polygons` draw style into 3D space along the z-axis. This will also raise elements drawn with the `lines` draw style straight up from the ground plane.
+
+If the value is `true`, polygons will be extruded using the value in the `height` property, if it exists, interpreted as units `m`.
+
+The `lines` style does not currently support the `[min, max]` array syntax.
 
 ####`font`
 Optional element. Defines the start of a font style block. See [font-parameters](draw.md#font-parameters).
