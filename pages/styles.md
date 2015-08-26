@@ -7,7 +7,7 @@ Styles defined under this element can be referenced by name inside a [draw](draw
 ```yaml
 styles:
     buildings-style:
-        base: polygon
+        base: polygons
         shaders: ...
 
 buildings:
@@ -37,7 +37,7 @@ Defines the expected input geometry of the custom style, which determines what o
 ```yaml
 styles:
     geo:
-        base: polygon
+        base: polygons
     icons:
         base: points
 ```
@@ -71,7 +71,7 @@ Optional _boolean_, `true` or `false`. When `true`, the renderer will attempt to
 ```yaml
 styles:
     water:
-        base: polygon
+        base: polygons
         animated: true
 ```
 
@@ -87,7 +87,7 @@ The `overlay` and `inlay` blend modes apply traditional transparency using the a
 ```yaml
 styles:
     glass:
-        base: polygon
+        base: polygons
         blend: multiply
 ```
 
@@ -101,7 +101,7 @@ Optional _string_, one of `fragment`, `vertex`, or `false`. Sets the lighting ty
 ```yaml
 styles:
     flat_polygons:
-        base: polygon
+        base: polygons
         lighting: false
 ```
 
