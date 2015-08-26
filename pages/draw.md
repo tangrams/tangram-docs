@@ -129,7 +129,7 @@ Can take the `draw` style parameters `color` and `width`, as defined above.
 ####`extrude`
 Optional _boolean_, _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Extrudes elements drawn with the `polygons` or `lines` draw styles into 3D space along the z-axis.
+Extrudes elements drawn with the `polygons` draw style into 3D space along the z-axis. It will also raise elements drawn with the `lines` draw style straight up from the ground plane.
 
 ####`font`
 Optional element. Defines the start of a font style block. See [font-parameters](draw.md#font-parameters).
