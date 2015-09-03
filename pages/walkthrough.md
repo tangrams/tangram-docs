@@ -11,7 +11,7 @@ To complete this walkthrough, you need a [browser that supports WebGL](https://g
 1. Open a browser to the [Tangram sample website](https://tangrams.github.io/simple-demo/). This is an example map showing some of the basic features of Tangram. By default, the map opens to the southern (lower) tip of Manhattan in New York City, United States.
 2. Use your mouse to pan and zoom the map. Take note of the map's appearance, as you will be updating the scene later in the exercise.
 
-	![simple-demo initial map](../images/simple-demo-initial.png)
+	![simple-demo initial map](images/simple-demo-initial.png)
 
 3. Close the browser.
 
@@ -23,7 +23,7 @@ The style files are stored in a GitHub software repository called tangrams/simpl
 2. Make a copy of the simple-demo repository. You can choose to download the .zip file from the link on the page, or [clone the repository](https://help.github.com/articles/cloning-a-repository/) using the GitHub client application or command line utilities. Access to the repository is public, so you do not need to be signed in with a GitHub account.
 3. Open the local simple-demo folder and explore the contents.
 
-	![simple-demo repository files](../images/repo-files.png)
+	![simple-demo repository files](images/repo-files.png)
 
 The folder contains some general website and mapping components (such as tools for [Leaflet](http://leafletjs.com/)), documentation, and the file Tangram uses to set the visual appearance of the map (`scene.yaml`).
 
@@ -40,6 +40,10 @@ When you are running the demo locally, the map styling information (scene.yaml) 
 1. Open a terminal window to the simple-demo folder.
 2. At the prompt, type `python -m SimpleHTTPServer` to start a web server using Python. You should receive a message similar to this in the terminal: `Serving HTTP on 0.0.0.0 port 8000 ...`
 3. Open your browser to `http://localhost:8000`. (“Localhost” is a shortcut hostname that a computer can use to refer to itself, and is not viewable by anyone else.) If it was successful, you should see the same demo map as you viewed earlier. If you are having problems, you can instead try the command `python -m http.server 8000` (for use with Python 3).
+
+As you pan and zoom the map, notice that the URL updates to append #, /, and numbers to represent the zoom level (such as #16) and coordinates of the map (such as 40.7085/-73.9903). You can also see this URL pattern on the original simple-demo website. You can always delete those numbers from the URL to return to the original state of the demo.
+
+![URL with zoom level and coordinates](images/local-host-url.png)
 
 Be sure to keep the terminal window open while you are working on this walkthrough.
 
@@ -97,7 +101,7 @@ Currently, the map has a light source defined as `directional`, which you can th
 
 The `position` parameter defines a light originating at an x-,y- coordinate location and at a z-value in meters from the ground, giving the appearance of a light pointed at the tip of Manhattan. You can learn more about lights and their parameters from the [lights documentation](lights.md).
 
-![simple-demo with new light](../images/simple-demo-new-light.png)
+![simple-demo with new light](images/simple-demo-new-light.png)
 
 The updated map looks washed out and the new spot light is barely visible, so you can adjust `light1` to make the map look better.
 
@@ -122,7 +126,7 @@ The updated map looks washed out and the new spot light is barely visible, so yo
 	```
 3. Save `scene.yaml` and refresh the map.
 
-	![simple-demo with combined lights](../images/simple-demo-mod-light.png)
+	![simple-demo with combined lights](images/simple-demo-mod-light.png)
 
 In these steps, you blended lights to achieve different effects. However, if you want to turn off a light completely, you can set its `visible` property to `false.`
 
@@ -141,7 +145,7 @@ You specify how the display the features in the layers in the `draw:` block. The
 2. Under `water:`, change the `color:` value to `'#003366'`.
 3. Save `scene.yaml` and refresh the browser to see the updates.
 
-	![Water with a darker color](../images/change-water-color.png)
+	![Water with a darker color](images/change-water-color.png)
 
 If you want to continue experimenting with Tangram symbols, try changing the `draw` values of other layers. For more on available drawing parameters, see the [styles documentation](styles.md).
 

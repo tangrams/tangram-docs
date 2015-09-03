@@ -21,7 +21,7 @@ cameras:
         type: perspective
 ```
 
-[ ![](../cameras/perspective.png) ](http://tangrams.github.io/tangram-docs/?cameras/perspective.yaml)
+[ ![](images/perspective.png) ](http://tangrams.github.io/tangram-docs/?cameras/perspective.yaml)
 
 #### `focal_length`
 The `focal_length` parameter is connected to the camera's height, and they modify each other in order to maintain a consistent view area. This allows the "zoom level" of a particular map view to remain constant unless changed directly. (You might know this trick as a "dolly zoom", first used in Hitchcock's Vertigo, and frequently used by Kubrick.)
@@ -29,12 +29,12 @@ The `focal_length` parameter is connected to the camera's height, and they modif
 The effect of changing the `focal_length` is therefore identical to scaling the height of all 3D objects in the scene, but without changing the geometry at all.
 
 Here's a diagram of a typical perspective view:  
-![](../cameras/perspective.jpg)
-![](../cameras/perspective-view.jpg)
+![](images/perspective.jpg)
+![](images/perspective-view.jpg)
 
 With our perspective camera, if you decrease the `focal_length`, the camera will move toward the model, to keep the field of view consistent:  
-![](../cameras/zoom.jpg)
-![](../cameras/zoom-view.jpg)
+![](images/zoom.jpg)
+![](images/zoom-view.jpg)
 
 ```yaml
 cameras:
@@ -43,7 +43,7 @@ cameras:
         focal_length: 2
 ```
 
-[ ![](../cameras/focal_length.png) ](http://tangrams.github.io/tangram-docs/?cameras/focal_length.yaml)
+[ ![](images/focal_length.png) ](http://tangrams.github.io/tangram-docs/?cameras/focal_length.yaml)
 
 #### `vanishing_point`
 The perspective camera also allows the apparent origin of perspective (aka the vanishing point) to be changed – this produces an effect you would normally only get by pointing the camera somewhere else and cropping the resulting view.
@@ -55,16 +55,16 @@ cameras:
         vanishing_point: [1000,-1000]
 ```
 
-[ ![](../cameras/vanishing_point.png) ](http://tangrams.github.io/tangram-docs/?cameras/vanishing_point.yaml)
+[ ![](images/vanishing_point.png) ](http://tangrams.github.io/tangram-docs/?cameras/vanishing_point.yaml)
 
 ### isometric camera
 
 More properly called an orthographic or parallel projection, the **isometric** camera can be thought of as a perspective camera with an infinitely long focal length. It produces a flattened perspective that can resemble satellite photos, or the view through a telephoto lens.
 
-![](../cameras/isometric.jpg)
-![](../cameras/isometric-view.jpg)
+![](images/isometric.jpg)
+![](images/isometric-view.jpg)
 
-[ ![](../cameras/isometric.png) ](http://tangrams.github.io/tangram-docs/?cameras/isometric.yaml)
+[ ![](images/isometric.png) ](http://tangrams.github.io/tangram-docs/?cameras/isometric.yaml)
 
 ```yaml
 cameras:
@@ -82,7 +82,7 @@ cameras:
         axis: [1, 1]
 ```
 
-[ ![](../cameras/axis.png) ](http://tangrams.github.io/tangram-docs/?cameras/axis.yaml)
+[ ![](images/axis.png) ](http://tangrams.github.io/tangram-docs/?cameras/axis.yaml)
 
 ###flat camera
 
@@ -93,5 +93,5 @@ cameras:
     camera1:
         type: flat
 ```
-[ ![](../cameras/flat.png) ](http://tangrams.github.io/tangram-docs/?cameras/flat.yaml)
+[ ![](images/flat.png) ](http://tangrams.github.io/tangram-docs/?cameras/flat.yaml)
 
