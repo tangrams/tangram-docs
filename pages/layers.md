@@ -60,9 +60,11 @@ layers:
 ```
 
 ####sublayer name
-Optional _string_. Can be anything except the other sublayer parameter: "draw", "filter", and "properties". No default.
+Optional _string_. Can be anything except the other sublayer parameters: "draw", "filter", and "properties". No default.
 
-Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested. `draw` and `filter` definitions are inherited, and match simultaneously – see the [Filters Overview](Filters-Overview.md).
+Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested.
+
+All parameters not explicitly defined in a sublayer will be inherited from the parent layer, including `draw`, `properties`, and `filter` definitions. Note that `filter` objects in different sublayers may match simultaneously – see the [Filters Overview](Filters-Overview.md).
 
 ```yaml
 layers:
@@ -109,12 +111,13 @@ data:
 ```
 
 ####`layer`
-Optional _string_, naming a top-level named object in the source datalayer. In GeoJSON, this is a _FeatureCollection_. If a `layer` is not specified, the _layer name_ will be used.
+Optional _string_ or _[strings]_, naming a top-level named object in the source datalayer. In GeoJSON, this is a _FeatureCollection_. If a `layer` is not specified, the _layer name_ will be used.
 ```yaml
 data:
     source: osm
     layer: buildings
 ```
+
 The above `layer` refers to the below object:
 ```json
 {"buildings":
@@ -123,8 +126,26 @@ The above `layer` refers to the below object:
     ]}
 }
 ```
-Because the _layer name_ is the same as the name of the GeoJSON object, the `data` object's `layer` parameter can be omitted.
 
+Because the _layer name_ is the same as the name of the GeoJSON object, the `data` object's `layer` parameter can be omitted. Most of our examples, use this form.
+```yaml
+layer:
+    buildings:
+        data: { source: osm }
+```
+
+When an array of layer names may is used as the value of the `layer` parameter, the corresponding data layers will be combined client-side. This allows easy styling of multiple layers at once:
+
+```yaml
+layer:
+    labels:
+        data: { source: osm, layer: [buildings, pois] }
+        filter: { name: true }
+        draw:
+            text:
+                ...
+```
+The above example combines the "buildings" and "pois" layers into a new layer called "labels", for drawing with the "text" _draw style_.
 
 ## `draw` parameters
 

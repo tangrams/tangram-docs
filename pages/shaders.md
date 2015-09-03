@@ -12,11 +12,12 @@ Tangram's shading system has been designed so that its shaders may be modified b
 
 The `shaders` element is an optional element in a _style_. It defines the start of a _shader block_, which allows the definition of custom GPU code.
 
-The `shaders` block has three optional elements:
+The `shaders` block has several optional elements:
 
 - [`defines`](shaders.md#defines) - allows preprocessing switches to be set before shader compilation.
 - [`uniforms`](shaders.md#uniforms) - a shortcut block for defining special shader variables called _uniforms_.
 - [`blocks`](shaders.md#blocks) - allows direct injection of shader code.
+- [`extensions`](shaders.md#extensions) - allows the shader to enable WebGL extensions.
 
 ```yaml
 styles:
@@ -76,18 +77,17 @@ These defines are then usable by other directives, such as conditional statement
    ...
 #endif
 
-#if EFFECT_NOISE_THRESHOLD>10
+if (value > EFFECT_NOISE_THRESHOLD) {
    ...
-#endif
+}
 ```
 ### reserved defines
 The following is a list of reserved defines used by the Tangram Engine:
 
 ```
-TEXTURE_COORDS
-FEATURE_SELECTION
-WORLD_POSITION_WRAP
-
+TANGRAM_TEXTURE_COORDS
+TANGRAM_FEATURE_SELECTION
+TANGRAM_WORLD_POSITION_WRAP
 TANGRAM_MATERIAL_EMISSION
 TANGRAM_MATERIAL_EMISSION_TEXTURE
 TANGRAM_MATERIAL_EMISSION_TEXTURE_UV
@@ -135,13 +135,29 @@ The `uniforms` block allows shortcuts for declaring globally-accessible _uniform
 
 A "uniform" is a GLSL variable which is constant across all vertices and fragments (aka pixels).
 
-Uniforms are declared as key-value pairs; types are inferred by the [YAML](yaml.md) parser, and the corresponding uniform declarations are injected into the shaders automatically.
+Uniforms are declared as key-value pairs. Types are inferred by Tangram, and the corresponding uniform declarations are injected into the shaders automatically.
+
+For example, float and vector uniform types can be added as follows:
 
 ```yaml
 shaders:
     uniforms:
-        u_color: vec3(.5, .5, .5)
         u_speed: 2.5
+        u_color: [.5, 1.5, 0]
+```
+
+The uniforms `u_speed` and `u_color` are injected into the shader as these types:
+
+```yaml
+float u_speed;
+vec3 u_color;
+```
+
+And are then assigned the following values:
+
+```yaml
+u_speed = 2.5;
+u_color = vec3(0.5, 1.5, 0.0);
 ```
 
 See also: [built-in uniforms](shaders.md#built-in-uniforms) and [built-in varyings](shaders.md#built-in-varyings).
@@ -223,6 +239,41 @@ blocks:
     filter: color.rgb = vec3(1.0, .5, .5);
 ```
 
+## `extensions`
+Optional parameter.
+
+Styles can enable [WebGL extensions](https://www.khronos.org/registry/webgl/extensions/) with the `extensions` property. For example, this style uses the `OES_standard_derivatives` extension:
+
+```yaml
+styles:
+    grid:
+        base: polygons
+        lighting: false
+        shaders:
+            extensions: OES_standard_derivatives
+            blocks:
+                color: |
+                    // From: http://madebyevan.com/shaders/grid/
+                    // Pick a coordinate to visualize in a grid
+                    vec3 coord = v_world_position.xyz / 10.;
+                    // Compute anti-aliased world-space grid lines
+                    vec3 grid = abs(fract(coord - 0.5) - 0.5) / fwidth(coord);
+                    float line = min(min(grid.x, grid.y), grid.z);
+                    // Just visualize the grid lines directly
+                    color = vec4(vec3(1.0 - min(line, 1.0)), 1.0);
+```
+                    
+`extensions` is either a single extension name, or a list of one or more requested extensions, e.g. for multiple extensions:
+
+`extensions: [OES_standard_derivatives, EXT_frag_depth]`
+
+For each available extension, a `#define` with the following form will be set: `TANGRAM_EXTENSION_${name}`, e.g.
+
+`#define TANGRAM_EXTENSION_OES_standard_derivatives`
+
+Setting `#define` flags for each extension allows shader authors to take advantage of extensions when they are available on the user's machine, while still writing fallback code to support machines that don't have these extensions. (If a fallback isn't implemented and the style fails to compile, then any geometry with that style will not render, as is true any other invalid rendering style.)
+
+
 ## Built-ins, defaults, and presets
 
 The shading system includes a number of parameters and variables which are made available to the _vertex_ and _fragment_ shaders automatically in certain situations, to make defining materials and writing shader code easier.
@@ -267,28 +318,39 @@ varying vec2 v_texcoord;
 Certain other _uniforms_, global variables, and global functions are set when their corresponding [material](material.md) properties are defined:
 
 ```glsl
-vec4 diffuse;
-vec3 diffuseScale; // when diffuse is used with a texture
 
-uniform vec4 ambient;
-vec3 ambientScale; // when ambient is used with a texture
+struct Material {
+        vec4 emission;          // available emission is define
+        vec3 emissionScale;     // available only if a emission texture is pass
 
-uniform vec4 emission;
-uniform vec3 emissionScale; // when emission is used with a texture
+        vec4 ambient;
+        vec3 ambientScale;      // available only if a ambient texture is pass
 
-vec4 specular;
-float shininess;
-vec3 specularScale; // when specular is used with a texture
+        vec4 diffuse;
+        vec3 diffuseScale;      // available only if a diffuse texture is pass
 
-vec3 normalScale; // normals can only be manipulated with a texture
-float normalAmount;
+        vec4 specular;          // available specular is define
+        float shininess;        // available specular is define
+        vec3 specularScale;     // available only if a specular texture is pass
+        
+        vec3 normalScale;       // available only if a normal texture is pass
+        float normalAmount;     // available only if a normal texture is pass
+};
+
+uniform sampler2D u_material_emission_texture;  // available only if a emission texture is pass
+uniform sampler2D u_material_ambient_texture;   // available only if a ambient texture is pass
+uniform sampler2D u_material_diffuse_texture;   // available only if a diffuse texture is pass
+uniform sampler2D u_material_specular_texture;  // available only if a specular texture is pass
+uniform sampler2D u_material_normal_texture;    // available only if a normal texture is pass
 
 uniform Material u_material;
 Material g_material = u_material;
 
-vec4 g_light_accumulator_ambient = vec4(0.0);
-vec4 g_light_accumulator_diffuse = vec4(0.0);
-vec4 g_light_accumulator_specular = vec4(0.0);
+// Global light accumulators for each term
+vec4 light_accumulator_ambient = vec4(0.0);
+vec4 light_accumulator_diffuse = vec4(0.0);
+vec4 light_accumulator_specular = vec4(0.0);    // available specular is define
+
 ```
 
 When [UV maps](Materials-Overview.md#mapping-uv) are used, the following functions are available for use in shader blocks:

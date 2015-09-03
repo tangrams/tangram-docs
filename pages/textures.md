@@ -1,68 +1,92 @@
-*This is the technical documentation for Tangram's `textures` block. For a conceptual overview of the texturing system, see the [Materials Overview](Materials-Overview.md).*
+*This is the technical documentation for Tangram's `textures` block. For an overview of the ways textures can be used by Tangram, see the [Materials Overview](Materials-Overview.md).*
 
 ##`textures`
-
-The `textures` element is an optional top-level element in the [scene file](scene-file.md). It has only one kind of sub-element: a _texture name_.
-
-Textures allow image files to be used in the `ambient`, `diffuse`, `specular`, and `normal` parameters of a [material](materials.md). A texture requires, at the minimum, a `url` path.
-
+The `textures` element is an optional top-level element in the [scene file](scene-file.md). It has only one kind of sub-element: a named _texture object_.
 
 ```yaml
 textures:
     pois:
         url: demos/images/marker.png
-        mapping: uv
     brick:
         url: demos/images/brick.jpg
-        mapping: uv
 ```
 
-#### texture names
-Required _string_, can be anything. No default.
+####`texture`
+Optional _named texture, _URL_, or _texture object_. No default.
 
-### texture parameters
+A _texture object_ may be defined either in the top-level `textures` element or inline.
 
-#### `mapping`
-Optional _string_, one of `uv`, `planar`, `triplanar`, or `spheremap`. Default is `triplanar` for `normal` textures and `spheremap` for all others.
-
-The `spheremap` mapping can't be used with a `normal` map.
+When defined in the top-level `textures` element, it is declared as a _texture name_ which allows it to be referenced by name in other `texture` parameters, including in `styles` and `materials` definitions:
 
 ```yaml
-material:
-    diffuse:
-        texture: ./material/rock.jpg
-        mapping: uv
+# here we define and name the texture
+textures:
+    pois:
+        url: images/poi_icons_18@2x.png
+
+# here we reference the above texture
+styles:
+    pois-style:
+        base: points
+        texture: pois
 ```
 
-#### `scale`
-
-Optional _number_ or _2D vector_. `number` or `[x,y]`. Defaults to `[1,1]`.
-
-Sets a scaling value for the texture.
-
+A _texture object_ may also be defined inline, anywhere a `texture` parameter may be specified:
 ```yaml
-material:
-    diffuse:
-        texture: ./material/rock.jpg
-        mapping: uv
-        scale: 2.0
+# defining a texture 
+styles:
+    rock:
+        base: polygons
+        material:
+            normal:
+                texture:
+                    url: rock.jpg
+                mapping: uv
 ```
 
-#### `amount`
+```yaml
+# defining a texture inline in the texture parameter of a style based on points
+styles:
+    animals-style:
+        base: points
+        texture:
+            url: path/to/image.png
+            filtering: mipmap
+            sprites:
+                bunny: [0, 0, 32, 32]
+                fox: [0, 32, 32, 32]
+```
 
-Optional _number_ or _3D vector_. `number` or `[r,g,b]`. Defaults to `1`.
-
-This value is a multiplier on the effect of the texture – it can be thought of as the texture's opacity.
+Whether defined in the `textures` element or inline, at a minimum, a URL must be passed:
 
 ```yaml
-material:
-    ambient: .5
-    diffuse:
-        texture: ./material/rock.jpg
-        mapping: uv
-        scale: 2.0
-        amount: 0.5
-``` 
+textures:
+    ghost:
+        url: images/ghost.png
+```
+
+```yaml
+styles:
+    points:
+        texture: images/ghost.png
+```
+
+## texture parameters
+
+####`url`
+Required _string_. Defines the path to an image file. No default.
+
+URLs can be absolute or relative.
+
+```yaml
+    ghost:
+        url: demos/images/ghost.png
+```
+
+```yaml
+    ghost:
+        url: http://ghostimages.com/ghost.png
+```
 
 #### `filtering`
 Optional _string_, one of `linear`, `nearest`, or `mipmap`. Defaults to `linear`.
@@ -74,7 +98,7 @@ Sets the filtering mode for the texture, which determines quality at various zoo
         url: demos/images/ghost.png
         filtering: mipmap
 ```
-        
+
 #### `sprites`
 Optional parameter. Defines the start of a `sprites` block.
 

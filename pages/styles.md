@@ -1,14 +1,14 @@
-*This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
+*This is the technical documentation for Tangram's `styles` object. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`styles`
-The `styles` element is an optional top-level element in the [scene file](scene-file.md). It takes only one kind of element, the _style name_.
+The `styles` element is an optional top-level element in the [scene file](scene-file.md). It takes only one kind of element, a named _style object_.
 
 Styles defined under this element can be referenced by name inside a [draw](draw.md) group with the `style` parameter.
 ```yaml
 styles:
     buildings-style:
-        base: polygon
-            shaders: ...
+        base: polygons
+        shaders: ...
 
 buildings:
     draw:
@@ -37,7 +37,7 @@ Defines the expected input geometry of the custom style, which determines what o
 ```yaml
 styles:
     geo:
-        base: polygon
+        base: polygons
     icons:
         base: points
 ```
@@ -71,21 +71,23 @@ Optional _boolean_, `true` or `false`. When `true`, the renderer will attempt to
 ```yaml
 styles:
     water:
-        base: polygon
+        base: polygons
         animated: true
 ```
 
 ####`blend`
-Optional _string_, one of `add`, `multiply`, or `overlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have no default.
+Optional _string_, one of `add`, `multiply`, `overlay`, or `inlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have no default, and no blending will be applied to them if this parameter is not specified.
 
-When set, features drawn with this style will be composited into the scene using the method specified, for a transparent effect. Features composited with `add` will tend to accumulate toward white, and `multiply` will tend to acculumate toward black.
+When set, features drawn with this style will be composited into the scene using the method specified, for a transparent effect.
 
-The `overlay` blend mode is the only one which respects alpha in color values – however, as Tangram currently does not support depth sorting, polygons and lines drawn with `overlay` will appear in random order.
+The `overlay` and `inlay` blend modes apply traditional transparency using the alpha channel. Features drawn with `overlay` will be appear on top of the scene (irrespective of the `order` property), similar to a heads-up display. This is useful for compositing labels on top of the scene. `inlay` will cause features to be interwoven into the scene at an appropriate depth, according to their `order` value. To illustrate the difference: a street label drawn with `overlay` will be visible *over* any geometry covering the street, such as a nearby building, while a label drawn with `inlay` will display *behind* the building (but will still be partially visible where it is not covered by the building).
+
+`add` and `multiply` apply Photoshop-filter-like operations: features composited with `add` will tend to accumulate toward white, and `multiply` will tend to acculumate toward black.
 
 ```yaml
 styles:
     glass:
-        base: polygon
+        base: polygons
         blend: multiply
 ```
 
@@ -99,14 +101,27 @@ Optional _string_, one of `fragment`, `vertex`, or `false`. Sets the lighting ty
 ```yaml
 styles:
     flat_polygons:
-        base: polygon
+        base: polygons
         lighting: false
 ```
 
-####`texcoords`
-Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `material`s which use `texture`s.
+####`texture`
+Optional _URL_, _texture object_, or _named texture_ on the "points" _draw style_. No default.
 
-Note that `texture` objects must be accompanied by a `mapping` parameter – for more, see [textures](textures.md).
+Assigns a _texture_ for use as the color of the point.
+
+```yaml
+styles:
+    ghosts:
+        base: points
+        texture: images/ghost.png
+```
+
+For more, see [textures#texture](textures.md#texture).
+
+####`texcoords`
+Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `texture` objects in combination with the `mapping` parameter – for more, see [textures](textures.md).
+
 ```yaml
 styles:
     monsters:

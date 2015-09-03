@@ -184,7 +184,7 @@ Beside the pre-defines blocks points, the user have the option to *define* macro
 
 **Defines** are GLSL preprocessor statements, which are injected into shader code at compilation time. The `defines` block allows you to set and define custom statements, useful for changing the functionality of a shader without modifying the shader code directly.
 
-For more on defines, see [link](link).
+For example:
 
 ```yaml
 shaders:
@@ -192,58 +192,34 @@ shaders:
         EFFECT_NOISE_ANIMATED: true
 ```
 
-The following is a list of reserved defines used by the Tangram Engine:
+Will be injected into the shader as:
 
-```
-TEXTURE_COORDS
-FEATURE_SELECTION
-WORLD_POSITION_WRAP
+`#define EFFECT_NOISE_ANIMATED`
 
-TANGRAM_MATERIAL_EMISSION
-TANGRAM_MATERIAL_EMISSION_TEXTURE
-TANGRAM_MATERIAL_EMISSION_TEXTURE_UV
-TANGRAM_MATERIAL_EMISSION_TEXTURE_PLANAR
-TANGRAM_MATERIAL_EMISSION_TEXTURE_TRIPLANAR
-TANGRAM_MATERIAL_EMISSION_TEXTURE_SPHEREMAP
-TANGRAM_MATERIAL_AMBIENT
-TANGRAM_MATERIAL_AMBIENT_TEXTURE
-TANGRAM_MATERIAL_AMBIENT_TEXTURE_UV
-TANGRAM_MATERIAL_AMBIENT_TEXTURE_PLANAR
-TANGRAM_MATERIAL_AMBIENT_TEXTURE_TRIPLANAR
-TANGRAM_MATERIAL_AMBIENT_TEXTURE_SPHEREMAP
-TANGRAM_MATERIAL_DIFFUSE
-TANGRAM_MATERIAL_DIFFUSE_TEXTURE
-TANGRAM_MATERIAL_DIFFUSE_TEXTURE_UV
-TANGRAM_MATERIAL_DIFFUSE_TEXTURE_PLANAR
-TANGRAM_MATERIAL_DIFFUSE_TEXTURE_TRIPLANAR
-TANGRAM_MATERIAL_DIFFUSE_TEXTURE_SPHEREMAP
-TANGRAM_MATERIAL_SPECULAR
-TANGRAM_MATERIAL_SPECULAR_TEXTURE
-TANGRAM_MATERIAL_SPECULAR_TEXTURE_UV
-TANGRAM_MATERIAL_SPECULAR_TEXTURE_PLANAR
-TANGRAM_MATERIAL_SPECULAR_TEXTURE_TRIPLANAR
-TANGRAM_MATERIAL_SPECULAR_TEXTURE_SPHEREMAP
-TANGRAM_MATERIAL_NORMAL_TEXTURE
-TANGRAM_MATERIAL_NORMAL_TEXTURE_UV
-TANGRAM_MATERIAL_NORMAL_TEXTURE_PLANAR
-TANGRAM_MATERIAL_NORMAL_TEXTURE_TRIPLANAR
-TANGRAM_LIGHTING_VERTEX
-TANGRAM_LIGHTING_FRAGMENT
-TANGRAM_POINTLIGHT_ATTENUATION_EXPONENT
-TANGRAM_POINTLIGHT_ATTENUATION_INNER_RADIUS
-TANGRAM_POINTLIGHT_ATTENUATION_OUTER_RADIUS
-TANGRAM_SPOTLIGHT_ATTENUATION_EXPONENT
-TANGRAM_SPOTLIGHT_ATTENUATION_INNER_RADIUS
-TANGRAM_SPOTLIGHT_ATTENUATION_OUTER_RADIUS
-```
 
-**Uniforms**, on other side, are declared as key-value pairs; types are inferred by the [YAML](yaml.md) parser, and the corresponding uniform declarations are injected into the shaders automatically.
+**Uniforms**, on the other hand, are declared as key-value pairs. Types are inferred by Tangram, and the corresponding uniform declarations are injected into the shaders automatically.
+
+For example, float and vector uniform types can be added as follows:
 
 ```yaml
 shaders:
     uniforms:
-        u_color: vec3(.5, .5, .5)
         u_speed: 2.5
+        u_color: [.5, 1.5, 0]
+```
+
+The uniforms `u_speed` and `u_color` are injected into the shader as these types:
+
+```yaml
+float u_speed;
+vec3 u_color;
+```
+
+And are then assigned the following values:
+
+```yaml
+u_speed = 2.5;
+u_color = vec3(0.5, 1.5, 0.0);
 ```
 
 The following are default uniforms present on the _vertex_ and _fragment_ shaders:

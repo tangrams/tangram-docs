@@ -4,7 +4,7 @@ The Tangram scene file filters data in two ways: with top-level **layer filters*
 
 ## Layer filters
 
-Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layer`](layer.md) object allows you to split the data by layer, by matching against the layer name.
+Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layers`](layers.md) object allows you to split the data by layer, by matching against the layer name.
 
 ```yaml
 layers:
@@ -15,7 +15,7 @@ layers:
         style: ...
 ```
 
-Specifying `layer: roads` in the [`data`](data.md) block matches this GeoJSON object:
+Specifying `layer: roads` in the [`data`](layers.md#data) block matches this GeoJSON object:
 
 ```json
 {"roads":
@@ -36,7 +36,7 @@ layers:
 
 ## Feature filters
 
-Once a top-level `layer` filter has been applied, feature-level `filter` objects can be defined to further narrow down the data of interest and refine the styles applied to the data.
+Once a top-level `layer` filter has been applied, feature-level [`filter`](layers.md#filter) objects can be defined to further narrow down the data of interest and refine the styles applied to the data.
 
 ```yaml
 layers:
@@ -230,7 +230,7 @@ filter:
         - { kind: aerodrome }
 ```
 
-#### Lists imply `any`, Objects imply `all`
+#### Lists imply `any`, Mappings imply `all`
 
 A _list_ of several filters is a shortcut for using the `any` function. These two filters are equivalent:
 
@@ -243,7 +243,7 @@ filter:
         - railway: true
 ```
 
-An _object_ of several filters is a shortcut for using the `all` function. These two filters are equivalent:
+A _mapping_ of several filters is a shortcut for using the `all` function. These two filters are equivalent:
 
 ```yaml
 filter: { kind: hamlet, $zoom: { min: 13 } }
@@ -263,23 +263,23 @@ roads:
     data: { source: osm }
     highway:
         filter: { kind: highway }
-        style: { color: red }
+        draw: { lines: { color: red } }
     bridges:
         filter: { kind: bridge }
-        style: { color: blue }
+        draw: { lines: { color: blue } }
 ```
 
-In this case, "highways" are colored red, and "bridges" are blue. However, if any feature is both a "highway" *and* a "bridge", it will match twice. Because YAML lists are technically "orderless", there's no way to guarantee that one of these styles will consistently be shown over the other. The solution here is to restructure the styles so that each case matches explicitly:
+In this case, "highways" are colored red, and "bridges" are blue. However, if any feature is both a "highway" *and* a "bridge", it will match twice. Because YAML maps are technically "orderless", there's no way to guarantee that one of these styles will consistently be shown over the other. The solution here is to restructure the styles so that each case matches explicitly:
 
 ```yaml
 roads:
     highway:
         filter: { kind: highway }
-        style: { color: red }
+        draw: { lines: { color: red } }
         highway-bridges:
             filter: { kind: bridge }
-            style: { color: blue }
+            draw: { lines: { color: blue } }
     other-bridges:
         filter: { kind: bridge, not: { kind: highway} }
-        style: { color: green }
+        draw: { lines: { color: green } }
 ```

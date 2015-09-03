@@ -85,29 +85,54 @@ material:
 
 ### Textures
 
-`ambient`, `diffuse` and `specular` properties can be defined with a texture map instead of a color. A `texture` requires, at the minimum, a url path and a `mapping` mode.
+`ambient`, `diffuse` and `specular` properties can be defined as a texture map instead of a color. When a texture is used in this way, a number of other parameters may be used to modify its display.
 
 #### `texture`
 
-Optional _string_, defining a _path_ `"complete/texture/url.png"` or _named [texture](textures.md)_. No default.
+Optional _named texture_, _URL_, or _texture object_. No default.
 
-If a texture is identified by _path_, a `mapping` mode must be specified.
+For more, see [textures#texture](textures.md#texture).
+
+#### `mapping`
+Optional _string_, one of `uv`, `planar`, `triplanar`, or `spheremap`. Default is `triplanar` for `normal` textures and `spheremap` for all others.
+
+The `spheremap` mapping can't be used with a `normal` map.
 
 ```yaml
-diffuse:
-    texture: ./material/sky.jpg
-    mapping: spheremap
+material:
+    diffuse:
+        texture: ./material/rock.jpg
+        mapping: uv
 ```
 
-If a texture is referenced by _name_, the `mapping` parameter must be defined in the associated _named [texture](textures.md)_ block.
+#### `scale`
+
+Optional _number_ or _2D vector_. `number` or `[x,y]`. Defaults to `[1,1]`.
+
+Sets a scaling value for the texture.
+
 ```yaml
-textures:
-    sky:
-        texture: ./material/sky.jpg
-        mapping: spheremap
-
-diffuse:
-    texture: sky
+material:
+    diffuse:
+        texture: ./material/rock.jpg
+        mapping: uv
+        scale: 2.0
 ```
+
+#### `amount`
+
+Optional _number_ or _3D vector_. `number` or `[r,g,b]`. Defaults to `1`.
+
+This value is a multiplier on the effect of the texture – it can be thought of as the texture's opacity.
+
+```yaml
+material:
+    ambient: .5
+    diffuse:
+        texture: ./material/rock.jpg
+        mapping: uv
+        scale: 2.0
+        amount: 0.5
+``` 
 
 See also: [texture parameters](textures.md#texture-parameters).

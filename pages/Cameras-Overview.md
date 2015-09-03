@@ -84,7 +84,7 @@ cameras:
 
 [ ![](images/axis.png) ](http://tangrams.github.io/tangram-docs/?cameras/axis.yaml)
 
-## flat camera
+###flat camera
 
 The **flat** camera is a shortcut to a view which can be produced by the other two cameras, but is simpler to setup and use. It has no 3D perspective at all, and shows a perfectly flat top-down view of your map.
 

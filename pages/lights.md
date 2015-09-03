@@ -11,7 +11,7 @@ lights:
 ```
 
 #### Light names
-Required _string_. Can be anything. No default.
+Required _string_. Can be anything*. No default.
 
 ```yaml
 lights:
@@ -22,6 +22,7 @@ lights:
     point-light:
         type: point
 ```
+* For technical reasons, hyphens in light names are converted to underscores internally. Thus "light-1" becomes "light_1". For this reason, you may not have two lights whose names are identical except for a hyphen in one case and an underscore in the same place in the other (eg "light-1" and "light_1"a) as they will be interpreted as the same name.
 
 ## Common light parameters
 
@@ -174,19 +175,19 @@ This is the same as the _[directional light](#directional-light-properties)_'s [
 
 #### `position`
 
-This is the same as the _[point light](#point-light-properties)_'s [position|lights#position](position|lights#position.md) property.
+This is the same as the _[point light](#point-light-properties)_'s [position](lights.md#position) property.
 
 #### `origin`
 
-This is the same as the _[point light](#point-light-properties)_'s [origin|lights#origin](origin|lights#origin.md) property.
+This is the same as the _[point light](#point-light-properties)_'s [origin](lights.md#origin) property.
 
 #### `radius`
 
-This is the same as the _[point light](#point-light-properties)_'s [radius|lights#radius](radius|lights#radius.md) property.
+This is the same as the _[point light](#point-light-properties)_'s [radius](lights.md#radius) property.
 
 #### `attenuation`
 
-This is the same as the _[point light](#point-light-properties)_'s [attenuation|lights#attenuation](attenuation|lights#attenuation.md) property.
+This is the same as the _[point light](#point-light-properties)_'s [attenuation](lights.md#attenuation) property.
 
 #### `angle`
 

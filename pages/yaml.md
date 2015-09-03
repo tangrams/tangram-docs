@@ -2,9 +2,9 @@
 
 Here are the most important YAML features to know about when writing Tangram scene files.
 
-## object types
+## mappings
 
-YAML's structure is made up of "mappings," known elsewhere as "key/value pairs" – we usually call these _parameters_.
+Tangram makes heavy use of the YAML structures known as "mappings," known elsewhere as "[associative arrays](https://en.wikipedia.org/wiki/Associative_array)" or "dictionaries". They are made up of "key/value pairs" – in these docs, we usually call these _parameters_, because that's how we use them:
 
 ```yaml
 parameter: value
@@ -17,7 +17,7 @@ element:
     parameter2: value
 ```
 
-At a given level, key names must be unique.
+By definition, a "mapping" is an orderless collection of objects. For this reason, at a given level within a given object, parameter names must be unique:
 
 ```yaml
 element:
@@ -25,12 +25,23 @@ element:
     parameter1: value # not allowed, parameter name is repeated
 ```
 
-A parameter can't also be an element:
+This also means that there's no concept of object order in a YAML document. Conflicts may be resolved differently at different times, and you can't rely on document order to resolve them:
+
+```yaml
+# only one camera can be active at a time – here, you can't be sure which one it will be.
+camera1:
+    active: true
+camera2:
+    active: true
+```
+
+Finally, a parameter can't also be an element:
 ```yaml
 # THIS WON'T WORK
-parameter: value
-    subparameter: value
+parameter1: value1
+    subparameter1: value2
 ```
+This is because the value of "parameter1" can't be both "value1" and an object containing other key/value pairs – it has to be one or the other.
 
 In this documentation, we refer to both parameters and elements as "objects".
 
@@ -223,7 +234,7 @@ elevator:
                     position.z *= (sin(position.z + u_time) + 1.0);
                 }
 ```
-## Comments
+## comments
 
 ```yaml
 # This is a YAML comment.

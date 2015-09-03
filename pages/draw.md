@@ -53,7 +53,7 @@ Sets the drawing order of the _draw style_, to be used in case of depth collisio
 layers:
     roads:
         draw:
-            lines: 
+            lines:
                 order: 1
         sublayer:
             draw:
@@ -111,9 +111,9 @@ draw:
 ```
 
 ####`width`
-Optional _number_, _stops_, or _function_, in meters `m` or pixels `px`. No default. Default units are `m`.
+Required _number_, _stops_, or _function_, when using the `line` draw style. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Sets the width of a line feature, such as a road.
+Sets the width of a feature drawn with the `line` draw style.
 
 ```yaml
 draw:
@@ -125,6 +125,15 @@ draw:
 Optional element. Defines the start of an outline style block. See [outline-parameters](draw.md#outline-parameters).
 
 Can take the `draw` style parameters `color` and `width`, as defined above.
+
+####`extrude`
+Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are meters `m` or pixels `px`. Default units are `m`.
+
+Extrudes elements drawn with the `polygons` draw style into 3D space along the z-axis. This will also raise elements drawn with the `lines` draw style straight up from the ground plane.
+
+If the value is `true`, features drawn in the `polygons` draw style will be extruded using the values in the feature's `height` and `min_height` properties, if those properties exist, as a `[min, max]` array of units `m`.
+
+The `lines` style does not currently support the `[min, max]` array syntax.
 
 ####`font`
 Optional element. Defines the start of a font style block. See [font-parameters](draw.md#font-parameters).
@@ -182,7 +191,7 @@ places:
 ```
 
 ####`sprite`
-Optional _string_, one of any named `sprites` in a `texture` element.
+Optional _string_, one of any named `sprites` in the style's `texture` element, or a _function_ returning such a string.
 
 Sets the sprite to be used when drawing a `sprites` style.
 
@@ -191,6 +200,13 @@ draw:
     icons:
         size: 32px
         sprite: museum
+```
+
+```yaml
+draw:
+    icons:
+        size: 32px
+        sprite: function() { return feature.kind } # look for a sprite matching the feature's 'kind' property
 ```
 
 ####`size`
@@ -202,6 +218,19 @@ draw:
         size: 32px
         sprite: museum
 ```
+
+####`sprite_default`
+Optional _string_. Sets a default sprite for cases when the matching function fails.
+
+```yaml
+poi-icons:
+    draw:
+        icons:
+            sprite: function() { return feature.kind }
+            sprite_default: generic
+```
+
+
 
 ## outline parameters
 
@@ -218,7 +247,7 @@ draw:
 ```
 
 ####`join`
-Optional _string_, one of `butt`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
+Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
 
 Sets the shape of joints in multi-segment lines, for features drawn with a line style.
 
@@ -244,20 +273,8 @@ draw:
 
 ## font parameters
 
-####`size`
-Required _number_, in `px`, `pt`, or `em`. No default.
-
-Sets the size of the label.
-
-```yaml
-draw:
-    text:
-        font:
-            size: 12px
-```
-
 ####`typeface`
-Required _string_, naming either a _typeface_ or a _font declaration_. Sets the typeface or font of the label. No default.
+Required _string_, naming either a _typeface_ or a _font declaration_. Sets the typeface or font of the label. Default is `Helvetica 12px`.
 
 A _font_ declaration has the format _style_, _weight_, _size_, _typeface_. The properties mostly follow standard CSS conventions for font-style, font-weight, and font-family. All properties are optional.
 
@@ -269,7 +286,7 @@ A _font_ declaration has the format _style_, _weight_, _size_, _typeface_. The p
 
 ```yaml
 font:
-    typeface: Ariel
+    typeface: Arial
 ```
 
 ```yaml
@@ -283,7 +300,7 @@ font:
 ```
 
 ####`fill`
-Optional _color_. Follows the specs of [color](draw.md#color). Default is `[0, 0, 0]`.
+Optional _color_. Follows the specs of [color](draw.md#color). Default is `white`.
 
 Sets the fill color of the label.
 
@@ -293,9 +310,9 @@ font:
 ```
 
 ####`stroke`
-Optional _color_ or _{color, width}_. _colors_ follow the specs of [color](draw.md#color). Default is `[1.0, 1.0, 1.0]`.
+Optional _color_ or _{color, width}_. _colors_ follow the specs of [color](draw.md#color). No default.
 
-Sets the stroke color (and optionally, width) of the label.
+Sets the stroke color (and optionally, width) of the label. Width is specified in pixels.
 
 ```yaml
 font:
@@ -304,13 +321,13 @@ font:
 
 ```yaml
 font:
-    stroke: { color: white, width: 2px }
+    stroke: { color: white, width: 2 }
 ```
 
 ####`capitalized`
 Optional _Boolean_, `true` or `false`.
 
-Writes labels in all caps.
+Writes labels in all caps. Default is `false`
 
 ```yaml
 font:
