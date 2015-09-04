@@ -25,7 +25,7 @@ element:
     parameter1: value # not allowed, parameter name is repeated
 ```
 
-This also means that there's no concept of object order in a YAML document. Conflicts may be resolved differently at different times, and you can't rely on document order to resolve them:
+Conflicts may be resolved differently at different times, and you can't rely on document order to resolve them:
 
 ```yaml
 # only one camera can be active at a time – here, you can't be sure which one it will be.
