@@ -47,11 +47,11 @@ In this documentation, we refer to both parameters and elements as "objects".
 
 ## object syntax
 
-YAML supports two kinds of syntax when writing nested objects: _whitespace syntax_ and _bracket syntax_.
+YAML supports two kinds of syntax when writing nested objects: _block syntax_ and _flow syntax_.
 
-####whitespace syntax
+####block syntax
 
-_Whitespace syntax_ requires each level of an object to be indented with spaces – any number of spaces or tabs is allowed, as long as it's consistent throughout the file. It is relatively easy to read, though it tends to result in longer files.
+_Block syntax_ requires each level of an object to be indented with spaces – any number of spaces or tabs is allowed, as long as it's consistent throughout the file. It is relatively easy to read, though it tends to result in longer files.
 
 ```yaml
 element:
@@ -67,8 +67,8 @@ _Note:_ if you mix spaces and tabs, the parser will throw an error like this one
 ```
 YAMLException {name: "YAMLException", reason: "bad indentation of a mapping entry"}
 ``` 
-#### bracket syntax
-Here is the same object as the first example above, written in the more compact _bracket syntax_:
+#### flow syntax
+Here is the same object as the first example above, written in the more compact _flow syntax_:
 ```yaml
 element1: { subelement1: { parameter1: value1, parameter2: value2 }, subelement2: { parameter1: value1, parameter2: value2 } }
 ```
@@ -87,7 +87,7 @@ For further examples, check out our many fine [demos](https://github.com/tangram
 
 Lists are written differently in each of the above syntax styles.
 
-#### whitespace lists
+#### block lists
 ```yaml
 element:
     parameter:
@@ -96,13 +96,13 @@ element:
         - item 3
 ```
 
-####bracket lists
+####flow lists
 ```yaml
 element: { parameter: [ item1, item2, item3 ] }
 ```
 ## syntax mixing
 
-_Whitespace syntax_ can enclose _bracket syntax_, but not the other way around – once you start an object in _bracket syntax_, you have to finish it before you can move back into _whitespace syntax_.
+_Block syntax_ can enclose _flow syntax_, but not the other way around – once you start an object in _flow syntax_, you have to finish it before you can move back into _block syntax_.
 
 ```yaml
 element:
@@ -191,7 +191,7 @@ labels:
 
 ## multiline strings
 
-One of the reasons we chose YAML as our scene file format is its ability to handle multi-line strings with a minimum of fuss. In _whitespace syntax_ only, start an parameter's value with a "pipe" character (`|`) followed by a newline, and everything that isn't indented _less_ after that will be treated as a single string value, newlines included:
+One of the reasons we chose YAML as our scene file format is its ability to handle multi-line strings with a minimum of fuss. In _block syntax_ only, start an parameter's value with a "pipe" character (`|`) followed by a newline, and everything that isn't indented _less_ after that will be treated as a single string value, newlines included:
 
 ```yaml
 element:
