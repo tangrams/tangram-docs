@@ -143,18 +143,19 @@ Our "stops" data structure is a way to define a relationship between two ranges 
 
 `[[12, 3], [14, 6], [16, 9]]`
 
-The first value in each pair is always a _zoom level_. The second value in each pair is interpreted contextually, with all of the constraints of the particular parameter. At other zoom levels, values will be interpolated linearly.
+The first value in each pair is always a _zoom level_. The second value in each pair is interpreted in the context of the current parameter. Stops may be used with all color and distance parameters, including `width`, `focal_length`, `fov`, and `z`.
 
-For instance, in a `width` block, if no units are specified, each pair is interpreted as `[zoom, meters]`. The above example will define a value of 3m at zoom 12, 6m at zoom 14, and 9m at zoom 16. At zoom 13, the value will be 4.5m.
+For instance, in a `width` block, if no units are specified, each pair is interpreted as `[zoom, meters]`, because `meters` is the default unit of `width`. The above example will define a value of 3m at zoom 12, 6m at zoom 14, and 9m at zoom 16.
 
-Stops may be used in `color`, `width`, `focal_length`, and `fov`.
+At intermediate zoom levels, values will be interpolated linearly, with behavior depending on draw style and parameter. In the above example, at zoom 13, the value will be 4.5m, and at zoom 13.5, the value will be 5.25m. However, for all `color` values, the values are only be updated when tile geometry is built – typically at whole-number zoom changes.
+
+Outside of the range specified by the stops, the values are capped by the highest and lowest values in the range – so in the above example, the value at zoom 9 is also 3m, and the value at zoom 18 is still 9m.
 
 ```yaml
 color: [10, [0.3, 0.4, 0.3], [14, [0.5, 0.825, 0.5]]]
 width: [[13, 0px], [14, 3px], [16, 5px], [18, 10px]]
 ```
 
-Note that stops define settings to be used when tile geometry is built. Typically, this only happens when the tile is loaded, at a tile integer change (or sometimes halfway between integer zooms) – so incremental zooming won't cause style changes until the next tile is loaded.
 
 ## reserved keywords
 
