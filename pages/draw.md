@@ -210,13 +210,17 @@ draw:
 ```
 
 ####`size`
-Optional _number_, in `px`. Sets the size of any `sprite` elements.
+Optional _number_ or _[x, y] array_, in `px`. Sets the size of any `sprite` elements. No default. Default unit is `px`.
 
 ```yaml
 draw:
     icons:
         size: 32px
         sprite: museum
+
+draw:
+    points:
+        size: [32, 64]
 ```
 
 ####`sprite_default`
