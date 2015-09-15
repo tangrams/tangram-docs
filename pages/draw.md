@@ -235,6 +235,17 @@ draw:
         width: 9
 ```
 
+####`z`
+Optional _number_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
+
+Sets the z-offset of a feature drawn with the `line` or `polygons` draw style.
+
+```yaml
+draw:
+    lines:
+        z: 50
+```
+
 
 ## outline parameters
 
