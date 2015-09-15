@@ -36,41 +36,6 @@ Rules defined in `draw` blocks will descend into any sublayers.
 
 ## style parameters
 
-####`style`
-Optional _string_, naming a style defined in the [`styles`](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that alpha will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
-```yaml
-draw:
-    style: normalripples
-    ...
-```
-
-####`order`
-Required _integer_ or _function_. No default.
-
-Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child rules override parent rules.
-
-```yaml
-layers:
-    roads:
-        draw:
-            lines:
-                order: 1
-        sublayer:
-            draw:
-                lines:
-                    order: 2   # this layer's order is now 2
-```
-
-####`interactive`
-Optional _boolean_ or _function_ returning `true` or `false`. Default is `false`.
-
-When `true`, activates _Feature Selection_ – the feature can be queried via the [JavaScript API](Javascript-API.md).
-
-```yaml
-draw:
-    polygons:
-        interactive: true
-```
 
 ####`color`
 
@@ -110,22 +75,6 @@ draw:
         color: [1.0, .5, .5, .5] # 50% alpha
 ```
 
-####`width`
-Required _number_, _stops_, or _function_, when using the `line` draw style. No default. Units are meters `m` or pixels `px`. Default units are `m`.
-
-Sets the width of a feature drawn with the `line` draw style.
-
-```yaml
-draw:
-    lines:
-        width: 9
-```
-
-####`outline`
-Optional element. Defines the start of an outline style block. See [outline-parameters](draw.md#outline-parameters).
-
-Can take the `draw` style parameters `color` and `width`, as defined above.
-
 ####`extrude`
 Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
@@ -139,6 +88,110 @@ The `lines` style does not currently support the `[min, max]` array syntax.
 Optional element. Defines the start of a font style block. See [font-parameters](draw.md#font-parameters).
 
 Enables labels for features drawn with the `text` style (or a custom style with `base: text`).
+
+####`interactive`
+Optional _boolean_ or _function_ returning `true` or `false`. Default is `false`.
+
+When `true`, activates _Feature Selection_ – the feature can be queried via the [JavaScript API](Javascript-API.md).
+
+```yaml
+draw:
+    polygons:
+        interactive: true
+```
+
+
+####`order`
+Required _integer_ or _function_. No default.
+
+Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child rules override parent rules.
+
+```yaml
+layers:
+    roads:
+        draw:
+            lines:
+                order: 1
+        sublayer:
+            draw:
+                lines:
+                    order: 2   # this layer's order is now 2
+```
+
+
+####`outline`
+Optional element. Defines the start of an outline style block. See [outline-parameters](draw.md#outline-parameters).
+
+Can take the `draw` style parameters `color` and `width`, as defined above.
+
+
+####`priority`
+Required _integer_. No default.
+
+Sets the label priority of the feature, when drawing with the `text` style (or a custom style with `base: text`).
+
+Lower values will have higher priority, e.g. `priority: 1` labels will be drawn before those with `priority: 2`.
+
+For example, to set a `places` labels to have priority over others:
+
+```yaml
+places:
+    data: { source: osm }
+    draw:
+        text:
+            priority: 1
+            font:
+                ...
+```
+
+
+####`size`
+Optional _number_, in `px`. Sets the size of any `icons` or `points`.
+
+```yaml
+draw:
+    icons:
+        size: 32px
+        sprite: museum
+```
+
+####`sprite`
+Optional _string_, one of any named `sprites` in the style's `texture` element, or a _function_ returning such a string.
+
+Sets the sprite to be used when drawing a `sprites` style.
+
+```yaml
+draw:
+    icons:
+        size: 32px
+        sprite: museum
+```
+
+```yaml
+draw:
+    icons:
+        size: 32px
+        sprite: function() { return feature.kind } # look for a sprite matching the feature's 'kind' property
+```
+
+####`sprite_default`
+Optional _string_. Sets a default sprite for cases when the matching function fails.
+
+```yaml
+poi-icons:
+    draw:
+        icons:
+            sprite: function() { return feature.kind }
+            sprite_default: generic
+```
+
+####`style`
+Optional _string_, naming a style defined in the [`styles`](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that alpha will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
+```yaml
+draw:
+    style: normalripples
+    ...
+```
 
 ####`text_source`
 Optional _string_, or _function_. Default is `name`.
@@ -171,65 +224,16 @@ draw:
         ...
 ```
 
-####`priority`
-Required _integer_. No default.
+####`width`
+Required _number_, _stops_, or _function_, when using the `line` draw style. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Sets the label priority of the feature, when drawing with the `text` style (or a custom style with `base: text`).
-
-Lower values will have higher priority, e.g. `priority: 1` labels will be drawn before those with `priority: 2`.
-
-For example, to set a `places` labels to have priority over others:
-
-```yaml
-places:
-    data: { source: osm }
-    draw:
-        text:
-            priority: 1
-            font:
-                ...
-```
-
-####`sprite`
-Optional _string_, one of any named `sprites` in the style's `texture` element, or a _function_ returning such a string.
-
-Sets the sprite to be used when drawing a `sprites` style.
+Sets the width of a feature drawn with the `line` draw style.
 
 ```yaml
 draw:
-    icons:
-        size: 32px
-        sprite: museum
+    lines:
+        width: 9
 ```
-
-```yaml
-draw:
-    icons:
-        size: 32px
-        sprite: function() { return feature.kind } # look for a sprite matching the feature's 'kind' property
-```
-
-####`size`
-Optional _number_, in `px`. Sets the size of any `icons` or `points`.
-
-```yaml
-draw:
-    icons:
-        size: 32px
-        sprite: museum
-```
-
-####`sprite_default`
-Optional _string_. Sets a default sprite for cases when the matching function fails.
-
-```yaml
-poi-icons:
-    draw:
-        icons:
-            sprite: function() { return feature.kind }
-            sprite_default: generic
-```
-
 
 
 ## outline parameters
