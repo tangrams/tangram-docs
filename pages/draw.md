@@ -225,9 +225,9 @@ draw:
 ```
 
 ####`width`
-Required _number_, _stops_, or _function_, when using the `line` draw style. No default. Units are meters `m` or pixels `px`. Default units are `m`.
+Required _number_, _stops_, or _function_, when using the `lines` draw style. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Sets the width of a feature drawn with the `line` draw style.
+Sets the width of a feature drawn with the `lines` draw style.
 
 ```yaml
 draw:
@@ -238,7 +238,7 @@ draw:
 ####`z`
 Optional _number_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Sets the z-offset of a feature drawn with the `line` or `polygons` draw style.
+Sets the z-offset of a feature drawn with the `lines` or `polygons` draw style.
 
 ```yaml
 draw:
