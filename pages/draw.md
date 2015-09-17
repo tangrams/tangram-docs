@@ -8,7 +8,7 @@ A previously-defined _draw style_ must be named under a [draw](draw.md) group. I
 
 The name of the style must be either:
 
-- one of the four built-in _draw styles_: `polygons`, `lines`, `sprites`, or `text`.
+- one of the four built-in _draw styles_: `polygons`, `lines`, `points`, or `text`.
 - the name of a _custom style_ defined in the [styles](styles.md) element.
 
 An example of using a built-in draw style:
@@ -167,13 +167,13 @@ places:
 
 
 ####`size`
-Optional _number_, in `px`. Sets the size of any `icons` or `points`.
+Optional _number_, in `px`. Default is `32px`.
 
-Applies to `sprites`.
+Applies to `points`.
 
 ```yaml
 draw:
-    icons:
+    points:
         size: 32px
         sprite: museum
 ```
@@ -181,18 +181,18 @@ draw:
 ####`sprite`
 Optional _string_, one of any named `sprites` in the style's `texture` element, or a _function_ returning such a string.
 
-Sets the sprite to be used when drawing a `sprites` style.
+Applies to `points`. Sets the `sprite` to be used when drawing a feature.
 
 ```yaml
 draw:
-    icons:
+    points:
         size: 32px
         sprite: museum
 ```
 
 ```yaml
 draw:
-    icons:
+    points:
         size: 32px
         sprite: function() { return feature.kind } # look for a sprite matching the feature's 'kind' property
 ```
@@ -200,10 +200,12 @@ draw:
 ####`sprite_default`
 Optional _string_. Sets a default sprite for cases when the matching function fails.
 
+Applies to `points`.
+
 ```yaml
 poi-icons:
     draw:
-        icons:
+        points:
             sprite: function() { return feature.kind }
             sprite_default: generic
 ```
