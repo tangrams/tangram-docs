@@ -288,31 +288,23 @@ draw:
 
 ## font parameters
 
-####`typeface`
-Required _string_, naming either a _typeface_ or a _font declaration_. Sets the typeface or font of the label. Default is `Helvetica 12px`.
-
-A _font_ declaration has the format _style_, _weight_, _size_, _typeface_. The properties mostly follow standard CSS conventions for font-style, font-weight, and font-family. All properties are optional.
-
-- _style_ may be `italic`, `oblique`, or `normal`.
-- _weight_ may be `lighter`, `normal`, `bold`, `bolder`, or an _int_ from 100-900.
-- _size_ may specified in `px`, `pt`, or `em`.
-- _typeface_ may be any typeface available in the browser.
-
-
 ```yaml
-font:
-    typeface: Arial
+draw:
+    text:
+        font:
+            family: Arial
+            size: 14px
+            style: italic
+            weight: bold
+            fill: '#cccccc'
+            stroke: white
+            transform: uppercase
 ```
 
-```yaml
-font:
-    typeface: italic bold 1.5em Futura
-```
+####`family`
+Optional _string_, naming a typeface. Sets the font-family of the label. Default is `Helvetica`.
 
-```yaml
-font:
-     typeface: bold 20pt Courier
-```
+`family` can be any typeface available to the operating system.
 
 ####`fill`
 Optional _color_. Follows the specs of [color](draw.md#color). Default is `white`.
@@ -323,6 +315,9 @@ Sets the fill color of the label.
 font:
     fill: black
 ```
+
+####`size`
+Optional _number_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
 
 ####`stroke`
 Optional _color_ or _{color, width}_. _colors_ follow the specs of [color](draw.md#color). No default.
@@ -339,12 +334,15 @@ font:
     stroke: { color: white, width: 2 }
 ```
 
-####`capitalized`
-Optional _Boolean_, `true` or `false`.
+####`style`
+Optional _string_, specifying a font style. No default.
 
-Writes labels in all caps. Default is `false`
+Currently supports only `italic`.
 
-```yaml
-font:
-    capitalized: true
-```
+####`transform`
+Optional _string_, one of `capitalize`, `uppercase`, or `lowercase`. Sets a text transform style. No default.
+
+- `capitalize` will make the first letter in each word uppercase. `uppercase` and `lowercase` will change all letters to be uppercase and lowercase, respectively.
+
+####`weight`
+Optional _string_ or _number_. Strings may be one of `lighter`, `normal`, `bold`, or `bolder`; integers may be any CSS-style font weight from `100`-`900`. Default is `normal`.
