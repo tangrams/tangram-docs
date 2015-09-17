@@ -8,7 +8,7 @@ A previously-defined _draw style_ must be named under a [draw](draw.md) group. I
 
 The name of the style must be either:
 
-- one of the four built-in _draw styles_ ("polygons", "lines", "sprites", or "text")
+- one of the four built-in _draw styles_: `polygons`, `lines`, `sprites`, or `text`.
 - the name of a _custom style_ defined in the [styles](styles.md) element.
 
 An example of using a built-in draw style:
@@ -40,7 +40,7 @@ Many style parameters, such as `color`, are shared among draw styles – others 
 ####`cap`
 Optional _string_, one of `butt`, `square`, or `round` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
 
-Sets the shape of the ends of features drawn with a `lines` style.
+Applies to the `lines` style. Sets the shape of the ends of features.
 
 ```yaml
 draw:
@@ -53,7 +53,7 @@ draw:
 
 Optional RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values or _[r, g, b, a]_ values. RGB/RGBA value range is 0-1. Default is `[1, 1, 1]` (white).
 
-Specifies the vertex color of the feature. This color will be passed to any active shaders and used in any light calculations as "color".
+Applies to `points`, `polygons`, and `lines`. (For `text`, see [fill](draw.md#fill).) Specifies the vertex color of the feature. This color will be passed to any active shaders and used in any light calculations as "color".
 
 (Note that currently, alpha values are ignored in every `blend` mode except `overlay`, which is the default blend mode of the `points` and `text` draw styles.)
 
@@ -90,21 +90,19 @@ draw:
 ####`extrude`
 Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Extrudes elements drawn with the `polygons` draw style into 3D space along the z-axis. This will also raise elements drawn with the `lines` draw style straight up from the ground plane.
+Applies to `polygons` and `lines`. Extrudes features drawn with the `polygons` draw style into 3D space along the z-axis. Raises elements drawn with the `lines` draw style straight up from the ground plane.
 
-If the value is `true`, features drawn in the `polygons` draw style will be extruded using the values in the feature's `height` and `min_height` properties, if those properties exist, as a `[min, max]` array of units `m`.
-
-The `lines` style does not currently support the `[min, max]` array syntax.
+When the value of this parameter is `true`, features drawn in the `polygons` draw style will be extruded using the values in the feature's `height` and `min_height` properties (if those properties exist) as a `[min, max]` array of units `m`. The `lines` style does not currently support the `[min, max]` array syntax.
 
 ####`font`
-Optional element. Defines the start of a font style block. See [font-parameters](draw.md#font-parameters).
+Optional element. Defines the start of a font style block. (See [font-parameters](draw.md#font-parameters).)
 
-Enables labels for features drawn with the `text` style (or a custom style with `base: text`).
+Applies to the `text` style.
 
 ####`interactive`
 Optional _boolean_ or _function_ returning `true` or `false`. Default is `false`.
 
-When `true`, activates _Feature Selection_ – the feature can be queried via the [JavaScript API](Javascript-API.md).
+Applies to all _draw styles_. When `true`, activates _Feature Selection_, allowing the feature to be queried via the [JavaScript API](Javascript-API.md).
 
 ```yaml
 draw:
@@ -115,7 +113,7 @@ draw:
 ####`join`
 Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
 
-Sets the shape of joints in multi-segment lines, for features drawn with a `lines` style.
+Applies to `lines`. Sets the shape of joints in multi-segment lines.
 
 ```yaml
 draw:
@@ -127,7 +125,7 @@ draw:
 ####`order`
 Required _integer_ or _function_. No default.
 
-Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child rules override parent rules.
+Applies to all _draw styles_. Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child rules override parent rules.
 
 ```yaml
 layers:
@@ -143,15 +141,15 @@ layers:
 
 
 ####`outline`
-Optional element. Defines the start of an outline style block. See [outline-parameters](draw.md#outline-parameters).
+Optional element. Defines the start of an outline style block.
 
-Can take the `draw` style parameters `color` and `width`, as defined above.
+Applies to `polygons` and `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
 
 
 ####`priority`
 Required _integer_. No default.
 
-Sets the label priority of the feature, when drawing with the `text` style (or a custom style with `base: text`).
+Applies to `text`. Sets the label priority of the feature.
 
 Lower values will have higher priority, e.g. `priority: 1` labels will be drawn before those with `priority: 2`.
 
@@ -170,6 +168,8 @@ places:
 
 ####`size`
 Optional _number_, in `px`. Sets the size of any `icons` or `points`.
+
+Applies to `sprites`.
 
 ```yaml
 draw:
@@ -209,7 +209,12 @@ poi-icons:
 ```
 
 ####`style`
-Optional _string_, naming a style defined in the [`styles`](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that alpha will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
+Optional _string_, naming a style defined in the [`styles`](styles.md) block.
+
+Applies to all _draw styles_.
+
+This will import parameters from a predefined `style` into a `draw` block. Any imported parameters will be applied _after_ the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that alpha will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
+
 ```yaml
 draw:
     polygons:
@@ -220,9 +225,9 @@ draw:
 ####`text_source`
 Optional _string_, or _function_. Default is `name`.
 
-Defines which label text is used, for features drawn with the `text` style (or a custom style with `base: text`). Ignored for other styles.
+Applies to `text`. Defines the source of the label text.
 
-When the value is a string, it specifies a feature property to use as the label text. For example, the default `name` value will draw labels showing the names of features (e.g. any that have a `name` field). An example of an alternative feature property label is to label buildings with their heights:
+When the value is a string, it must name a feature property to use as the label text. For example, the default `name` value will draw labels showing the names of features (e.g. any that have a `name` field). An example of an alternative feature property label is to label buildings with their heights:
 
 ```yaml
 draw:
@@ -251,7 +256,7 @@ draw:
 ####`tile_edges`
 Optional _boolean_, one of `true` or `false`. Default is `false`.
 
-Enables borders on the edges of tiles.
+Applies to `lines`. Enables the drawing of borders on the edges of tiles.
 
 ```yaml
 draw:
@@ -261,9 +266,9 @@ draw:
 ```
 
 ####`width`
-Required _number_, _stops_, or _function_, when using the `lines` draw style. No default. Units are meters `m` or pixels `px`. Default units are `m`.
+Required _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Sets the width of a feature drawn with the `lines` draw style.
+Applies to `lines`. Sets the width of a feature.
 
 ```yaml
 draw:
@@ -274,7 +279,7 @@ draw:
 ####`z`
 Optional _number_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
-Sets the z-offset of a feature drawn with the `lines` or `polygons` draw style.
+Applies to `polygons` and `lines`. Sets the z-offset of a feature.
 
 ```yaml
 draw:
@@ -283,6 +288,8 @@ draw:
 ```
 
 ## `font` parameters
+
+The `font` object has a number of unique parameters.
 
 ```yaml
 draw:
