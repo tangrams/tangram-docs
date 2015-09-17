@@ -122,6 +122,25 @@ draw:
         join: round
 ```
 
+####`offset`
+Optional _[float x, float y]_ array, in `px`. No default.
+
+Applies to `text` and `points`. Moves the feature from its original location.
+
+```yaml
+draw:
+    points:
+        # applies an offset of 13 pixels up along y-axis
+        offset: [0px, 13px] 
+```
+
+```yaml
+draw:
+    text:
+        # applies an offset of 13 pixels down along y-axis
+        offset: [0px, -13px]
+```
+
 ####`order`
 Required _integer_ or _function_. No default.
 
