@@ -35,7 +35,19 @@ Rules defined in `draw` blocks will descend into any sublayers.
 
 ## style parameters
 
-Many style parameters, such as `color`, are shared among draw styles, and behave in  – others are unique to particular draw styles. Some 
+Many style parameters, such as `color`, are shared among draw styles – others are unique to particular draw styles.
+
+####`cap`
+Optional _string_, one of `butt`, `square`, or `round` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
+
+Sets the shape of the ends of features drawn with a `lines` style.
+
+```yaml
+draw:
+    lines:
+        color: black
+        cap: round
+```
 
 ####`color`
 
@@ -100,6 +112,17 @@ draw:
         interactive: true
 ```
 
+####`join`
+Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
+
+Sets the shape of joints in multi-segment lines, for features drawn with a `lines` style.
+
+```yaml
+draw:
+    lines:
+        color: black
+        join: round
+```
 
 ####`order`
 Required _integer_ or _function_. No default.
@@ -225,6 +248,18 @@ draw:
         ...
 ```
 
+####`tile_edges`
+Optional _boolean_, one of `true` or `false`. Default is `false`.
+
+Enables borders on the edges of tiles.
+
+```yaml
+draw:
+    water:
+        outline:
+            tile_edges: true
+```
+
 ####`width`
 Required _number_, _stops_, or _function_, when using the `lines` draw style. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
@@ -247,47 +282,7 @@ draw:
         z: 50
 ```
 
-
-## outline parameters
-
-####`cap`
-Optional _string_, one of `butt`, `square`, or `round` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
-
-Sets the shape of the ends of features drawn with a line style.
-
-```yaml
-draw:
-    lines:
-        color: black
-        cap: round
-```
-
-####`join`
-Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
-
-Sets the shape of joints in multi-segment lines, for features drawn with a line style.
-
-```yaml
-draw:
-    lines:
-        color: black
-        join: round
-```
-
-####`tile_edges`
-Optional _boolean_, one of `true` or `false`. Default is `false`.
-
-Enables borders on the edges of tiles.
-
-```yaml
-draw:
-    water:
-        outline:
-            tile_edges: true
-```
-
-
-## font parameters
+## `font` parameters
 
 ```yaml
 draw:
