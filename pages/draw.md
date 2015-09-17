@@ -9,7 +9,7 @@ A previously-defined _draw style_ must be named under a [draw](draw.md) group. I
 The name of the style must be either:
 
 - one of the four built-in _draw styles_ ("polygons", "lines", "sprites", or "text")
-- a custom name, with a `style` sub-element naming a custom style defined in the [styles](styles.md) element.
+- the name of a _custom style_ defined in the [styles](styles.md) element.
 
 An example of using a built-in draw style:
 ```yaml
@@ -27,8 +27,7 @@ layers:
     water:
         data: { source: osm }
         draw:
-            fancy-water:
-                style: water-shader
+            fancywater:
                 ...
 ```
 
@@ -36,6 +35,7 @@ Rules defined in `draw` blocks will descend into any sublayers.
 
 ## style parameters
 
+Many style parameters, such as `color`, are shared among draw styles, and behave in  – others are unique to particular draw styles. Some 
 
 ####`color`
 
@@ -189,7 +189,8 @@ poi-icons:
 Optional _string_, naming a style defined in the [`styles`](styles.md) block. Any style named here will be applied after the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that alpha will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
 ```yaml
 draw:
-    style: normalripples
+    polygons:
+        style: normalripples
     ...
 ```
 
