@@ -125,7 +125,7 @@ draw:
 ####`offset`
 Optional _[float x, float y]_ array, in `px`. No default.
 
-Applies to `text`. Moves the feature from its original location. For point labels, the offset is in *screen space*, e.g. a Y offset of 10px will move the label 10 pixels down on the screen. For line labels, the offset is relative to the *line*, so a -10px offset will move the label 10 pixels *above* the line ("up" relative to the line).
+Applies to `text`. Moves the feature from its original location. For point labels, the offset is in *screen space*, e.g. a Y offset of 10px will move the label 10 pixels down on the screen. For line labels, the offset is relative to the *line*, so a -10px offset will move the label 10 pixels *above* the line ("up" relative to the line). For example, line label offsets are useful for placing labels on top of or underneath roads or administrative borders.
 
 ```yaml
 draw:
