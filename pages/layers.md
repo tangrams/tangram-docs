@@ -145,7 +145,7 @@ layer:
             text:
                 ...
 ```
-The above example combines the "buildings" and "pois" layers into a new layer called "labels", for drawing with the "text" _draw style_.
+The above example combines the "buildings" and "pois" layers into a new layer called "labels", for drawing with the `text` _draw style_.
 
 ## `draw` parameters
 
