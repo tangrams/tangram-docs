@@ -183,7 +183,7 @@ Here's one way to set a label's priority based on the area of the labeled featur
 ```yaml
 draw:
     text:
-        priority: function() { return Math.floor(feature.area / 1000); }
+        priority: function() { return Math.min(10 - Math.floor(feature.area / 1000), 10); }
 ```
 
 ####`size`
