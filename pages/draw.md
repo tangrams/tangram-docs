@@ -166,9 +166,9 @@ Applies to `polygons` and `lines`. Draws an outline around the feature. `outline
 
 
 ####`priority`
-Required _integer_, _string_, or _function_. No default.
+Required _integer_ or _function_. No default.
 
-Applies to `text`. Sets the label priority of the feature. _string_ values must reference a feature property name whose values are integers, and _functions_ must also return integers.
+Applies to `text`. Sets the label priority of the feature. _functions_ must return integers.
 
 Lower values will have higher priority, e.g. `priority: 1` labels will be drawn before those with `priority: 2`; labels are drawn in a "first-come-first-drawn" method, so earlier labels are more likely to fit in the available space.
 
@@ -177,13 +177,6 @@ For example, to set a `places` labels to have priority over others:
 draw:
     text:
         priority: 1
-```
-
-To set a label's priority based on a feature property called "label_priority":
-```yaml
-draw:
-    text:
-        priority: label_priority
 ```
 
 Here's one way to set a label's priority based on the area of the labeled feature:
