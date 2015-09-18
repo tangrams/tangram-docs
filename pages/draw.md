@@ -125,20 +125,13 @@ draw:
 ####`offset`
 Optional _[float x, float y]_ array, in `px`. No default.
 
-Applies to `text` and `points`. Moves the feature from its original location.
-
-```yaml
-draw:
-    points:
-        # applies an offset of 13 pixels up along y-axis
-        offset: [0px, 13px] 
-```
+Applies to `text`. Moves the feature from its original location.
 
 ```yaml
 draw:
     text:
         # applies an offset of 13 pixels down along y-axis
-        offset: [0px, -13px]
+        offset: [0px, 13px]
 ```
 
 ####`order`
