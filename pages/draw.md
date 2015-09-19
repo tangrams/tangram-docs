@@ -125,13 +125,38 @@ draw:
 ####`offset`
 Optional _[float x, float y]_ array, in `px`. No default.
 
-Applies to `text`. Moves the feature from its original location. For point labels, the offset is in *screen space*, e.g. a Y offset of 10px will move the label 10 pixels down on the screen. For line labels, the offset is relative to the *line*, so a -10px offset will move the label 10 pixels *above* the line ("up" relative to the line). For example, line label offsets are useful for placing labels on top of or underneath roads or administrative borders.
+Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen. 
+
+For labels of line features, the offset follows the *orientation of the line*, so a -10px offset will move the label 10 pixels *above* the line ("up" relative to the line). For example, line label offsets are useful for placing labels on top of or underneath roads or administrative borders.
+
+Drawing points for POIs:
 
 ```yaml
-draw:
-    text:
-        # applies an offset of 13 pixels down
-        offset: [0px, 13px]
+pois:
+    draw:
+        points:
+            # moves the point 10 pixels up in screen-space
+            offset: [0px, -10px]
+```
+
+Drawing labels for POI points:
+
+```yaml
+pois:
+    draw:
+        text:
+            # moves the point 10 pixels down in screen-space
+            offset: [0px, 10px]
+```
+
+Drawing labels for road lines:
+
+```yaml
+roads:
+    draw:
+        text:
+            # moves the label 12 pixels above the line
+            offset: [0px, -12px]
 ```
 
 ####`order`
