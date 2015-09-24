@@ -165,10 +165,11 @@ See also: [built-in uniforms](shaders.md#built-in-uniforms) and [built-in varyin
 ## `blocks`
 Optional parameter. Defines the start of a `blocks` block.
 
-The `block` element has five optional sub-elements. Each can contain shader code for manipulating a particluar part of the shading pipeline:
+The `block` element has six optional sub-elements. Each can contain shader code for manipulating a particluar part of the shading pipeline:
 
     * `global`: define global functions, usable by the other `block` elements
     * `position`: modify the position of a vertex
+    * `width`: modify the width of a feature drawn with the `lines` draw style
     * `normal`: modify the normal of a face, per-pixel
     * `color`: modify the color of a pixel before lighting
     * `filter`: modify the color of a pixel after lighting
@@ -180,6 +181,7 @@ shaders:
     blocks:
         global: …
         position: …
+        width: …
         normal: …
         color: …
         filter: …
@@ -203,6 +205,16 @@ Optional element. Defines the start of a `position` block, written in GLSL, whic
 This block has access to the `position` variable, which contains the position of the current vertex, and takes the form `vec3(x, y, z)`.
 
 ```yaml
+blocks:
+    position: position.z *= (sin(position.z + u_time) + 1.0);
+```
+
+#### `width`
+Optional element. Defines the start of a `width` block, written in GLSL, which is injected into the _vertex_ shader.
+
+This block has access to the `width` variable for the `lines` draw style, and takes the form `vec2(x, y)`.
+
+a```yaml
 blocks:
     position: position.z *= (sin(position.z + u_time) + 1.0);
 ```
