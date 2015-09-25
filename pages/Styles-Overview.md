@@ -1,3 +1,5 @@
+*This is an overview of Tangram's styling system. For a complete technical reference of the custom style-creation system, see [styles](styles.md), and for all the technical details of drawing with those styles, see [draw](draw.md).*
+
 Tangram currently has four built-in _draw styles_: `polygons`, `lines`, `points`, and `text`. Each draw style displays data in a different way, and some of them require specific data types and properties.
 
 Draw styles are referenced in two places in the scene file: when defining custom [styles](styles.md) and again in [draw](draw.md) groups.
@@ -24,7 +26,7 @@ styles:
         base: polygons
 ```
 
-And when writing an inline-style under a `layer`, they are referenced in _draw groups_:
+And when writing an inline style under a `layer`, they are referenced in _draw groups_:
 
 ```yaml
 roads:
