@@ -363,14 +363,9 @@ font:
 Optional _number_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
 
 ####`stroke`
-Optional _color_ or _{color, width}_. _colors_ follow the specs of [color](draw.md#color). No default.
+Optional _{color, width}_. _colors_ follow the specs of [color](draw.md#color). No default.
 
-Sets the stroke color (and optionally, width) of the label. Width is specified in pixels.
-
-```yaml
-font:
-    stroke: white
-```
+Sets the stroke color and width of the label. Width is interpreted as pixels.
 
 ```yaml
 font:
