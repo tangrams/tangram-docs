@@ -8,7 +8,7 @@ Arcade games had been using a separate chip called a GPU (graphics processing un
 
 GPUs started migrating to PCs in the 80s, and by the 90s were very common. Today nearly every PC, laptop, and smartphone has a graphics chip on it, and they all run shaders.
 
-This “shaders” are code using a “shading language” in our case, the openGL shader language or GLSL. Learning to code in this programing language have his own particularities because of it parallel nature. If you are new to it we encourage you to check [The Book of Shaders](http://thebookofshaders.com), a easy step-by-step introduction to GLSL programming.
+These shaders are written using a “shading language” – Tangram uses the openGL shader language, or GLSL. Learning to code in this language has its particularities because of its parallel nature. If you are new to it we encourage you to check out [The Book of Shaders](http://thebookofshaders.com), a easy step-by-step introduction to GLSL programming.
 
 ## Shaders inside Tangram
 
