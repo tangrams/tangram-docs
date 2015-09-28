@@ -6,7 +6,7 @@ The basic idea is this: your screen has lots of pixels which all need to be upda
 
 Arcade games had been using a separate chip called a GPU (graphics processing unit) to handle pixel-drawing separately from the CPU since the 70s. GPUs are very good at doing one simple things many times at once they run a simple program called a “shader” for every pixel on your screen simultaneously, many times a second.
 
-GPUs started migrating to PCs in the 80s, and by the 90s were very common. Today nearly every PC, laptop, and phone has a graphics chip on it, and they all run shaders.
+GPUs started migrating to PCs in the 80s, and by the 90s were very common. Today nearly every PC, laptop, and smartphone has a graphics chip on it, and they all run shaders.
 
 This “shaders” are code using a “shading language” in our case, the openGL shader language or GLSL. Learning to code in this programing language have his own particularities because of it parallel nature. If you are new to it we encourage you to check [The Book of Shaders](http://thebookofshaders.com), a easy step-by-step introduction to GLSL programming.
 
