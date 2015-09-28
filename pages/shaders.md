@@ -334,27 +334,27 @@ Certain other _uniforms_, global variables, and global functions are set when th
 
 struct Material {
         vec4 emission;          // available emission is define
-        vec3 emissionScale;     // available only if a emission texture is pass
+        vec3 emissionScale;     // available only if a emission texture is passed
 
         vec4 ambient;
-        vec3 ambientScale;      // available only if a ambient texture is pass
+        vec3 ambientScale;      // available only if a ambient texture is passed
 
         vec4 diffuse;
-        vec3 diffuseScale;      // available only if a diffuse texture is pass
+        vec3 diffuseScale;      // available only if a diffuse texture is passed
 
         vec4 specular;          // available specular is define
         float shininess;        // available specular is define
-        vec3 specularScale;     // available only if a specular texture is pass
+        vec3 specularScale;     // available only if a specular texture is passed
         
-        vec3 normalScale;       // available only if a normal texture is pass
-        float normalAmount;     // available only if a normal texture is pass
+        vec3 normalScale;       // available only if a normal texture is passed
+        float normalAmount;     // available only if a normal texture is passed
 };
 
-uniform sampler2D u_material_emission_texture;  // available only if a emission texture is pass
-uniform sampler2D u_material_ambient_texture;   // available only if a ambient texture is pass
-uniform sampler2D u_material_diffuse_texture;   // available only if a diffuse texture is pass
-uniform sampler2D u_material_specular_texture;  // available only if a specular texture is pass
-uniform sampler2D u_material_normal_texture;    // available only if a normal texture is pass
+uniform sampler2D u_material_emission_texture;  // available only if a emission texture is passed
+uniform sampler2D u_material_ambient_texture;   // available only if a ambient texture is passed
+uniform sampler2D u_material_diffuse_texture;   // available only if a diffuse texture is passed
+uniform sampler2D u_material_specular_texture;  // available only if a specular texture is passed
+uniform sampler2D u_material_normal_texture;    // available only if a normal texture is passed
 
 uniform Material u_material;
 Material g_material = u_material;
