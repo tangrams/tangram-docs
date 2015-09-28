@@ -333,7 +333,7 @@ Certain other _uniforms_, global variables, and global functions are set when th
 ```glsl
 
 struct Material {
-        vec4 emission;          // available emission is define
+        vec4 emission;          // available if emission is defined
         vec3 emissionScale;     // available only if a emission texture is passed
 
         vec4 ambient;
@@ -342,8 +342,8 @@ struct Material {
         vec4 diffuse;
         vec3 diffuseScale;      // available only if a diffuse texture is passed
 
-        vec4 specular;          // available specular is define
-        float shininess;        // available specular is define
+        vec4 specular;          // available if specular is defined
+        float shininess;        // available if specular is defined
         vec3 specularScale;     // available only if a specular texture is passed
         
         vec3 normalScale;       // available only if a normal texture is passed
@@ -362,7 +362,7 @@ Material g_material = u_material;
 // Global light accumulators for each term
 vec4 light_accumulator_ambient = vec4(0.0);
 vec4 light_accumulator_diffuse = vec4(0.0);
-vec4 light_accumulator_specular = vec4(0.0);    // available specular is define
+vec4 light_accumulator_specular = vec4(0.0);    // available if specular is defined
 
 ```
 
