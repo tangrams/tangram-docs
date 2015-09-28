@@ -300,11 +300,10 @@ uniform mat3 u_normalMatrix;
 
 uniform float u_time;
 uniform vec2 u_resolution;
-uniform vec2 u_aspect;
 
 uniform float u_meters_per_pixel;
-uniform vec2 u_map_position;        //.xy is map center in meters, .z is current zoom
-uniform vec2 u_tile_origin;         // tile XYZ
+uniform vec3 u_map_position;        //.xy is map center in meters, .z is current zoom
+uniform vec3 u_tile_origin;         //.xy is SW corner of tile in meters, .z is zoom of tile
 
 ```
 
