@@ -12,10 +12,15 @@ These shaders are written using a “shading language” – Tangram uses the op
 
 ## Shaders inside Tangram
 
-Each one of the [styles](styles-overview.md) on Tangram is related to both a geometry builder and a shader. The geometries that builders produce (from incoming data source) is formatted in a specific way and pushed to the GPU where the shader receive it, processed and display it. This series of process and steps is known as a pipeline.
+Each of the [styles](styles-overview.md) on Tangram is related to both a geometry builder and at least one shader. The builders produce geometry which is formatted in a specific way and sent to the GPU where the shaders process and display it. This series of steps is known as a "pipeline."
 
-### Geometry Builders
+### Builders
 
+In the builder step, the data coming from the data source is located on a mercator projection, extruded, and tessellated.
+
+![](images/geometry-builder.jpg)
+
+Here is some example data:
 ```json
 {
     "geometry": {
@@ -38,24 +43,19 @@ Each one of the [styles](styles-overview.md) on Tangram is related to both a geo
     }
 } 
 ```
-
-In this step the data coming from the data source is located on a mercator projection, extruded and tessellated.
-
-![](images/geometry-builder.jpg)
-
 ### Shader
 
-The Tangram Engine is design to let the user interact and modify this pipeline in specific points. In order to customize your own shaders is important first to know what this pipeline looks like and where you can change things.
+The Tangram Engine is designed to let you interact with and modify this pipeline at specific points. In order to customize your own shaders it is important to know what this pipeline looks like, and where you can change things.
 
 ![](images/shader.jpg)
 
-Looking closely to the steps on the previous diagram you will note some red arrows, they correspond to the *position*, *normal*, *color* and *filter* steps. Those steps are moments where the user can add a `block` of code.
+Looking closely at the steps in the previous diagram you will note some red arrows – they correspond to the *position*, *normal*, *color*, and *filter* steps. Those steps are points where the user can add a `block` of code.
 
-There is another `block` type call `global`, where the user can add global variables and functions to be use further into another block. 
+There is another `block` type called `global`, where the user can add global variables and functions to be used in later blocks.
 
 #### `position`
 
-In this block you can move vertices of the geometry. This block will be added to the *vertex* shader and have access to the `vec4` call `position` variable. Is important to remember that the format of it is: `vec4(x, y, z, w)`. In the bellow example the top vertices of the building are beeb displace in at different frequencies.
+In this block you can move the vertices of the geometry. This block will be added to the *vertex* shader, where it has access to the `position` variable, with the format `vec4(x, y, z, w)`. In the following example, the top vertices of the building are displaced with a combination of sine waves.
 
 ```yaml
 styles:
@@ -81,7 +81,7 @@ styles:
 
 #### `normal`
 
-In this `block` you can change the `normal` value of a surface pixel by pixel, because this is happening on the pixel or fragment shader. The `normal` variable is a `vec3(x, y, z)`. If you pay attention to what's happening on the example you will note two lights (blue and purple). One on each side of the screen. The surface normals of the buildings are been modify on the fly, to look in a different direction, that cause the changing on color. 
+In this `block` you can change the `normal` value of a surface pixel by pixel. The `normal` variable is a `vec3(x, y, z)`. In the below example, two lights (blue and purple) are lighting the scene from different directions. The surface normals of the buildings are being modified on the fly to point in different directions, which changes the reflected color. 
 
 ```yaml
 styles:
@@ -108,7 +108,7 @@ styles:
 
 #### `color`
 
-In this `block` you can change the `color` value of a surface pixel by pixel, because this is happening on the pixel or fragment shader. The `color` variable is a `vec4(r,g,b,a)`. Is important to remember that this change is previous to the computation of the lighting. If you see the above examples you will note that one sides of the buildings are shaded regarding their color.
+In this `block` you can change the `color` value of a surface pixel by pixel, pre-lighting. The `color` variable is a `vec4(r,g,b,a)`.
 
 ```yaml
 styles:
@@ -144,7 +144,7 @@ styles:
 
 #### `filter`
 
-In this `block` you can change the `color` value after the lightening of a surface pixel by pixel, because this is happening on the pixel or fragment shader. The `color` variable is a `vec4(r,g,b,a)`. Because this change is happening  after the lighting overwriting this values will not have light calculations. This is the right place to apply `filter` effect like crosshatching, lookup tables and halftones, etc.
+In this `block` you can change the `color` value of a surface pixel by pixel, post-lighting. The `color` variable is a `vec4(r,g,b,a)`. This is the right place to apply effects like crosshatching, color adjustments, and halftones.
 
 ```yaml
 styles:
@@ -180,9 +180,9 @@ styles:
 
 #### Defines and Uniforms
 
-Beside the pre-defines blocks points, the user have the option to *define* macros or pass *uniforms* to both the vector and fragment shader. That can be done with the following higher layer properties.
+Beside modifying the pipeline at the pre-defined block points, you can also *define* macros or pass *uniforms* to both the vector and fragment shaders. This can be done with the following higher layer properties.
 
-**Defines** are GLSL preprocessor statements, which are injected into shader code at compilation time. The `defines` block allows you to set and define custom statements, useful for changing the functionality of a shader without modifying the shader code directly.
+**Defines** are GLSL preprocessor statements which are injected into shader code at compilation time. The `defines` block allows you to set and define custom statements, useful for setting flags or switches to change the functionality of a shader without modifying the shader code directly.
 
 For example:
 
@@ -197,7 +197,7 @@ Will be injected into the shader as:
 `#define EFFECT_NOISE_ANIMATED`
 
 
-**Uniforms**, on the other hand, are declared as key-value pairs. Types are inferred by Tangram, and the corresponding uniform declarations are injected into the shaders automatically.
+**Uniforms**, on the other hand, are declared as key-value pairs, and can be set through the JavaScript API. This allows real-time interaction with shaders, e.g. with a GUI. Types are inferred by Tangram, and the corresponding uniform declarations are injected into the shaders automatically.
 
 For example, float and vector uniform types can be added as follows:
 
