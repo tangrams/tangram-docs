@@ -4,7 +4,7 @@ The world of graphics shaders is vast and arcane. It has been the exclusive doma
 
 The basic idea is this: your screen has lots of pixels which all need to be updated many times a second. For many years this job was handled by CPUs, but CPUs are designed to do one thing at a time, and as computer games and other graphics-heavy applications became more sophisticated, CPUs were no longer up to the task.
 
-Arcade games had been using a separate chip called a GPU (graphical processing units) to handle pixel-drawing separately from the CPU since the 70s. GPUs are very good at doing one simple things many times at once they run a simple program called a “shader” for every pixel on your screen simultaneously, many times a second.
+Arcade games had been using a separate chip called a GPU (graphics processing unit) to handle pixel-drawing separately from the CPU since the 70s. GPUs are very good at doing one simple things many times at once they run a simple program called a “shader” for every pixel on your screen simultaneously, many times a second.
 
 GPUs started migrating to PCs in the 80s, and by the 90s were very common. Today nearly every PC, laptop, and phone has a graphics chip on it, and they all run shaders.
 
