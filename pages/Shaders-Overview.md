@@ -230,8 +230,8 @@ uniform mat4 u_modelView;
 uniform mat3 u_normalMatrix;
 
 uniform vec2 u_resolution;
-uniform vec2 u_aspect;
-uniform vec2 u_map_center;
+uniform vec2 u_aspect; // aspect ratio of the viewport
+uniform vec2 u_map_position; // the center of the map, in meters
 uniform vec2 u_tile_origin;
 
 uniform float u_meters_per_pixel;
