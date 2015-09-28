@@ -302,8 +302,9 @@ uniform float u_time;
 uniform vec2 u_resolution;
 
 uniform float u_meters_per_pixel;
-uniform vec3 u_map_position;        //.xy is map center in meters, .z is current zoom
-uniform vec3 u_tile_origin;         //.xy is SW corner of tile in meters, .z is zoom of tile
+uniform vec3 u_tile_origin;         // .xy is SW corner of tile in meters, .z is zoom of tile
+uniform vec3 u_map_position;        // .xy is map center in meters from the web mercator
+                                    // origin (-180,85.051129), .z is current zoom
 
 ```
 
@@ -313,10 +314,11 @@ uniform vec3 u_tile_origin;         //.xy is SW corner of tile in meters, .z is 
 The following _varyings_ are passed from the _vertex_ to the _fragment_ shader:
 
 ```glsl
-varying vec4 v_position;
+varying vec4 v_position; // local coordinates in meters from the center of the screen
 varying vec3 v_normal;
 varying vec4 v_color;
-varying vec4 v_world_position;
+varying vec4 v_world_position; // global coordinates in meters from the web mercator
+                               // origin (-180,85.051129)
 
 #if defined(TEXTURE_COORDS)
 varying vec2 v_texcoord;
