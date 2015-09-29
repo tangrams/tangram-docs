@@ -114,6 +114,28 @@ sources:
         enforce_winding: false # default for non-tiled sources is true
 ```
 
+####`scripts`
+Optional _[strings]_, specifying the URL of a JavaScript file.
+
+These scripts will be loaded before the data is processed.
+
+```yaml
+scripts: [ 'http://url.com/js/script.js', 'local_script.js']
+```
+
+####`transform`
+Optional _function_.
+
+This allows the data to be manipulated before it is sent to the geometry builders.
+
+```yaml
+transform: |
+    function (data) {
+        // manipulate data
+        return data;
+    }
+```
+
 ## examples
 
 ```yaml
