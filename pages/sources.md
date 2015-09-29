@@ -123,6 +123,21 @@ These scripts will be loaded before the data is processed.
 scripts: [ 'http://url.com/js/script.js', 'local_script.js']
 ```
 
+####`extra_data`
+Optional _[strings]_, specifying the URL of a data file.
+
+This data is made available to `transform` functions as a separate parameter.
+
+```yaml
+scripts: [ 'http://url.com/js/script.js', 'local_script.js']
+
+transform: |
+    function (data, extra_data) {
+        // manipulate data with extra_data
+        return data;
+    }
+```
+
 ####`transform`
 Optional _function_.
 
