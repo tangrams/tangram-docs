@@ -49,6 +49,17 @@ draw:
         cap: round
 ```
 
+####`centroid`
+Optional _boolean_, default is `false`. 
+
+Applies to the `points` style. If true, draws points only at the centroid of a polygon. 
+
+```yaml
+draw:
+    points:
+        centroid: true
+```
+
 ####`color`
 
 Optional RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values or _[r, g, b, a]_ values. RGB/RGBA value range is 0-1. Default is `[1, 1, 1]` (white).
