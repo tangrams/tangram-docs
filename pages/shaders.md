@@ -302,7 +302,7 @@ uniform float u_time;
 uniform vec2 u_resolution;
 
 uniform float u_meters_per_pixel;
-uniform vec3 u_tile_origin;         // .xy is SW corner of tile in meters, .z is zoom of tile
+uniform vec3 u_tile_origin;         // .xy is SW corner of tile in meters from Null Island (0,0), .z is zoom of tile
 uniform vec3 u_map_position;        // .xy is map center in meters from Null Island (0,0), .z is current zoom
 
 ```
