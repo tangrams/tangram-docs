@@ -363,17 +363,13 @@ Material g_material = u_material;
 vec4 light_accumulator_ambient = vec4(0.0);
 vec4 light_accumulator_diffuse = vec4(0.0);
 vec4 light_accumulator_specular = vec4(0.0);    // available if specular is defined
-
 ```
 
 When [UV maps](Materials-Overview.md#mapping-uv) are used, the following functions are available for use in shader blocks:
 
 ```glsl
 vec4 getSphereMap (in sampler2D _tex, in vec3 _eyeToPoint, in vec3 _normal, in vec2 _skew );
-
 vec3 getTriPlanarBlend ( in vec3 _normal );
-
 vec4 getTriPlanar ( in sampler2D _tex, in vec3 _pos, in vec3 _normal, in vec3 _scale);
-
 vec4 getPlanar ( in sampler2D _tex, in vec3 _pos, in vec2 _scale);
 ```
