@@ -231,8 +231,8 @@ uniform mat3 u_normalMatrix;
 
 uniform vec2 u_resolution;
 uniform vec2 u_aspect; // aspect ratio of the viewport
-uniform vec2 u_map_position; // the center of the map, in meters
-uniform vec2 u_tile_origin;
+uniform vec2 u_map_position; // the center of the map, in meters from (0,0)
+uniform vec2 u_tile_origin; // the SW corner of the tile, in meters from (0,0)
 
 uniform float u_meters_per_pixel;
 uniform float u_map_zoom;
