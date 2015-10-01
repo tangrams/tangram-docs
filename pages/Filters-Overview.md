@@ -197,7 +197,7 @@ The filter functions `min` and `max` are equivalent to `>=` and `<` in a JavaScr
 
 ```yaml
 filter:
-    area: { max: 10000 } }      # matches areas up to 1000 sq meters
+    area: { max: 1000 } }      # matches areas up to 1000 sq meters
 
 filter:
     height: { min: 70 } }       # matches heights 70 and up
