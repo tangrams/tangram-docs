@@ -62,11 +62,14 @@ draw:
 
 ####`color`
 
-Optional RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values or _[r, g, b, a]_ values. RGB/RGBA value range is 0-1. Default is `[1, 1, 1]` (white).
+Required* RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values or _[r, g, b, a]_** values. RGB/RGBA value range is 0-1. No default.
 
 Applies to `points`, `polygons`, and `lines`. (For `text`, see [fill](draw.md#fill).) Specifies the vertex color of the feature. This color will be passed to any active shaders and used in any light calculations as "color".
 
-(Note that currently, alpha values are ignored in every `blend` mode except `overlay`, which is the default blend mode of the `points` and `text` draw styles.)
+*`color` is not required if a style is used which specifies a shader with a _color block_ or a _filter block_.
+
+**Currently, alpha values are ignored in every `blend` mode except `overlay`, which is the default blend mode of the `points` and `text` draw styles.
+
 
 ```yaml
 draw:
