@@ -212,11 +212,11 @@ blocks:
 #### `width`
 Optional element. Defines the start of a `width` block, written in GLSL, which is injected into the _vertex_ shader.
 
-This block has access to the `width` variable for the `lines` draw style, and takes the form `vec2(x, y)`.
+This block has access to the `width` variable for the `lines` draw style. `width` is a `float`.
 
-a```yaml
+```yaml
 blocks:
-    position: position.z *= (sin(position.z + u_time) + 1.0);
+    width: width *= (sin(u_time) + 1.0);
 ```
 
 #### `normal`
