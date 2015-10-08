@@ -319,6 +319,18 @@ draw:
             tile_edges: true
 ```
 
+####`visible`
+Optional _boolean_ or _function_ returning `true` or `false`. Default is `true`.
+
+If `false`, features will not be drawn.
+
+```yaml
+draw:
+    lines-that-wont-draw:
+        style: lines
+        visible: false
+```
+
 ####`width`
 Required _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
