@@ -300,6 +300,7 @@ uniform mat3 u_normalMatrix;
 
 uniform float u_time;
 uniform vec2 u_resolution;
+uniform float u_device_pixel_ratio; // window.devicePixelRatio
 
 uniform float u_meters_per_pixel;
 uniform vec3 u_tile_origin;         // .xy is SW corner of tile in meters from Null Island (0,0), .z is zoom of tile
