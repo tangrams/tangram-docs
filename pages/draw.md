@@ -310,7 +310,7 @@ draw:
 ####`tile_edges`
 Optional _boolean_, one of `true` or `false`. Default is `false`.
 
-Applies to `lines`. Enables the drawing of borders on the edges of tiles.
+Applies to `lines`. Enables the drawing of borders on the edges of tiles. Uusually not desirable visually, but useful for debugging.
 
 ```yaml
 draw:
