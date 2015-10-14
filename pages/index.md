@@ -2,7 +2,7 @@
 
 Map styles, data filters, labels, and even graphics card code can be defined in a human-readable and -writable plain-text [scene file](Scene-file.md), and a JavaScript API permits direct interactive control of the style. Changing the color is just the beginning; every Tangram map is a 3D scene, so you also have control over [lights](Lights-Overview.md) and [cameras](Cameras-Overview.md).
 
-Tangram is designed to use vector data sources such as Mapzen’s free [vector tile service](https://mapzen.com/projects/vector-tiles), which is a tiled, hosted version of the [OpenStreetMap](http://www.openstreetmap.org/) database. Besides points and lines, these data sources contain metadata, which Tangram can use to filter the data and change drawing styles in real time.
+Tangram is designed to use vector data sources such as Mapzen’s free [vector tile service](https://mapzen.com/projects/vector-tiles), which is a tiled, hosted version of the OpenStreetMap database. Besides points and lines, these data sources contain metadata, which Tangram can use to [filter](Filters-Overview.md) the data and change drawing styles in real time.
 
 All of these effects are possible thanks to [WebGL](https://en.wikipedia.org/wiki/WebGL). You can write graphics card programs, known as [shaders](Shaders-Overview.md), and even JavaScript to add interactivity, mix data sources, and control the design of your maps.
 
