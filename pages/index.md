@@ -8,25 +8,14 @@ All of these effects are possible thanks to [WebGL](https://en.wikipedia.org/wik
 
 A variety of demos are available at https://mapzen.com/projects/tangram. Tangram is free and open source, is available for both commercial and non-commercial purposes. The [source code](https://github.com/tangrams) is open to view and modify, and contributions are welcomed.  
 
-Learn more about the concepts behind Tangram with these overview documents:
+Learn more about the concepts, objects, and parameters of the scene file in these topics.
 
-- The [Scene File](Scene-file.md)
-- [Filters](Filters-Overview.md)
-- [Lights](Lights-Overview.md)
-- [Cameras](Cameras-Overview.md)
-- [Materials](Materials-Overview.md)
-- [Shaders](Shaders-Overview.md)
-- [Styles](Styles-Overview.md)
-
-Learn more about the objects and parameters of the scene file, as well as their acceptable values, in the technical reference materials:
-
-- [yaml](yaml.md)
-- [scene](scene.md)
-- [sources](sources.md)
-- [cameras](cameras.md)
-- [lights](lights.md)
-- [materials](materials.md)
-- [styles](styles.md)
-- [layers](layers.md)
-- [draw](draw.md)
-- [shaders](shaders.md)
+| Overview topic | Technical reference topic | 
+| ----- | ----- |
+| [Scene file](Scene-file.md) | [yaml](yaml.md), [scene](scene.md) |
+| [Filters](Filters-Overview.md) | [sources](sources.md), [layers](layers.md) |
+| [Lights](Lights-Overview.md) | [lights](lights.md) |
+| [Cameras](Cameras-Overview.md) | [cameras](cameras.md) |
+| [Materials](Materials-Overview.md) | [materials](materials.md) |
+| [Shaders](Shaders-Overview.md) | [shaders](shaders.md) |
+| [Styles](Styles-Overview.md) |  [styles](styles.md), [layers](layers.md), [draw](draw.md)  |
