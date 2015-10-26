@@ -198,7 +198,7 @@ Applies to `polygons` and `lines`. Draws an outline around the feature. `outline
 
 
 ####`priority`
-_integer_ or _function_. Max int (system) value.
+_integer_ or _function_. Default is the local system's max integer value.
 
 Applies to `text`. Sets the label priority of the feature. _functions_ must return integers.
 
