@@ -130,13 +130,21 @@ This data is made available to `transform` functions as the second parameter. `e
 
 ```yaml
 extra_data:
-    x: 1
-    y: 2
-    z: 3
+    Broadway: Wide St.
+    Wall St.: Tall St.
+    Water St.: Wine St.
 
 transform: |
     function (data, extra_data) {
         // manipulate data with extra_data
+        var keys = Object.keys(extra_data);
+        if (data.roads) {
+            data.roads.features.forEach(function(feature) {
+                if (keys.indexOf(feature.properties.name) > -1) {
+                    feature.properties.name = extra_data[feature.properties.name]; // selectively rename features
+                }
+            });
+        }
         return data;
     }
 ```
