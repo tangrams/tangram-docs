@@ -140,7 +140,7 @@ transform: |
         var keys = Object.keys(extra_data);
         if (data.roads) {
             data.roads.features.forEach(function(feature) {
-                if (keys.indexOf(feature.properties.name) > -1) {
+                if (extra_data[feature.properties.name]) {
                     feature.properties.name = extra_data[feature.properties.name]; // selectively rename features
                 }
             });
