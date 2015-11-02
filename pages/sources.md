@@ -155,15 +155,14 @@ transform: |
 
 ```yaml
 # Mapzen tiles in TopoJSON format
-mapzen-topojson:
+mapzen:
     type: TopoJSON
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
 
 # Mapzen tiles in GeoJSON format
-mapzen-geojson:
+mapzen:
     type: GeoJSON
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
-
 
 # Mapzen tiles in Mapbox Vector Tile format
 mapzen:
