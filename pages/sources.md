@@ -154,30 +154,21 @@ transform: |
 ## examples
 
 ```yaml
-mapzen:
-    type: MVT
-    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
-
-mapzen-geojson:
-    type: GeoJson
-    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
-
-local:
-    type: GeoJson
-    url: http://localhost:8080/all/{z}/{x}/{y}.json
-
+# Mapzen tiles in TopoJSON format
 mapzen-topojson:
     type: TopoJSON
     url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
 
-osm:
-    type: GeoJson
-    url: http://tile.openstreetmap.us/vectiles-all/{z}/{x}/{y}.json
+# Mapzen tiles in GeoJSON format
+mapzen-geojson:
+    type: GeoJSON
+    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 
-mapbox:
+
+# Mapzen tiles in Mapbox Vector Tile format
+mapzen:
     type: MVT
-    url: http://{s:[a,b,c,d]}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1IjoiYmNhbXBlciIsImEiOiJWUmh3anY0In0.1fgSTNWpQV8-5sBjGbBzGg
-    max_zoom: 15
+    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
 All of our demos were created using the [Mapzen Vector Tiles](https://github.com/mapzen/vector-datasource) service, which hosts tiled [OpenStreetMap](http://openstreetmap.org) data.
