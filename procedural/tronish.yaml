@@ -214,7 +214,9 @@ layers:
         draw:
             text:
                 font:
-                    typeface: Italic 12px Helvetica
+                    style: Italic
+                    size: 12px
+                    family: Helvetica
                     fill: [.9,.9,1.]
                     stroke: { color: black , width: 3 }
     places:
@@ -223,6 +225,8 @@ layers:
         draw:
             text:
                 font:
-                    typeface: Bold 18px Helvetica
+                    weight: Bold
+                    size: 18px
+                    family: Helvetica
                     fill: black
                     stroke: { color: white , width: 5 }
