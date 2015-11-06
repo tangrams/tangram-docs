@@ -214,7 +214,7 @@ layers:
         draw:
             text:
                 font:
-                    style: Italic
+                    style: italic
                     size: 12px
                     family: Helvetica
                     fill: [.9,.9,1.]
@@ -225,7 +225,7 @@ layers:
         draw:
             text:
                 font:
-                    weight: Bold
+                    weight: bold
                     size: 18px
                     family: Helvetica
                     fill: black
