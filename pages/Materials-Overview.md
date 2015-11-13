@@ -266,7 +266,7 @@ shaders:
                 }
 
         normal: |
-            normal += snoise(vec3(v_world_position.xy*0.08,u_time*.5))*0.02;
+            normal += snoise(vec3(worldPosition().xy*0.08,u_time*.5))*0.02;
 ```
 
 [ ![](images/ex-dynamic-normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-dynamic-normals.yaml)

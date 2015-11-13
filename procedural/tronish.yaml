@@ -51,7 +51,7 @@ styles:
                         return st;
                     }
                 filter: |
-                    //vec2 pos = v_world_position.xy*0.01;
+                    //vec2 pos = worldPosition().xy*0.01;
                     vec2 pos = getConstantPos(gl_FragCoord.xy)*4.0;
                     float b = getBrightness(v_color.rgb);
                     color.rgb = v_color.rgb*grid(pos,10.,0.05+b*0.05)*(1.0-b);
@@ -84,7 +84,7 @@ styles:
                         return st;
                     }
                 filter: |
-                    //vec2 pos = v_world_position.xy*0.01;
+                    //vec2 pos = worldPosition().xy*0.01;
                     vec2 pos = getConstantPos(gl_FragCoord.xy)*4.0;
                     float pct = clamp(cross(fract(pos),0.2),0.0,1.0);
                     color.rgb = mix(vec3(0.051,0.071,0.278),vec3(0.654,0.897,1.000),pct);

@@ -40,7 +40,7 @@ styles:
                         return bri * mix(vec3(1.0), rgb, sat);
                     }
                 color: |
-                    vec3 pos = v_world_position.xyz*0.05;
+                    vec3 pos = worldPosition().xyz*0.05;
                     color.xyz *= hsb2rgb( random(abs(floor(pos))) , .5, .8 );
                     
 sources:

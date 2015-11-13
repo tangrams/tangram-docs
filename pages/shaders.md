@@ -267,7 +267,7 @@ styles:
                 color: |
                     // From: http://madebyevan.com/shaders/grid/
                     // Pick a coordinate to visualize in a grid
-                    vec3 coord = v_world_position.xyz / 10.;
+                    vec3 coord = worldPosition().xyz / 10.;
                     // Compute anti-aliased world-space grid lines
                     vec3 grid = abs(fract(coord - 0.5) - 0.5) / fwidth(coord);
                     float line = min(min(grid.x, grid.y), grid.z);
@@ -309,22 +309,34 @@ uniform vec3 u_map_position;        // .xy is map center in meters from Null Isl
 ```
 
 ####built-in varyings
-"Varyings" are GLSL variables similar to uniforms which allow fragments to access vertex data, interpolated between vertices at the point of the fragment. For instance, if a face's three vertices have three different colors, a fragment in the center of the face can access the varying `v_color` to get the color at that point, interpolated between the three values.
+"Varyings" are GLSL variables similar to uniforms which allow fragments to access vertex data, interpolated between vertices at the point of the fragment.
 
-The following _varyings_ are passed from the _vertex_ to the _fragment_ shader:
+The following _varyings_ are passed from the _vertex_ to the _fragment_ shader, but *should not be used directly* because they have unpredictable behavior on some devices. Instead, use the wrappers that we have created:
 
 ```glsl
 varying vec4 v_position; // local coordinates in meters from the center of the screen
+```
+    Instead of `v_position`, use `position`
+```glsl
 varying vec3 v_normal;
+```
+    Instead of `v_normal`, use `worldNormal()``
+```glsl
 varying vec4 v_color;
-varying vec4 v_world_position; // global coordinates in meters from the web mercator
-                               // origin (-180,85.051129)
+```
+    Instead of `v_color`, use `color`
+```glsl
+varying vec4 v_world_position;  // global coordinates in meters from the web mercator origin (-180,85.051129)
+```
+    Instead of `v_world_position`, use `worldPosition()`
 
+If texture coordinates are used, the `v_texcoord` varying is defined:
+
+```glsl
 #if defined(TEXTURE_COORDS)
 varying vec2 v_texcoord;
 #endif
 ```
-
 
 ## material parameters
 

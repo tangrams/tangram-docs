@@ -66,7 +66,7 @@ styles:
         shaders:
             blocks:
                 position: |
-                    vec3 pos = v_world_position.xyz*0.1;
+                    vec3 pos = worldPosition().xyz*0.1;
                     if(position.z > 0.){
                         position.xyz += vec3(cos(pos.x+u_time)*5.,
                                          sin(pos.y+u_time)*5.,
@@ -92,7 +92,7 @@ styles:
         shaders:
             blocks:
                 normal: |
-                    vec3 pos = v_world_position.xyz*0.1;
+                    vec3 pos = worldPosition().xyz*0.1;
                     normal.xyz += vec3( cos(pos.x+u_time)+
                                         cos(pos.x*0.5+u_time*2.0),
                                         sin(pos.y*2.0+u_time*0.4)*0.54+
@@ -134,7 +134,7 @@ styles:
                         return bri * mix(vec3(1.0), rgb, sat);
                     }
                 color: |
-                    vec3 pos = v_world_position.xyz*0.05;
+                    vec3 pos = worldPosition().xyz*0.05;
                     color.xyz *= hsb2rgb( random(abs(floor(pos))) , .5, .8 );
 ```
 
@@ -170,7 +170,7 @@ styles:
                         return bri * mix(vec3(1.0), rgb, sat);
                     }
                 filter: |
-                    vec3 pos = v_world_position.xyz*0.05;
+                    vec3 pos = worldPosition().xyz*0.05;
                     color.xyz = hsb2rgb( random(abs(floor(pos))) , .5, .8 );
 ```
 
@@ -235,17 +235,4 @@ uniform vec2 u_tile_origin; // the SW corner of the tile, in meters from (0,0)
 uniform float u_meters_per_pixel;
 uniform float u_map_zoom;
 uniform float u_time;
-```
-
-The following _varyings_ are passed from the _vertex_ to the _fragment_ shader:
-
-```glsl
-varying vec4 v_position;
-varying vec3 v_normal;
-varying vec4 v_color;
-varying vec4 v_world_position;
-
-#if defined(TEXTURE_COORDS)
-varying vec2 v_texcoord;
-#endif
 ```
