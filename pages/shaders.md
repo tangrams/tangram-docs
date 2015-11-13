@@ -316,19 +316,19 @@ The following _varyings_ are passed from the _vertex_ to the _fragment_ shader, 
 ```glsl
 varying vec4 v_position; // local coordinates in meters from the center of the screen
 ```
-    Instead of `v_position`, use `position`
+Instead of `v_position`, use `position`
 ```glsl
 varying vec3 v_normal;
 ```
-    Instead of `v_normal`, use `worldNormal()``
+Instead of `v_normal`, use `worldNormal()``
 ```glsl
 varying vec4 v_color;
 ```
-    Instead of `v_color`, use `color`
+Instead of `v_color`, use `color`
 ```glsl
-varying vec4 v_world_position;  // global coordinates in meters from the web mercator origin (-180,85.051129)
+varying vec4 worldPosition();  // global coordinates in meters from the web mercator origin (-180,85.051129)
 ```
-    Instead of `v_world_position`, use `worldPosition()`
+Instead of `worldPosition()`, use `worldPosition()`
 
 If texture coordinates are used, the `v_texcoord` varying is defined:
 
