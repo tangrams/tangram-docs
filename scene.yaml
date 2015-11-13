@@ -48,6 +48,8 @@ layers:
         data:
             source: osm
             layer: roads
+        filter:
+            not: {kind: [ferry]}
         draw:
             lines:
                 order: 3
