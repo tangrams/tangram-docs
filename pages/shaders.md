@@ -320,7 +320,7 @@ Instead of `v_position`, use `position`
 ```glsl
 varying vec3 v_normal;
 ```
-Instead of `v_normal`, use `worldNormal()``
+Instead of `v_normal`, use `worldNormal()`
 ```glsl
 varying vec4 v_color;
 ```
