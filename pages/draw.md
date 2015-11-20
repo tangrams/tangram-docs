@@ -48,6 +48,11 @@ If `anchor` is set, the default `align` will be set accordingly:
 - `anchor`: `left` | `top-left` | `bottom-left` => `align`: `right`
 - `anchor`: `right` | `top-right` | `bottom-right` => `align`: `left`
 
+```yaml
+text:
+    text_wrap: true
+    align: left
+```
 
 ####`anchor`
 Optional _string_, one of `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. No default, unless `text_wrap` is set.
