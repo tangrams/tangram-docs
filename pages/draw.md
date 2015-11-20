@@ -376,7 +376,7 @@ Optional _string_, naming a typeface. Sets the font-family of the label. Default
 `family` can be any typeface available to the operating system.
 
 ####`fill`
-Optional _color_. Follows the specs of [color](draw.md#color). Default is `white`.
+Optional _color_ or _stops_. Follows the specs of [color](draw.md#color). Default is `white`.
 
 Sets the fill color of the label.
 
@@ -389,13 +389,17 @@ font:
 Optional _number_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
 
 ####`stroke`
-Optional _{color, width}_. _colors_ follow the specs of [color](draw.md#color). No default.
+Optional _{color, width}_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
 
 Sets the stroke color and width of the label. Width is interpreted as pixels.
 
 ```yaml
 font:
     stroke: { color: white, width: 2 }
+
+font:
+    stroke: { color: [[10, gray], [15, white]], width: [[10, 1], [15, 2]] }
+
 ```
 
 ####`style`
