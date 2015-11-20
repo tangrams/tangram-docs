@@ -37,7 +37,12 @@ Rules defined in `draw` blocks will descend into any sublayers.
 
 Many style parameters, such as `color`, are shared among draw styles – others are unique to particular draw styles.
 
-###`anchor`
+####`align`
+Optional _string_, one of `left`, `center`, `right`. Default is `center`.
+
+Sets alignment of text for multi-line tables — see [`text_wrap`](draw.md#text-wrap).
+
+####`anchor`
 Optional _string_, one of `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. No default.
 
 Applies to the `text` and `sprites` styles. Places the label or sprite on the side or corner of the feature.
@@ -316,6 +321,20 @@ draw:
                 }
             }
         ...
+```
+
+####`text_wrap`
+Optional _boolean_ or _int_, in characters. Default is 15.
+
+Enables text wrapping for labels. Wrapping is enabled by default for point lebals, and disabled for line labels.
+
+*Note:* Explicit line break characters (`\n`) in label text will cause a line break, even if `text_wrap` is disabled.
+
+```yaml
+text:
+    text_wrap: true # uses default wrapping (15 characters).
+    text_wrap: 10 # sets a maximum line length of 10 characters.
+    text_wrap: false # disables wrapping.
 ```
 
 ####`tile_edges`
