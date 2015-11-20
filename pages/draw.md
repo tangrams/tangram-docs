@@ -38,12 +38,19 @@ Rules defined in `draw` blocks will descend into any sublayers.
 Many style parameters, such as `color`, are shared among draw styles – others are unique to particular draw styles.
 
 ####`align`
-Optional _string_, one of `left`, `center`, `right`. Default is `center`.
+Optional _string_, one of `left`, `center`, `right`. Default is `center`, unless `anchor` is set (see below).
 
 Sets alignment of text for multi-line tables — see [`text_wrap`](draw.md#text-wrap).
 
+If `anchor` is set, the default `align` will be set accordingly:
+
+- `anchor`: `center` | `top` | `bottom` => `align`: `center`
+- `anchor`: `left` | `top-left` | `bottom-left` => `align`: `right`
+- `anchor`: `right` | `top-right` | `bottom-right` => `align`: `left`
+
+
 ####`anchor`
-Optional _string_, one of `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. No default.
+Optional _string_, one of `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. No default, unless `text_wrap` is set.
 
 Applies to the `text` and `sprites` styles. Places the label or sprite on the side or corner of the feature.
 
