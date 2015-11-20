@@ -37,6 +37,17 @@ Rules defined in `draw` blocks will descend into any sublayers.
 
 Many style parameters, such as `color`, are shared among draw styles – others are unique to particular draw styles.
 
+###`anchor`
+Optional _string_, one of `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. No default.
+
+Applies to the `text` and `sprites` styles. Places the label or sprite on the side or corner of the feature.
+
+```yaml
+text:
+    anchor: bottom
+    offset: [0, 2px]
+```
+
 ####`cap`
 Optional _string_, one of `butt`, `square`, or `round` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
 
