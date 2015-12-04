@@ -40,9 +40,25 @@ Many style parameters, such as `color`, are shared among draw styles – others 
 ####`align`
 Optional _string_, one of `left`, `center`, `right`. Default is `center`, unless `anchor` is set (see below).
 
-Sets alignment of text for multi-line tables — see [`text_wrap`](draw.md#text-wrap).
+Sets alignment of text for multi-line labels — see [`text_wrap`](draw.md#text-wrap).
 
-If `anchor` is set, the default `align` will be set accordingly:
+```yaml
+text:
+    align: left
+```
+
+####`anchor`
+Optional _string_, one of `center`, `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. Default is `center`.
+
+Applies to the `text` and `points` styles. Places the label or point/sprite on the specified side or corner of the feature. If `offset` is also set, it is applied *in addition to* the anchor.
+
+```yaml
+text:
+    anchor: bottom   # places the text so that the top of the text is directly below the feature
+    offset: [0, 2px] # moves the text an additional 2px down
+```
+
+If `anchor` is set but `align` is not, then `align` will be set to an appropriate default value:
 
 - `anchor`: `center` | `top` | `bottom` => `align`: `center`
 - `anchor`: `left` | `top-left` | `bottom-left` => `align`: `right`
@@ -50,19 +66,7 @@ If `anchor` is set, the default `align` will be set accordingly:
 
 ```yaml
 text:
-    text_wrap: true
-    align: left
-```
-
-####`anchor`
-Optional _string_, one of `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. No default, unless `text_wrap` is set.
-
-Applies to the `text` and `sprites` styles. Places the label or sprite on the side or corner of the feature.
-
-```yaml
-text:
-    anchor: bottom
-    offset: [0, 2px]
+    anchor: bottom-left # the label will use `align: right` by default
 ```
 
 ####`cap`
