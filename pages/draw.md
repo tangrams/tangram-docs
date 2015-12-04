@@ -130,11 +130,17 @@ draw:
 ```
 
 ####`extrude`
-Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are meters `m` or pixels `px`. Default units are `m`.
+Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are in meters.
 
 Applies to `polygons` and `lines`. Extrudes features drawn with the `polygons` draw style into 3D space along the z-axis. Raises elements drawn with the `lines` draw style straight up from the ground plane.
 
-When the value of this parameter is `true`, features drawn in the `polygons` draw style will be extruded using the values in the feature's `height` and `min_height` properties (if those properties exist) as a `[min, max]` array of units `m`. The `lines` style does not currently support the `[min, max]` array syntax.
+When the value of this parameter is:
+
+- _boolean_: if `true`, features will be extruded using the values in the feature's `height` and `min_height` properties (if those properties exist). If `false`, no extrusion.
+- _number_ or _function_: features will be extruded to the provided height in meters. Features will be extruded from the ground plane, e.g. the `min_height` will be 0.
+- _[min, max]_ array: features will be extruded from the provided `min` height in meters, to the provided `max` height in meters, e.g. `extrude: [50, 100]` will draw a polygon volume starting 50m above the ground, extending 100m high.
+
+Since features drawn as `lines` have no height (e.g. they are flat 2D objects), they do not use the `min_height` values. They are simply raised to the specified `height`.
 
 ####`font`
 Optional element. Defines the start of a font style block. (See [font-parameters](draw.md#font-parameters).)
