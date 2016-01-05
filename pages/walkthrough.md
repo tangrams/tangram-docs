@@ -22,8 +22,6 @@ The style files are stored in a GitHub software repository called tangrams/simpl
 1. Navigate to [https://github.com/tangrams/simple-demo](https://github.com/tangrams/simple-demo).
 2. Clone the simple-demo repository. You can choose to download the .zip file from the link on the page, or [clone the repository](https://help.github.com/articles/cloning-a-repository/) using the GitHub client application or command line utilities. Access to the repository is public, so you do not need to be signed in with a GitHub account.
 
-![Buttons for cloning on the GitHub website](../images/clone-repo.png)
-
 > Tip: If you are new to GitHub, you can review its documentation at https://help.github.com/ to learn more about how to clone and work with repositories.
 
 ###Set up Tangram to run from your machine
