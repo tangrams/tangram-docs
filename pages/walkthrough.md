@@ -20,16 +20,15 @@ To complete this walkthrough, you need a [browser that supports WebGL](https://g
 The style files are stored in a GitHub software repository called tangrams/simple-demo.
 
 1. Navigate to [https://github.com/tangrams/simple-demo](https://github.com/tangrams/simple-demo).
-2. Make a copy of the simple-demo repository. You can choose to download the .zip file from the link on the page, or [clone the repository](https://help.github.com/articles/cloning-a-repository/) using the GitHub client application or command line utilities. Access to the repository is public, so you do not need to be signed in with a GitHub account.
-3. Open the local simple-demo folder and explore the contents.
+2. Clone the simple-demo repository. You can choose to download the .zip file from the link on the page, or [clone the repository](https://help.github.com/articles/cloning-a-repository/) using the GitHub client application or command line utilities. Access to the repository is public, so you do not need to be signed in with a GitHub account.
 
-	![simple-demo repository files](images/repo-files.png)
+![Buttons for cloning on the GitHub website](../images/clone-repo.png)
 
-The folder contains some general website and mapping components (such as tools for [Leaflet](http://leafletjs.com/)), documentation, and the file Tangram uses to set the visual appearance of the map (`scene.yaml`).
+> Tip: If you are new to GitHub, you can review its documentation at https://help.github.com/ to learn more about how to clone and work with repositories.
 
 ###Set up Tangram to run from your machine
 
-You were viewing the demo on a remote server before, but now you will set it up to run from a web server on your own machine. This will allow you to make changes to the Tangram styles and immediately see the results. To start the server, you will need to enter a few command line instructions using the terminal window. You will need a web server, rather than attempting to open the simple-demo index.html file directly in a browser, because browsers disable JavaScript for security reasons. Using your own server allows you to run the JavaScript and work with the demo properly.
+You were viewing the demo on a remote server before, but now you will set it up to run from a web server on your own machine. This will allow you to make changes to the Tangram styles and immediately see the results. To start the server, you will need to enter a few command line instructions using the terminal window. You will need a web server, rather than attempting to open the simple-demo index.html file directly in a browser. Using your own server allows you to run JavaScript and work with the Tangram demo properly.
 
 When you are running the demo locally, the map styling information (scene.yaml) and the files used to build the webpage (such as index.html) are coming from your machine. However, the underlying map data is vector tiles from Mapzen’s servers.
 
@@ -37,9 +36,24 @@ When you are running the demo locally, the map styling information (scene.yaml) 
 
 > Tip:  By default, terminal windows open into your home directory, so you will need to drill into the folder structure to get to the simple-demo folder. Alternatively, add a shortcut to your context menu so you can right-click a folder in Finder and start the terminal window in that location. To enable this, open System Preferences, click Keyboard, and click Shortcuts. In the list, click Services and check New Terminal at Folder.
 
-1. Open a terminal window to the simple-demo folder.
+1. Open a terminal window to the simple-demo folder. You can type `cd` and the pathname to navigate to the proper directory path.
 2. At the prompt, type `python -m SimpleHTTPServer` to start a web server using Python. You should receive a message similar to this in the terminal: `Serving HTTP on 0.0.0.0 port 8000 ...`
 3. Open your browser to `http://localhost:8000`. (“Localhost” is a shortcut hostname that a computer can use to refer to itself, and is not viewable by anyone else.) If it was successful, you should see the same demo map as you viewed earlier. If you are having problems, you can instead try the command `python -m http.server 8000` (for use with Python 3).
+
+Your terminal window might look something like this.
+
+```
+~/downloads $ git clone https://github.com/tangrams/simple-demo.git
+Cloning into 'simple-demo'...
+remote: Counting objects: 388, done.
+remote: Total 388 (delta 0), reused 0 (delta 0), pack-reused 388
+Receiving objects: 100% (388/388), 3.13 MiB | 2.02 MiB/s, done.
+Resolving deltas: 100% (145/145), done.
+Checking connectivity... done.
+~/downloads $ cd simple-demo
+~/downloads/simple-demo $ python -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 ...
+```
 
 As you pan and zoom the map, notice that the URL updates to append #, /, and numbers to represent the zoom level (such as #16) and coordinates of the map (such as 40.7085/-73.9903). You can also see this URL pattern on the original simple-demo website. You can always delete those numbers from the URL to return to the original state of the demo.
 
@@ -153,7 +167,7 @@ When you are done, close the terminal window to shutdown the server and close yo
 
 ##Put your Tangram map on the web
 
-Now that you have made changes to the scene locally, you may want to share your map on a website. The next part of the walkthrough describes how get your map on the web. 
+Now that you have made changes to the scene locally, you may want to share your map on a website. The next part of the walkthrough describes how get your map on the web.
 
 If you prefer, you can skip this part of the walkthrough.
 
@@ -211,7 +225,7 @@ This map uses Mapzen's vector tile service for the data. If you want to put this
 
 You have explored the basics of mapping with Tangram and the structure of the scene file, and maybe even posted your map to the web.
 
-Tangram enables many options for rendering features on maps. To see other maps built with Tangram, visit the [Tangram website](https://www.mapzen.com/projects/tangram) and get links to sample code. Build on what you have learned here to make the exact map you want. 
+Tangram enables many options for rendering features on maps. To see other maps built with Tangram, visit the [Tangram website](https://www.mapzen.com/projects/tangram) and get links to sample code. Build on what you have learned here to make the exact map you want.
 
 ##Data credits
 OpenStreetMap data: © OSM contributors
