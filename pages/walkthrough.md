@@ -55,10 +55,6 @@ Checking connectivity... done.
 Serving HTTP on 0.0.0.0 port 8000 ...
 ```
 
-As you pan and zoom the map, notice that the URL updates to append #, /, and numbers to represent the zoom level (such as #16) and coordinates of the map (such as 40.7085/-73.9903). You can also see this URL pattern on the original simple-demo website. You can always delete those numbers from the URL to return to the original state of the demo.
-
-![URL with zoom level and coordinates](images/local-host-url.png)
-
 Be sure to keep the terminal window open while you are working on this walkthrough.
 
 ###View the Tangram scene file
