@@ -180,7 +180,7 @@ There are many options for getting a map on the web. For example, if you have yo
 
 To complete these exercises, you must have a GitHub user account. See the [GitHub documentation](https://help.github.com/articles/signing-up-for-a-new-github-account/) for information on signing up for service.
 
-This section assumes some knowledge of GitHub terminology and workflows. You can refer to the GitHub documentation if you need more detailed steps. Note that there are many ways to perform the tasks described, including through the website, desktop applications, and the command line. This exercise generally follows the website and desktop application, but you can use the method that is most comfortable to you.
+This section assumes some knowledge of GitHub terminology and workflows. You can refer to the [GitHub documentation](https://help.github.com/) if you need more detailed steps. Note that there are many ways to perform the tasks described, including through the website, desktop applications, and the command line. This exercise generally follows the website and desktop application, but you can use the method that is most comfortable to you.
 
 ###Create a repository for your map website
 To add a project to GitHub, you need to have a repository in which to store your files. For this walkthrough, you will create a new repository in your user account.
@@ -190,20 +190,20 @@ To add a project to GitHub, you need to have a repository in which to store your
 3. For the repository name, type `my-tangram-map`.
 4. For the description, type `Sample map drawn with Tangram`.
 5. Make the repository Public.
-6. Check the box to include a README. You do not need to initialize with a .gitignore or license file because you will instead be using the versions from this walkthough.
+6. Check the box to include a README. You do not need to initialize with a .gitignore or license file because you will instead be using the versions from this walkthrough.
 7. Click Create repository.
 
 ###Use the GitHub gh-pages branch to host the website
 
 You now have a new repository to contain the files and one branch within it, the master. You will clone the repository and create a gh-pages branch, which has special properties that enable hosting a website. You need to copy the files from this walkthrough to the folder containing your repository.
 
-1. Clone the my-tangram-map repository. You can [clone the repository](https://help.github.com/articles/cloning-a-repository/) using the GitHub client application or command line utilities.
+1. Clone the my-tangram-map repository. You can [clone the repository](https://help.github.com/articles/cloning-a-repository/) using the GitHub client application or command line utilities, similar to how you copied the original simple-demo repository.
 2. Create a new branch from master called `gh-pages` and make it your current branch. You must name the branch gh-pages for the hosting to work.
 3. On your machine's file explorer, open the folders for my-tangram-map and simple-demo.
 4. In the simple-demo folder, select the files other than the README. Copy those files and paste them in the my-tangram-map folder. Do not overwrite the existing README with the new one.
 5. Commit your files to the gh-pages branch and publish them to sync your changes to the web.
 
-Note: To make a website hosted through GitHub Pages, your files need to stay in the gh-pages branch, rather than being pushed into the master branch. The exception is when working with a repository that is named `<yourusername>.github.io`, as the master already has the properties of the gh-pages branch.
+> Note: To make a website hosted through GitHub Pages, your files need to stay in the gh-pages branch, rather than being pushed into the master branch. The exception is when working with a repository that is named `<yourusername>.github.io`, as the master already has the properties of the gh-pages branch.
 
 ###View the map on the web
 
@@ -215,24 +215,24 @@ Optionally, go back to the README file and update it on the gh-pages branch to d
 
 ###Put a Tangram map into production
 
-This map uses Mapzen's vector tile service for the data. If you want to put this map into production beyond the purposes of this tutorial, you'll need to [sign up for a free API key](https://mapzen.com/developers/) and substitute your own key for the one provided in the demo. The vector tile service is free, but the API key helps prevent individual users from degrading the overall system performance. Follow these steps to learn how to change the API key.
+This map uses Mapzen's vector tile service for the data. If you want to put this map into production beyond the purposes of this tutorial, you'll need to [sign up for an API key](https://mapzen.com/developers/) and substitute your own key for the one provided in the demo. Follow these steps to learn how to change the API key.
 
 1. Sign in at https://mapzen.com/developers/ using your GitHub account.
-2. Under Vector Tiles, click +New Key.
+2. Under Vector Tiles, click `+New Key.`
 3. Optionally, set a name for the project, such as My Tangram Map.
 3. Copy the text of the key to your clipboard. It should take the form of `vector-tiles-` and some additional characters.
 4. Open the scene.yaml file.
 5. In the `sources:` block, paste your key after the equals sign in
- `//vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=<yourkeyhere>`.
+ `//vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=<vector-tiles-xxxxxxx>`.
 6. Commit the change to the gh-pages branch.
 
-##Next steps
+###Summary and next steps
 
 You have explored the basics of mapping with Tangram and the structure of the scene file, and maybe even posted your map to the web.
 
 Tangram enables many options for rendering features on maps. To see other maps built with Tangram, visit the [Tangram website](https://www.mapzen.com/projects/tangram) and get links to sample code. Build on what you have learned here to make the exact map you want.
 
-##Data credits
+###Data credits
 OpenStreetMap data: © OSM contributors
 
 Map tools: [Tangram](https://mapzen.com/tangram), [Leaflet](http://leafletjs.com/)
