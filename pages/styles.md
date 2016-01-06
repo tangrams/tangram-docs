@@ -70,6 +70,14 @@ styles:
         blend: multiply
 ```
 
+Styles will be rendered in the following order:
+
+- All `opaque` styles render first.
+- All non-opaque styles without a defined `blend_order` (see [below](styles.md#blend_order)) render next, sorted by `add`, `multiply`, `inlay`, `overlay`,
+- All non-opaque styles with a defined `blend_order` render last, sorted by `blend_order` (ascending), sub-sorted by `add`, `multiply`, `inlay`, `overlay`.
+
+Each group above also now has a final sub-sort by style name, to provide a consistent render order and resolve ambiguities.
+
 ####`blend_order`
 Optional _integer_ greater than or equal to 0. No default.
 
