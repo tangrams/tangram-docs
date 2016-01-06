@@ -265,7 +265,9 @@ poi-icons:
 ####`collide`
 Optional _boolean_. Defaults to `true`.
 
-Applied to `points` and `text`
+Applied to `points` and `text`.
+
+A point or text draw group marked with `collide: false` will not be checked for any collisions.
 
 ```yaml
 poi-icons:
