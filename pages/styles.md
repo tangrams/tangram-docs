@@ -44,6 +44,28 @@ styles:
 
 For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
 
+####`blend_order`
+Optional _integer_ greater than or equal to 0. No default.
+
+Controls the order in which styles with non-opaque blending (`add`, `multiply`, `inlay`, `overlay`) are rendered. Styles with a greater `blend_order` value will be drawn on top.
+
+```yaml
+styles:
+    marker:
+        base: points
+        blend: overlay
+        blend_order: 1   # marker goes on top of icons
+        ...
+
+    icons:
+        base: points
+        blend: overlay
+        blend_order: 0   # icons go underneath marker
+        ...
+```
+
+For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
+
 ####`mix`
 Optional _string_ or _list_, naming one or more custom styles. No default.
 
