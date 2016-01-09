@@ -162,9 +162,11 @@ The keyword `$geometry` matches the feature's geometry type, for cases when a Fe
 - `polygon`: matches `Polygon`, `MultiPolygon`
 
 ```yaml
-filter: { $geometry: polygon }          # matches polygons only
+filter: { $geometry: polygon }                      # matches polygons only
 
-filter: { $geometry: [point, line] }    # matches points and lines, but not polygons
+filter: { $geometry: [point, line] }                # matches points and lines, but not polygons
+
+filter: function() { return $geometry === 'line' }  # matches lines only
 ```
 
 The keyword `$layer` matches the feature's layer name, for cases when a data layer includes more than one source layer. In the case below, a data layer is created from two source layers, which can then be separated again by layer for styling:
@@ -185,10 +187,12 @@ The keyword `$zoom` matches the current zoom level of the map. It can be used wi
 ```yaml
 filter: { $zoom: 14 }
 
-filter: { $zoom: { min: 10 } }  # matches zooms 10 and up
+filter: { $zoom: { min: 10 } }              # matches zooms 10 and up
 
 filter:
-    $zoom: { min: 12, max: 15 } # matches zooms 12-14
+    $zoom: { min: 12, max: 15 }             # matches zooms 12-14
+
+filter: function() { return $zoom <= 10 }   # matches zooms 10 and below
 ```
 
 #### Filter functions
