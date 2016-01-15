@@ -92,7 +92,7 @@ sources:
     local:
         type: GeoJson
         url: localhost:8000//tiles/{x}-{y}-{z}.json
-        max-zoom: 15
+        max_zoom: 15
 ```
 
 ####`enforce_winding`
