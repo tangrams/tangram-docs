@@ -306,9 +306,9 @@ poi-icons:
 ```
 
 ####`collide`
-Optional _boolean_. Defaults to `true`.
+[[ES-only](https://github.com/tangrams/tangram-es)] Optional _boolean_. Defaults to `true`.
 
-Applied to `points` and `text`.
+Applies to `points` and `text`.
 
 A point or text draw group marked with `collide: false` will not be checked for any collisions.
 
@@ -320,14 +320,12 @@ poi-icons:
 ```
 
 ####`transition`
-Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time.
+[[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time.
 Time values can be either in seconds (`s`) or milliseconds (`ms`).
 
-Sets the transition time from hide to show for points or texts!
+Applies to `points` and `text`. Sets the transition time from `hide` to `show`.
 
-A transition time of `0` means, instantaneous transition between states.
-
-Applied to `points` and `text`
+A transition time of `0` results in an instantaneous transition between states.
 
 ```yaml
 poi-icons:
