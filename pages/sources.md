@@ -83,7 +83,7 @@ mapbox:
 ```
 
 #### `max_zoom`
-Optional _integer_. No default.
+Optional _integer_. Default is _18_.
 
 Sets the highest zoom level which will be requested from the datasource. At higher zoom levels, the data from this zoom level will continue to be displayed.
 
