@@ -305,6 +305,39 @@ poi-icons:
             sprite_default: generic
 ```
 
+####`collide`
+Optional _boolean_. Defaults to `true`.
+
+Applied to `points` and `text`.
+
+A point or text draw group marked with `collide: false` will not be checked for any collisions.
+
+```yaml
+poi-icons:
+    draw:
+        points:
+           collide: false
+```
+
+####`transition`
+Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time.
+Time values can be either in seconds (`s`) or milliseconds (`ms`).
+
+Sets the transition time from hide to show for points or texts!
+
+A transition time of `0` means, instantaneous transition between states.
+
+Applied to `points` and `text`
+
+```yaml
+poi-icons:
+    draw:
+        points:
+           transition: 
+                [show, hide]: 
+                    time: .5s
+```
+
 ####`style`
 Optional _string_, naming a style defined in the [`styles`](styles.md) block.
 
