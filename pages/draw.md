@@ -92,6 +92,20 @@ draw:
         centroid: true
 ```
 
+####`collide`
+[[ES-only](https://github.com/tangrams/tangram-es)] Optional _boolean_. Defaults to `true`.
+
+Applies to `points` and `text`.
+
+A point or text draw group marked with `collide: false` will not be checked for any collisions.
+
+```yaml
+poi-icons:
+    draw:
+        points:
+           collide: false
+```
+
 ####`color`
 
 Required* RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values or _[r, g, b, a]_** values. RGB/RGBA value range is 0-1. No default.
@@ -261,6 +275,66 @@ draw:
         priority: function() { return Math.min(10 - Math.floor(feature.area / 1000), 10); }
 ```
 
+####`repeat_distance`
+Optional _number_, in `px`. Default is `256px`.
+
+Applies to `text`. Specifies minimum distance between labels in the same `repeat_group`, measuring from the center of each label. Only applies per tile – labels may still be drawn closer than the `repeat_distance` across a tile boundary.
+
+```yaml
+draw:
+   text:
+      repeat_distance: 100px # label can repeat every 100 pixels
+      ...
+```
+
+```yaml
+draw:
+   text:
+       repeat_distance: 0px # labels can repeat anywhere
+      ...
+```
+
+####`repeat_group`
+Optional _string_. No default.
+
+Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set of `draw` rules (eg `text_source`, `style`, etc.) belong to the same `repeat_group`.
+
+
+For example: labels from the two layers below can be drawn near each other, because they are in different repeat groups by default:
+
+```yaml
+roads:
+   major_roads:
+      filter: { kind: major_road }
+      draw:
+         text:
+            ...
+   minor_roads:
+      filter: { kind: minor_road }
+      draw:
+         text:
+            ...
+```
+
+However, labels in the sub-layers below won't repeat near each other, because they have been placed in the same `repeat_group`:
+
+```yaml
+roads:
+   draw:
+      text:
+         repeat_group: roads-fewer-labels
+   major_roads:
+      filter: { kind: major_road }
+      draw:
+         text:
+            ...
+   minor_roads:
+      filter: { kind: minor_road }
+      draw:
+         text:
+            ...
+```
+
 ####`size`
 Optional _number_, in `px`. Default is `32px`.
 
@@ -303,37 +377,6 @@ poi-icons:
         points:
             sprite: function() { return feature.kind }
             sprite_default: generic
-```
-
-####`collide`
-[[ES-only](https://github.com/tangrams/tangram-es)] Optional _boolean_. Defaults to `true`.
-
-Applies to `points` and `text`.
-
-A point or text draw group marked with `collide: false` will not be checked for any collisions.
-
-```yaml
-poi-icons:
-    draw:
-        points:
-           collide: false
-```
-
-####`transition`
-[[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time.
-Time values can be either in seconds (`s`) or milliseconds (`ms`).
-
-Applies to `points` and `text`. Sets the transition time from `hide` to `show`.
-
-A transition time of `0` results in an instantaneous transition between states.
-
-```yaml
-poi-icons:
-    draw:
-        points:
-           transition: 
-                [show, hide]: 
-                    time: .5s
 ```
 
 ####`style`
@@ -384,7 +427,7 @@ draw:
 ####`text_wrap`
 Optional _boolean_ or _int_, in characters. Default is 15.
 
-Enables text wrapping for labels. Wrapping is enabled by default for point lebals, and disabled for line labels.
+Enables text wrapping for labels. Wrapping is enabled by default for point labels, and disabled for line labels.
 
 *Note:* Explicit line break characters (`\n`) in label text will cause a line break, even if `text_wrap` is disabled.
 
@@ -405,6 +448,22 @@ draw:
     water:
         outline:
             tile_edges: true
+```
+
+####`transition`
+[[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time. `time` values can be either in seconds (`s`) or milliseconds (`ms`).
+
+Applies to `points` and `text`. Sets the transition time from `hide` to `show`.
+
+A transition time of `0` results in an instantaneous transition between states.
+
+```yaml
+poi-icons:
+    draw:
+        points:
+           transition:
+                [show, hide]:
+                    time: .5s
 ```
 
 ####`visible`
