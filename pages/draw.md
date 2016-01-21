@@ -194,7 +194,7 @@ Optional _boolean_. Default is _true_.
 Moves the label into the tile if the label would otherwise cross a tile boundary. This should be set to _false_ if using `anchor`/`align` functionality for text + icon combinations – otherwise, text can get out of sync with expected position.
 
 ####`offset`
-Optional _[float x, float y]_ array, in `px`. No default.
+Optional _[float x, float y]_ _array_ or _stops_, in `px`. No default.
 
 Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen. 
 
@@ -228,6 +228,15 @@ roads:
         text:
             # moves the label 12 pixels above the line
             offset: [0px, -12px]
+```
+
+Using _stops_ allows different `offset` values at different zooms. This can be used in conjunction with _anchor_ to position text and sprites adjacent to each other correctly when the sprite's size is interpolating across zooms.
+
+```yaml
+roads:
+    draw:
+        text:
+            offset: [[13, [0, 6px]], [15, [0, 9px]]]
 ```
 
 ####`order`
