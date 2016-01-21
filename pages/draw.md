@@ -188,6 +188,21 @@ draw:
         join: round
 ```
 
+####`miter_limit`
+Optional _integer_. Default is 3.
+
+Applies to `lines` with a `join` parameter set to "miter". When the length of a miter join is longer than the ratio of the `miter_limit` to the width of the line, that join is converted from a "miter" to a "bevel". This prevents excessively "spiky" corners on sharply curved lines.
+
+Higher values allow sharper corners. Lower values result in more beveled corners, which produces a comparatively softer line shape.
+
+```yaml
+draw:
+   lines:
+      color: red
+      width: 5px
+      miter_limit: 2
+```
+
 ####`move_into_tile`
 Optional _boolean_. Default is _true_.
 
