@@ -351,11 +351,11 @@ draw:
 ```
 
 ####`text_source`
-Optional _string_, or _function_. Default is `name`.
+Optional _string_, _function_, or _array_. Default is `name`.
 
 Applies to `text`. Defines the source of the label text.
 
-When the value is a string, it must name a feature property to use as the label text. For example, the default `name` value will draw labels showing the names of features (e.g. any that have a `name` field). An example of an alternative feature property label is to label buildings with their heights:
+When the value is a _string_, it must name a feature property to use as the label text. For example, the default `name` value will draw labels showing the names of features (e.g. any that have a `name` field). An example of an alternative feature property label is to label buildings with their heights:
 
 ```yaml
 draw:
@@ -364,7 +364,7 @@ draw:
         ...
 ```
 
-When the value is a function, the return value will be used as the text of the label. For example, to label buildings as 'high' and 'low':
+When the value is a _function_, the return value will be used as the text of the label. For example, to label buildings as 'high' and 'low':
 
 ```yaml
 draw:
@@ -380,6 +380,18 @@ draw:
             }
         ...
 ```
+
+When the value is an _array_, each array element is evaluated as if it was a `text_source` value (meaning each element can be either a _string_ value that specifies a feature property by name, or a _function_ that returns displayable label text). The first _non-null_ evaluated source in the array is used as the label text.
+
+The primary use case here is to support preferred language for text labels. For example:
+
+```yaml
+draw:
+    text:
+        text_source: [name:en, name]
+```
+
+The above example will display an English label (name:en) when available, and will fall back to the default local name when not available.
 
 ####`text_wrap`
 Optional _boolean_ or _int_, in characters. Default is 15.
