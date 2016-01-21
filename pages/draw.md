@@ -544,7 +544,7 @@ draw:
 ####`family`
 Optional _string_, naming a typeface. Sets the font-family of the label. Default is `Helvetica`.
 
-`family` can be any typeface available to the operating system.
+`family` can be any typeface available to the operating system. The default will be used as a fallback if the other specified families are not available.
 
 ####`fill`
 Optional _color_ or _stops_. Follows the specs of [color](draw.md#color). Default is `white`.
