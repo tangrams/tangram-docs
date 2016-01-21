@@ -555,22 +555,44 @@ Sets the fill color of the label.
 font:
     fill: black
 ```
+```yaml
+font:
+    fill: [[14, white], [18, gray]]
+```
 
 ####`size`
-Optional _number_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
+Optional _number_ or _stops_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
+
+```yaml
+font:
+    family: Helvetica
+    size: 10px
+```
+
+```yaml
+font:
+    family: Helvetica
+    size: [[14, 12px], [16, 16px], [20, 24px]]
+```
 
 ####`stroke`
-Optional _{color, width}_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
+Optional _{color, width}_ or _stops_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
 
 Sets the stroke color and width of the label. Width is interpreted as pixels.
 
 ```yaml
 font:
     stroke: { color: white, width: 2 }
-
+```
+```yaml
 font:
     stroke: { color: [[10, gray], [15, white]], width: [[10, 1], [15, 2]] }
-
+```
+```yaml
+font:
+    stroke:
+        color: [[16, white], [18, red], [20, blue]]
+        width: [[14, 3px], [20, 8px]]
 ```
 
 ####`style`
