@@ -95,8 +95,24 @@ Requests an update to the drawn map. If `animated: true` is set, this happens on
 #### `getActiveCamera()`
 Returns the active camera.
 
-#### `setActiveCamera(camera)`
+#### `setActiveCamera(_string_ camera)`
 Sets the active camera to the camera specified by name, as named in the scenefile.
+
+#### `setDataSource(_string_ name, _object_ config)`
+Loads a new `source` object (see `[sources](sources.md)`).
+
+If "name" doesn't match an existing source, a new source object will be created. The "config" object must follow the `[sources](sources.md#sources)` specification.
+
+```javascript
+scene.setDataSource("osm", {type: 'TopoJSON', url: "//vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson" });
+```
+
+```javascript
+var geojson_data = {};
+...
+scene.setDataSource("dynamic_data", {type: 'GeoJSON', data: geojson_data });
+```
+
 
 #### `reload(scene_url)`
 Loads the specified scene by url and rebuilds the geometry.
