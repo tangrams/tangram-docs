@@ -93,9 +93,20 @@ This is accomplished by assigning a unique color to each feature onscreen and re
 Requests an update to the drawn map. If `animated: true` is set, this happens once per frame automatically.
 
 #### `getActiveCamera()`
+Returns the active camera.
 
-#### `setActiveCamera()`
+#### `setActiveCamera(camera)`
+Sets the active camera to the camera specified by name, as named in the scenefile.
 
 #### `reload(scene_url)`
+Loads the specified scene by url and rebuilds the geometry.
 
 #### `rebuild()`
+Rebuilds the current scene from scratch.
+
+#### `updateConfig()`
+Re-parses the scene.config object and rebuilds the scene from scratch, updating data sources, reloading textures, and rebuilding geometry.
+
+```javascript
+scene.updateConfig()
+```
