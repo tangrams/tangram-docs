@@ -44,6 +44,39 @@ Each object contains sub-objects which correlate to each element's subelements a
 
 If changes are made to the `config` object, you must call `scene.updateConfig()` for them to take effect.
 
+####`scene.config.textures`
+The `textures` object lists all currently-loaded textures available in the scene. This list is loaded from the `textures` element in the scenefile, but may be modified on the fly. Modifications will not take efect until `scene.updateConfig()` is called.
+
+For instance, to change the url of a texture:
+
+```javascript
+  scene.config.textures.orbits.url = "http://..../image.png";
+  scene.updateConfig({ rebuild: true });
+```
+
+To add a new texture:
+
+```javascript
+var image = new document.createElement("image");
+...
+scene.config.textures.orbits.element = image;
+scene.updateConfig({ rebuild: true });
+
+// or
+
+var canvas = new document.createElement("canvas");
+...
+scene.config.textures.orbits.element = canvas;
+scene.updateConfig({ rebuild: true });
+
+// or
+
+var raw_data = { data: [], width: 500, height: 500 }
+...
+scene.config.textures.orbits.data = raw_data;
+scene.updateConfig({ rebuild: true });
+```
+
 #### `scene.selection.feature`
 Simple object-picking may be enabled by setting any layer's `interactive` option to `true`. This will enable Tangram's "feature selection" capability for objects in that layer.
 
