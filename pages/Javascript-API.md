@@ -89,11 +89,32 @@ The properties of the feature at the current cursor location may be accessed thr
 
 This is accomplished by assigning a unique color to each feature onscreen and rendering the scene to an offscreen buffer. When queried, the `scene.selection` object checks the offscreen render at the current cursor position, and identifies the feature by its color.
 
+#### `getActiveCamera()`
+Returns the active camera.
+
 #### `requestRedraw()`
 Requests an update to the drawn map. If `animated: true` is set, this happens once per frame automatically.
 
-#### `getActiveCamera()`
-Returns the active camera.
+#### `reload(scene_url)`
+Loads the specified scene by url and rebuilds the geometry.
+
+#### `rebuild()`
+Rebuilds the current scene from scratch.
+
+#### `screenshot()`
+This queues a screenshot request, returning a Promise that fulfills when the screenshot is available. (The screenshot must be "queued" because it cannot be captured immediately: we must ensure that the GL buffer is finished drawing, and then must capture the buffer contents just after rendering, before it is cleared by other operations.)
+
+The promise resolves with an object containing two properties:
+
+- url: a data URL of the Canvas contents, suitable for loading into an <img> or opening in a new tab/window
+- blob: a Blob of type image/png, suitable for saving to a file, either manually or with a third-party library such as FileSaver.js
+
+```javascript
+scene.screenshot().then(function(screenshot) {
+    // uses FileSaver.js: https://github.com/eligrey/FileSaver.js/
+    saveAs(screenshot.blob, 'tangram-' + (+new Date()) + '.png');
+});
+```
 
 #### `setActiveCamera(_string_ camera)`
 Sets the active camera to the camera specified by name, as named in the scenefile.
@@ -113,16 +134,24 @@ var geojson_data = {};
 scene.setDataSource("dynamic_data", {type: 'GeoJSON', data: geojson_data });
 ```
 
-
-#### `reload(scene_url)`
-Loads the specified scene by url and rebuilds the geometry.
-
-#### `rebuild()`
-Rebuilds the current scene from scratch.
-
 #### `updateConfig()`
 Re-parses the scene.config object and rebuilds the scene from scratch, updating data sources, reloading textures, and rebuilding geometry.
 
 ```javascript
 scene.updateConfig()
+```
+
+#### `scene.view_complete`
+This is an event which fires when the view is in a "resting state", meaning new geometry is rendered, and no further tiles are loading/building. For example, when a scene is loaded, a view_complete event will fire when all tiles have loaded and the map renders. If the view is then zoomed in a level, another view_complete event will fire when the next zoom finishes rendering.
+
+`view_complete` can be subscribed to like other scene events:
+
+```javascript
+scene.subscribe({
+    view_complete: function () {
+        console.log('scene view complete, rendered ' +
+            scene.render_count + ' primitives at: ' +
+            [scene.center.lng, scene.center.lat, scene.zoom].join('/'));
+    }
+});
 ```
