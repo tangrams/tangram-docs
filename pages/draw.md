@@ -275,7 +275,7 @@ layers:
 ####`outline`
 Optional element. Defines the start of an outline style block.
 
-Applies to `polygons` and `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
+Applies to `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
 
 
 ####`priority`
