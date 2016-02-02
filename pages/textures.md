@@ -73,24 +73,6 @@ styles:
 
 ## texture parameters
 
-####`density`
-Optional _number_. Default is `1`.
-
-Indicates the intended native pixel density of the texture, to allow the texture to be drawn correctly at various display densities.
-
-This is specifically useful when style rules don't explicitly define the size of a sprite.
-
-```yaml
-textures:
-    pois:
-        url: pois.png
-        density: 2 # authored at 2x resolution
-        sprites:
-            # define sprites: [x origin, y origin, width, height]
-            airport: [631, 105, 36, 38]
-            ...
-```
-
 ####`url`
 Required _string_. Defines the path to an image file. No default.
 
