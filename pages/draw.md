@@ -92,6 +92,20 @@ draw:
         centroid: true
 ```
 
+####`collide`
+[[ES-only](https://github.com/tangrams/tangram-es)] Optional _boolean_. Defaults to `true`.
+
+Applies to `points` and `text`.
+
+A point or text draw group marked with `collide: false` will not be checked for any collisions.
+
+```yaml
+poi-icons:
+    draw:
+        points:
+           collide: false
+```
+
 ####`color`
 
 Required* RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values or _[r, g, b, a]_** values. RGB/RGBA value range is 0-1. No default.
@@ -174,13 +188,28 @@ draw:
         join: round
 ```
 
+####`miter_limit`
+Optional _integer_. Default is 3.
+
+Applies to `lines` with a `join` parameter set to "miter". When the length of a miter join is longer than the ratio of the `miter_limit` to the width of the line, that join is converted from a "miter" to a "bevel". This prevents excessively "spiky" corners on sharply curved lines.
+
+Higher values allow sharper corners. Lower values result in more beveled corners, which produces a comparatively softer line shape.
+
+```yaml
+draw:
+   lines:
+      color: red
+      width: 5px
+      miter_limit: 2
+```
+
 ####`move_into_tile`
 Optional _boolean_. Default is _true_.
 
 Moves the label into the tile if the label would otherwise cross a tile boundary. This should be set to _false_ if using `anchor`/`align` functionality for text + icon combinations – otherwise, text can get out of sync with expected position.
 
 ####`offset`
-Optional _[float x, float y]_ array, in `px`. No default.
+Optional _[float x, float y]_ _array_ or _stops_, in `px`. No default.
 
 Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen. 
 
@@ -214,6 +243,15 @@ roads:
         text:
             # moves the label 12 pixels above the line
             offset: [0px, -12px]
+```
+
+Using _stops_ allows different `offset` values at different zooms. This can be used in conjunction with _anchor_ to position text and sprites adjacent to each other correctly when the sprite's size is interpolating across zooms.
+
+```yaml
+roads:
+    draw:
+        text:
+            offset: [[13, [0, 6px]], [15, [0, 9px]]]
 ```
 
 ####`order`
@@ -261,6 +299,66 @@ draw:
         priority: function() { return Math.min(10 - Math.floor(feature.area / 1000), 10); }
 ```
 
+####`repeat_distance`
+Optional _number_, in `px`. Default is `256px`.
+
+Applies to `text`. Specifies minimum distance between labels in the same `repeat_group`, measuring from the center of each label. Only applies per tile – labels may still be drawn closer than the `repeat_distance` across a tile boundary.
+
+```yaml
+draw:
+   text:
+      repeat_distance: 100px # label can repeat every 100 pixels
+      ...
+```
+
+```yaml
+draw:
+   text:
+       repeat_distance: 0px # labels can repeat anywhere
+      ...
+```
+
+####`repeat_group`
+Optional _string_. No default.
+
+Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set of `draw` rules (eg `text_source`, `style`, etc.) belong to the same `repeat_group`.
+
+
+For example: labels from the two layers below can be drawn near each other, because they are in different repeat groups by default:
+
+```yaml
+roads:
+   major_roads:
+      filter: { kind: major_road }
+      draw:
+         text:
+            ...
+   minor_roads:
+      filter: { kind: minor_road }
+      draw:
+         text:
+            ...
+```
+
+However, labels in the sub-layers below won't repeat near each other, because they have been placed in the same `repeat_group`:
+
+```yaml
+roads:
+   draw:
+      text:
+         repeat_group: roads-fewer-labels
+   major_roads:
+      filter: { kind: major_road }
+      draw:
+         text:
+            ...
+   minor_roads:
+      filter: { kind: minor_road }
+      draw:
+         text:
+            ...
+```
+
 ####`size`
 Optional _number_, in `px`. Default is `32px`.
 
@@ -303,37 +401,6 @@ poi-icons:
         points:
             sprite: function() { return feature.kind }
             sprite_default: generic
-```
-
-####`collide`
-[[ES-only](https://github.com/tangrams/tangram-es)] Optional _boolean_. Defaults to `true`.
-
-Applies to `points` and `text`.
-
-A point or text draw group marked with `collide: false` will not be checked for any collisions.
-
-```yaml
-poi-icons:
-    draw:
-        points:
-           collide: false
-```
-
-####`transition`
-[[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time.
-Time values can be either in seconds (`s`) or milliseconds (`ms`).
-
-Applies to `points` and `text`. Sets the transition time from `hide` to `show`.
-
-A transition time of `0` results in an instantaneous transition between states.
-
-```yaml
-poi-icons:
-    draw:
-        points:
-           transition: 
-                [show, hide]: 
-                    time: .5s
 ```
 
 ####`style`
@@ -396,7 +463,7 @@ The above example will display an English label (name:en) when available, and wi
 ####`text_wrap`
 Optional _boolean_ or _int_, in characters. Default is 15.
 
-Enables text wrapping for labels. Wrapping is enabled by default for point lebals, and disabled for line labels.
+Enables text wrapping for labels. Wrapping is enabled by default for point labels, and disabled for line labels.
 
 *Note:* Explicit line break characters (`\n`) in label text will cause a line break, even if `text_wrap` is disabled.
 
@@ -417,6 +484,22 @@ draw:
     water:
         outline:
             tile_edges: true
+```
+
+####`transition`
+[[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time. `time` values can be either in seconds (`s`) or milliseconds (`ms`).
+
+Applies to `points` and `text`. Sets the transition time from `hide` to `show`.
+
+A transition time of `0` results in an instantaneous transition between states.
+
+```yaml
+poi-icons:
+    draw:
+        points:
+           transition:
+                [show, hide]:
+                    time: .5s
 ```
 
 ####`visible`
@@ -473,7 +556,7 @@ draw:
 ####`family`
 Optional _string_, naming a typeface. Sets the font-family of the label. Default is `Helvetica`.
 
-`family` can be any typeface available to the operating system.
+`family` can be any typeface available to the operating system. The default will be used as a fallback if the other specified families are not available.
 
 ####`fill`
 Optional _color_ or _stops_. Follows the specs of [color](draw.md#color). Default is `white`.
@@ -484,22 +567,44 @@ Sets the fill color of the label.
 font:
     fill: black
 ```
+```yaml
+font:
+    fill: [[14, white], [18, gray]]
+```
 
 ####`size`
-Optional _number_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
+Optional _number_ or _stops_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
+
+```yaml
+font:
+    family: Helvetica
+    size: 10px
+```
+
+```yaml
+font:
+    family: Helvetica
+    size: [[14, 12px], [16, 16px], [20, 24px]]
+```
 
 ####`stroke`
-Optional _{color, width}_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
+Optional _{color, width}_ or _stops_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
 
 Sets the stroke color and width of the label. Width is interpreted as pixels.
 
 ```yaml
 font:
     stroke: { color: white, width: 2 }
-
+```
+```yaml
 font:
     stroke: { color: [[10, gray], [15, white]], width: [[10, 1], [15, 2]] }
-
+```
+```yaml
+font:
+    stroke:
+        color: [[16, white], [18, red], [20, blue]]
+        width: [[14, 3px], [20, 8px]]
 ```
 
 ####`style`
