@@ -91,7 +91,7 @@ Sets the highest zoom level which will be requested from the datasource. At high
 sources:
     local:
         type: GeoJson
-        url: localhost:8000//tiles/{x}-{y}-{z}.json
+        url: //localhost:8000/tiles/{x}-{y}-{z}.json
         max_zoom: 15
 ```
 
