@@ -1,37 +1,57 @@
 *This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`draw`
-The `draw` element is a required element in the [layer](layers.md) and [sublayer](layers.md#sublayer) elements. It defines the beginning of a _draw group_. There can be only one `draw` group per `layer` or _sublayer_.
-
-####draw style
-A previously-defined _draw style_ must be named under a [draw](draw.md) group. It defines the beginning of a _draw block_.
-
-The name of the style must be either:
-
-- one of the four built-in _draw styles_: `polygons`, `lines`, `points`, or `text`.
-- the name of a _custom style_ defined in the [styles](styles.md) element.
-
-An example of using a built-in draw style:
+`draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer). It provides rules for drawing the features that match the _layer_ or _sublayer_ directly above it. These _draw rules_ are the sub-elements of the `draw` element, as in this example:
 ```yaml
+...
 layers:
     water:
         data: { source: osm }
         draw:
-            polygons:
+            a_draw_rule:
+                ...
+            another_draw_rule:
                 ...
 ```
+A `draw` element can specify multiple rules, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once with the rule "a_draw_rule" and once with the rule "another_draw_rule".
 
-An example of using a custom draw style:
+####draw rule
+The name of a _draw rule_ can be any string. The sub-elements of a _draw rule_ are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
+
+A _draw rule_ must specify the _style_ that will be used to draw a feature. It can do this in two ways:
+
+ 1. A _draw rule_ may contain a parameter called `style` whose value names a _style_ (either a built-in _style_ or one defined in the `styles` element of the scene file). For example:
+
+ ```yaml
+ ...
+ draw:
+     fancy_road_lines:
+         style: lines
+         ... # more parameters follow
+ ```
+ 2. If a _draw rule_ does not contain a `style` parameter, the rule's name is interpreted as the name of a _style_ (again, either a built-in _style_ or one from the `styles` element).
+
+ ```yaml
+ ...
+ draw:
+     lines:
+         ... # no 'style' parameter follows
+ ```
+
+The 2nd, shorthand syntax is the preferred way to specify a _style_, however an explicit `style` parameter is necessary sometimes. For example, to draw a feature using the _lines_ style twice, the `draw` element would need two _draw rules_ with different names, e.g.
 ```yaml
-layers:
-    water:
-        data: { source: osm }
-        draw:
-            fancywater:
-                ...
+...
+draw:
+    first_line:
+        style: lines
+        ... # more parameters follow
+    second_line:
+        style: lines
+        ... # more parameters follow
 ```
+(Note that two _draw rules_ both named "lines" would be invalid YAML)
 
-Rules defined in `draw` blocks will descend into any sublayers.
+If the _style_ specified by a _draw rule_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the rule will draw nothing.
 
 ## style parameters
 
@@ -82,9 +102,9 @@ draw:
 ```
 
 ####`centroid`
-Optional _boolean_, default is `false`. 
+Optional _boolean_, default is `false`.
 
-Applies to the `points` style. If true, draws points only at the centroid of a polygon. 
+Applies to the `points` style. If true, draws points only at the centroid of a polygon.
 
 ```yaml
 draw:
@@ -211,7 +231,7 @@ Moves the label into the tile if the label would otherwise cross a tile boundary
 ####`offset`
 Optional _[float x, float y]_ _array_ or _stops_, in `px`. No default.
 
-Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen. 
+Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen.
 
 For labels of line features, the offset follows the *orientation of the line*, so a -10px offset will move the label 10 pixels *above* the line ("up" relative to the line). For example, line label offsets are useful for placing labels on top of or underneath roads or administrative borders.
 
