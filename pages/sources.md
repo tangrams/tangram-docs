@@ -12,7 +12,7 @@ The source below is named `osm`:
 ```yaml
 sources:
     osm:
-        type: GeoJson
+        type: GeoJSON
         url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 ```
 
@@ -90,7 +90,7 @@ Sets the highest zoom level which will be requested from the datasource. At high
 ```yaml
 sources:
     local:
-        type: GeoJson
+        type: GeoJSON
         url: //localhost:8000/tiles/{x}-{y}-{z}.json
         max_zoom: 15
 ```
