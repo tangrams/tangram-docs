@@ -96,23 +96,7 @@ sources:
 ```
 
 ####`enforce_winding`
-Optional _boolean_. Default for tiled data sources is _false_; default for non-tiled data sources is _true_.
-
-Allows the default to be overridden, for cases where a tiled data source has inconsistent winding order, or for non-tiled sources which are known to be consistent (this can save a small amount of computation).
-
-If a data source has inconsistent winding order, it will manifest as missing vertical surfaces on buildings or other extruded elements.
-
-```yaml
-sources:
-   osm:
-        type: GeoJSON
-        url:  http://vector.someothertileservice.com/osm/all/{z}/{x}/{y}.json
-        enforce_winding: true # reverse the default, because this source has winding problems
-    schools:
-        type: GeoJSON
-        url: demos/data/school-districts-polygon.geojson
-        enforce_winding: false # default for non-tiled sources is true
-```
+*This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
 
 ####`scripts`
 Optional _[strings]_, specifying the URL of a JavaScript file.
