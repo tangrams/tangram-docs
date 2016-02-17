@@ -14,7 +14,8 @@ A `scene` object can be exposed by passing the scene's url to the `Tangram.leafl
 Many of the scene's properties may be accessed and changed on the fly with methods on this object.
 
 #### `config`
-This contains the JavaScript version of the [scene file](scene-file.md):
+This contains a deserialized, run-time JavaScript object version of the [scene file](scene-file.md). This is essentially the same as the scene file, but can be modified on the fly:
+
 ```javascript
 > scene.config
 <- Object {cameras: Object,
@@ -42,82 +43,49 @@ Each object contains sub-objects which correlate to each element's subelements a
            active: true}
 ```
 
-If changes are made to the `config` object, you must call `scene.updateConfig()` for them to take effect.
-
-####`scene.config.textures`
-The `textures` object lists all currently-loaded textures available in the scene. This list is loaded from the `textures` element in the scenefile, but may be modified on the fly. Modifications will not take efect until `scene.updateConfig()` is called.
-
-For instance, to change the url of a texture:
-
-```javascript
-  scene.config.textures.orbits.url = "http://..../image.png";
-  scene.updateConfig({ rebuild: true });
-```
-
-To add a new texture:
-
-```javascript
-var image = new document.createElement("image");
-...
-scene.config.textures.orbits.element = image;
-scene.updateConfig({ rebuild: true });
-
-// or
-
-var canvas = new document.createElement("canvas");
-...
-scene.config.textures.orbits.element = canvas;
-scene.updateConfig({ rebuild: true });
-
-// or
-
-var raw_data = { data: [], width: 500, height: 500 }
-...
-scene.config.textures.orbits.data = raw_data;
-scene.updateConfig({ rebuild: true });
-```
-
-#### `scene.selection.feature`
-Simple object-picking may be enabled by setting any layer's `interactive` option to `true`. This will enable Tangram's "feature selection" capability for objects in that layer.
-
-The properties of the feature at the current cursor location may be accessed through the `scene.selection.feature` object:
-
-```javascript
-> scene.selection.feature.properties
-<- Object {name: "1 New York Plaza", area: 9699, height: 195, id: 157001066}
-```
-
-This is accomplished by assigning a unique color to each feature onscreen and rendering the scene to an offscreen buffer. When queried, the `scene.selection` object checks the offscreen render at the current cursor position, and identifies the feature by its color.
+After changes are made to the `config` object, `scene.updateConfig()` will update the scene with the changes.
 
 #### `getActiveCamera()`
 Returns the active camera.
 
-#### `requestRedraw()`
-Requests an update to the drawn map. If `animated: true` is set, this happens once per frame automatically.
+#### `getFeatureAt(pixel)`
+Simple object-picking may be enabled by setting any layer's `interactive` option to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. Then, the properties of the top-most feature at a given pixel may be retrieved by passing the pixel's screenspace location to `getFeatureAt()`:
 
-#### `reload(scene_url)`
-Loads the specified scene by url and rebuilds the geometry.
+```javascript
+> var pixel = { x: event.clientX, y: event.clientY };
+> scene.getFeatureAt(pixel)
+<- Object {name: "1 New York Plaza", area: 9699, height: 195, id: 157001066}
+```
+
+This is accomplished by assigning a unique color to each feature onscreen and rendering the scene to an offscreen buffer. When queried, the `getFeatureAT()` checks the offscreen render at the given location, and identifies the feature by its color.
+
+#### `load(scene_url, base_path)`
+Loads the specified scene by url and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
+
+`scene_url` is the path to a scene file. Relative paths are assumed to be relative to the host url.
+
+`base_path` is an optional argument specifying a string to be prefixed to paths for resources needed to the scene file, such as images. If it is not present, the paths to these resources are presumed to be relative to the scene file.
 
 #### `rebuild()`
 Rebuilds the current scene from scratch.
 
+#### `requestRedraw()`
+Requests an update to the drawn map. If `animated: true` is set, this happens once per frame automatically.
+
 #### `screenshot()`
-This queues a screenshot request, returning a Promise that fulfills when the screenshot is available. (The screenshot must be "queued" because it cannot be captured immediately: we must ensure that the GL buffer is finished drawing, and then must capture the buffer contents just after rendering, before it is cleared by other operations.)
+This queues a screenshot request, returning a Promise that fulfills when the screenshot is available.
 
 The promise resolves with an object containing two properties:
 
 - url: a data URL of the Canvas contents, suitable for loading into an <img> or opening in a new tab/window
-- blob: a Blob of type image/png, suitable for saving to a file, either manually or with a third-party library such as FileSaver.js
+- blob: a Blob of type image/png, suitable for saving to a file, either manually or with a third-party library such as [FileSaver.js](https://github.com/eligrey/FileSaver.js/)
 
 ```javascript
-scene.screenshot().then(function(screenshot) {
-    // uses FileSaver.js: https://github.com/eligrey/FileSaver.js/
-    saveAs(screenshot.blob, 'tangram-' + (+new Date()) + '.png');
-});
+scene.screenshot().then(function(screenshot) { window.open(screenshot.url); });
 ```
 
 #### `setActiveCamera(_string_ camera)`
-Sets the active camera to the camera specified by name, as named in the scenefile.
+Sets the active camera to the camera specified by name, as named in the scene file.
 
 #### `setDataSource(_string_ name, _object_ config)`
 Loads a new `source` object (see `[sources](sources.md)`).
@@ -135,23 +103,21 @@ scene.setDataSource("dynamic_data", {type: 'GeoJSON', data: geojson_data });
 ```
 
 #### `updateConfig()`
-Re-parses the scene.config object and rebuilds the scene from scratch, updating data sources, reloading textures, and rebuilding geometry.
+Re-parses the `scene.config` object and redraws the scene, updating data sources and reloading textures. If `updateConfig({ rebuild: true })` is specified, geometry will also be rebuilt.
 
 ```javascript
 scene.updateConfig()
 ```
 
-#### `scene.view_complete`
-This is an event which fires when the view is in a "resting state", meaning new geometry is rendered, and no further tiles are loading/building. For example, when a scene is loaded, a view_complete event will fire when all tiles have loaded and the map renders. If the view is then zoomed in a level, another view_complete event will fire when the next zoom finishes rendering.
+#### `view_complete`
+This is an event which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading/building. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the map renders. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
 
 `view_complete` can be subscribed to like other scene events:
 
 ```javascript
 scene.subscribe({
     view_complete: function () {
-        console.log('scene view complete, rendered ' +
-            scene.render_count + ' primitives at: ' +
-            [scene.center.lng, scene.center.lat, scene.zoom].join('/'));
+        console.log('scene view complete');
     }
 });
 ```
