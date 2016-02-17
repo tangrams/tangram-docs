@@ -13,8 +13,15 @@ cameras:
         type: isometric
 ```
 
+It is also permissable to use the element name `camera` at the top level, if there is only a single camera in the scene:
+
+```yaml
+camera:
+    type: perspective
+```
+
 #### camera names
-Required _string_. Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
+Required _string_ (except in the case of [`camera`](cameras.md#camera)). Can be anything except the [reserved keywords](yaml.md#reserved-keywords). No default.
 
 ```yaml
 cameras:
