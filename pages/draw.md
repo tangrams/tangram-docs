@@ -188,7 +188,7 @@ Applies to the `text` style.
 ####`interactive`
 Optional _boolean_ or _function_ returning `true` or `false`. Default is `false`.
 
-Applies to all _draw styles_. When `true`, activates _Feature Selection_, allowing the feature to be queried via the [JavaScript API](Javascript-API.md).
+Applies to all _draw styles_. When `true`, activates _Feature Selection_, allowing the feature to be queried via the [JavaScript API](Javascript-API.md) (see [getFeatureAt](Javascript-API.md#getfeatureatpixel).)
 
 ```yaml
 draw:
