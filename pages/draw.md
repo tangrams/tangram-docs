@@ -60,7 +60,7 @@ Many style parameters, such as `color`, are shared among draw styles – others 
 ####`align`
 Optional _string_, one of `left`, `center`, `right`. Default is `center`, unless `anchor` is set (see below).
 
-Sets alignment of text for multi-line labels — see [`text_wrap`](draw.md#text-wrap).
+Sets alignment of text for multi-line labels — see [`text_wrap`](draw.md#text_wrap).
 
 ```yaml
 text:
