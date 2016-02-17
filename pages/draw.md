@@ -1,37 +1,57 @@
 *This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`draw`
-The `draw` element is a required element in the [layer](layers.md) and [sublayer](layers.md#sublayer) elements. It defines the beginning of a _draw group_. There can be only one `draw` group per `layer` or _sublayer_.
-
-####draw style
-A previously-defined _draw style_ must be named under a [draw](draw.md) group. It defines the beginning of a _draw block_.
-
-The name of the style must be either:
-
-- one of the four built-in _draw styles_: `polygons`, `lines`, `points`, or `text`.
-- the name of a _custom style_ defined in the [styles](styles.md) element.
-
-An example of using a built-in draw style:
+`draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer). It provides rules for drawing the features that match the _layer_ or _sublayer_ directly above it. These _draw rules_ are the sub-elements of the `draw` element, as in this example:
 ```yaml
+...
 layers:
     water:
         data: { source: osm }
         draw:
-            polygons:
+            a_draw_rule:
+                ...
+            another_draw_rule:
                 ...
 ```
+A `draw` element can specify multiple rules, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once with the rule "a_draw_rule" and once with the rule "another_draw_rule".
 
-An example of using a custom draw style:
+####draw rule
+The name of a _draw rule_ can be any string. The sub-elements of a _draw rule_ are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
+
+A _draw rule_ must specify the _style_ that will be used to draw a feature. It can do this in two ways:
+
+ 1. A _draw rule_ may contain a parameter called `style` whose value names a _style_ (either a built-in _style_ or one defined in the `styles` element of the scene file). For example:
+
+ ```yaml
+ ...
+ draw:
+     fancy_road_lines:
+         style: lines
+         ... # more parameters follow
+ ```
+ 2. If a _draw rule_ does not contain a `style` parameter, the rule's name is interpreted as the name of a _style_ (again, either a built-in _style_ or one from the `styles` element).
+
+ ```yaml
+ ...
+ draw:
+     lines:
+         ... # no 'style' parameter follows
+ ```
+
+The 2nd, shorthand syntax is the preferred way to specify a _style_, however an explicit `style` parameter is necessary sometimes. For example, to draw a feature using the _lines_ style twice, the `draw` element would need two _draw rules_ with different names, e.g.
 ```yaml
-layers:
-    water:
-        data: { source: osm }
-        draw:
-            fancywater:
-                ...
+...
+draw:
+    first_line:
+        style: lines
+        ... # more parameters follow
+    second_line:
+        style: lines
+        ... # more parameters follow
 ```
+(Note that two _draw rules_ both named "lines" would be invalid YAML)
 
-Rules defined in `draw` blocks will descend into any sublayers.
+If the _style_ specified by a _draw rule_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the rule will draw nothing.
 
 ## style parameters
 
@@ -82,14 +102,28 @@ draw:
 ```
 
 ####`centroid`
-Optional _boolean_, default is `false`. 
+Optional _boolean_, default is `false`.
 
-Applies to the `points` style. If true, draws points only at the centroid of a polygon. 
+Applies to the `points` style. If true, draws points only at the centroid of a polygon.
 
 ```yaml
 draw:
     points:
         centroid: true
+```
+
+####`collide`
+[[ES-only](https://github.com/tangrams/tangram-es)] Optional _boolean_. Defaults to `true`.
+
+Applies to `points` and `text`.
+
+A point or text draw group marked with `collide: false` will not be checked for any collisions.
+
+```yaml
+poi-icons:
+    draw:
+        points:
+           collide: false
 ```
 
 ####`color`
@@ -174,15 +208,30 @@ draw:
         join: round
 ```
 
+####`miter_limit`
+Optional _integer_. Default is 3.
+
+Applies to `lines` with a `join` parameter set to "miter". When the length of a miter join is longer than the ratio of the `miter_limit` to the width of the line, that join is converted from a "miter" to a "bevel". This prevents excessively "spiky" corners on sharply curved lines.
+
+Higher values allow sharper corners. Lower values result in more beveled corners, which produces a comparatively softer line shape.
+
+```yaml
+draw:
+   lines:
+      color: red
+      width: 5px
+      miter_limit: 2
+```
+
 ####`move_into_tile`
 Optional _boolean_. Default is _true_.
 
 Moves the label into the tile if the label would otherwise cross a tile boundary. This should be set to _false_ if using `anchor`/`align` functionality for text + icon combinations – otherwise, text can get out of sync with expected position.
 
 ####`offset`
-Optional _[float x, float y]_ array, in `px`. No default.
+Optional _[float x, float y]_ _array_ or _stops_, in `px`. No default.
 
-Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen. 
+Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen.
 
 For labels of line features, the offset follows the *orientation of the line*, so a -10px offset will move the label 10 pixels *above* the line ("up" relative to the line). For example, line label offsets are useful for placing labels on top of or underneath roads or administrative borders.
 
@@ -216,6 +265,15 @@ roads:
             offset: [0px, -12px]
 ```
 
+Using _stops_ allows different `offset` values at different zooms. This can be used in conjunction with _anchor_ to position text and sprites adjacent to each other correctly when the sprite's size is interpolating across zooms.
+
+```yaml
+roads:
+    draw:
+        text:
+            offset: [[13, [0, 6px]], [15, [0, 9px]]]
+```
+
 ####`order`
 Required _integer_ or _function_. No default.
 
@@ -237,7 +295,7 @@ layers:
 ####`outline`
 Optional element. Defines the start of an outline style block.
 
-Applies to `polygons` and `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
+Applies to `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
 
 
 ####`priority`
@@ -259,6 +317,66 @@ Here's one way to set a label's priority based on the area of the labeled featur
 draw:
     text:
         priority: function() { return Math.min(10 - Math.floor(feature.area / 1000), 10); }
+```
+
+####`repeat_distance`
+Optional _number_, in `px`. Default is `256px`.
+
+Applies to `text`. Specifies minimum distance between labels in the same `repeat_group`, measuring from the center of each label. Only applies per tile – labels may still be drawn closer than the `repeat_distance` across a tile boundary.
+
+```yaml
+draw:
+   text:
+      repeat_distance: 100px # label can repeat every 100 pixels
+      ...
+```
+
+```yaml
+draw:
+   text:
+       repeat_distance: 0px # labels can repeat anywhere
+      ...
+```
+
+####`repeat_group`
+Optional _string_. No default.
+
+Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set of `draw` rules (eg `text_source`, `style`, etc.) belong to the same `repeat_group`.
+
+
+For example: labels from the two layers below can be drawn near each other, because they are in different repeat groups by default:
+
+```yaml
+roads:
+   major_roads:
+      filter: { kind: major_road }
+      draw:
+         text:
+            ...
+   minor_roads:
+      filter: { kind: minor_road }
+      draw:
+         text:
+            ...
+```
+
+However, labels in the sub-layers below won't repeat near each other, because they have been placed in the same `repeat_group`:
+
+```yaml
+roads:
+   draw:
+      text:
+         repeat_group: roads-fewer-labels
+   major_roads:
+      filter: { kind: major_road }
+      draw:
+         text:
+            ...
+   minor_roads:
+      filter: { kind: minor_road }
+      draw:
+         text:
+            ...
 ```
 
 ####`size`
@@ -305,37 +423,6 @@ poi-icons:
             sprite_default: generic
 ```
 
-####`collide`
-[[ES-only](https://github.com/tangrams/tangram-es)] Optional _boolean_. Defaults to `true`.
-
-Applies to `points` and `text`.
-
-A point or text draw group marked with `collide: false` will not be checked for any collisions.
-
-```yaml
-poi-icons:
-    draw:
-        points:
-           collide: false
-```
-
-####`transition`
-[[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time.
-Time values can be either in seconds (`s`) or milliseconds (`ms`).
-
-Applies to `points` and `text`. Sets the transition time from `hide` to `show`.
-
-A transition time of `0` results in an instantaneous transition between states.
-
-```yaml
-poi-icons:
-    draw:
-        points:
-           transition: 
-                [show, hide]: 
-                    time: .5s
-```
-
 ####`style`
 Optional _string_, naming a style defined in the [`styles`](styles.md) block.
 
@@ -351,11 +438,11 @@ draw:
 ```
 
 ####`text_source`
-Optional _string_, or _function_. Default is `name`.
+Optional _string_, _function_, or _array_. Default is `name`.
 
 Applies to `text`. Defines the source of the label text.
 
-When the value is a string, it must name a feature property to use as the label text. For example, the default `name` value will draw labels showing the names of features (e.g. any that have a `name` field). An example of an alternative feature property label is to label buildings with their heights:
+When the value is a _string_, it must name a feature property to use as the label text. For example, the default `name` value will draw labels showing the names of features (e.g. any that have a `name` field). An example of an alternative feature property label is to label buildings with their heights:
 
 ```yaml
 draw:
@@ -364,7 +451,7 @@ draw:
         ...
 ```
 
-When the value is a function, the return value will be used as the text of the label. For example, to label buildings as 'high' and 'low':
+When the value is a _function_, the return value will be used as the text of the label. For example, to label buildings as 'high' and 'low':
 
 ```yaml
 draw:
@@ -381,10 +468,22 @@ draw:
         ...
 ```
 
+When the value is an _array_, each array element is evaluated as if it was a `text_source` value (meaning each element can be either a _string_ value that specifies a feature property by name, or a _function_ that returns displayable label text). The first _non-null_ evaluated source in the array is used as the label text.
+
+The primary use case here is to support preferred language for text labels. For example:
+
+```yaml
+draw:
+    text:
+        text_source: [name:en, name]
+```
+
+The above example will display an English label (name:en) when available, and will fall back to the default local name when not available.
+
 ####`text_wrap`
 Optional _boolean_ or _int_, in characters. Default is 15.
 
-Enables text wrapping for labels. Wrapping is enabled by default for point lebals, and disabled for line labels.
+Enables text wrapping for labels. Wrapping is enabled by default for point labels, and disabled for line labels.
 
 *Note:* Explicit line break characters (`\n`) in label text will cause a line break, even if `text_wrap` is disabled.
 
@@ -405,6 +504,22 @@ draw:
     water:
         outline:
             tile_edges: true
+```
+
+####`transition`
+[[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time. `time` values can be either in seconds (`s`) or milliseconds (`ms`).
+
+Applies to `points` and `text`. Sets the transition time from `hide` to `show`.
+
+A transition time of `0` results in an instantaneous transition between states.
+
+```yaml
+poi-icons:
+    draw:
+        points:
+           transition:
+                [show, hide]:
+                    time: .5s
 ```
 
 ####`visible`
@@ -461,7 +576,7 @@ draw:
 ####`family`
 Optional _string_, naming a typeface. Sets the font-family of the label. Default is `Helvetica`.
 
-`family` can be any typeface available to the operating system.
+`family` can be any typeface available to the operating system. The default will be used as a fallback if the other specified families are not available.
 
 ####`fill`
 Optional _color_ or _stops_. Follows the specs of [color](draw.md#color). Default is `white`.
@@ -472,22 +587,44 @@ Sets the fill color of the label.
 font:
     fill: black
 ```
+```yaml
+font:
+    fill: [[14, white], [18, gray]]
+```
 
 ####`size`
-Optional _number_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
+Optional _number_ or _stops_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
+
+```yaml
+font:
+    family: Helvetica
+    size: 10px
+```
+
+```yaml
+font:
+    family: Helvetica
+    size: [[14, 12px], [16, 16px], [20, 24px]]
+```
 
 ####`stroke`
-Optional _{color, width}_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
+Optional _{color, width}_ or _stops_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
 
 Sets the stroke color and width of the label. Width is interpreted as pixels.
 
 ```yaml
 font:
     stroke: { color: white, width: 2 }
-
+```
+```yaml
 font:
     stroke: { color: [[10, gray], [15, white]], width: [[10, 1], [15, 2]] }
-
+```
+```yaml
+font:
+    stroke:
+        color: [[16, white], [18, red], [20, blue]]
+        width: [[14, 3px], [20, 8px]]
 ```
 
 ####`style`

@@ -12,7 +12,7 @@ The source below is named `osm`:
 ```yaml
 sources:
     osm:
-        type: GeoJson
+        type: GeoJSON
         url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 ```
 
@@ -79,7 +79,7 @@ The `url` may require an access token:
 ```yaml
 mapbox:
     type: MVT
-    url: http://{s:[a,b,c,d]}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1IjoiYmNhbXBlciIsImJiOiJWUmh3anY0In0.1fgSTNWpQV8-5sBjGbBzGg
+    url: http://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=...
 ```
 
 #### `max_zoom`
@@ -90,29 +90,13 @@ Sets the highest zoom level which will be requested from the datasource. At high
 ```yaml
 sources:
     local:
-        type: GeoJson
-        url: localhost:8000//tiles/{x}-{y}-{z}.json
+        type: GeoJSON
+        url: //localhost:8000/tiles/{x}-{y}-{z}.json
         max_zoom: 15
 ```
 
 ####`enforce_winding`
-Optional _boolean_. Default for tiled data sources is _false_; default for non-tiled data sources is _true_.
-
-Allows the default to be overridden, for cases where a tiled data source has inconsistent winding order, or for non-tiled sources which are known to be consistent (this can save a small amount of computation).
-
-If a data source has inconsistent winding order, it will manifest as missing vertical surfaces on buildings or other extruded elements.
-
-```yaml
-sources:
-   osm:
-        type: GeoJSON
-        url:  http://vector.someothertileservice.com/osm/all/{z}/{x}/{y}.json
-        enforce_winding: true # reverse the default, because this source has winding problems
-    schools:
-        type: GeoJSON
-        url: demos/data/school-districts-polygon.geojson
-        enforce_winding: false # default for non-tiled sources is true
-```
+*This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
 
 ####`scripts`
 Optional _[strings]_, specifying the URL of a JavaScript file.
