@@ -635,7 +635,7 @@ Currently supports only `italic`.
 ####`transform`
 Optional _string_, one of `capitalize`, `uppercase`, or `lowercase`. Sets a text transform style. No default.
 
-- `capitalize` will make the first letter in each word uppercase. `uppercase` and `lowercase` will change all letters to be uppercase and lowercase, respectively.
+`capitalize` will make the first letter in each word uppercase. `uppercase` and `lowercase` will change all letters to be uppercase and lowercase, respectively.
 
 ####`weight`
 Optional _string_ or _number_. Strings may be one of `lighter`, `normal`, `bold`, or `bolder`; integers may be any CSS-style font weight from `100`-`900`. Default is `normal`.
