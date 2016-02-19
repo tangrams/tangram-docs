@@ -80,9 +80,11 @@ text:
 
 If `anchor` is set but `align` is not, then `align` will be set to an appropriate default value:
 
-- `anchor`: `center` | `top` | `bottom` => `align`: `center`
-- `anchor`: `left` | `top-left` | `bottom-left` => `align`: `right`
-- `anchor`: `right` | `top-right` | `bottom-right` => `align`: `left`
+|If `anchor` is...|`align` defaults to...|
+|-----------------|----------------------|
+|`center`<br>`top`<br>`bottom`|`center`|
+|`left`<br>`top-left`<br>`bottom-left`|`right`|
+|`right`<br>`top-right`<br>`bottom-right`|`left`|
 
 ```yaml
 text:
