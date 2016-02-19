@@ -113,7 +113,7 @@ draw:
 ```
 
 ####`collide`
-[[ES-only](https://github.com/tangrams/tangram-es)] Optional _boolean_. Defaults to `true`.
+Optional _boolean_. Defaults to `true`.
 
 Applies to `points` and `text`.
 
