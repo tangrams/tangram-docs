@@ -92,9 +92,17 @@ The style of the text is also specified in the scene file.
 #### `text` parameters
 Styles which are extensions of the `text` style can take the following special parameters:
 
-- `text_source` - Defaults to the feature's "name" property, accepts other parameter names or a function.
-- `font` - Sets font's typeface, style, size, color, and outline.
-- `priority` - Sets the label priority of the feature.
+- [`font`](draw.md#font-parameters): Sets font's typeface, style, size, color, and outline.
+- [`text_source`](draw.md#text_source): Determines label text, defaults to the feature's `name` property.
+- [`priority`](draw.md#priority): Sets the priority of the label relative to other labels and points/sprites.
+- [`align`](draw.md#align): Controls text alignment.
+- [`anchor`](draw.md#anchor): Controls text's relative positioning.
+- [`offset`](draw.md#offset): Controls text's position offset.
+- [`text_wrap`](draw.md#text_wrap): Sets number of characters before text wraps to multiple lines.
+- [`repeat_distance`](draw.md#repeat_distance): Sets the distance beyond which label text may repeat.
+- [`repeat_group`](draw.md#repeat_group): Optional grouping mechanism for fine-grained control over text repetition.
+- [`collide`](draw.mdcollide): Sets whether label collides with other labels or points/sprites.
+- [`move_into_tile`](draw.md#move_into_tile): Increases number of labels that will display, by moving some to fit within tile bounds (JS-only)
 
 See the [draw](draw.md#text) entry.
 
