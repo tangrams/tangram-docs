@@ -37,3 +37,7 @@ These pages list the objects and parameters of the scene file, as well as their 
 - [layers](pages/layers.md)  
 - [draw](pages/draw.md)  
 - [shaders](pages/shaders.md)  
+
+### JavaScript API
+
+The [JavaScript API](pages/Javascript-API.md) allows the real-time access and manipulation of the 3D scene and its properties.
