@@ -49,12 +49,15 @@ After changes are made to the `config` object, `scene.updateConfig()` will updat
 Returns the active camera.
 
 #### `getFeatureAt(pixel)`
-Simple object-picking may be enabled by setting any layer's `interactive` option to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. Then, the properties of the top-most feature at a given pixel may be retrieved by passing the pixel's screenspace location to `getFeatureAt()`:
+Queries a given layer scene by pixel coordinates and returns a promise containing any features at those pixel coordinates. Simple object-picking may be enabled by setting any layer's `interactive` option to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. Then, the properties of the top-most feature at a given pixel may be retrieved by passing the pixel's screenspace location to `getFeatureAt()`:
 
 ```javascript
-> var pixel = { x: event.clientX, y: event.clientY };
-> scene.getFeatureAt(pixel)
-<- Object {name: "1 New York Plaza", area: 9699, height: 195, id: 157001066}
+> map.on('click', function() {
+>    var pixel = { x: event.clientX, y: event.clientY };
+>    layer.scene.getFeatureAt(pixel).then(function(features) {
+>       console.log(features.feature);
+>    });
+>});
 ```
 
 This is accomplished by assigning a unique color to each feature onscreen and rendering the scene to an offscreen buffer. When queried, the `getFeatureAT()` checks the offscreen render at the given location, and identifies the feature by its color.
