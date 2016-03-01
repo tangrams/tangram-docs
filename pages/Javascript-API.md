@@ -49,13 +49,15 @@ After changes are made to the `config` object, `scene.updateConfig()` will updat
 Returns the active camera.
 
 #### `getFeatureAt(pixel)`
-Queries a given layer scene by pixel coordinates and returns a promise containing any features at those pixel coordinates. Simple object-picking may be enabled by setting any layer's `interactive` option to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. Then, the properties of the top-most feature at a given pixel may be retrieved by passing the pixel's screenspace location to `getFeatureAt()`:
+Simple object-picking may be enabled by setting any layer's `interactive` parameter to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. These objects can then be queried with the `getFeatureAt()` function, which takes pixel coordinates within the map view in the form `{ x, y }`, and returns a promise containing the feature (if any) at those pixel coordinates (if multiple features are drawn at that location, only the top-most one is returned).
+
+The promise resolves with a `selection` object containing `{ feature, changed }` properties. If `feature` is present, `feature.properties` will contain its properties from the original data source; if `feature` is undefined, no feature was found. The `changed` flag indicates if the selected feature changed since the last query.
 
 ```javascript
 > map.on('click', function() {
 >    var pixel = { x: event.clientX, y: event.clientY };
->    layer.scene.getFeatureAt(pixel).then(function(features) {
->       console.log(features.feature);
+>    layer.scene.getFeatureAt(pixel).then(function(selection) {
+>       console.log(selection.feature, selection.changed);
 >    });
 >});
 ```
