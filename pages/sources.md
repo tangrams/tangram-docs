@@ -13,7 +13,7 @@ The source below is named `osm`:
 sources:
     osm:
         type: GeoJSON
-        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 ```
 
 #### type
@@ -34,16 +34,18 @@ Required _string_. Specifies the source's _URL_. No default.
 sources:
     osm:
         type: MVT
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
-The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Various tilesources may have differing URL schemes. Use of `https://` (SSL) is recommended when possible, to avoid browser security warnings: in cases where the page hosting the map is loaded securely via `https://`, most browsers require other resources including tiles to be as well).
+The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Use of `https://` (SSL) is recommended when possible, to avoid browser security warnings: in cases where the page hosting the map is loaded securely via `https://`, most browsers require other resources including tiles to be as well).
+
+Various tilesources may have differing URL schemes, and use of `http://` may still be useful for local development, for example:
 
 ```yaml
 sources:
     local:
         type: GeoJSON
-        url:  //localhost:8000/tiles/{x}-{y}-{z}.json
+        url: http://localhost:8000/tiles/{x}-{y}-{z}.json
 ```
 
 An untiled datasource will have a simple _URL_ to a single file:
@@ -52,7 +54,7 @@ An untiled datasource will have a simple _URL_ to a single file:
 sources:
     overlay:
         type: GeoJSON
-        url:  overlay.json
+        url: overlay.json
 ```
 
 Relative _URLs_ are relative to the scene file's location. In the above example, "overlay.json" should be in the same directory as the scene file.
@@ -62,10 +64,10 @@ Depending on the datasource, you may be able to request specific layers from the
 
 ```yaml
 # all layers
-http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 
 # building layer only
-http://vector.mapzen.com/osm/buildings/{z}/{x}/{y}.json
+https://vector.mapzen.com/osm/buildings/{z}/{x}/{y}.json
 ```
 
 ##### curly braces
@@ -77,7 +79,7 @@ The `url` may require an access token:
 ```yaml
 mapbox:
     type: MVT
-    url: http://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=...
+    url: https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=...
 ```
 
 #### `max_zoom`
@@ -89,7 +91,7 @@ Sets the highest zoom level which will be requested from the datasource. At high
 sources:
     local:
         type: GeoJSON
-        url: //localhost:8000/tiles/{x}-{y}-{z}.json
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
         max_zoom: 15
 ```
 
@@ -102,7 +104,7 @@ Optional _[strings]_, specifying the URL of a JavaScript file.
 These scripts will be loaded before the data is processed so that they are available to the `transform` function.
 
 ```yaml
-scripts: [ 'http://url.com/js/script.js', 'local_script.js']
+scripts: [ 'https://url.com/js/script.js', 'local_script.js']
 ```
 
 ####`extra_data`
@@ -157,17 +159,17 @@ transform: |
 # Mapzen tiles in TopoJSON format
 mapzen:
     type: TopoJSON
-    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+    url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
 
 # Mapzen tiles in GeoJSON format
 mapzen:
     type: GeoJSON
-    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+    url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 
 # Mapzen tiles in Mapbox Vector Tile format
 mapzen:
     type: MVT
-    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+    url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
 All of our demos were created using the [Mapzen Vector Tiles](https://github.com/mapzen/vector-datasource) service, which hosts tiled [OpenStreetMap](http://openstreetmap.org) data.
