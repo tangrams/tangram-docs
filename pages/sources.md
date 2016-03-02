@@ -37,9 +37,7 @@ sources:
         url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
-For the JS version of Tangram _URLs_ can be "schemeless," meaning without the "http:" at the beginning – this ensures that they will be loaded correctly under both http and https.
-
-The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Various tilesources may have differing URL schemes.
+The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Various tilesources may have differing URL schemes. Use of `https://` (SSL) is recommended when possible, to avoid browser security warnings: in cases where the page hosting the map is loaded securely via `https://`, most browsers require other resources including tiles to be as well).
 
 ```yaml
 sources:
