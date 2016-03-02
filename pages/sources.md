@@ -30,14 +30,14 @@ As of v0.2, Tangram supports either tiled or untiled datasources.
 #### url
 Required _string_. Specifies the source's _URL_. No default.
 
-_URLs_ should be "schemeless," meaning without the "http:" at the beginning – this ensures that they will be loaded correctly under both http and https.
-
 ```yaml
 sources:
     osm:
         type: MVT
-        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
+
+For the JS version of Tangram _URLs_ can be "schemeless," meaning without the "http:" at the beginning – this ensures that they will be loaded correctly under both http and https.
 
 The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Various tilesources may have differing URL schemes.
 
