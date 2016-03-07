@@ -132,7 +132,7 @@ Sets the reference point for the `position` parameter:
 
 - `world`: sets x and y in _[lat, lng]_ and z in `m` from the ground
 - `camera`: sets x and y in `px` from the camera center, and z in `m` from the camera
-- `ground`: sets x and y in `px` from the camera center, and z in `m` from the ground
+- `ground`: sets x and y in `px` from the point on the ground in the center of the current view, and z in `m` from the ground
 
 ```yaml
 light1:

@@ -124,10 +124,10 @@ Origin can be specified as relative to three different spaces: *world*, *camera*
     ambient: .3
     diffuse: 1.
     specular: .2
-    ``` 
+    ```
 [ ![](images/ex-pointlight-01.png) ](http://tangrams.github.io/tangram-docs/?lights/ex-pointlight-01.yaml)
-   
-- *Ground space* is the same as camera space, but the height of the light is specified relative to the ground:
+
+- In *ground space*, the position is relative to the point on the ground in the center of the current view:
 
     ```yaml
     type: point
