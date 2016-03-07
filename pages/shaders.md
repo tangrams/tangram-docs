@@ -128,12 +128,12 @@ Optional parameter. Defines the start of a `blocks` block.
 
 The `block` element has six optional sub-elements. Each can contain shader code for manipulating a particluar part of the shading pipeline:
 
-    * `global`: define global functions, usable by the other `block` elements
-    * `position`: modify the position of a vertex
-    * `width`: modify the width of a feature drawn with the `lines` draw style
-    * `normal`: modify the normal of a face, per-pixel
-    * `color`: modify the color of a pixel before lighting
-    * `filter`: modify the color of a pixel after lighting
+* `global`: define global functions, usable by the other `block` elements
+* `position`: modify the position of a vertex
+* `width`: modify the width of a feature drawn with the `lines` draw style
+* `normal`: modify the normal of a face, per-pixel
+* `color`: modify the color of a pixel before lighting
+* `filter`: modify the color of a pixel after lighting
 
 The _shader blocks_ can be defined in any order, but they will be injected in this order into the _vertex_ and/or _fragment_ shader before their compilation.
 
