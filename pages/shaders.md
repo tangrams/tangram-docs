@@ -126,13 +126,13 @@ See also: [built-in uniforms](shaders.md#built-in-uniforms) and [built-in varyin
 ## `blocks`
 Optional parameter. Defines the start of a `blocks` block.
 
-The `block` element has six optional sub-elements. Each can contain shader code for manipulating a particluar part of the shading pipeline:
+The `blocks` element has six optional sub-elements. Each can contain shader code for manipulating a particluar part of the shading pipeline:
 
-* `global`: define global functions, usable by the other `block` elements
+* `global`: define global functions, usable by the other shader blocks
 * `position`: modify the position of a vertex
-* `width`: modify the width of a feature drawn with the `lines` draw style
-* `normal`: modify the normal of a face, per-pixel
-* `color`: modify the color of a pixel before lighting
+* `width`: modify the width of a feature drawn with the `lines` style
+* `normal`: modify the normal of a face (either per-vertex or per-pixel depending on lighting settings)
+* `color`: modify the color of a vertex or pixel (depending on lighting settings) before lighting
 * `filter`: modify the color of a pixel after lighting
 
 The _shader blocks_ can be defined in any order, but they will be injected in this order into the _vertex_ and/or _fragment_ shader before their compilation.
@@ -173,7 +173,7 @@ blocks:
 #### `width`
 Optional element. Defines the start of a `width` block, written in GLSL, which is injected into the _vertex_ shader.
 
-This block has access to the `width` variable for the `lines` draw style. `width` is a `float`.
+This block has access to the `width` variable for the `lines` style. `width` is a `float`.
 
 ```yaml
 blocks:
@@ -181,7 +181,7 @@ blocks:
 ```
 
 #### `normal`
-Optional element. Defines the start of a `normal` block, written in GLSL, which is injected into the _fragment_ shader.
+Optional element. Defines the start of a `normal` block, written in GLSL, which is injected into the _fragment_ shader when `lighting: fragment`, or into the _vertex_ shader when `lighting: vertex` (it is not injected when `lighting: false`). `fragment` lighting allows for each pixel's normal to be modified before lighting is applied, while `vertex` lighting only enables each vertex's normal to be modified before lighting is applied (providing for less flexibility but increased performance).
 
 This block has access to the `normal` variable, which takes the form `vec3(x, y, z)`.
 
@@ -193,9 +193,9 @@ blocks:
 ```
 
 #### `color`
-Optional element. Defines the start of a `color` block, written in GLSL, which is injected into the _fragment_ shader.
+Optional element. Defines the start of a `color` block, written in GLSL, which is injected into the _fragment_ shader when `lighting: fragment`, or into the _vertex_ shader when `lighting: vertex` (it is not injected when `lighting: false`).
 
-This block has access to the `color` variable, which takes the form `vec4(r, g, b, a)`. Lighting is applied after this `color` is set.
+This block has access to the `color` variable, which takes the form `vec4(r, g, b, a)`. Lighting is applied after this `color` is set (either per-vertex or per-fragment, as with the `normal` block described above).
 
 ```yaml
 blocks:
@@ -205,7 +205,7 @@ blocks:
 #### `filter`
 Optional element. Defines the start of a `filter` block, written in GLSL, which is injected into the _fragment_ shader.
 
-This block has access to the `color` variable after lighting has been applied – it takes the form `vec4(r, g, b, a)`. 
+This block has access to the `color` variable after lighting has been applied – it takes the form `vec4(r, g, b, a)`. It is always injected and applied as the final per-pixel coloring step, regardless of `lighting` setting.
 
 ```yaml
 blocks:
