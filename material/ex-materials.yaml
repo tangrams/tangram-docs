@@ -119,7 +119,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: 0
+                order: function() { return feature.sort_key; }
                 color: '#ddeeee'
     landuse:
         data:
@@ -128,7 +128,7 @@ layers:
         draw:
             polygons:
                 style: grass
-                order: 1
+                order: function() { return feature.sort_key; }
                 color: '#aaffaa'
                 interactive: true
 
@@ -139,7 +139,7 @@ layers:
         draw:
             polygons:
                 style: water
-                order: 2
+                order: function() { return feature.sort_key; }
                 color: '#88bbee'
 
     roads:
@@ -148,7 +148,7 @@ layers:
             layer: roads
         draw:
             lines:
-                order: 3
+                order: function() { return feature.sort_key; }
                 color: gray    
                 width: 8
         highway:
@@ -159,10 +159,6 @@ layers:
                     style: roads
                     color: '#cc6666'
                     width: 12
-                # outline:
-                #     style: lines
-                #     color: grey
-                #     width: 3
         tunnel:
             filter:
                 is_tunnel: yes
@@ -205,7 +201,7 @@ layers:
         draw:
             polygons:
                 style: rock
-                order: 4
+                order: function() { return feature.sort_key; }
                 color: |
                     function () {
                         var h = feature.height || 20;
