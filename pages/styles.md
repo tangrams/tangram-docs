@@ -21,7 +21,7 @@ Required _string_, can be anything. No default.
 
 A custom `style` must specify either a `base` or `mix` parameter, or both.
 
-Defines a new custom style. 
+Defines a new custom style.
 ```yaml
 styles:
     buildings:
@@ -173,13 +173,30 @@ styles:
 For more, see [textures#texture](textures.md#texture).
 
 ####`texcoords`
-Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `texture` objects in combination with the `mapping` parameter – for more, see [textures](textures.md).
+Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates,
+for use with `texture` objects in combination with the `mapping` parameter – for more, see [textures](textures.md).
+This option only affects `polygons` and `lines` styles. Default is `false`.
 
 ```yaml
 styles:
-    monsters:
-        base: points
+    building:
+        base: polygons
         texcoords: true
+```
+
+When any [material](https://github.com/tangrams/tangram-docs/blob/gh-pages/pages/materials.md)
+with mapping `uv` is set, the option will be set to `true`.
+
+```yaml
+styles:
+    building:
+        base: polygons
+        texcoords: false
+        material:
+            diffuse:
+                texture: grid
+                mapping: uv # will default texcoords to true for the style `building`
+                            # and generate texture coordinates for the polygons
 ```
 
 ####`url`
