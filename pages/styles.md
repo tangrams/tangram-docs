@@ -173,9 +173,7 @@ styles:
 For more, see [textures#texture](textures.md#texture).
 
 ####`texcoords`
-Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates,
-for use with `texture` objects in combination with the `mapping` parameter – for more, see [textures](textures.md).
-This option only affects `polygons` and `lines` styles. Default is `false`.
+Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `texture` objects in combination with the `mapping` parameter – for more, see [textures](textures.md). This option only affects `polygons` and `lines` styles. Default is `false`.
 
 ```yaml
 styles:
@@ -184,8 +182,7 @@ styles:
         texcoords: true
 ```
 
-When any [material](https://github.com/tangrams/tangram-docs/blob/gh-pages/pages/materials.md)
-with mapping `uv` is set, the option will be set to `true`.
+When any [material](https://github.com/tangrams/tangram-docs/blob/gh-pages/pages/materials.md) with mapping `uv` is set, the option will be set to `true`.
 
 ```yaml
 styles:
