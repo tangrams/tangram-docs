@@ -220,19 +220,4 @@ u_speed = 2.5;
 u_color = vec3(0.5, 1.5, 0.0);
 ```
 
-The following are default uniforms present on the _vertex_ and _fragment_ shaders:
-
-```glsl
-uniform mat4 u_model;
-uniform mat4 u_modelView;
-uniform mat3 u_normalMatrix;
-
-uniform vec2 u_resolution;
-uniform vec2 u_aspect; // aspect ratio of the viewport
-uniform vec2 u_map_position; // the center of the map, in meters from (0,0)
-uniform vec2 u_tile_origin; // the SW corner of the tile, in meters from (0,0)
-
-uniform float u_meters_per_pixel;
-uniform float u_map_zoom;
-uniform float u_time;
-```
+Tangram provides a set of [default uniforms](shaders.md#built-in-uniforms) that are useful for common shader-based calculations.
