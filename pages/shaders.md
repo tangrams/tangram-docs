@@ -255,18 +255,11 @@ The shading system includes a number of parameters and variables which are made 
 The following are built-in uniforms present in the _vertex_ and _fragment_ shaders, and can be accessed in any of the custom shader blocks:
 
 ```glsl
-uniform mat4 u_model;
-uniform mat4 u_modelView;
-uniform mat3 u_normalMatrix;
-
-uniform float u_time;
-uniform vec2 u_resolution;
-uniform float u_device_pixel_ratio; // window.devicePixelRatio
-
-uniform float u_meters_per_pixel;
 uniform vec3 u_tile_origin;         // .xy is SW corner of tile in meters from Null Island (0,0), .z is zoom of tile
 uniform vec3 u_map_position;        // .xy is map center in meters from Null Island (0,0), .z is current zoom
-
+uniform float u_meters_per_pixel;   // # of Mercator-projection meters for each pixel at the current map zoom
+uniform vec2 u_resolution;          // pixel resolution of viewport (in device/"real" pixels, not CSS logical pixels)
+uniform float u_time;               // # of seconds since the scene started rendering
 ```
 
 ####built-in varyings
