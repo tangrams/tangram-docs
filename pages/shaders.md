@@ -121,7 +121,7 @@ u_speed = 2.5;
 u_color = vec3(0.5, 1.5, 0.0);
 ```
 
-See also: [built-in uniforms](shaders.md#built-in-uniforms) and [built-in varyings](shaders.md#built-in-varyings).
+See also: [built-in uniforms](shaders.md#built-in-uniforms).
 
 ## `blocks`
 Optional parameter. Defines the start of a `blocks` block.
@@ -251,7 +251,7 @@ Setting `#define` flags for each extension allows shader authors to take advanta
 
 The shading system includes a number of parameters and variables which are made available to the _vertex_ and _fragment_ shaders automatically in certain situations, to make defining materials and writing shader code easier.
 
-####built-in uniforms
+#### built-in uniforms
 The following are built-in uniforms present in the _vertex_ and _fragment_ shaders, and can be accessed in any of the custom shader blocks:
 
 ```glsl
@@ -262,35 +262,12 @@ uniform vec2 u_resolution;          // pixel resolution of viewport (in device/"
 uniform float u_time;               // # of seconds since the scene started rendering
 ```
 
-####built-in varyings
-"Varyings" are GLSL variables similar to uniforms which allow fragments to access vertex data, interpolated between vertices at the point of the fragment.
+#### built-in property accessors
+Tangram includes functions for accessing common properties in shaders:
 
-The following _varyings_ are passed from the _vertex_ to the _fragment_ shader, but *should not be used directly* because they have unpredictable behavior on some devices. Instead, use the wrappers that we have created:
-
-```glsl
-varying vec4 v_position; // local coordinates in meters from the center of the screen
-```
-Instead of `v_position`, use `position`
-```glsl
-varying vec3 v_normal;
-```
-Instead of `v_normal`, use `worldNormal()`
-```glsl
-varying vec4 v_color;
-```
-Instead of `v_color`, use `color`
-```glsl
-varying vec4 worldPosition();  // global coordinates in meters from the web mercator origin (-180,85.051129)
-```
-Instead of `worldPosition()`, use `worldPosition()`
-
-If texture coordinates are used, the `v_texcoord` varying is defined:
-
-```glsl
-#if defined(TEXTURE_COORDS)
-varying vec2 v_texcoord;
-#endif
-```
+- `modelPosition()`: returns a `vec4` of the current vertex's position in a coordinate space local to the tile being rendered. Each tile has a unit length (on each X and Y side) of `1`, but this function will return values outside of the range `[0, 1]` due to unclipped geometry (e.g. extends past tile bounds), buildings taller than a unit cube, etc. Available in the *vertex shader only*.
+- `worldPosition()`: returns `vec4` of the current vertex or pixel's position in the scale of Web Mercator-projected meters. However, by default, this value is *wrapped* at an interval (defined by `TANGRAM_WORLD_POSITION_WRAP`) to preserve precision at high zoom levels (this is necessary for per-pixel operations such as procedurally generated textures). The wrapping will preserve the Web Mercator scale, but not the absolute coordinates. Wrapping can be disabled by setting `TANGRAM_WORLD_POSITION_WRAP: false` in the style's `defines` section (under `shaders`). Available in both vertex and fragment shaders.
+- `worldNormal()`: returns a `vec3` of the current vertex or pixel's surface direction, known as its normal vector, oriented in world space. Available in both vertex and fragment shaders.
 
 ## material parameters
 
