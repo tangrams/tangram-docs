@@ -1,3 +1,5 @@
+*This is an overview of Tangram's styling system. For a complete technical reference of the custom style-creation system, see [styles](styles.md), and for all the technical details of drawing with those styles, see [draw](draw.md).*
+
 Tangram currently has four built-in _draw styles_: `polygons`, `lines`, `points`, and `text`. Each draw style displays data in a different way, and some of them require specific data types and properties.
 
 Draw styles are referenced in two places in the scene file: when defining custom [styles](styles.md) and again in [draw](draw.md) groups.
@@ -11,10 +13,10 @@ The `polygons` draw style tessellates and extrudes vector shapes into 3D geometr
 The `lines` draw style can turn either polygonal or line data into lines.
 
 #### `points`
-The `points` draw style draws a square at a point, and can fill the point with either a customizable dot or a `sprite`. It can work with point data, lines, or polygons.
+The `points` draw style draws a square at a point, and can fill the point with either a customizable dot or a `sprite`. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the `[priority](draw.md#priority)` draw parameter.
 
 #### `text`
-The `text` draw style draws a rectangle at a point, and paints it with a texture it generates automatically based on its input datasource. It can work with point, line, or polygon data.
+The `text` draw style draws a rectangle at a point, and paints it with a texture it generates automatically based on its input datasource. It can work with point, line, or polygon data. Text labels will "collide" with each other, with only the winner being drawn, determined by the `[priority](draw.md#priority)` draw parameter.
 
 These _draw styles_ are used as the foundation for all custom styling in Tangram. When defining a style, they are explicitly referenced under the style name with the `base` parameter:
 
@@ -24,7 +26,7 @@ styles:
         base: polygons
 ```
 
-And when writing an inline-style under a `layer`, they are referenced in _draw groups_:
+And when writing an inline style under a `layer`, they are referenced in _draw groups_:
 
 ```yaml
 roads:
@@ -78,6 +80,8 @@ If the point is used to draw a dot, the size and color of this circle can be spe
 
 Points styles have access to a variety of special uniforms and parameters.
 
+`points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the `[priority](draw.md#priority)` draw parameter.
+
 ## text
 The `text` style is similar to the `sprites` style, in that it builds a rectangle at a point. However, instead of being colored with a custom texture, this style builds its own texture, containing text.
 
@@ -88,9 +92,17 @@ The style of the text is also specified in the scene file.
 #### `text` parameters
 Styles which are extensions of the `text` style can take the following special parameters:
 
-- `text_source` - Defaults to the feature's "name" property, accepts other parameter names or a function.
-- `font` - Sets font's typeface, style, size, color, and outline.
-- `priority` - Sets the label priority of the feature.
+- [`font`](draw.md#font-parameters): Sets font's typeface, style, size, color, and outline.
+- [`text_source`](draw.md#text_source): Determines label text, defaults to the feature's `name` property.
+- [`priority`](draw.md#priority): Sets the priority of the label relative to other labels and points/sprites.
+- [`align`](draw.md#align): Controls text alignment.
+- [`anchor`](draw.md#anchor): Controls text's relative positioning.
+- [`offset`](draw.md#offset): Controls text's position offset.
+- [`text_wrap`](draw.md#text_wrap): Sets number of characters before text wraps to multiple lines.
+- [`repeat_distance`](draw.md#repeat_distance): Sets the distance beyond which label text may repeat.
+- [`repeat_group`](draw.md#repeat_group): Optional grouping mechanism for fine-grained control over text repetition.
+- [`collide`](draw.mdcollide): Sets whether label collides with other labels or points/sprites.
+- [`move_into_tile`](draw.md#move_into_tile): Increases number of labels that will display, by moving some to fit within tile bounds (JS-only)
 
 See the [draw](draw.md#text) entry.
 

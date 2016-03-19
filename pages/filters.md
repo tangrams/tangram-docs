@@ -1,8 +1,8 @@
-**Filters** are used to apply styling rules to specific parts of your data. Filters may be used on two kinds of geojson objects: `FeatureCollections` and `Feature` `properties`.
+**Filters** are used to apply styling rules to specific parts of your data. Filters may be used on two kinds of GeoJSON objects: `FeatureCollections` and `Feature` `properties`.
 
 ## FeatureCollection
 
-Say you have a geojson map tile structured like this:
+Say you have a GeoJSON map tile structured like this:
 
 ``` yaml
 {"buildings": {"type": "FeatureCollection", "features": [...] } }
@@ -32,7 +32,7 @@ layers:
 
 These are used to filter by `properties` of `Feature` objects inside a `FeatureCollection`.
 
-Example json data:
+Example JSON data:
 
 ``` yaml
 "type": "FeatureCollection",

@@ -40,12 +40,12 @@ styles:
                         return bri * mix(vec3(1.0), rgb, sat);
                     }
                 filter: |
-                    vec3 pos = v_world_position.xyz*0.05;
+                    vec3 pos = worldPosition().xyz*0.05;
                     color.xyz = hsb2rgb( random(abs(floor(pos))) , .5, .8 );
                     
 sources:
     osm:
-        type: TopoJSONTiles
+        type: TopoJSON
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 
 layers:

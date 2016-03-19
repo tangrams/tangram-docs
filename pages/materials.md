@@ -109,13 +109,13 @@ material:
 
 Optional _number_ or _2D vector_. `number` or `[x,y]`. Defaults to `[1,1]`.
 
-Sets a scaling value for the texture.
+Sets a scaling value for the texture. Does not work with `uv` mapping.
 
 ```yaml
 material:
     diffuse:
         texture: ./material/rock.jpg
-        mapping: uv
+        mapping: planar
         scale: 2.0
 ```
 

@@ -4,7 +4,7 @@ The Tangram scene file filters data in two ways: with top-level **layer filters*
 
 ## Layer filters
 
-Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layer`](layer.md) object allows you to split the data by layer, by matching against the layer name.
+Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layers`](layers.md) object allows you to split the data by layer, by matching against the layer name.
 
 ```yaml
 layers:
@@ -15,7 +15,7 @@ layers:
         style: ...
 ```
 
-Specifying `layer: roads` in the [`data`](data.md) block matches this GeoJSON object:
+Specifying `layer: roads` in the [`data`](layers.md#data) block matches this GeoJSON object:
 
 ```json
 {"roads":
@@ -36,7 +36,7 @@ layers:
 
 ## Feature filters
 
-Once a top-level `layer` filter has been applied, feature-level `filter` objects can be defined to further narrow down the data of interest and refine the styles applied to the data.
+Once a top-level `layer` filter has been applied, feature-level [`filter`](layers.md#filter) objects can be defined to further narrow down the data of interest and refine the styles applied to the data.
 
 ```yaml
 layers:
@@ -155,17 +155,6 @@ filter: function() { return false; }
 
 #### Keyword properties
 
-The keyword `$zoom` matches the current zoom level of the map. It can be used with the `min` and `max` functions.
-
-```yaml
-filter: { $zoom: 14 }
-
-filter: { $zoom: { min: 10 } }  # matches zooms 10 and up
-
-filter:
-    $zoom: { min: 12, max: 15 } # matches zooms 12-14
-```
-
 The keyword `$geometry` matches the feature's geometry type, for cases when a FeatureCollection includes more than one type of kind of geometry. Valid geometry types are:
 
 - `point`: matches `Point`, `MultiPoint`
@@ -173,9 +162,37 @@ The keyword `$geometry` matches the feature's geometry type, for cases when a Fe
 - `polygon`: matches `Polygon`, `MultiPolygon`
 
 ```yaml
-filter: { $geometry: polygon }          # matches polygons only
+filter: { $geometry: polygon }                      # matches polygons only
 
-filter: { $geometry: [point, line] }    # matches points and lines, but not polygons
+filter: { $geometry: [point, line] }                # matches points and lines, but not polygons
+
+filter: function() { return $geometry === 'line' }  # matches lines only
+```
+
+The keyword `$layer` matches the feature's layer name, for cases when a data layer includes more than one source layer. In the case below, a data layer is created from two source layers, which can then be separated again by layer for styling:
+
+```yaml
+labels:
+    data: { source: osm, layer: [places, pois] }
+    draw:
+        ...
+    pois-only:
+        filter: { $layer: pois }            # matches features from the "pois" layer only
+        draw:
+            ...
+```
+
+The keyword `$zoom` matches the current zoom level of the map. It can be used with the `min` and `max` functions.
+
+```yaml
+filter: { $zoom: 14 }
+
+filter: { $zoom: { min: 10 } }              # matches zooms 10 and up
+
+filter:
+    $zoom: { min: 12, max: 15 }             # matches zooms 12-14
+
+filter: function() { return $zoom <= 10 }   # matches zooms 10 and below
 ```
 
 #### Filter functions
@@ -184,7 +201,7 @@ The filter functions `min` and `max` are equivalent to `>=` and `<` in a JavaScr
 
 ```yaml
 filter:
-    area: { max: 10000 } }      # matches areas up to 1000 sq meters
+    area: { max: 1000 } }      # matches areas up to 1000 sq meters
 
 filter:
     height: { min: 70 } }       # matches heights 70 and up

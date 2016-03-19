@@ -13,9 +13,13 @@ lights:
         diffuse: 1.
         specular: .2
 
+scene:
+    background:
+        color: black
+        
 sources:
     osm:
-        type: TopoJSONTiles
+        type: TopoJSON
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 
 layers:

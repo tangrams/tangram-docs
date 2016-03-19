@@ -7,13 +7,18 @@ The `scene` element is an optional top-level element in a Tangram scene file. It
 - `animated`
 
 #### `background`
-Optional _color. Default is `[0., 0., 0.]`.
+Optional block that can be used to set the map's background color, using a `color` property.
+
+
+##### `color`
+Optional _color_. Default is `[0., 0., 0.]`.
 
 Specifies the color that will be drawn where no features are drawn.
 
 ```yaml
 scene:
-    background: "#2956B2"
+    background:
+        color: white
 ```
 
 #### animated
@@ -25,5 +30,5 @@ Animated shaders will trigger redraws by default, but certain other kinds of ani
 
 ```yaml
 scene:
-    background: "#2956B2"
+    animated: true
 ```

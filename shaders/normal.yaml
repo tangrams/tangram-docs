@@ -46,7 +46,7 @@ styles:
         shaders:
             blocks:
                 normal: |
-                    vec3 pos = v_world_position.xyz*0.1;
+                    vec3 pos = worldPosition().xyz*0.1;
                     normal.xyz += vec3( cos(pos.x+u_time)+
                                         cos(pos.x*0.5+u_time*2.0),
                                         sin(pos.y*2.0+u_time*0.4)*0.54+
@@ -57,7 +57,7 @@ styles:
                     
 sources:
     osm:
-        type: TopoJSONTiles
+        type: TopoJSON
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 
 layers:

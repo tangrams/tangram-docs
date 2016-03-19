@@ -25,7 +25,7 @@ element:
     parameter1: value # not allowed, parameter name is repeated
 ```
 
-This also means that there's no concept of object order in a YAML document. Conflicts may be resolved differently at different times, and you can't rely on document order to resolve them:
+Conflicts may be resolved differently at different times, and you can't rely on document order to resolve them:
 
 ```yaml
 # only one camera can be active at a time – here, you can't be sure which one it will be.
@@ -47,11 +47,11 @@ In this documentation, we refer to both parameters and elements as "objects".
 
 ## object syntax
 
-YAML supports two kinds of syntax when writing nested objects: _whitespace syntax_ and _bracket syntax_.
+YAML supports two kinds of syntax when writing nested objects: _block syntax_ and _flow syntax_.
 
-####whitespace syntax
+####block syntax
 
-_Whitespace syntax_ requires each level of an object to be indented with spaces – any number of spaces or tabs is allowed, as long as it's consistent throughout the file. It is relatively easy to read, though it tends to result in longer files.
+_Block syntax_ requires each level of an object to be indented with spaces – any number of spaces or tabs is allowed, as long as it's consistent throughout the file. It is relatively easy to read, though it tends to result in longer files.
 
 ```yaml
 element:
@@ -67,8 +67,8 @@ _Note:_ if you mix spaces and tabs, the parser will throw an error like this one
 ```
 YAMLException {name: "YAMLException", reason: "bad indentation of a mapping entry"}
 ``` 
-#### bracket syntax
-Here is the same object as the first example above, written in the more compact _bracket syntax_:
+#### flow syntax
+Here is the same object as the first example above, written in the more compact _flow syntax_:
 ```yaml
 element1: { subelement1: { parameter1: value1, parameter2: value2 }, subelement2: { parameter1: value1, parameter2: value2 } }
 ```
@@ -87,7 +87,7 @@ For further examples, check out our many fine [demos](https://github.com/tangram
 
 Lists are written differently in each of the above syntax styles.
 
-#### whitespace lists
+#### block lists
 ```yaml
 element:
     parameter:
@@ -96,13 +96,13 @@ element:
         - item 3
 ```
 
-####bracket lists
+####flow lists
 ```yaml
 element: { parameter: [ item1, item2, item3 ] }
 ```
 ## syntax mixing
 
-_Whitespace syntax_ can enclose _bracket syntax_, but not the other way around – once you start an object in _bracket syntax_, you have to finish it before you can move back into _whitespace syntax_.
+_Block syntax_ can enclose _flow syntax_, but not the other way around – once you start an object in _flow syntax_, you have to finish it before you can move back into _block syntax_.
 
 ```yaml
 element:
@@ -143,18 +143,19 @@ Our "stops" data structure is a way to define a relationship between two ranges 
 
 `[[12, 3], [14, 6], [16, 9]]`
 
-The first value in each pair is always a _zoom level_. The second value in each pair is interpreted contextually, with all of the constraints of the particular parameter. At other zoom levels, values will be interpolated linearly.
+The first value in each pair is always a _zoom level_. The second value in each pair is interpreted in the context of the current parameter. Stops may be used with all color and distance parameters, including `width`, `focal_length`, `fov`, and `z`.
 
-For instance, in a `width` block, if no units are specified, each pair is interpreted as `[zoom, meters]`. The above example will define a value of 3m at zoom 12, 6m at zoom 14, and 9m at zoom 16. At zoom 13, the value will be 4.5m.
+For instance, in a `width` block, if no units are specified, each pair is interpreted as `[zoom, meters]`, because `meters` is the default unit of `width`. The above example will define a value of 3m at zoom 12, 6m at zoom 14, and 9m at zoom 16.
 
-Stops may be used in `color`, `width`, `focal_length`, and `fov`.
+At intermediate zoom levels, values will be interpolated linearly, with behavior depending on draw style and parameter. In the above example, at zoom 13, the value will be 4.5m, and at zoom 13.5, the value will be 5.25m. However, for all `color` values, the values are only be updated when tile geometry is built – typically at whole-number zoom changes.
+
+Outside of the range specified by the stops, the values are capped by the highest and lowest values in the range – so in the above example, the value at zoom 9 is also 3m, and the value at zoom 18 is still 9m.
 
 ```yaml
 color: [10, [0.3, 0.4, 0.3], [14, [0.5, 0.825, 0.5]]]
 width: [[13, 0px], [14, 3px], [16, 5px], [18, 10px]]
 ```
 
-Note that stops define settings to be used when tile geometry is built. Typically, this only happens when the tile is loaded, at a tile integer change (or sometimes halfway between integer zooms) – so incremental zooming won't cause style changes until the next tile is loaded.
 
 ## reserved keywords
 
@@ -191,7 +192,7 @@ labels:
 
 ## multiline strings
 
-One of the reasons we chose YAML as our scene file format is its ability to handle multi-line strings with a minimum of fuss. In _whitespace syntax_ only, start an parameter's value with a "pipe" character (`|`) followed by a newline, and everything that isn't indented _less_ after that will be treated as a single string value, newlines included:
+One of the reasons we chose YAML as our scene file format is its ability to handle multi-line strings with a minimum of fuss. In _block syntax_ only, start an parameter's value with a "pipe" character (`|`) followed by a newline, and everything that isn't indented _less_ after that will be treated as a single string value, newlines included:
 
 ```yaml
 element:

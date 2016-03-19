@@ -51,7 +51,7 @@ styles:
                         return st;
                     }
                 filter: |
-                    //vec2 pos = v_world_position.xy*0.01;
+                    //vec2 pos = worldPosition().xy*0.01;
                     vec2 pos = getConstantPos(gl_FragCoord.xy)*4.0;
                     float b = getBrightness(v_color.rgb);
                     color.rgb = v_color.rgb*grid(pos,10.,0.05+b*0.05)*(1.0-b);
@@ -84,7 +84,7 @@ styles:
                         return st;
                     }
                 filter: |
-                    //vec2 pos = v_world_position.xy*0.01;
+                    //vec2 pos = worldPosition().xy*0.01;
                     vec2 pos = getConstantPos(gl_FragCoord.xy)*4.0;
                     float pct = clamp(cross(fract(pos),0.2),0.0,1.0);
                     color.rgb = mix(vec3(0.051,0.071,0.278),vec3(0.654,0.897,1.000),pct);
@@ -107,7 +107,7 @@ styles:
                     color.rgb = mix(vec3(0.051,0.071,0.278)*0.8,vec3(0.239,0.431,0.718)*0.6,pct)*0.5;
 sources:
     osm:
-        type: TopoJSONTiles
+        type: TopoJSON
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 layers:
     earth:
@@ -213,7 +213,9 @@ layers:
         draw:
             text:
                 font:
-                    typeface: Italic 12px Helvetica
+                    style: italic
+                    size: 12px
+                    family: Helvetica
                     fill: [.9,.9,1.]
                     stroke: { color: black , width: 3 }
     places:
@@ -222,6 +224,8 @@ layers:
         draw:
             text:
                 font:
-                    typeface: Bold 18px Helvetica
+                    weight: bold
+                    size: 18px
+                    family: Helvetica
                     fill: black
                     stroke: { color: white , width: 5 }

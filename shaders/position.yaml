@@ -3,17 +3,17 @@ cameras:
         type: isometric
 
 lights:
-    light1:
-        type: directional
-        direction: [0, 1, -.5]
-        diffuse: .5
-        ambient: .5
+    # light1:
+    #     type: directional
+    #     direction: [0, 1, -.5]
+    #     diffuse: .5
+    #     ambient: .5
     light2:
         type: point
-        position: [0, 0, 300]
+        position: [0, 0, 500]
         origin: ground
-        ambient: .3
-        diffuse: .3
+        ambient: .5
+        diffuse: 1.
 
 styles:
     buildings:
@@ -25,18 +25,18 @@ styles:
         shaders:
             blocks:
                 position: |
-                    vec3 pos = v_world_position.xyz*0.1;
-                    if(position.z > 0.){
-                        position.xyz += vec3(cos(pos.x+u_time)*5.,
-                                         sin(pos.y+u_time)*5.,
-                                         sin(pos.x+u_time)*10.+
-                                         cos(pos.y+u_time)*5. );
+                    vec3 pos = worldPosition().xyz;
+                    if (position.z > 0.) {
+                        position.xyz += vec3(
+                            cos(pos.x+u_time*5.),
+                            sin(pos.y+u_time*5.),
+                            sin(pos.x+u_time))*2.;
                     }
                     
                     
 sources:
     osm:
-        type: TopoJSONTiles
+        type: TopoJSON
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 
 layers:
@@ -71,6 +71,8 @@ layers:
         data:
             source: osm
             layer: roads
+        filter:
+            not: {kind: [ferry]}
         draw:
             lines:
                 order: function() { return feature.sort_key; }

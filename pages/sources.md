@@ -12,40 +12,40 @@ The source below is named `osm`:
 ```yaml
 sources:
     osm:
-        type: GeoJSONTiles
-        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+        type: GeoJSON
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 ```
 
 #### type
 Required _string_. Sets the type of the datasource. No default.
 
-Five options are currently supported:
+Three options are currently supported:
 
-- `TopoJSONTiles`
-- `TopoJSON` (untiled)
-- `GeoJSONTiles`
-- `GeoJSON` (untiled)
+- `TopoJSON`
+- `GeoJSON`
 - `MVT` (Mapbox Vector Tiles)
+
+As of v0.2, Tangram supports either tiled or untiled datasources.
 
 #### url
 Required _string_. Specifies the source's _URL_. No default.
-
-_URLs_ should be "schemeless," meaning without the "http:" at the beginning – this ensures that they will be loaded correctly under both http and https.
 
 ```yaml
 sources:
     osm:
         type: MVT
-        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
-Other datasources may have different URL schemes:
+The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Use of `https://` (SSL) is recommended when possible, to avoid browser security warnings: in cases where the page hosting the map is loaded securely via `https://`, most browsers require other resources including tiles to be as well).
+
+Various tilesources may have differing URL schemes, and use of `http://` may still be useful for local development, for example:
 
 ```yaml
 sources:
     local:
-        type: GeoJSONTiles
-        url:  //localhost:8000/tiles/{x}-{y}-{z}.json
+        type: GeoJSON
+        url: http://localhost:8000/tiles/{x}-{y}-{z}.json
 ```
 
 An untiled datasource will have a simple _URL_ to a single file:
@@ -54,7 +54,7 @@ An untiled datasource will have a simple _URL_ to a single file:
 sources:
     overlay:
         type: GeoJSON
-        url:  overlay.json
+        url: overlay.json
 ```
 
 Relative _URLs_ are relative to the scene file's location. In the above example, "overlay.json" should be in the same directory as the scene file.
@@ -64,10 +64,10 @@ Depending on the datasource, you may be able to request specific layers from the
 
 ```yaml
 # all layers
-http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 
 # building layer only
-http://vector.mapzen.com/osm/buildings/{z}/{x}/{y}.json
+https://vector.mapzen.com/osm/buildings/{z}/{x}/{y}.json
 ```
 
 ##### curly braces
@@ -79,49 +79,97 @@ The `url` may require an access token:
 ```yaml
 mapbox:
     type: MVT
-    url: http://{s:[a,b,c,d]}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1IjoiYmNhbXBlciIsImJiOiJWUmh3anY0In0.1fgSTNWpQV8-5sBjGbBzGg
+    url: https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=...
 ```
 
 #### `max_zoom`
-Optional _integer_. No default.
+Optional _integer_. Default is _18_.
 
 Sets the highest zoom level which will be requested from the datasource. At higher zoom levels, the data from this zoom level will continue to be displayed.
 
 ```yaml
 sources:
     local:
-        type: GeoJSONTiles
-        url: localhost:8000//tiles/{x}-{y}-{z}.json
-        max-zoom: 15
+        type: GeoJSON
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+        max_zoom: 15
+```
+
+####`enforce_winding`
+*This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
+
+####`scripts`
+Optional _[strings]_, specifying the URL of a JavaScript file.
+
+These scripts will be loaded before the data is processed so that they are available to the `transform` function.
+
+```yaml
+scripts: [ 'https://url.com/js/script.js', 'local_script.js']
+```
+
+####`extra_data`
+Optional _YAML_, defining custom data to be used in post-processing.
+
+This data is made available to `transform` functions as the second parameter. `extra_data` could also be manipulated dynamically at run-time, via the `scene.config` variable (the serialized form of the scene file); for example, `scene.config.sources.source_name.extra_data` could be assigned an arbitrary JSON object, after which `scene.rebuild()` could be called to re-process the tile data.
+
+```yaml
+extra_data:
+    Broadway: Wide St.
+    Wall St.: Tall St.
+    Water St.: Wine St.
+
+transform: |
+    function (data, extra_data) {
+        // manipulate data with extra_data
+        var keys = Object.keys(extra_data);
+        if (data.roads) {
+            data.roads.features.forEach(function(feature) {
+                if (extra_data[feature.properties.name]) {
+                    feature.properties.name = extra_data[feature.properties.name]; // selectively rename features
+                }
+            });
+        }
+        return data;
+    }
+```
+
+####`transform`
+Optional _function_.
+
+This allows the data to be manipulated *after* it is loaded but *before* it is styled. Transform functions are useful for custom post-processing, either where you may not have direct control over the source data, or where you have a dynamic manipulation you would like to perform that incorporates other data separate from the source. The `transform` function is passed a `data` object, with a GeoJSON FeatureCollection assigned to each layer name, e.g. `data.buildings` would provide data from the `buildings` layer, with individual features accessible in `data.buildings.features`. 
+
+```yaml
+transform: |
+    function (data) {
+        // manipulate data
+        if (data.roads) {
+            data.roads.features.forEach(function(feature) {
+                if (feature.properties.name) {
+                    feature.properties.name += ' test!'; // add a string to each feature name
+                }
+            });
+        }
+        return data;
+    }
 ```
 
 ## examples
 
 ```yaml
+# Mapzen tiles in TopoJSON format
+mapzen:
+    type: TopoJSON
+    url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+
+# Mapzen tiles in GeoJSON format
+mapzen:
+    type: GeoJSON
+    url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+
+# Mapzen tiles in Mapbox Vector Tile format
 mapzen:
     type: MVT
-    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
-
-mapzen-geojson:
-    type: GeoJSONTiles
-    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
-
-local:
-    type: GeoJSONTiles
-    url: http://localhost:8080/all/{z}/{x}/{y}.json
-
-mapzen-topojson:
-    type: TopoJSON
-    url: http://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
-
-osm:
-    type: GeoJSONTiles
-    url: http://tile.openstreetmap.us/vectiles-all/{z}/{x}/{y}.json
-
-mapbox:
-    type: MVT
-    url: http://{s:[a,b,c,d]}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1IjoiYmNhbXBlciIsImEiOiJWUmh3anY0In0.1fgSTNWpQV8-5sBjGbBzGg
-    max_zoom: 15
+    url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```
 
 All of our demos were created using the [Mapzen Vector Tiles](https://github.com/mapzen/vector-datasource) service, which hosts tiled [OpenStreetMap](http://openstreetmap.org) data.

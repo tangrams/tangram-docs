@@ -20,8 +20,8 @@ stylename:
         ambient: 0
         specular: 0
 ```
-![](../material/diffuse-surface.png)
-![](../material/diffuse.png)
+![](images/diffuse-surface.png)
+![](images/diffuse.png)
 
 ###`ambient`
 This is is the color of the object in the presence of ambient light. By default, the ambient color will be the same as the `diffuse` value, unless otherwise specified.
@@ -43,8 +43,8 @@ stylename:
         specular: 0
         shininess: 0.2
 ```
-![](../material/ambient-surface.png)
-![](../material/ambient.png)
+![](images/ambient-surface.png)
+![](images/ambient.png)
 
 
 ###`specular`
@@ -68,11 +68,11 @@ stylename:
         specular: 0.5
         shininess: 2.0
 ```
-![](../material/specular-surface.png)
-![](../material/specular.png)
+![](images/specular-surface.png)
+![](images/specular.png)
 
 
-![](../material/shininess.png)
+![](images/shininess.png)
 
 
 ###`emission`
@@ -93,15 +93,15 @@ stylename:
         ambient: 0
         diffuse: 0.0
 ```
-![](../material/emission-surface.png)
-![](../material/emission.png)
+![](images/emission-surface.png)
+![](images/emission.png)
 
 
 ## Textures
 
 Material properties can be controlled with pixel-level detail when used with ***texture maps***. 
 
-![](../material/earth.png)
+![](images/earth.png)
 
 Textures are loaded by setting the `texture` parameter to the url of an image:
 
@@ -117,7 +117,7 @@ When using a texture, you must specify one of four `mapping` modes, which determ
 ### `mapping: uv`
 UV mapping is related to the size and proportions of the geometry. With this method, a bounding box is applied to contiguous surfaces, and texture coordinates are applied to the corners of the bounding box. In the following example, [this grid image](grid.jpg) is applied to each polygon. On larger shapes, the UVs are tiled, resulting in a tiled image.
 
-![](../material/grid-small.jpg)
+![](images/grid-small.jpg)
 
 ```yaml
 material:
@@ -125,7 +125,7 @@ material:
         texture: ./material/grid.jpg
         mapping: uv
 ```
-[ ![](../material/ex-uv.png) ](http://tangrams.github.io/tangram-docs/?material/ex-uv.yaml#19/40.70533/-74.00975)
+[ ![](images/ex-uv.png) ](http://tangrams.github.io/tangram-docs/?material/ex-uv.yaml#19/40.70533/-74.00975)
 
 ###`mapping: planar`
 Planar mapping uses only 2D world coordinates. As you can see the pattern is constant across surfaces that face up but is stretched on the sides of geometries.
@@ -138,7 +138,7 @@ material:
         scale: 0.01
 ```
 
-[ ![](../material/ex-planar.png) ](http://tangrams.github.io/tangram-docs/?material/ex-planar.yaml#19/40.70533/-74.00975)
+[ ![](images/ex-planar.png) ](http://tangrams.github.io/tangram-docs/?material/ex-planar.yaml#19/40.70533/-74.00975)
 
 ###`mapping: triplanar`
 This is similar to `planar`, but along all three world-space axes. Where a face does not point directly along one axis, the result will be a blend of more than one axis; thus it is computationally more expensive.
@@ -151,14 +151,14 @@ material:
         scale: 0.01
 ```
 
-[ ![](../material/ex-triplanar.png) ](http://tangrams.github.io/tangram-docs/?material/ex-triplanar.yaml#19/40.70533/-74.00975)
+[ ![](images/ex-triplanar.png) ](http://tangrams.github.io/tangram-docs/?material/ex-triplanar.yaml#19/40.70533/-74.00975)
 
 ###`mapping: spheremap`
 A "spherical environment map", or "spheremap", is an unusual kind of mapping which is dependent on camera position. It uses a texture to color faces depending on their relative angle to the camera. You can think of a spheremap as a hemisphere over the scene, on which the texture has been painted – each polygon in the scene is colored depending on the part of the texture at which it points.
 
 In this example, all polygons which face straight toward the camera will be given the color at the center of the spheremap's texture: white. All polys which face south will be tinted blue, east green, west red, north yellow, and so on.
 
-![](../material/sem.jpg)
+![](images/sem.jpg)
 
 ```yaml
 material:
@@ -167,7 +167,7 @@ material:
         mapping: spheremap
 ```
 
-[ ![](../material/ex-spheremap.png) ](http://tangrams.github.io/tangram-docs/?material/ex-spheremap.yaml#19/40.70533/-74.00975)
+[ ![](images/ex-spheremap.png) ](http://tangrams.github.io/tangram-docs/?material/ex-spheremap.yaml#19/40.70533/-74.00975)
 
 ###Other properties
 Each `texture` can also have the following properties:
@@ -187,7 +187,7 @@ The `material` implementation allows you to modify these normals with a "normal 
 
 Here is an example of a normal map, produced with a third-party 3D application:
 
-![](../material/rock-small.jpg)
+![](images/rock-small.jpg)
 
 And here is the normal map assigned with the `uv` mapping to the building layer:
 
@@ -201,7 +201,7 @@ material:
     specular: 0
 ```
 
-[ ![](../material/ex-normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-normals.yaml#19/40.70533/-74.00975)
+[ ![](images/ex-normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-normals.yaml#19/40.70533/-74.00975)
 
 #Composition
 
@@ -266,7 +266,7 @@ shaders:
                 }
 
         normal: |
-            normal += snoise(vec3(v_world_position.xy*0.08,u_time*.5))*0.02;
+            normal += snoise(vec3(worldPosition().xy*0.08,u_time*.5))*0.02;
 ```
 
-[ ![](../material/ex-dynamic-normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-dynamic-normals.yaml)
+[ ![](images/ex-dynamic-normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-dynamic-normals.yaml)
