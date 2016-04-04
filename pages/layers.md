@@ -83,23 +83,6 @@ layers:
                 draw: ...
 ```
 
-#### `properties`
-Optional parameter. Defines the beginning of a _properties block_. The `properties` block has one kind of sub-element: _custom properties_, which are a key-value pair. Keys can be any string.
-
-Custom properties may be defined here for use in filter and shader effects. These properties may be accessed through the JavaScript API, or through filter and style functions with the `properties` keyword, as a convenient way to allow interactivity.
-
-```yaml
-buildings:
-    properties:
-        min-height: 30
-        color: [.3, .3, .5]
-    draw:
-        polygons:
-            filter: function() { return feature.height > properties.min-height; }
-            color: function () { return properties.color; }
-```
-
-
 ## `data` parameters
 
 ####`source`
