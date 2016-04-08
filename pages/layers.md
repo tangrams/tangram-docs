@@ -1,7 +1,7 @@
 *This is the technical documentation for the "layers" block in Tangram's scene file. For a conceptual overview of the way Tangram applies styles to data, see the [Filters Overview](Filters-Overview.md) and the [Styles Overview](Styles-Overview.md).*
 
 ####`layers`
-The `layers` element is a required top-level element in the [scene file](scene-file.md). It has only one kind of sub-element: a *layer name*, which defines individual layers with a layer filter.
+The `layers` element is a required top-level element in the [scene file](Scene-file.md). It has only one kind of sub-element: a *layer name*, which defines individual layers with a layer filter.
 
 ```yaml
 layers:
