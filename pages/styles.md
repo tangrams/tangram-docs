@@ -1,7 +1,7 @@
 *This is the technical documentation for Tangram's `styles` object. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`styles`
-The `styles` element is an optional top-level element in the [scene file](scene-file.md). It takes only one kind of element, a named _style object_.
+The `styles` element is an optional top-level element in the [scene file](Scene-file.md). It takes only one kind of element, a named _style object_.
 
 Styles defined under this element can be referenced by name inside a [draw](draw.md) group with the `style` parameter.
 ```yaml
@@ -197,7 +197,7 @@ styles:
 ```
 
 ####`url`
-Optional _URL_. Imports a style definition from a URL. The URL should point to a YAML file that includes one or more style definitions, in the same format they appear under the top-level `styles` element in the [scene file](scene-file.md).
+Optional _URL_. Imports a style definition from a URL. The URL should point to a YAML file that includes one or more style definitions, in the same format they appear under the top-level `styles` element in the [scene file](Scene-file.md).
 
 ```yaml
 styles:
