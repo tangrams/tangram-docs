@@ -14,7 +14,7 @@ A `scene` object can be exposed by passing the scene's url to the `Tangram.leafl
 Many of the scene's properties may be accessed and changed on the fly with methods on this object.
 
 #### `config`
-This contains a deserialized, run-time JavaScript object version of the [scene file](scene-file.md). This is essentially the same as the scene file, but can be modified on the fly:
+This contains a deserialized, run-time JavaScript object version of the [scene file](Scene-file.md). This is essentially the same as the scene file, but can be modified on the fly:
 
 ```javascript
 > scene.config
