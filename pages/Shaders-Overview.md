@@ -10,7 +10,7 @@ These shaders are written using a “shading language” – Tangram uses the op
 
 ## Shaders inside Tangram
 
-Each of the [styles](styles-overview.md) on Tangram is related to both a geometry builder and at least one shader. The builders produce geometry which is formatted in a specific way and sent to the GPU where the shaders process and display it. This series of steps is known as a "pipeline."
+Each of the [styles](Styles-Overview.md) on Tangram is related to both a geometry builder and at least one shader. The builders produce geometry which is formatted in a specific way and sent to the GPU where the shaders process and display it. This series of steps is known as a "pipeline."
 
 ### Builders
 
