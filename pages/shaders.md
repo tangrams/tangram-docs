@@ -273,7 +273,7 @@ Tangram includes functions for accessing common properties in shaders:
 
 ## material parameters
 
-Certain other _uniforms_, global variables, and global functions are set when their corresponding [material](material.md) properties are defined:
+Certain other _uniforms_, global variables, and global functions are set when their corresponding [material](materials.md) properties are defined:
 
 ```glsl
 
