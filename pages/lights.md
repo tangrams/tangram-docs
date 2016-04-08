@@ -2,7 +2,7 @@
 
 #### `Lights`
 
-The `lights` element is a top-level element in the [scene file](scene-file.md). Individual lights are defined by a *light name* under this element.
+The `lights` element is a top-level element in the [scene file](Scene-file.md). Individual lights are defined by a *light name* under this element.
 
 ```yaml
 lights:
