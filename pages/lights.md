@@ -171,7 +171,7 @@ light1:
 
 #### `direction`
 
-This is the same as the _[directional light](#directional-light-properties)_'s [direction](direction|lights#direction.md) property.
+This is the same as the _[directional light](#directional-light-properties)_'s [direction](lights#direction.md) property.
 
 #### `position`
 
