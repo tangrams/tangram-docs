@@ -13,6 +13,7 @@ cameras:
         type: isometric
 ```
 
+#####`camera`
 It is also permissable to use the element name `camera` at the top level, if there is only a single camera in the scene:
 
 ```yaml
