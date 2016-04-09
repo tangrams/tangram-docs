@@ -130,7 +130,7 @@ poi-icons:
 
 ####`color`
 
-Required* RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, _stops_, or _function_ returning an array of _[r, g, b]_ values or _[r, g, b, a]_** values. RGB/RGBA value range is 0-1. No default.
+Required* RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, or _stops_. Can also be a _function_ which returns an array of _[r, g, b]_ or _[r, g, b, a]_** values, or a _web color name_. RGB/RGBA value range is 0-1. No default.
 
 Applies to `points`, `polygons`, and `lines`. (For `text`, see [fill](draw.md#fill).) Specifies the vertex color of the feature. This color will be passed to any active shaders and used in any light calculations as "color".
 
