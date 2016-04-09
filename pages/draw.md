@@ -1,7 +1,7 @@
 *This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`draw`
-`draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer). It provides rules for drawing the features that match the _layer_ or _sublayer_ directly above it. These _draw rules_ are the sub-elements of the `draw` element, as in this example:
+`draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer-name). It provides rules for drawing the features that match the _layer_ or _sublayer_ directly above it. These _draw rules_ are the sub-elements of the `draw` element, as in this example:
 ```yaml
 ...
 layers:
