@@ -196,6 +196,14 @@ styles:
                             # and generate texture coordinates for the polygons
 ```
 
+Texture coordinates for line geometries are generated with a linear scale in relation to the line's width, enabling properly spaced line patterns.
+
+When `texcoords: true` for any lines-based style, the value of `v_texcoord.x` will range from 0-1 across the width of the line, and the value of `v_texcoord.y` will vary along the length of the line, with a value of `1` being a length  equal to the line's width.
+
+For example, setting `color.rgb = vec3(fract(v_texcoord.y));` creates a pattern of repeating greyscale gradient squares across the line.
+
+The pattern's aspect ratio can be adjusted by dividing the `v_texcoord.y`, for example `fract(v_texcoord.y / 2.)` creates a pattern that is twice as long as it is wide.
+
 ####`url`
 Optional _URL_. Imports a style definition from a URL. The URL should point to a YAML file that includes one or more style definitions, in the same format they appear under the top-level `styles` element in the [scene file](scene-file.md).
 
