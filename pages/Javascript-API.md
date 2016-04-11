@@ -49,7 +49,7 @@ Returns the active camera.
 #### `getFeatureAt(pixel)`
 Simple object-picking may be enabled by setting any layer's `interactive` parameter to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. These objects can then be queried with the `getFeatureAt()` function, which takes pixel coordinates within the map view in the form `{ x, y }`, and returns a promise containing the feature (if any) at those pixel coordinates (if multiple features are drawn at that location, only the top-most one is returned).
 
-The promise resolves with a `selection` object containing `{ feature, changed }` properties. If `feature` is present, `feature.properties` will contain its properties from the original data source; if `feature` is undefined, no feature was found. The `changed` flag indicates if the selected feature changed since the last query.
+The promise resolves with a `selection` object containing `{ feature, changed }` properties. If `feature` is present, `feature.properties` will contain its properties from the original data source, and `feature.layers` will contain a list of layer names which contained the feature; if `feature` is undefined, no feature was found. The `changed` flag indicates if the selected feature changed since the last query.
 
 ```javascript
 > map.on('click', function() {
@@ -58,6 +58,17 @@ The promise resolves with a `selection` object containing `{ feature, changed }`
 >       console.log(selection.feature, selection.changed);
 >    });
 >});
+```
+
+```javascript
+> scene.getFeatureAt(pixel).then(function(selection) {
+>    if (selection.feature) {
+>       console.log(selection.feature.layers);
+>    }
+> });
+<- ["roads:major_road:trunk_primary:early", 
+"roads:major_road:trunk_primary:routes:early", 
+"roads:major_road:trunk_primary:labels-trunk_primary-z13"]
 ```
 
 #### `load(scene_url, base_path)`
