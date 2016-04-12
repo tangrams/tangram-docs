@@ -2,7 +2,9 @@
 
 In the process of constructing a map, Tangram mirrors much of the structure of the 3D scene and the yaml file itself in JavaScript objects. Most of the properties and functions on these objects are used internally by the library, but a few are designed to be referenceable and modifiable, to allow easier design and interactivity.
 
-#### `scene`
+## Objects
+
+### `scene`
 A `scene` object can be exposed by passing the scene's url to the `Tangram.leafletLayer()` function. This allows access to the `scene` object as a property on the Leaflet layer:
 
 ```javascript
@@ -51,18 +53,18 @@ Returns the active camera.
 #### `getFeatureAt(pixel)`
 Simple object-picking may be enabled by setting any layer's `interactive` parameter to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. These objects can then be queried with the `getFeatureAt()` function, which takes pixel coordinates within the map view in the form `{ x, y }`, and returns a promise containing the feature (if any) at those pixel coordinates (if multiple features are drawn at that location, only the top-most one is returned).
 
-The promise resolves with a `selection` object containing `{ feature, changed }` properties. If `feature` is present, `feature.properties` will contain its properties from the original data source; if `feature` is undefined, no feature was found. The `changed` flag indicates if the selected feature changed since the last query.
+The promise resolves with a `selection` object:
 
 ```javascript
-> map.on('click', function() {
->    var pixel = { x: event.clientX, y: event.clientY };
->    layer.scene.getFeatureAt(pixel).then(function(selection) {
->       console.log(selection.feature, selection.changed);
->    });
->});
+{ feature, changed, pixel, leaflet_event }
 ```
 
-This is accomplished by assigning a unique color to each feature onscreen and rendering the scene to an offscreen buffer. When queried, the `getFeatureAT()` checks the offscreen render at the given location, and identifies the feature by its color.
+- `feature`: when present, `feature.properties` will contain the feature's properties from the original data source; if `feature` is undefined, no feature was found.
+- `changed`: a flag indicating whether the selected feature changed since the last query
+- `pixel`: the XY location within the map container where the event occurred, in the form `{ x, y }`
+- `leaflet_event`: the Leaflet event that triggered the selection
+
+Feature picking is accomplished by assigning a unique color to each feature onscreen and rendering the scene to an offscreen buffer. When queried, `getFeatureAT()` checks the offscreen render at the given location, and identifies the feature by its color.
 
 #### `load(scene_url, base_path)`
 Loads the specified scene by url and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
@@ -113,6 +115,43 @@ Re-parses the `scene.config` object and redraws the scene, updating data sources
 ```javascript
 scene.updateConfig()
 ```
+
+## Events
+
+Tangram provides two selection event handlers: `hover` and `click`, and one render state event emitter: `view_complete`.
+
+#### `hover` and `click`
+
+These two event handlers tie into Leaflet's existing event handlers as convenient shortcuts. They are passed the same selection object returned by direct calls to `scene.getFeatureAt()`.
+
+They can be configured in two ways:
+
+- When creating the Leaflet layer:
+
+An `events` object can be passed with other leaflet layer options. `hover` and/or `click` properties can be set to a callback function:
+
+```
+var layer = Tangram.leafletLayer({
+   scene: 'scene.yaml',
+   events: {
+      hover: function(selection) { console.log('Hover!', selection); },
+      click: function(selection) { console.log('Click!', selection); }
+   }
+};
+```
+
+- Updated after Leaflet layer creation:
+
+Selection events can be added, changed, or removed after layer creation with a call to `layer.setSelectionEvents(events)`. It takes the same `events` object as above:
+
+```
+layer.setSelectionEvents({
+   hover: onTangramHover,
+   click: onTangramClick
+});
+```
+
+Or, to remove an event, `layer.setSelectionEvents({ click: null });`.
 
 #### `view_complete`
 This is an event which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading/building. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the map renders. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
