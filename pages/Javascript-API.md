@@ -2,10 +2,8 @@
 
 In the process of constructing a map, Tangram mirrors much of the structure of the 3D scene and the yaml file itself in JavaScript objects. Most of the properties and functions on these objects are used internally by the library, but a few are designed to be referenceable and modifiable, to allow easier design and interactivity.
 
-## Objects
-
-### `scene`
-A `scene` object can be exposed by passing the scene's url to the `Tangram.leafletLayer()` function. This allows access to the `scene` object as a property on the Leaflet layer:
+#### `scene`
+The `scene` object is the interface for controlling your Tangram scene at run-time. It is available as a property of the Tangram Leaflet layer (which is returned by the `Tangram.leafletLayer()` function that is used to initialize the map).
 
 ```javascript
 > layer = Tangram.leafletLayer({ scene: url, ... });
@@ -13,10 +11,10 @@ A `scene` object can be exposed by passing the scene's url to the `Tangram.leafl
 <- Scene {initialized: true, ...}
 ```
 
-Many of the scene's properties may be accessed and changed on the fly with methods on this object.
+The methods and properties below are accessed through this `scene` object.
 
 #### `config`
-This contains a deserialized, run-time JavaScript object version of the [scene file](scene-file.md). This is essentially the same as the scene file, but can be modified on the fly:
+This contains a deserialized, run-time JavaScript object version of the [scene file](Scene-file.md). This is essentially the same as the scene file, but can be modified on the fly:
 
 ```javascript
 > scene.config
@@ -31,21 +29,19 @@ Each object contains sub-objects which correlate to each element's subelements a
 
 ```javascript
 > scene.config.cameras
-<- Object {perspective: Object,
-           isometric: Object,
-           flat: Object,
-           central_park: Object}
+<- Object {camera1: Object,
+           camera2: Object}
 ```
 
 ```javascript
-> scene.config.cameras.perspective
+> scene.config.cameras.camera1
 <- Object {type: "perspective",
            focal_length: Array[5],
            vanishing_point: Array[2],
            active: true}
 ```
 
-After changes are made to the `config` object, `scene.updateConfig()` will update the scene with the changes.
+After changes are made to the `config` object, calling `scene.updateConfig()` will update the scene with the changes.
 
 #### `getActiveCamera()`
 Returns the active camera.
@@ -69,48 +65,48 @@ Feature picking is accomplished by assigning a unique color to each feature onsc
 #### `load(scene_url, base_path)`
 Loads the specified scene by url and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
 
-`scene_url` is the path to a scene file. Relative paths are assumed to be relative to the host url.
+`scene_url` is the path to a scene file. By default, relative paths within this file (for images and other resources) are relative to its host url.
 
-`base_path` is an optional argument specifying a string to be prefixed to paths for resources needed to the scene file, such as images. If it is not present, the paths to these resources are presumed to be relative to the scene file.
+`base_path` is an optional argument specifying an alternate base URL for resolving relative paths in the scene file. It is primarily useful for development and debugging.
 
 #### `rebuild()`
 Rebuilds the current scene from scratch.
 
 #### `requestRedraw()`
-Requests an update to the drawn map. If `animated: true` is set, this happens once per frame automatically.
+Requests an update to the drawn map. If the map contains animated elements, this happens once per frame automatically. If not, it happens whenever the map view changes (pan, zoom, etc.).
 
 #### `screenshot()`
 This queues a screenshot request, returning a Promise that fulfills when the screenshot is available.
 
 The promise resolves with an object containing two properties:
 
-- url: a data URL of the Canvas contents, suitable for loading into an <img> or opening in a new tab/window
-- blob: a Blob of type image/png, suitable for saving to a file, either manually or with a third-party library such as [FileSaver.js](https://github.com/eligrey/FileSaver.js/)
+- `url`: a data URL of the Canvas contents, suitable for loading into an `<img>` or opening in a new tab/window.
+- `blob`: a `Blob` of type `image/png`, suitable for saving to a file, either manually or with a third-party library such as [FileSaver.js](https://github.com/eligrey/FileSaver.js/).
 
 ```javascript
 scene.screenshot().then(function(screenshot) { window.open(screenshot.url); });
 ```
 
-#### `setActiveCamera(_string_ camera)`
+#### `setActiveCamera(camera)`
 Sets the active camera to the camera specified by name, as named in the scene file.
 
 #### `setDataSource(_string_ name, _object_ config)`
 Loads a new `source` object (see `[sources](sources.md)`), returning a Promise which fulfills when the `source` is loaded.
 
-If "name" doesn't match an existing source, a new source object will be created. The "config" object must follow the `[sources](sources.md#sources)` specification.
+If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the `[sources](sources.md#sources)` specification.
 
 ```javascript
-scene.setDataSource("osm", {type: 'TopoJSON', url: "//vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson" });
+scene.setDataSource('osm', { type: 'TopoJSON', url: 'https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson' });
 ```
 
 ```javascript
 var geojson_data = {};
 ...
-scene.setDataSource("dynamic_data", {type: 'GeoJSON', data: geojson_data });
+scene.setDataSource('dynamic_data', { type: 'GeoJSON', data: geojson_data });
 ```
 
 #### `updateConfig()`
-Re-parses the `scene.config` object and redraws the scene, updating data sources and reloading textures. If `updateConfig({ rebuild: true })` is specified, geometry will also be rebuilt.
+Re-parses the `scene.config` object and redraws the scene, updating data sources, cameras, lights, rendering styles and shaders, and reloading textures. If `updateConfig({ rebuild: true })` is specified, geometry will also be rebuilt (necessary in cases where `scene.config.layers` have been modified).
 
 ```javascript
 scene.updateConfig()
@@ -154,7 +150,7 @@ layer.setSelectionEvents({
 Or, to remove an event, `layer.setSelectionEvents({ click: null });`.
 
 #### `view_complete`
-This is an event which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading/building. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the map renders. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
+This is an event which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the initial map view has been drawn. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
 
 `view_complete` can be subscribed to like other scene events:
 

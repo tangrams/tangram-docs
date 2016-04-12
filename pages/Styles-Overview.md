@@ -104,10 +104,10 @@ Styles which are extensions of the `text` style can take the following special p
 - [`text_wrap`](draw.md#text_wrap): Sets number of characters before text wraps to multiple lines.
 - [`repeat_distance`](draw.md#repeat_distance): Sets the distance beyond which label text may repeat.
 - [`repeat_group`](draw.md#repeat_group): Optional grouping mechanism for fine-grained control over text repetition.
-- [`collide`](draw.mdcollide): Sets whether label collides with other labels or points/sprites.
+- [`collide`](draw.md#collide): Sets whether label collides with other labels or points/sprites.
 - [`move_into_tile`](draw.md#move_into_tile): Increases number of labels that will display, by moving some to fit within tile bounds (JS-only)
 
-See the [draw](draw.md#text) entry.
+These parameters are described in the [draw](draw.md) entry.
 
 ## `raster`
 The `raster` style is designed for use with [Raster data sources](sources.md#Raster). `Raster` sources can also be used by other styles, by "attaching" the sources to the styles with the [rasters](sources.md#rasters) parameter.

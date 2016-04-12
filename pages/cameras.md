@@ -2,7 +2,7 @@
 
 ####`cameras`
 
-The `cameras` element is a required top-level element in the [scene file](scene-file.md). Individual cameras are defined by a *camera name* under this element.
+The `cameras` element is a required top-level element in the [scene file](Scene-file.md). Individual cameras are defined by a *camera name* under this element.
 ```yaml
 cameras:
     camera1:
@@ -13,6 +13,7 @@ cameras:
         type: isometric
 ```
 
+#####`camera`
 It is also permissable to use the element name `camera` at the top level, if there is only a single camera in the scene:
 
 ```yaml
@@ -68,7 +69,7 @@ camera1:
 ####`active`
 Optional _boolean_. `true` or `false`. No default.
 
-Sets the camera which provides the active view of the map when it is first loaded. If multiple cameras are defined, only one may be active at a time. If multiple cameras are set as `active: true`, the behavior will be unpredictable (see the [yaml#object-types](yaml.md#object-types) entry). The [JavaScript API](Javascript-API.md) can be used to [get](Javascript-API.md#get) or [set](Javascript-API.md#set) the active camera.
+Sets the camera which provides the active view of the map when it is first loaded. If multiple cameras are defined, only one may be active at a time. If multiple cameras are set as `active: true`, the behavior will be unpredictable (see the [yaml#mappings](yaml.md#mappings) entry). The [JavaScript API](Javascript-API.md) can be used to [get](Javascript-API.md#getactivecamera) or [set](Javascript-API.md#setactivecamera_string_-camera) the active camera.
 
 ```yaml
 camera1:

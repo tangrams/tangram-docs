@@ -3,7 +3,7 @@ Tangram uses a common computer graphics lighting system, in which **light** from
 First, a bit about *light components*.
 
 ## Light components
-Tangram's lighting model is based on the [Blinn-Phong shading model](http://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model) used in OpenGL 2.0, which involves three *light components*: ***diffuse***, ***specular***, and ***ambient***. (These are sometimes called *terms*, as they are literally separate terms in the lighting equation.)
+Tangram's lighting model is based on the [Blinn-Phong shading model](https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model) used in OpenGL 2.0, which involves three *light components*: ***diffuse***, ***specular***, and ***ambient***. (These are sometimes called *terms*, as they are literally separate terms in the lighting equation.)
 
 * *Diffuse*: this is light that comes from a light source, hits a surface, and scatters in all directions. This is what is usually understood as the visible color.
 

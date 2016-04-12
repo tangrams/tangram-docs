@@ -83,6 +83,19 @@ mapbox:
     url: https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=...
 ```
 
+#### `url_params`
+Optional _object_. No default.
+
+The `url_params` block can contain any number of key-value pairs which will be appended to the source `url`. This allows the dynamic definition of parameters such as queries or api keys.
+
+a```yaml
+sources:
+    vector-tiles:
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+        url_params:
+            api_key: vector-tiles-h2UV1dw
+```
+
 #### `max_zoom`
 Optional _integer_. Default is _18_.
 

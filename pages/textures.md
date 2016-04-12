@@ -1,7 +1,7 @@
 *This is the technical documentation for Tangram's `textures` block. For an overview of the ways textures can be used by Tangram, see the [Materials Overview](Materials-Overview.md).*
 
 ##`textures`
-The `textures` element is an optional top-level element in the [scene file](scene-file.md). It has only one kind of sub-element: a named _texture object_.
+The `textures` element is an optional top-level element in the [scene file](Scene-file.md). It has only one kind of sub-element: a named _texture object_.
 
 ```yaml
 textures:

@@ -255,12 +255,14 @@ The shading system includes a number of parameters and variables which are made 
 The following are built-in uniforms present in the _vertex_ and _fragment_ shaders, and can be accessed in any of the custom shader blocks:
 
 ```glsl
-uniform vec3 u_tile_origin;         // .xy is SW corner of tile in meters from Null Island (0,0), .z is zoom of tile
-uniform vec3 u_map_position;        // .xy is map center in meters from Null Island (0,0), .z is current zoom
+uniform vec3 u_tile_origin;         // .xy is SW corner of tile in meters, .z is zoom of tile
+uniform vec3 u_map_position;        // .xy is map center in meters, .z is current zoom
 uniform float u_meters_per_pixel;   // # of Mercator-projection meters for each pixel at the current map zoom
 uniform vec2 u_resolution;          // pixel resolution of viewport (in device/"real" pixels, not CSS logical pixels)
 uniform float u_time;               // # of seconds since the scene started rendering
 ```
+
+`u_tile_origin` and `u_map_position` are relative to the top-left corner of the world in Web Mercator space.
 
 #### built-in property accessors
 Tangram includes functions for accessing common properties in shaders:
@@ -271,7 +273,7 @@ Tangram includes functions for accessing common properties in shaders:
 
 ## material parameters
 
-Certain other _uniforms_, global variables, and global functions are set when their corresponding [material](material.md) properties are defined:
+Certain other _uniforms_, global variables, and global functions are set when their corresponding [material](materials.md) properties are defined:
 
 ```glsl
 
