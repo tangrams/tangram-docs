@@ -30,6 +30,7 @@ These pages list the objects and parameters of the scene file, as well as their 
 
 - [yaml](pages/yaml.md)  
 - [scene](pages/scene.md)  
+- [import](pages/import.md)  
 - [global](pages/global.md)  
 - [sources](pages/sources.md)  
 - [cameras](pages/cameras.md)  
