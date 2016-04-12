@@ -170,7 +170,7 @@ When you are done, close the terminal window to shutdown the server and close yo
 
 ##Put your Tangram map on the web
 
-Now that you have made changes to the scene locally, you may want to share your map on a website. The next part of the walkthrough describes how get your map on the web.
+Now that you have made changes to the scene locally, you may want to share your map on a website. The next part of the walkthrough describes how to get your map on the web.
 
 If you prefer, you can skip this part of the walkthrough.
 
