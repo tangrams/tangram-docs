@@ -95,7 +95,7 @@ scene.screenshot().then(function(screenshot) { window.open(screenshot.url); });
 Sets the active camera to the camera specified by name, as named in the scene file.
 
 #### `setDataSource(_string_ name, _object_ config)`
-Loads a new `source` object (see `[sources](sources.md)`).
+Loads a new `source` object (see `[sources](sources.md)`), returning a Promise which fulfills when the `source` is loaded.
 
 If "name" doesn't match an existing source, a new source object will be created. The "config" object must follow the `[sources](sources.md#sources)` specification.
 
