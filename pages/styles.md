@@ -33,7 +33,7 @@ styles:
 ####`base`
 Optional _string_, naming one of the built-in _draw styles_. No default.
 
-Defines the expected input geometry of the custom style, which determines what other kinds of parameters the style can take. Tangram's built-in styles are `polygons`, `lines`, `points`, and `text`. No default.
+Defines the expected input geometry of the custom style, which determines what other kinds of parameters the style can take. Tangram's built-in styles are `polygons`, `lines`, `points`, `text`, and `raster`. No default.
 
 ```yaml
 styles:
@@ -145,6 +145,24 @@ styles:
 ```
 
 For more, see the [Styles Overview](Styles-Overview.md#style-composition-with-mix).
+
+####`raster`
+Optional _string_, one of `color`, `normal`, or `custom`. Controls interpretation of any attached `Raster` sources. Default is `color`.
+
+The `raster` parameter determines how any `Raster` sources attached with the `rasters` parameter will be interpreted and applied to the geometry, and whether the sources' texture data will be made available to any shaders.
+
+- `color`: Applies the value of the raster texture as the `color` in the fragment shader. This is the most common case, and is set as the default by the `raster` rendering style.
+- `normal`: To support terrain shading, there is also built-in support for applying a raster source as a normal map.
+- `custom`: This value is for cases where you want access to raster samplers, but the data is not formatted for direct use as a color or normal. Mapzen's RGB-packed elevation tiles are an example; the raw data must be decoded and re-interpreted for usable results, and is not intended for display.
+
+When a style has `raster: custom`, any shaders defined in the style can directly sample the raster data for custom effects. The following (public) GLSL uniforms and helper functions are provided:
+
+- `sampleRaster(int N)`: Samples the Nth raster source at the current pixel position (similar to `texture2D()` but adjusts UV offset and scale to account for any raster tile overzooming).
+- `sampleRasterAtPixel(int N, vec2 pixel)`: Samples the Nth raster source at the pixel (not UV) position in `pixel`, e.g. `sampleRasterAtPixel(0, vec2(100, 50))` to sample at pixel `(100, 50)`.
+- `vec2 currentRasterPixel(int N)`: Returns the current pixel position for the Nth raster source. Useful along with the above for sampling nearby pixels (e.g. to derive a normal map, perform a convolution kernel, etc).
+- `vec2 rasterPixelSize(int N)`: A uniform array providing the pixel dimensions of the Nth raster source.
+
+For examples, see [Raster Overview#Direct Sampler Access](Raster-Overview.md#Direct-Sampler-Access).
 
 ####`shaders`
 Optional _string_. Begins the shaders definition object. For more on materials, see the [shaders technical reference](shaders.md).

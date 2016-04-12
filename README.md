@@ -22,6 +22,7 @@ These pages offer an introduction to the concepts behind Tangram:
 - [Materials](pages/Materials-Overview.md)  
 - [Shaders](pages/Shaders-Overview.md)  
 - [Styles](pages/Styles-Overview.md)  
+- [Rasters](pages/Raster-Overview.md)  
 
 ### Technical Reference
 

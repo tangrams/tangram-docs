@@ -19,11 +19,12 @@ sources:
 #### type
 Required _string_. Sets the type of the datasource. No default.
 
-Three options are currently supported:
+Four options are currently supported:
 
 - `TopoJSON`
 - `GeoJSON`
 - `MVT` (Mapbox Vector Tiles)
+- `Raster`
 
 As of v0.2, Tangram supports either tiled or untiled datasources.
 
@@ -133,6 +134,26 @@ transform: |
     }
 ```
 
+####`filtering`
+Optional _string_, one of `mipmap`, `linear`, or `nearest`. Default is `mipmap` for images with dimensions which are powers of two (e.g. 256 or 512) and `linear` for non-power-of-two images.
+
+Sets a texture filtering mode to be set for `Raster` sources only.
+
+Raster tiles are generally power-of-two. Other sizes are scaled to fit the tile square.
+
+Setting `filtering: nearest` allows for the raster tiles to be pixelated when scaled past their max_zoom.
+
+####`rasters`
+Optional _list_ of `Raster` sources to be "attached" to the `source`. No default for non-`Raster` sources. A `Raster` source is available to itself by default.
+
+Attaching a `Raster` to another `source` makes that `Raster` available to any shaders used to draw that `source` via the `sampleRaster()` function.
+
+(See [Geometry Masking](Raster-Overview.md#Geometry-Masking) for examples.)
+
+When a `Raster` source itself has additional raster sources set in the `rasters` property, the "parent" source will be the first raster sampler, and those from `rasters` will be added afterward. (essentially it is as if the parent source was inserted as the first item in the rasters array).
+
+For more, see the [Raster Overview](Raster-Overview.md).
+
 ####`transform`
 Optional _function_.
 
@@ -170,6 +191,11 @@ mapzen:
 mapzen:
     type: MVT
     url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+
+# Stamen's terrain tiles
+stamen-terrain:
+    type: Raster
+    url: http://a.tile.stamen.com/terrain-background/{z}/{x}/{y}.jpg
 ```
 
 All of our demos were created using the [Mapzen Vector Tiles](https://github.com/mapzen/vector-datasource) service, which hosts tiled [OpenStreetMap](http://openstreetmap.org) data.
