@@ -49,7 +49,17 @@ draw:
         style: lines
         ... # more parameters follow
 ```
-(Note that two _draw rules_ both named "lines" would be invalid YAML)
+Note that two _draw rules_ both named "lines" would be invalid YAML:
+
+```yaml
+...
+draw:
+    lines:
+        ... # more parameters
+    lines: # <- You can't do this in YAML!
+        ... # more parameters
+```
+
 
 If the _style_ specified by a _draw rule_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the rule will draw nothing.
 
