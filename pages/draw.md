@@ -630,13 +630,9 @@ font:
 ```
 ```yaml
 font:
-    stroke: { color: [[10, gray], [15, white]], width: [[10, 1], [15, 2]] }
-```
-```yaml
-font:
     stroke:
-        color: [[16, white], [18, red], [20, blue]]
-        width: [[14, 3px], [20, 8px]]
+        color: [[10, gray], [15, white]] # fade from gray to white
+        width: [[14, 2px], [18, 6px]]    # increase stroke width at high zoom
 ```
 
 ####`style`
