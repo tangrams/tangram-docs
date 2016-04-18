@@ -146,7 +146,7 @@ Applies to `points`, `polygons`, and `lines`. (For `text`, see [fill](draw.md#fi
 
 *`color` is not required if a style is used which specifies a shader with a _color block_ or a _filter block_.
 
-**Currently, alpha values are ignored in every `blend` mode except `overlay`, which is the default blend mode of the `points` and `text` draw styles.
+**Currently, alpha values are ignored in the `add` and `multiply` `blend` modes, and respected in the `inlay` and `overlay` modes. For more on this, see the [`blend`](styles.md#blend) entry.
 
 
 ```yaml
