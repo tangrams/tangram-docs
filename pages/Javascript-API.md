@@ -114,11 +114,14 @@ scene.updateConfig()
 
 ## Events
 
-Tangram provides two selection event handlers: `hover` and `click`, and one render state event emitter: `view_complete`.
+Tangram provides a number of event handlers and emitters.
+
+####`error`
+This event handler can be used to catch `error` events, which are fired when  an unrecoverable error occurred while processing the scene, the callback is passed an object with `type`, `message` (text error message), `error` (JS error object), and `url` (the URL from which the scene was loaded) properties.
 
 #### `hover` and `click`
 
-These two event handlers tie into Leaflet's existing event handlers as convenient shortcuts. They are passed the same selection object returned by direct calls to `scene.getFeatureAt()`.
+These two selection event handlers tie into Leaflet's existing event handlers as convenient shortcuts, and are the preferred way to access the feature picking functionality. They are passed the same selection object returned by direct calls to `scene.getFeatureAt()`.
 
 They can be configured in two ways:
 
@@ -149,8 +152,13 @@ layer.setSelectionEvents({
 
 Or, to remove an event, `layer.setSelectionEvents({ click: null });`.
 
+To activate the feature picking functionality for a particular layer, set the [`interactive`](draw.md#interactive) parameter.
+
+#### `load`
+This event handler can be used to catch 'load' events, which are fired when the scene was loaded. The event callback is passed an object with a `config` property, containing the just-loaded scene config object.
+
 #### `view_complete`
-This is an event which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the initial map view has been drawn. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
+This is a render state event emitter which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the initial map view has been drawn. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
 
 `view_complete` can be subscribed to like other scene events:
 
@@ -161,3 +169,7 @@ scene.subscribe({
     }
 });
 ```
+
+####`warning`
+This event handler can be used to catch `warning` events, which are fired when an issue occurred while processing the scene. The callback is passed an object with a `type`, which indicates the scope of the issue (e.g. textures, sources, etc.), along with additional type-specific properties.
+
