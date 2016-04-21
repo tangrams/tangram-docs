@@ -91,7 +91,7 @@ Sets the active camera to the camera specified by name, as named in the scene fi
 #### `setDataSource(_string_ name, _object_ config)`
 Loads a new `source` object (see [`sources`](sources.md)), returning a Promise which fulfills when the `source` is loaded.
 
-If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the `[sources](sources.md#sources)` specification.
+If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the [`sources`](sources.md#sources) specification.
 
 ```javascript
 scene.setDataSource('osm', { type: 'TopoJSON', url: 'https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson' });
