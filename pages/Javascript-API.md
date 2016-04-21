@@ -60,8 +60,6 @@ The promise resolves with a `selection` object:
 - `pixel`: the XY location within the map container where the event occurred, in the form `{ x, y }`
 - `leaflet_event`: the Leaflet event that triggered the selection
 
-Feature picking is accomplished by assigning a unique color to each feature onscreen and rendering the scene to an offscreen buffer. When queried, `getFeatureAT()` checks the offscreen render at the given location, and identifies the feature by its color.
-
 #### `load(scene_url, base_path)`
 Loads the specified scene by url and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
 
@@ -91,7 +89,7 @@ scene.screenshot().then(function(screenshot) { window.open(screenshot.url); });
 Sets the active camera to the camera specified by name, as named in the scene file.
 
 #### `setDataSource(_string_ name, _object_ config)`
-Loads a new `source` object (see `[sources](sources.md)`), returning a Promise which fulfills when the `source` is loaded.
+Loads a new `source` object (see [`sources`](sources.md)), returning a Promise which fulfills when the `source` is loaded.
 
 If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the `[sources](sources.md#sources)` specification.
 
@@ -117,7 +115,7 @@ scene.updateConfig()
 Tangram provides a number of event handlers and emitters.
 
 ####`error`
-This event handler can be used to catch `error` events, which are fired when  an unrecoverable error occurred while processing the scene, the callback is passed an object with `type`, `message` (text error message), `error` (JS error object), and `url` (the URL from which the scene was loaded) properties.
+This event handler can be used to catch `error` events, which are fired when an unrecoverable error occurred while processing the scene, the callback is passed an object with `type`, `message` (text error message), `error` (JS error object), and `url` (the URL from which the scene was loaded) properties.
 
 #### `hover` and `click`
 
