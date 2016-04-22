@@ -49,7 +49,17 @@ draw:
         style: lines
         ... # more parameters follow
 ```
-(Note that two _draw rules_ both named "lines" would be invalid YAML)
+Note that two _draw rules_ both named "lines" would be invalid YAML:
+
+```yaml
+...
+draw:
+    lines:
+        ... # more parameters
+    lines: # <- You can't do this in YAML!
+        ... # more parameters
+```
+
 
 If the _style_ specified by a _draw rule_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the rule will draw nothing.
 
@@ -136,7 +146,7 @@ Applies to `points`, `polygons`, and `lines`. (For `text`, see [fill](draw.md#fi
 
 *`color` is not required if a style is used which specifies a shader with a _color block_ or a _filter block_.
 
-**Currently, alpha values are ignored in every `blend` mode except `overlay`, which is the default blend mode of the `points` and `text` draw styles.
+**Currently, alpha values are ignored in the `add` and `multiply` `blend` modes, and respected in the `inlay` and `overlay` modes. For more on this, see the [`blend`](styles.md#blend) entry.
 
 
 ```yaml
@@ -620,13 +630,9 @@ font:
 ```
 ```yaml
 font:
-    stroke: { color: [[10, gray], [15, white]], width: [[10, 1], [15, 2]] }
-```
-```yaml
-font:
     stroke:
-        color: [[16, white], [18, red], [20, blue]]
-        width: [[14, 3px], [20, 8px]]
+        color: [[10, gray], [15, white]] # fade from gray to white
+        width: [[14, 2px], [18, 6px]]    # increase stroke width at high zoom
 ```
 
 ####`style`
