@@ -49,27 +49,16 @@ Returns the active camera.
 #### `getFeatureAt(pixel)`
 Simple object-picking may be enabled by setting any layer's `interactive` parameter to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. These objects can then be queried with the `getFeatureAt()` function, which takes pixel coordinates within the map view in the form `{ x, y }`, and returns a promise containing the feature (if any) at those pixel coordinates (if multiple features are drawn at that location, only the top-most one is returned).
 
-The promise resolves with a `selection` object containing `{ feature, changed }` properties. If `feature` is present, `feature.properties` will contain its properties from the original data source, and `feature.layers` will contain a list of layer names which contained the feature; if `feature` is undefined, no feature was found. The `changed` flag indicates if the selected feature changed since the last query.
+The promise resolves with a `selection` object:
 
 ```javascript
-> map.on('click', function() {
->    var pixel = { x: event.clientX, y: event.clientY };
->    layer.scene.getFeatureAt(pixel).then(function(selection) {
->       console.log(selection.feature, selection.changed);
->    });
->});
+{ feature, changed, pixel, leaflet_event }
 ```
 
-```javascript
-> scene.getFeatureAt(pixel).then(function(selection) {
->    if (selection.feature) {
->       console.log(selection.feature.layers);
->    }
-> });
-<- ["roads:major_road:trunk_primary:early", 
-"roads:major_road:trunk_primary:routes:early", 
-"roads:major_road:trunk_primary:labels-trunk_primary-z13"]
-```
+- `feature`: when present, `feature.properties` will contain the feature's properties from the original data source; if `feature` is undefined, no feature was found.
+- `changed`: a flag indicating whether the selected feature changed since the last query
+- `pixel`: the XY location within the map container where the event occurred, in the form `{ x, y }`
+- `leaflet_event`: the Leaflet event that triggered the selection
 
 #### `load(scene_url, base_path)`
 Loads the specified scene by url and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
@@ -99,10 +88,10 @@ scene.screenshot().then(function(screenshot) { window.open(screenshot.url); });
 #### `setActiveCamera(camera)`
 Sets the active camera to the camera specified by name, as named in the scene file.
 
-#### `setDataSource(name, source)`
-Loads a new `[data source](sources.md)` or replaces an existing one, and rebuilds the scene.
+#### `setDataSource(_string_ name, _object_ config)`
+Loads a new `source` object (see [`sources`](sources.md)), returning a Promise which fulfills when the `source` is loaded.
 
-If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the `[sources](sources.md#sources)` specification.
+If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the [`sources`](sources.md#sources) specification.
 
 ```javascript
 scene.setDataSource('osm', { type: 'TopoJSON', url: 'https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson' });
@@ -121,8 +110,53 @@ Re-parses the `scene.config` object and redraws the scene, updating data sources
 scene.updateConfig()
 ```
 
+## Events
+
+Tangram provides a number of event handlers and emitters.
+
+####`error`
+This event handler can be used to catch `error` events, which are fired when an unrecoverable error occurred while processing the scene, the callback is passed an object with `type`, `message` (text error message), `error` (JS error object), and `url` (the URL from which the scene was loaded) properties.
+
+#### `hover` and `click`
+
+These two selection event handlers tie into Leaflet's existing event handlers as convenient shortcuts, and are the preferred way to access the feature picking functionality. They are passed the same selection object returned by direct calls to `scene.getFeatureAt()`.
+
+They can be configured in two ways:
+
+- When creating the Leaflet layer:
+
+An `events` object can be passed with other leaflet layer options. `hover` and/or `click` properties can be set to a callback function:
+
+```
+var layer = Tangram.leafletLayer({
+   scene: 'scene.yaml',
+   events: {
+      hover: function(selection) { console.log('Hover!', selection); },
+      click: function(selection) { console.log('Click!', selection); }
+   }
+};
+```
+
+- Updated after Leaflet layer creation:
+
+Selection events can be added, changed, or removed after layer creation with a call to `layer.setSelectionEvents(events)`. It takes the same `events` object as above:
+
+```
+layer.setSelectionEvents({
+   hover: onTangramHover,
+   click: onTangramClick
+});
+```
+
+Or, to remove an event, `layer.setSelectionEvents({ click: null });`.
+
+To activate the feature picking functionality for a particular layer, set the [`interactive`](draw.md#interactive) parameter.
+
+#### `load`
+This event handler can be used to catch 'load' events, which are fired when the scene was loaded. The event callback is passed an object with a `config` property, containing the just-loaded scene config object.
+
 #### `view_complete`
-This is an event which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the initial map view has been drawn. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
+This is a render state event emitter which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the initial map view has been drawn. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
 
 `view_complete` can be subscribed to like other scene events:
 
@@ -133,3 +167,7 @@ scene.subscribe({
     }
 });
 ```
+
+####`warning`
+This event handler can be used to catch `warning` events, which are fired when an issue occurred while processing the scene. The callback is passed an object with a `type`, which indicates the scope of the issue (e.g. textures, sources, etc.), along with additional type-specific properties.
+

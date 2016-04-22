@@ -1,6 +1,6 @@
 *This is an overview of Tangram's styling system. For a complete technical reference of the custom style-creation system, see [styles](styles.md), and for all the technical details of drawing with those styles, see [draw](draw.md).*
 
-Tangram currently has four built-in _draw styles_: `polygons`, `lines`, `points`, and `text`. Each draw style displays data in a different way, and some of them require specific data types and properties.
+Tangram currently has five built-in _draw styles_: `polygons`, `lines`, `points`, `text`, and `raster`. Each draw style displays data in a different way, and some of them require specific data types and properties.
 
 Draw styles are referenced in two places in the scene file: when defining custom [styles](styles.md) and again in [draw](draw.md) groups.
 
@@ -13,10 +13,13 @@ The `polygons` draw style tessellates and extrudes vector shapes into 3D geometr
 The `lines` draw style can turn either polygonal or line data into lines.
 
 #### `points`
-The `points` draw style draws a square at a point, and can fill the point with either a customizable dot or a `sprite`. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the `[priority](draw.md#priority)` draw parameter.
+The `points` draw style draws a square at a point, and can fill the point with either a customizable dot or a `sprite`. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
 #### `text`
-The `text` draw style draws a rectangle at a point, and paints it with a texture it generates automatically based on its input datasource. It can work with point, line, or polygon data. Text labels will "collide" with each other, with only the winner being drawn, determined by the `[priority](draw.md#priority)` draw parameter.
+The `text` draw style draws a rectangle at a point, and paints it with a texture it generates automatically based on its input datasource. It can work with point, line, or polygon data. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+
+#### `raster`
+The `raster` draw style draws one tile-sized square per tile and paints it with the appropriate tile from a `Raster` data source.
 
 These _draw styles_ are used as the foundation for all custom styling in Tangram. When defining a style, they are explicitly referenced under the style name with the `base` parameter:
 
@@ -80,7 +83,7 @@ If the point is used to draw a dot, the size and color of this circle can be spe
 
 Points styles have access to a variety of special uniforms and parameters.
 
-`points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the `[priority](draw.md#priority)` draw parameter.
+`points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the [`priority`](draw.md#priority) draw parameter.
 
 ## text
 The `text` style is similar to the `sprites` style, in that it builds a rectangle at a point. However, instead of being colored with a custom texture, this style builds its own texture, containing text.
@@ -105,6 +108,11 @@ Styles which are extensions of the `text` style can take the following special p
 - [`move_into_tile`](draw.md#move_into_tile): Increases number of labels that will display, by moving some to fit within tile bounds (JS-only)
 
 These parameters are described in the [draw](draw.md) entry.
+
+## `raster`
+The `raster` style is designed for use with [Raster data sources](sources.md#Raster). `Raster` sources can also be used by other styles, by "attaching" the sources to the styles with the [rasters](sources.md#rasters) parameter.
+
+See the [Rasters Overview](Rasters-Overview.md).
 
 ## style composition with `mix`
 

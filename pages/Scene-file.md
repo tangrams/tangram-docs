@@ -4,6 +4,26 @@ The **scene file** is a [YAML](http://en.wikipedia.org/wiki/YAML) document which
 
 There are a variety of top-level elements allowed in a scene file. Each defines the beginning of a _block_ named for the element.
 
+####`cameras`
+Optional element. The `cameras` block allows modifications to the view of the map.
+
+See [Cameras Overview](Cameras-Overview.md) and [cameras](cameras.md).
+
+####`layers`
+Required element. The `layers` block divides the data into layers and assigns styling parameters.
+
+See [Styles Overview](Styles-Overview.md) and [layers](layers.md).
+
+####`global`
+Optional element. The `global` block allows the addition of custom named parameters which can be substituted for values elsewhere in the scene file.
+
+See [global](global.md).
+
+####`lights`
+Optional element. The `lights` block allows control of the lighting of the map.
+
+See [Lights Overview](Lights-Overview.md) and [lights](lights.md).
+
 ####`scene`
 Optional element. The `scene` block sets various scene-wide parameters.
 
@@ -18,21 +38,6 @@ See [sources](sources.md).
 Optional element. The `styles` block defines rendering styles, which are composed of [materials](materials.md) and [shaders](shaders.md).
 
 See [Styles Overview](Styles-Overview.md) and [styles](styles.md).
-
-####`layers`
-Required element. The `layers` block divides the data into layers and assigns styling parameters.
-
-See [Styles Overview](Styles-Overview.md) and [layers](layers.md).
-
-####`cameras`
-Optional element. The `cameras` block allows modifications to the view of the map.
-
-See [Cameras Overview](Cameras-Overview.md) and [cameras](cameras.md).
-
-####`lights`
-Optional element. The `lights` block allows control of the lighting of the map.
-
-See [Lights Overview](Lights-Overview.md) and [lights](lights.md).
 
 ####`textures`
 Optional element. The `textures` block allows for advanced configuration of textures within [materials](materials.md).
