@@ -4,7 +4,7 @@
 The `global` element is an optional top-level element in a Tangram scene file. It declares the beginning of the `global` block. It takes only one kind of parameter: a _property_. Any number of _properties_ can be declared.
 
 #### `property`
-Required _key/value pair_. *Key* can be any _string_, no default. *Value* can be any _object_, including another nested property, no default.
+Optional _key/value pair_. *Key* can be any _string_, no default. *Value* can be any _object_, including another nested property, no default.
 
 _Global properties_ are user-defined properties in the scene file that can be substituted for values elsewhere in the file. This is useful for setting a value in multiple places in the scene file simultaneously. It's also useful for setting important values at the top of the scene file, rather than inline. Examples include common colors, language preferences, or visibility flags used to tweak styles.
 

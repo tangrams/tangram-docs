@@ -13,10 +13,12 @@ The `polygons` draw style tessellates and extrudes vector shapes into 3D geometr
 The `lines` draw style can turn either polygonal or line data into lines.
 
 #### `points`
-The `points` draw style draws a square at a point, and can fill the point with either a customizable dot or a `sprite`. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+The `points` draws a filled circle at the location of the data point. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+
+Technically, this draw style creates a small quad, which is then colored with a default shader which draws a dot. This behavior can be overridden with either a custom shader or a texture.
 
 #### `text`
-The `text` draw style draws a rectangle at a point, and paints it with a texture it generates automatically based on its input datasource. It can work with point, line, or polygon data. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+The `text` draw style draws text labels at a given point. It can work with point, line, or polygon data. When used with lines, the label will be drawn along the line. When used with polygons, the label will be drawn at the polygon's centroid. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
 #### `raster`
 The `raster` draw style draws one tile-sized square per tile and paints it with the appropriate tile from a `Raster` data source.
@@ -110,9 +112,9 @@ Styles which are extensions of the `text` style can take the following special p
 These parameters are described in the [draw](draw.md) entry.
 
 ## `raster`
-The `raster` style is designed for use with [Raster data sources](sources.md#Raster). `Raster` sources can also be used by other styles, by "attaching" the sources to the styles with the [rasters](sources.md#rasters) parameter.
+The `raster` style renders [Raster data sources](sources.md#Raster), such as traditional raster tiles.
 
-See the [Rasters Overview](Rasters-Overview.md).
+Note that `Raster` sources can also be used by other styles, by "attaching" the sources to the styles with the [rasters](sources.md#rasters) parameter. See the [Rasters Overview](Rasters-Overview.md).
 
 ## style composition with `mix`
 
