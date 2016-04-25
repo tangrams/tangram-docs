@@ -12,4 +12,4 @@ Tangram is available in two delicious flavors: Tangram JS for browser-based mapp
 
 A variety of demos are available at https://mapzen.com/projects/tangram. Tangram is free and open source, is available for both commercial and non-commercial purposes. The [source code](https://github.com/tangrams) is open to view and modify, and contributions are welcomed.  
 
-Learn more about the concepts, objects, and parameters of the scene file in the topics in the sidebar. Or, to jump right in, follow this [walkthrough](JS-walkthrough.md) to learn how to make a map with Tangram JS.
+Learn more about the concepts, objects, and parameters of the scene file in the topics in the sidebar. Or, to jump right in, follow this [walkthrough](walkthrough.md) to learn how to make a map with Tangram JS.

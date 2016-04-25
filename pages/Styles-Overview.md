@@ -114,7 +114,7 @@ These parameters are described in the [draw](draw.md) entry.
 ## `raster`
 The `raster` style renders [Raster data sources](sources.md#Raster), such as traditional raster tiles.
 
-Note that `Raster` sources can also be used by other styles, by "attaching" the sources to the styles with the [rasters](sources.md#rasters) parameter. See the [Rasters Overview](Rasters-Overview.md).
+Note that `Raster` sources can also be used by other styles, by "attaching" the sources to the styles with the [rasters](sources.md#rasters) parameter. See the [Rasters Overview](Raster-Overview.md).
 
 ## style composition with `mix`
 
