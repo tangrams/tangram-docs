@@ -56,17 +56,31 @@ Here's a very simple scene file:
 
 ```yaml
 sources:
-    osm:
-        type: GeoJSON
-        url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+    mapzen:
+        type: TopoJSON
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
 
 layers:
     earth:
-        data: { source: osm }
-        style: { order: 0, color: green }
+        data: { source: mapzen }
+        draw:
+            polygons:
+                order: 0
+                color: darkgreen
     water:
-        data: { source: osm }
-        style: { order: 1, color: blue }
+        data: { source: mapzen }
+        draw:
+            polygons: 
+                order: 1
+                color: lightblue
+
+    roads:
+        data: { source: mapzen }
+        draw:
+            lines: 
+                order: 2
+                color: white
+                width: 1.5px
 ```
 
 In this example, all three elements are included – this will produce a (very simple) map!
