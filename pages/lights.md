@@ -103,7 +103,7 @@ light1:
 
 #### `position`
 
-Required _vector_ `[x, y, z]`, _[lat, long]_, or _{ lat: number, lng: number }_. Vectors may be specified in meters `m` or pixels `px`, depending on the value of `origin`. _[lat, long]s_ may be specified as _lists_ or _objects_ of the format _{ lat: number, lng: number}_. No default value. Default unit for vectors are `m`.
+Required _vector_ `[x, y, z]`, _[lat, long]_, or _{ lat: number, lng: number }_. Vectors may be specified in meters `m` or pixels `px`, depending on the value of `origin`. _[lat, long]s_ may be specified as _lists_ or _objects_ of the format _{ lat: number, lng: number}_. Default is `[0, 0, 100px]`. Default unit for vectors are `m`.
 
 ```yaml
 lights:
@@ -126,7 +126,7 @@ lights:
 
 #### `origin`
 
-Optional _string_, one of `world`, `camera`, or `ground`. Defaults to `world`.
+Optional _string_, one of `world`, `camera`, or `ground`. Defaults to `ground`.
 
 Sets the reference point for the `position` parameter:
 
