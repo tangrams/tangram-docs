@@ -88,7 +88,7 @@ Optional _object_. No default.
 
 The `url_params` block can contain any number of key-value pairs which will be appended to the source `url`. This allows the dynamic definition of parameters such as queries or api keys.
 
-a```yaml
+```yaml
 sources:
     vector-tiles:
         url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
