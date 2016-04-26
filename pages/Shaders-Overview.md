@@ -1,10 +1,8 @@
 # Shaders
 
-The world of graphics shaders is vast and arcane. It has been the exclusive domain of demoscene and video game coders for decades. We want to bring this world to casual mappers, to harness the power of the GPU in service of cooler-looking and more useful maps.
+The world of graphics shaders is vast and arcane. It has been the exclusive domain of demoscene and video game coders for decades. We want to bring this world to casual mappers, to harness the power of the GPU in service of more useful and cooler-looking maps.
 
-The basic idea is this: your screen has lots of pixels which all need to be updated many times a second. For many years this job was handled by CPUs, but CPUs are designed to do one thing at a time, and as computer games and other graphics-heavy applications became more sophisticated, CPUs were no longer up to the task.ait) to handle pixel-drawing separately from the CPU since the 70s. GPUs are very good at doing one simple things many times at once they run a simple program called a “shader” for every pixel on your screen simultaneously, many times a second.
-
-GPUs started migrating to PCs in the 80s, and by the 90s were very common. Today nearly every PC, laptop, and smartphone has a graphics chip on it, and they all run shaders.
+The basic idea is this: your screen has lots of pixels which all need to be updated very rapidly. This job is handled by the GPU (graphics processing unit), which is a specialized chip which runs simple programs called “shaders.” These shaders compute the color of every pixel on your screen nigh-simultaneously, many times a second. Nearly every modern PC, laptop, and smartphone has a GPU in it, and they all run shaders.
 
 These shaders are written using a “shading language” – Tangram uses the openGL shader language, or GLSL. Learning to code in this language has its particularities because of its parallel nature. If you are new to it we encourage you to check out [The Book of Shaders](http://thebookofshaders.com), a easy step-by-step introduction to GLSL programming.
 
