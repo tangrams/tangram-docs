@@ -31,7 +31,7 @@ Finally, open the `simplemap` module in Android Studio to see the code used for 
   In the `build.gradle` file for your application's module, add the following dependency:
 
   ```
-  compile 'com.mapzen.tangram:tangram:0.2-SNAPSHOT'
+  compile 'com.mapzen.tangram:tangram:0.2'
   ```
 
 2. **Add a scene file to your application assets.**
