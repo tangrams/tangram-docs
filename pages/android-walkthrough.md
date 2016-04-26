@@ -39,9 +39,7 @@ Finally, open the `simplemap` module in Android Studio to see the code used for 
   The scene file is a YAML document that specifies the behavior and appearance of your map. You can write your own scene file or use one of the Mapzen styles like [Bubble Wrap](https://github.com/tangrams/bubble-wrap), [Cinnabar](https://github.com/tangrams/cinnabar-style), or [Refill](https://github.com/tangrams/refill-style). Add the scene file to your application's assets. In the demo applications, assets are specified in the Gradle build file:
   
   ```
-  sourceSets.main {
-      assets.srcDirs = ['../styles/bubble-wrap']
-  }
+  sourceSets.main.assets.srcDirs = ['../styles']
   ```
 
 3. **Declare a MapView in your layout.**
