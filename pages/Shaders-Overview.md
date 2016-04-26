@@ -12,7 +12,7 @@ Each of the [styles](Styles-Overview.md) on Tangram is related to both a geometr
 
 ### Builders
 
-In the builder step, the data coming from the data source is located on a mercator projection, extruded, and tessellated.
+In the builder step, the data coming from the data source is positioned, extruded, and tessellated.
 
 ![](images/geometry-builder.jpg)
 
@@ -47,7 +47,7 @@ The Tangram Engine is designed to let you interact with and modify this pipeline
 
 Looking closely at the steps in the previous diagram you will note some red arrows – they correspond to the *position*, *normal*, *color*, and *filter* steps. Those steps are points where the user can add a `block` of code.
 
-There is another `block` type called `global`, where the user can add global variables and functions to be used in later blocks.
+There is another `block` type called `global`, where you can add global variables and functions to be used in later blocks.
 
 #### `position`
 
