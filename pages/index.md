@@ -8,8 +8,8 @@ Tangram is designed to use vector data sources such as Mapzen’s free [vector t
 
 All of these effects are possible thanks to [OpenGL](https://en.wikipedia.org/wiki/OpenGL). You can write graphics card programs, known as [shaders](Shaders-Overview.md), and even JavaScript to add interactivity, mix data sources, and control the design of your maps.
 
-Tangram is available in two delicious flavors: Tangram JS for browser-based mapping, and Tangram ES for native mobile mapping.
+Tangram is available in two delicious flavors: [Tangram JS](https://github.com/tangrams/tangram) for browser-based mapping, and [Tangram ES](https://github.com/tangrams/tangram-es) for native mobile mapping.
 
-A variety of demos are available at https://mapzen.com/projects/tangram. Tangram is free and open source, is available for both commercial and non-commercial purposes. The [source code](https://github.com/tangrams) is open to view and modify, and contributions are welcomed.  
+A variety of example maps are available at our documentation's [Demos and Examples](https://mapzen.com/documentation/tangram/Demos/) page. Tangram is free and open source, is available for both commercial and non-commercial purposes. The [source code](https://github.com/tangrams) is open to view and modify, and contributions are welcomed.  
 
 Learn more about the concepts, objects, and parameters of the scene file in the topics in the sidebar. Or, to jump right in, follow this [walkthrough](walkthrough.md) to learn how to make a map with Tangram JS.
