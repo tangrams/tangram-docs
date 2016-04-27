@@ -26,25 +26,19 @@ Finally, open the `simplemap` module in Android Studio to see the code used for 
 
 ###Steps to add Tangram to an Android application
 
-1. **Add Tangram as a Gradle dependency.**
-
-    In the `build.gradle` file for your application's module, add the following dependency:
+1. **Add Tangram as a Gradle dependency.** In the `build.gradle` file for your application's module, add the following dependency:
 
     ```
     compile 'com.mapzen.tangram:tangram:0.2'
     ```
 
-2. **Add a scene file to your application assets.**
-
-    The scene file is a YAML document that specifies the behavior and appearance of your map. You can write your own scene file or use one of the Mapzen styles like [Bubble Wrap](https://github.com/tangrams/bubble-wrap), [Cinnabar](https://github.com/tangrams/cinnabar-style), or [Refill](https://github.com/tangrams/refill-style). Add the scene file to your application's assets. In the demo applications, assets are specified in the Gradle build file:
+2. **Add a scene file to your application assets.** The scene file is a YAML document that specifies the behavior and appearance of your map. You can write your own scene file or use one of the Mapzen styles like [Bubble Wrap](https://github.com/tangrams/bubble-wrap), [Cinnabar](https://github.com/tangrams/cinnabar-style), or [Refill](https://github.com/tangrams/refill-style). Add the scene file to your application's assets. In the demo applications, assets are specified in the Gradle build file:
 
     ```
     sourceSets.main.assets.srcDirs = ['../styles']
     ```
 
-3. **Declare a MapView in your layout.**
-
-    In your layout XML, add a View with the class `com.mapzen.tangram.MapView`. The XML used in the demo applications is:
+3. **Declare a MapView in your layout.** In your layout XML, add a View with the class `com.mapzen.tangram.MapView`. The XML used in the demo applications is:
 
     ```
     <com.mapzen.tangram.MapView
@@ -53,17 +47,11 @@ Finally, open the `simplemap` module in Android Studio to see the code used for 
           android:layout_height="wrap_content"/>
     ```
 
-4. **Forward your Activity lifecycle events to the MapView.**
+4. **Forward your Activity lifecycle events to the MapView.** For MapView to work correctly, your Activity must call the matching methods on MapView for lifecycle events, including `onCreate()`, `onResume()`, `onPause()`, `onDestroy()`, and `onLowMemory()`.
 
-    For MapView to work correctly, your Activity must call the matching methods on MapView for lifecycle events, including `onCreate()`, `onResume()`, `onPause()`, `onDestroy()`, and `onLowMemory()`.
+5. **Implement onMapReady.** Tangram maps are initialized asynchronously. When the map is ready for display and use, it calls `onMapReady(MapController)` on a listener that you give it. In this callback you can save a reference to the MapController and use it to begin interacting with the map.
 
-5. **Implement onMapReady.**
-
-    Tangram maps are initialized asynchronously. When the map is ready for display and use, it calls `onMapReady(MapController)` on a listener that you give it. In this callback you can save a reference to the MapController and use it to begin interacting with the map.
-
-6. **Initialize the map with getMapAsync.**
-
-    With the MapView declared in your layout, you can start a background task that will prepare the map. Call `getMapAsync` on your MapView, providing a listener for the `onMapReady` callback and a String containing the path to your scene file within your application's assets.
+6. **Initialize the map with getMapAsync.** With the MapView declared in your layout, you can start a background task that will prepare the map. Call `getMapAsync` on your MapView, providing a listener for the `onMapReady` callback and a String containing the path to your scene file within your application's assets.
 
 That's it! You're ready to start using a Tangram map in your application.
 
