@@ -76,5 +76,5 @@ In this guide, you learned how to add a Tangram map to your Android application.
 
  - Learn how to write or edit a Tangram [scene file](https://mapzen.com/documentation/tangram/Scene-file/),
  - See [more examples](https://github.com/tangrams/tangram-android-demos) of things your application can do with the map, or
- - Look at the [reference documentation](https://mapzen.com/documentation/tangram/android-sdk/0.2/) for the Tangram Android SDK.
+ - Look at the [reference documentation](https://mapzen.com/documentation/tangram/android-sdk/0.2.1/) for the Tangram Android SDK.
 
