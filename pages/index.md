@@ -12,15 +12,15 @@ Tangram is available in two delicious flavors: [Tangram JS](https://github.com/t
 
 ### Conceptual Overviews
 
-Tangram supports standard map styling conventions, but a Tangram map is also technically a 3D scene. You don't have to know anything about 3D to make a Tangram map, but if you'd like to dig deeper into the unique world of Tangram styles, the *Concept Overviews* section is a good place to start.
+Tangram supports standard map styling conventions, but a Tangram map is also technically a 3D scene. You don't have to know anything about 3D to make a Tangram map, but if you'd like to dig deeper into the unique world of Tangram styles, the _Concept Overviews_ section is a good place to start.
 
 ### Technical Reference
 
 Tangram maps are styled using a custom styling syntax inside of a YAML scene file. This file describes a hierarchy of objects which control every aspect of your map, including data sources, feature layers, lights, cameras, textures, and more.
 
-The *Syntax Reference* section of the documentation enumerates and describes the objects allowed in the scene file, and enumerates all of their properties.
+The _Syntax Reference_ section of the documentation enumerates and describes the objects allowed in the scene file, and enumerates all of their properties.
 
-Specific documentation about implementing Tangram is available in the *API documentation* for those platforms. The scene file syntax is platform-independent, and should function the same way everywhere – any exceptions are marked.
+Specific documentation about implementing Tangram is available in the _API documentation_ for those platforms. The scene file syntax is platform-independent, and should function the same way everywhere – any exceptions are marked.
 
 ### Demos and Examples
 
