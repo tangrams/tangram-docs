@@ -20,7 +20,7 @@ Tangram maps are styled using a custom styling syntax inside of a YAML scene fil
 
 The **Syntax Reference** section of the documentation enumerates and describes the objects allowed in the scene file, and enumerates all of their properties.
 
-Specific documentation about implementing Tangram is available in the **API documentation** for those platforms. The scene file syntax is platform-independent, and should function the same way everywhere – any exceptions are marked.
+Specific documentation about implementing Tangram on various platforms is available in the **API documentation**. The scene file syntax is platform-independent, and should function the same way everywhere – any exceptions are marked.
 
 ### Demos and Examples
 
