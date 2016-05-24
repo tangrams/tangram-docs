@@ -1,26 +1,26 @@
 *This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`draw`
-`draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer-name). It provides rules for drawing the features that match the _layer_ or _sublayer_ directly above it. These _draw rules_ are the sub-elements of the `draw` element, as in this example:
+`draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer-name). It provides one or more *draw groups* for rendering the features that match the _layer_ or _sublayer_ directly above it. These _draw groups_ are the sub-elements of the `draw` element, as in this example:
 ```yaml
 ...
 layers:
     water:
         data: { source: osm }
         draw:
-            a_draw_rule:
+            draw_group:
                 ...
-            another_draw_rule:
+            another_draw_group:
                 ...
 ```
-A `draw` element can specify multiple rules, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once with the rule "a_draw_rule" and once with the rule "another_draw_rule".
+A `draw` element can specify multiple groups, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once according to the style of `draw_group` and once with that of `another_draw_group`.
 
-####draw rule
-The name of a _draw rule_ can be any string. The sub-elements of a _draw rule_ are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
+####draw group
+The name of a _draw group can be any string. The sub-elements of a _draw group are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
 
-A _draw rule_ must specify the _style_ that will be used to draw a feature. It can do this in two ways:
+A _draw group_ must specify the _style_ that will be used to draw a feature. It can do this in two ways:
 
- 1. A _draw rule_ may contain a parameter called `style` whose value names a _style_ (either a built-in _style_ or one defined in the `styles` element of the scene file). For example:
+ 1. A _draw group_ may contain a parameter called `style` whose value names a _style_ (either a built-in _style_ or one defined in the `styles` element of the scene file). For example:
 
  ```yaml
  ...
@@ -29,7 +29,7 @@ A _draw rule_ must specify the _style_ that will be used to draw a feature. It c
          style: lines
          ... # more parameters follow
  ```
- 2. If a _draw rule_ does not contain a `style` parameter, the rule's name is interpreted as the name of a _style_ (again, either a built-in _style_ or one from the `styles` element).
+ 2. If a _draw group_ does not contain a `style` parameter, the group's name is interpreted as the name of a _style_ (again, either a built-in _style_ or one from the `styles` element).
 
  ```yaml
  ...
@@ -38,7 +38,7 @@ A _draw rule_ must specify the _style_ that will be used to draw a feature. It c
          ... # no 'style' parameter follows
  ```
 
-The 2nd, shorthand syntax is the preferred way to specify a _style_, however an explicit `style` parameter is necessary sometimes. For example, to draw a feature using the _lines_ style twice, the `draw` element would need two _draw rules_ with different names, e.g.
+The 2nd, shorthand syntax is the preferred way to specify a _style_, however an explicit `style` parameter is necessary sometimes. For example, to draw a feature using the _lines_ style twice, the `draw` element would need two _draw groups_ with different names, e.g.
 ```yaml
 ...
 draw:
@@ -49,7 +49,7 @@ draw:
         style: lines
         ... # more parameters follow
 ```
-Note that two _draw rules_ both named "lines" would be invalid YAML:
+Note that two _draw groups_ both named "lines" would be invalid YAML:
 
 ```yaml
 ...
@@ -61,7 +61,7 @@ draw:
 ```
 
 
-If the _style_ specified by a _draw rule_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the rule will draw nothing.
+If the _style_ specified by a _draw group_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the group will draw nothing.
 
 ## style parameters
 
@@ -289,7 +289,7 @@ roads:
 ####`order`
 Required _integer_ or _function_. No default.
 
-Applies to all _draw styles_. Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child rules override parent rules.
+Applies to all _draw styles_. Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child layers override parent layers.
 
 ```yaml
 layers:
@@ -353,7 +353,7 @@ draw:
 ####`repeat_group`
 Optional _string_. No default.
 
-Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set of `draw` rules (eg `text_source`, `style`, etc.) belong to the same `repeat_group`.
+Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set `draw` layer and label text belong to the same `repeat_group`.
 
 
 For example: labels from the two layers below can be drawn near each other, because they are in different repeat groups by default:
