@@ -438,14 +438,14 @@ poi-icons:
 ####`style`
 Optional _string_, naming a style defined in the [`styles`](styles.md) block.
 
-Applies to all _draw styles_.
+Applies to all _draw groups_.
 
-This will import parameters from a predefined `style` into a `draw` block. Any imported parameters will be applied _after_ the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that alpha will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
+Sets the rendering style used for the `draw` group (which defaults to a style matching the name of the draw group, if one exists). See [`draw`](draw.md#draw).
 
 ```yaml
 draw:
     polygons:
-        style: normalripples
+        style: dots
     ...
 ```
 
