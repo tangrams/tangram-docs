@@ -60,7 +60,7 @@ Styles which are extensions of the `polygons` draw style can take the following 
 The `polygons` style allows [shaders](shaders.md) to be written which take advantage of certain unique attributes and uniforms.
 
 ## lines
-The *lines* style requires a datasource containing connected coordinates. Thus it can accept either linear or polygonal input data. It draws a rectangle along each line segment, and can optionally draw special `joins` and `caps`.
+The *lines* style requires a datasource containing connected coordinates. Thus it can accept either linear or polygonal input data. It draws a rectangle along each line segment, and can optionally draw special [`join`](draw.md#join) and [`cap`](draw.md#cap) styles.
 
 #### `lines` parameters
 Styles which are extensions of the `lines` draw style can take the following parameters:
