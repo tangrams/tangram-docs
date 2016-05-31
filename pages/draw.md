@@ -209,7 +209,7 @@ draw:
 ```
 
 ####`join`
-Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
+Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `miter`.
 
 Applies to `lines`. Sets the shape of joints in multi-segment lines.
 
