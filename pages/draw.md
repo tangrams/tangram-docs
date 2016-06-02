@@ -16,7 +16,7 @@ layers:
 A `draw` element can specify multiple groups, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once according to the style of `draw_group` and once with that of `another_draw_group`.
 
 ####draw group
-The name of a _draw group can be any string. The sub-elements of a _draw group are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
+The name of a _draw group_ can be any string. The sub-elements of a _draw group_ are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
 
 A _draw group_ must specify the _style_ that will be used to draw a feature. It can do this in two ways:
 
