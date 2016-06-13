@@ -109,6 +109,15 @@ sources:
         max_zoom: 15
 ```
 
+#### `generate_label_centroids`
+Optional _boolean_. Default is _false_.
+
+A toggle for creating labels at the centroids of polygons for non-tiled GeoJSON and TopoJSON sources.
+
+When set to `true` a new feature will be added to the source consisting of a `point` geometry with a `{"label_placement" : "yes"}` property. (The original feature's properties will also be copied to the new `point`.) This allows a single label to be placed at the centroid of a polygon region, instead of multiple labels when the polygon is tiled.
+
+If the feature in question is a multipolygon, the centroid _point_ will be added to the largest polygon in the group.
+
 ####`enforce_winding`
 *This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
 
