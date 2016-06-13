@@ -452,13 +452,25 @@ draw:
 ####`text`
 Optional _block_. Declares the beginning of a `text` block of a `points` style.
 
-Applies to all _points_ styles only.
+Applies to _points_ styles only.
 
-This block allows _points_ styles to define an associated text label for each point. This feature is intended for cases where a point (which can be either a sprite, or a shader-drawn point) has a text label meant to be displayed alongside it, such as for POIs.
+This block allows _points_ styles to define an associated text label for each point, such as for POIs.
 
-This block can take the same properties as a _text_ style, with some slight variations to default values.
+Text added in this way can be styled with the same syntax as the _text_ rendering style, but with different default values that take into account the "parent" point (see "Text behavior" below).
 
-**Text behavior**
+For example, to create an icon with a _text_ label, using a style "icons" that has `base: points`:
+
+```yaml
+   draw:
+      icons:
+         sprite: ...
+         size: 16px
+         text:
+            font: ...
+```
+
+##### Text behavior
+
 The default text style behavior is adjusted to account for the parent point:
 - **Anchor**:
   - `anchor` defaults to `bottom` instead of `center` (though it is possible to composite a text label over a sprite by setting `anchor: center` and `collide: false`).
