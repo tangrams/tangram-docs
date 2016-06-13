@@ -110,7 +110,7 @@ Enables feature selection for all features, regardless of their [`interactive`](
 
 Enabling or disabling introspection at run-time will cause the scene to rebuild automatically to reflect the new setting.
 
-For more about using feature selection, see [`getFeatureAt()`][Javascript-API.md#getfeatureatpixel].
+For more about using feature selection, see [`getFeatureAt()`](Javascript-API.md#getfeatureatpixel).
 
 [[JS-only](https://github.com/tangrams/tangram)] An `introspection` parameter is also available on the Leaflet layer:
 
