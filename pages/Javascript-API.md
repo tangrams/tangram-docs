@@ -103,6 +103,23 @@ var geojson_data = {};
 scene.setDataSource('dynamic_data', { type: 'GeoJSON', data: geojson_data });
 ```
 
+#### `setIntrospection(_boolean_)`
+Enables feature selection for all features, regardless of their [`interactive`](draw.md#interactive) setting in the [scene file](Scene-file.md).
+
+`scene.setIntrospection(true);`
+
+Enabling or disabling introspection at run-time will cause the scene to rebuild automatically to reflect the new setting.
+
+[[JS-only](https://github.com/tangrams/tangram)] An `introspection` parameter is also available on the Leaflet layer:
+
+```html
+layer = Tangram.leafletLayer({
+   scene: '...',
+   introspection: true,
+   ...
+};
+```
+
 #### `updateConfig()`
 Re-parses the `scene.config` object and redraws the scene, updating data sources, cameras, lights, rendering styles and shaders, and reloading textures. If `updateConfig({ rebuild: true })` is specified, geometry will also be rebuilt (necessary in cases where `scene.config.layers` have been modified).
 
