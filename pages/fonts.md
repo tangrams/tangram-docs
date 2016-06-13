@@ -5,8 +5,8 @@ The `fonts` element is an optional top-level element in the [scene file](Scene-f
 
 A _font definition_ can define a font in one of two ways: through _external CSS_, or with any number of `font face definitions`.
 
-####`external CSS`
-With this method of defining a font, the value of the _font definition_ is set to "`external`":
+####`external`
+[[JS-only](https://github.com/tangrams/tangram)] With this method of defining a font, the value of the _font definition_ is set to "`external`":
 
 ```
 fonts:
@@ -19,8 +19,8 @@ This requires that a corresponding CSS declaration be made in the HTML:
 
 Tangram will identify the externally-loaded typeface by name and make it available for use in _text_ labels.
 
-####`font face definition`
-Instead of `external`, a _font face definition_ may be used. This is an object with a number of possible parameters:
+####font face definition
+A _font face definition_ may be used as the value of the _font definition_. This is an object with a number of possible parameters:
 
   - `weight`: defaults to `normal`, may also be `bold` or a numeric font weight, e.g. `500`
   - `style`: defaults to `normal`, may also be `italic`
