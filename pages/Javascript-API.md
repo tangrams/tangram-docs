@@ -103,6 +103,25 @@ var geojson_data = {};
 scene.setDataSource('dynamic_data', { type: 'GeoJSON', data: geojson_data });
 ```
 
+#### `setIntrospection(_boolean_)`
+Enables feature selection for all features, regardless of their [`interactive`](draw.md#interactive) setting in the [scene file](Scene-file.md).
+
+`scene.setIntrospection(true);`
+
+Enabling or disabling introspection at run-time will cause the scene to rebuild automatically to reflect the new setting.
+
+For more about using feature selection, see [`getFeatureAt()`](Javascript-API.md#getfeatureatpixel).
+
+[[JS-only](https://github.com/tangrams/tangram)] An `introspection` parameter is also available on the Leaflet layer:
+
+```html
+layer = Tangram.leafletLayer({
+   scene: '...',
+   introspection: true,
+   ...
+};
+```
+
 #### `updateConfig()`
 Re-parses the `scene.config` object and redraws the scene, updating data sources, cameras, lights, rendering styles and shaders, and reloading textures. If `updateConfig({ rebuild: true })` is specified, geometry will also be rebuilt (necessary in cases where `scene.config.layers` have been modified).
 
@@ -114,11 +133,23 @@ scene.updateConfig()
 
 Tangram provides a number of event handlers and emitters.
 
-####`error`
-This event handler can be used to catch `error` events, which are fired when an unrecoverable error occurred while processing the scene, the callback is passed an object with `type`, `message` (text error message), `error` (JS error object), and `url` (the URL from which the scene was loaded) properties.
+####`error` and `warning`
+The `error` event is fired when an unrecoverable error occurred while processing the scene. The callback is passed an object with `type`, `message` (text error message), `error` (JS error object), and `url` (the URL from which the scene was loaded) properties.
+
+The `warning` event is fired when a recoverable issue occurred while processing the scene. The callback is passed an object with a `type`, which indicates the scope of the issue (e.g. textures, sources, etc.), along with additional type-specific properties.
+
+```javascript
+scene.subscribe({
+    error: function (e) {
+        console.log('scene error:', e);
+    },
+    warning: function (e) {
+        console.log('scene warning:' e);
+    }
+});
+```
 
 #### `hover` and `click`
-
 These two selection event handlers tie into Leaflet's existing event handlers as convenient shortcuts, and are the preferred way to access the feature picking functionality. They are passed the same selection object returned by direct calls to `scene.getFeatureAt()`.
 
 They can be configured in two ways:
@@ -155,6 +186,14 @@ To activate the feature picking functionality for a particular layer, set the [`
 #### `load`
 This event handler can be used to catch 'load' events, which are fired when the scene was loaded. The event callback is passed an object with a `config` property, containing the just-loaded scene config object.
 
+```javascript
+scene.subscribe({
+    load: function (e) {
+        console.log('scene loaded:', e);
+    }
+});
+```
+
 #### `view_complete`
 This is a render state event emitter which fires when the view enters "resting state", meaning new geometry has rendered, and no further tiles are loading. For example, when a scene is loaded, a `view_complete` event will fire when all tiles have loaded and the initial map view has been drawn. If the view is then zoomed in a level, another `view_complete` event will fire when the next zoom finishes rendering.
 
@@ -167,7 +206,3 @@ scene.subscribe({
     }
 });
 ```
-
-####`warning`
-This event handler can be used to catch `warning` events, which are fired when an issue occurred while processing the scene. The callback is passed an object with a `type`, which indicates the scope of the issue (e.g. textures, sources, etc.), along with additional type-specific properties.
-

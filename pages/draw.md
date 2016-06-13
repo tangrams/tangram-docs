@@ -1,26 +1,26 @@
 *This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
 ####`draw`
-`draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer-name). It provides rules for drawing the features that match the _layer_ or _sublayer_ directly above it. These _draw rules_ are the sub-elements of the `draw` element, as in this example:
+`draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer-name). It provides one or more *draw groups* for rendering the features that match the _layer_ or _sublayer_ directly above it. These _draw groups_ are the sub-elements of the `draw` element, as in this example:
 ```yaml
 ...
 layers:
     water:
         data: { source: osm }
         draw:
-            a_draw_rule:
+            draw_group:
                 ...
-            another_draw_rule:
+            another_draw_group:
                 ...
 ```
-A `draw` element can specify multiple rules, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once with the rule "a_draw_rule" and once with the rule "another_draw_rule".
+A `draw` element can specify multiple groups, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once according to the style of `draw_group` and once with that of `another_draw_group`.
 
-####draw rule
-The name of a _draw rule_ can be any string. The sub-elements of a _draw rule_ are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
+####draw group
+The name of a _draw group_ can be any string. The sub-elements of a _draw group_ are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
 
-A _draw rule_ must specify the _style_ that will be used to draw a feature. It can do this in two ways:
+A _draw group_ must specify the _style_ that will be used to draw a feature. It can do this in two ways:
 
- 1. A _draw rule_ may contain a parameter called `style` whose value names a _style_ (either a built-in _style_ or one defined in the `styles` element of the scene file). For example:
+ 1. A _draw group_ may contain a parameter called `style` whose value names a _style_ (either a built-in _style_ or one defined in the `styles` element of the scene file). For example:
 
  ```yaml
  ...
@@ -29,7 +29,7 @@ A _draw rule_ must specify the _style_ that will be used to draw a feature. It c
          style: lines
          ... # more parameters follow
  ```
- 2. If a _draw rule_ does not contain a `style` parameter, the rule's name is interpreted as the name of a _style_ (again, either a built-in _style_ or one from the `styles` element).
+ 2. If a _draw group_ does not contain a `style` parameter, the group's name is interpreted as the name of a _style_ (again, either a built-in _style_ or one from the `styles` element).
 
  ```yaml
  ...
@@ -38,7 +38,7 @@ A _draw rule_ must specify the _style_ that will be used to draw a feature. It c
          ... # no 'style' parameter follows
  ```
 
-The 2nd, shorthand syntax is the preferred way to specify a _style_, however an explicit `style` parameter is necessary sometimes. For example, to draw a feature using the _lines_ style twice, the `draw` element would need two _draw rules_ with different names, e.g.
+The 2nd, shorthand syntax is the preferred way to specify a _style_, however an explicit `style` parameter is necessary sometimes. For example, to draw a feature using the _lines_ style twice, the `draw` element would need two _draw groups_ with different names, e.g.
 ```yaml
 ...
 draw:
@@ -49,7 +49,7 @@ draw:
         style: lines
         ... # more parameters follow
 ```
-Note that two _draw rules_ both named "lines" would be invalid YAML:
+Note that two _draw groups_ both named "lines" would be invalid YAML:
 
 ```yaml
 ...
@@ -61,7 +61,7 @@ draw:
 ```
 
 
-If the _style_ specified by a _draw rule_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the rule will draw nothing.
+If the _style_ specified by a _draw group_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the group will draw nothing.
 
 ## style parameters
 
@@ -178,6 +178,28 @@ draw:
     points:
         color: [1.0, .5, .5, .5] # 50% alpha
 ```
+####`dash`
+Optional _array_. Defines a dash pattern for use with line textures.
+
+Applies to _lines_ styles.
+
+A _dash pattern_ is an array defining a pattern of alternating dashes and spaces, e.g. `[2, 1]` creates a pattern of dashes that are each 2 units long, separated by spaces that are 1 unit long.
+
+The unit of the _dash pattern_ is the width of its line, e.g. a value of `[1, 1]` creates a series of square dashes (separated by square spaces).
+
+If the _dash pattern_ contains an odd number of entries, it is repeated to form an even pattern (as in SVG). This means that the `[1, 1]` example above is equivalent to just `[1]`. Similarly, `[3, 1, 1]` would become `[3, 1, 1, 3, 1, 1]`.
+
+##### Dash coloring
+
+The dashes are colored using the feature's _color_ as assigned by the layer's _draw_ group (aka the "vertex color").
+
+By default, the "spaces" in the dash pattern are transparent. Alternatively, an opaque background color can be assigned with the dash_background_color parameter, which is useful for typical "stairs" or "railway"-like patterns.
+
+####`dash_background_color`
+
+Optional _color_. Sets an opaque background color for lines frawn using the `dash` parameter.
+
+See [`dash`](draw.md#dash).
 
 ####`extrude`
 Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are in meters.
@@ -209,7 +231,7 @@ draw:
 ```
 
 ####`join`
-Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
+Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `miter`.
 
 Applies to `lines`. Sets the shape of joints in multi-segment lines.
 
@@ -289,7 +311,7 @@ roads:
 ####`order`
 Required _integer_ or _function_. No default.
 
-Applies to all _draw styles_. Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child rules override parent rules.
+Applies to all _draw styles_. Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child layers override parent layers.
 
 ```yaml
 layers:
@@ -353,7 +375,7 @@ draw:
 ####`repeat_group`
 Optional _string_. No default.
 
-Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set of `draw` rules (eg `text_source`, `style`, etc.) belong to the same `repeat_group`.
+Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set `draw` layer and label text belong to the same `repeat_group`.
 
 
 For example: labels from the two layers below can be drawn near each other, because they are in different repeat groups by default:
@@ -438,16 +460,66 @@ poi-icons:
 ####`style`
 Optional _string_, naming a style defined in the [`styles`](styles.md) block.
 
-Applies to all _draw styles_.
+Applies to all _draw groups_.
 
-This will import parameters from a predefined `style` into a `draw` block. Any imported parameters will be applied _after_ the other parameters defined in the `draw` block, using them for inputs. For instance, if a `color` is set in the `draw` block and a `style` is also named, that alpha will be available to any `shader` defined in the `style`. For more on this interaction, see [Materials Overview](Materials-Overview.md) and [Shaders Overview](Shaders-Overview.md).
+Sets the rendering style used for the `draw` group (which defaults to a style matching the name of the draw group, if one exists). See [`draw`](draw.md#draw).
 
 ```yaml
 draw:
     polygons:
-        style: normalripples
+        style: dots
     ...
 ```
+
+####`text`
+Optional _block_. Declares the beginning of a `text` block of a `points` style.
+
+Applies to _points_ styles only.
+
+This block allows _points_ styles to define an associated text label for each point, such as for POIs.
+
+Text added in this way can be styled with the same syntax as the _text_ rendering style, but with different default values that take into account the "parent" point (see "Text behavior" below).
+
+For example, to create an icon with a _text_ label, using a style "icons" that has `base: points`:
+
+```yaml
+   draw:
+      icons:
+         sprite: ...
+         size: 16px
+         text:
+            font: ...
+```
+
+##### Text behavior
+
+The default text style behavior is adjusted to account for the parent point:
+- **Anchor**:
+  - `anchor` defaults to `bottom` instead of `center` (though it is possible to composite a text label over a sprite by setting `anchor: center` and `collide: false`).
+  - The point and text can have separate `anchor` values:
+    - The `anchor` of the `text` controls the text's placement *relative to the size and position* of its parent point.
+    - The `anchor` of the `points` portion moves the *entire entity* (point + text) relative to the underlying geometry point.
+- **Offset**:
+  - Text is automatically offset to account for its anchor relative to its parent point (see description above).
+  - Further manual offset is possible with the `offset` parameter, which moves the text in screen space, e.g. text with `anchor: bottom` will automatically be placed below the sprite, and an additional `offset: [8px, 0]` in the scene file would move the text another 8 pixels to the right.
+- **Priority**:
+  - The text's `priority` is assigned a default value of `0.5` below the `priority` of its parent point (numerically this means the priority is `+0.5`, since lower numbers are "higher priority"). This can be explicitly overridden by setting a `priority` value in the `text` block, though the text's priority may not be set higher than that of its parent point. This is similar to `outline` handling, where the `order` of the outline cannot be higher than the line fill. (In both cases, the values are capped to their highest/lowest allowed values.)
+  - For example, in this case, the icon has `priority: 3`, so the text portion is assigned a priority of `3.5`:
+   ```
+      draw:
+         icons:
+            ...
+            priority: 3
+            text:
+               ...
+    ```
+- **Collision**:
+  - The point is required, but its text is optional: while the `points` portion of the style will render according to its collision test, the `text` portion will only render if **both** it and its parent point passed collision tests, e.g. if the point is occluded, then the text won't render either, even if it is not occluded.
+  - Different collision behaviors can be achieved by setting the `collide: false` flag on either or both of the point and text:
+    - Both `collide: true` (default): nothing will overlap, text will only be rendered if point also fits.
+    - Points `collide: false`, text `collide: true`: all points will render, text will render if it fits.
+    - Points `collide: true`, text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
+    - Both `collide: false`: all points and text should render, regardless of overlap.
 
 ####`text_source`
 Optional _string_, _function_, or _array_. Default is `name`.
@@ -517,6 +589,13 @@ draw:
         outline:
             tile_edges: true
 ```
+
+####`texture`
+Optional _block_ or _URL_. As a _block_, defines the start of an inline `texture` block. As a _URL_, defines the file path of an image to be used as a texture.
+
+May be applied to _polygons_, _points_, or _lines_ styles.
+
+See the top-level [`textures`](textures.md) object for more.
 
 ####`transition`
 [[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time. `time` values can be either in seconds (`s`) or milliseconds (`ms`).

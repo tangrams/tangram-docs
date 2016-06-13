@@ -1,4 +1,4 @@
-**YAML** is an object-based data format with a flexible structure. Its specification includes a huge array of crazy abilities, but we only use a few of them.
+**YAML** is an object-based data format with a flexible structure. Its specification includes a huge array of wacky abilities, but we only use a few of them.
 
 Here are the most important YAML features to know about when writing Tangram scene files.
 

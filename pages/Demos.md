@@ -1,5 +1,3 @@
-# Demos and Examples
-
 ### Basic Demos
 
 - [simple-demo](https://github.com/tangrams/simple-demo) - The simplest possible Tangram setup.
