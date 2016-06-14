@@ -57,7 +57,7 @@ styles:
                 fox: [0, 32, 32, 32]
 ```
 
-Whether defined in the `textures` element or inline, at a minimum, a URL must be passed:
+Whether defined in the `textures` element or inline, at a minimum, a `URL` or `element` must be passed:
 
 ```yaml
 textures:
@@ -76,7 +76,7 @@ If provided for a _lines_ style, the texture is repeated across the line, with t
 ## texture parameters
 
 ####`url`
-Required _string_. Defines the path to an image file. No default.
+Optional _string_, though either `url` or [`element`](#element) is required ([JS-only](https://github.com/tangrams/tangram). This element is required for [ES](https://github.com/tangrams/tangram-es)). Specifies the path to a texture source file. No default.
 
 URLs can be absolute or relative.
 
@@ -88,6 +88,33 @@ URLs can be absolute or relative.
 ```yaml
     ghost:
         url: http://ghostimages.com/ghost.png
+```
+
+#### `element`
+[[JS-only](https://github.com/tangrams/tangram)] Optional _string_, though either [`url`](#url) or `element` is required. Specifies a CSS element selector string. No default.
+
+This parameter allows an HTML element to be used as the source of the texture, as identified by a CSS selector string.
+
+For example, this canvas element:
+
+`<canvas class='awesome-texture'>`
+
+Can be referenced as:
+
+```yaml
+textures:
+   awesome-texture:
+      element: .awesome-texture
+```
+
+You can also reference an element by `id`, but the use of `#` in CSS means the YAML must be quoted so it's not interpreted as a YAML comment:
+
+`<canvas id='texture-id'>`
+
+```yaml
+textures:
+   awesome-texture:
+      element: '#texture-id' # no comment!
 ```
 
 #### `filtering`
