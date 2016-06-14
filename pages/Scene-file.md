@@ -19,6 +19,11 @@ Optional element. The `global` block allows the addition of custom named paramet
 
 See [global](global.md).
 
+####`import`
+Optional element. The `import` block allows other .yaml files, containing any combination of Tangram scene blocks, specified from the top-level blocks outward, up to entire scene files, to be imported into the current scene, through a simple text-based merge.
+
+See [import](import.md).
+
 ####`lights`
 Optional element. The `lights` block allows control of the lighting of the map.
 
