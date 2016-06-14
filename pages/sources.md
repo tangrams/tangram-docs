@@ -114,7 +114,9 @@ Optional _boolean_. Default is _false_.
 
 A toggle for creating labels at the centroids of polygons for non-tiled GeoJSON and TopoJSON sources.
 
-When set to `true` a new feature will be added to the source consisting of a `point` geometry with a `{"label_placement" : "yes"}` property. (The original feature's properties will also be copied to the new `point`.) This allows a single label to be placed at the centroid of a polygon region, instead of multiple labels when the polygon is tiled.
+When set to `true` new _point_ geometries will be added to the data source, one located at the geometrical center (or "centroid") of every _polygon_. Each point will receive a `{"label_placement" : "yes"}` property, as well as a copy of each associated polygonal feature's properties.
+
+This allows a single label to be placed at the centroid of a polygon region, instead of multiple labels when the polygon is tiled.
 
 If the feature in question is a multipolygon, the centroid _point_ will be added to the largest polygon in the group.
 
