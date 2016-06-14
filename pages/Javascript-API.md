@@ -1,9 +1,9 @@
 *This is the technical documentation for Tangram's JavaScript API.*
 
-In the process of constructing a map, Tangram mirrors much of the structure of the 3D scene and the yaml file itself in JavaScript objects. Most of the properties and functions on these objects are used internally by the library, but a few are designed to be referenceable and modifiable, to allow easier design and interactivity.
+In the process of constructing a map, Tangram mirrors much of the structure of the 3D scene and the yaml file itself in JavaScript objects. Most of the properties and functions on these objects are used internally by the library, but a few are designed to be referenceable and modifiable, to allow easier design and interactivity. The top-level `scene` object, and the methods for querying and modifying it comprise Tangram's JavaScript API.
 
 #### `scene`
-The `scene` object is the interface for controlling your Tangram scene at run-time. It is available as a property of the Tangram Leaflet layer (which is returned by the `Tangram.leafletLayer()` function that is used to initialize the map).
+The `scene` object is the interface for controlling your Tangram scene at runtime. It is available as a property of the Tangram Leaflet layer (which is returned by the `Tangram.leafletLayer()` function that is used to initialize the map).
 
 ```javascript
 > layer = Tangram.leafletLayer({ scene: url, ... });
@@ -14,7 +14,7 @@ The `scene` object is the interface for controlling your Tangram scene at run-ti
 The methods and properties below are accessed through this `scene` object.
 
 #### `config`
-This contains a deserialized, run-time JavaScript object version of the [scene file](Scene-file.md). This is essentially the same as the scene file, but can be modified on the fly:
+This contains a deserialized, runtime JavaScript object version of the [scene file](Scene-file.md) which can be modified on the fly:
 
 ```javascript
 > scene.config
