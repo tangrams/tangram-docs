@@ -67,6 +67,9 @@ Loads the specified scene by url and rebuilds the geometry. If no arguments are 
 
 `base_path` is an optional argument specifying an alternate base URL for resolving relative paths in the scene file. It is primarily useful for development and debugging.
 
+#### `loadTextures()`
+Reloads and rebinds all [textures](textures.md) in the scene.
+
 #### `rebuild()`
 Rebuilds the current scene from scratch.
 
