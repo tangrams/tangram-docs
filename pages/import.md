@@ -1,3 +1,5 @@
+*This is the technical documentation for Tangram's `import` block. For a conceptual overview of the scene file, see the [Scene File overview page](Scene-file.md).*
+
 ## `import`
 
 The `import` element is an optional top-level element in a Tangram scene file, declaring an `import` parameter. The value can be a single .yaml _URL_, or an _array_ of .yaml _URLs_.
