@@ -118,6 +118,15 @@ When set to `true` a new feature will be added to the source consisting of a `po
 
 If the feature in question is a multipolygon, the centroid _point_ will be added to the largest polygon in the group.
 
+```yaml
+sources:
+    local:
+        type: GeoJSON
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+        max_zoom: 15
+        generate_label_centroids: true
+```
+
 ####`enforce_winding`
 *This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
 
