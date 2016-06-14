@@ -36,7 +36,7 @@ layers:
 
 ## Feature filters
 
-Once a top-level `layer` filter has been applied, feature-level [`filter`](layers.md#filter) objects can be defined to further narrow down the data of interest and refine the styles applied to the data.
+Once a top-level `layer` filter has been applied, feature-level [`filter`](layers.md#filter) objects can be defined to filter by feature properties, in order to further narrow down the data of interest and refine the styles applied to the data.
 
 ```yaml
 layers:
@@ -194,6 +194,27 @@ filter:
 
 filter: function() { return $zoom <= 10 }   # matches zooms 10 and below
 ```
+
+#### `label_placement`
+
+The `label_placement` property is given only to special auto-generated _point_ geometries, and may be used for placing a single label in the center of a polygon, instead of once per tile. To add these _points_ to a datasource, add the `generate_label_centroids` property to its [source] block:
+
+```yaml
+sources:
+    osm:
+        type: TopoJSON
+        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+        generate_label_centroids: true
+
+layers:
+    landuse:
+        data: {source: osm}
+        points:
+            filter:
+                label_placement: yes
+```
+
+See [`generate_label_centroids`](sources.md#generate_label_centroids)
 
 #### Filter functions
 
