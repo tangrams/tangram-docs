@@ -174,7 +174,7 @@ width: function () { return 2.5 * Math.log(zoom); }
 
 #### `$zoom`
 
-The `$zoom` keyword may be used to define [filters](filters.md) with optional `min` and `max` parameters.
+The `$zoom` keyword may be used to define [filters](Filters-Overview.md) with optional `min` and `max` parameters.
 
 ```yaml
 outline:
@@ -183,14 +183,14 @@ outline:
 
 #### `$geometry`
 
-The `$geometry` keyword can specify a [filter](filters.md) to match a specific type of geometry, for cases when a FeatureCollection includes multiple geometry types:
+The `$geometry` keyword can specify a [filter](Filters-Overview.md) to match a specific type of geometry, for cases when a FeatureCollection includes multiple geometry types:
 
 ```yaml
 labels:
    filter: { $geometry: point }
 ```
 
-## multiline strings
+## multi-line strings
 
 One of the reasons we chose YAML as our scene file format is its ability to handle multi-line strings with a minimum of fuss. In _block syntax_ only, start an parameter's value with a "pipe" character (`|`) followed by a newline, and everything that isn't indented _less_ after that will be treated as a single string value, newlines included:
 
