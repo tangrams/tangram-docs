@@ -81,11 +81,13 @@ Optional _string_, though either `url` or [`element`](#element) is required ([JS
 URLs can be absolute or relative.
 
 ```yaml
+textures:
     ghost:
         url: demos/images/ghost.png
 ```
 
 ```yaml
+textures:
     ghost:
         url: http://ghostimages.com/ghost.png
 ```
@@ -123,9 +125,10 @@ Optional _string_, one of `linear`, `nearest`, or `mipmap`. Defaults to `linear`
 Sets the filtering mode for the texture, which determines quality at various zoom levels.
 
 ```yaml
-ghost:
-    url: demos/images/ghost.png
-    filtering: mipmap
+textures:
+    ghost:
+        url: demos/images/ghost.png
+        filtering: mipmap
 ```
 
 #### `sprites`
@@ -141,14 +144,15 @@ Required _string_. Can be anything. No default.
 Defines an area of a texture to be used as an individual sprite, as _[x origin, y origin, width, height]_ in pixels. 
 
 ```yaml
-pois:
-    url: demos/images/poi_icons_32.png
-    filtering: mipmap
-    sprites:
-        airport: [0, 0, 32, 32]
-        restaurant: [0, 777, 32, 32]
-        cafe: [0, 814, 32, 32]
-        museum: [0, 518, 32, 32]
+textures:
+    pois:
+        url: demos/images/poi_icons_32.png
+        filtering: mipmap
+        sprites:
+            airport: [0, 0, 32, 32]
+            restaurant: [0, 777, 32, 32]
+            cafe: [0, 814, 32, 32]
+            museum: [0, 518, 32, 32]
 ```
 
 For using sprites in _draw styles_, see [`sprite`](draw.md#sprite).
