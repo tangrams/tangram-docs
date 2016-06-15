@@ -444,6 +444,8 @@ draw:
         sprite: function() { return feature.kind } # look for a sprite matching the feature's 'kind' property
 ```
 
+Note that if any `sprites` are defined for a texture, a `sprite` must be declared for any _points_ drawn with that texture, or nothing will be drawn.
+
 ####`sprite_default`
 Optional _string_. Sets a default sprite for cases when the matching function fails.
 
