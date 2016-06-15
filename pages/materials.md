@@ -89,7 +89,7 @@ material:
 
 #### `texture`
 
-Optional _named texture_, _URL_, or _texture object_. No default.
+Optional _named texture_ or _URL_. No default.
 
 For more, see [textures#texture](textures.md#texture).
 
