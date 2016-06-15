@@ -133,6 +133,8 @@ Optional parameter. Defines the start of a `sprites` block.
 
 `sprites` take only one kind of parameter: the _sprite name_. Any number of sprites may be defined.
 
+For using sprites in _draw styles_, see [`sprite`](draw.md#sprite).
+
 #### sprite name
 Required _string_. Can be anything. No default.
 
@@ -148,3 +150,5 @@ pois:
         cafe: [0, 814, 32, 32]
         museum: [0, 518, 32, 32]
 ```
+
+For using sprites in _draw styles_, see [`sprite`](draw.md#sprite).
