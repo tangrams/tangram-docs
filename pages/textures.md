@@ -33,7 +33,7 @@ styles:
 
 A _texture object_ may also be defined inline, anywhere a `texture` parameter may be specified:
 ```yaml
-# defining a texture 
+# defining a texture
 styles:
     rock:
         base: polygons
@@ -136,7 +136,7 @@ Optional parameter. Defines the start of a `sprites` block.
 #### sprite name
 Required _string_. Can be anything. No default.
 
-Defines an area of a texture to be used as an individual sprite, as _[x origin, y origin, width, height]_ in pixels. 
+Defines an area of a texture to be used as an individual sprite, as _[x origin, y origin, width, height]_ in pixels.
 
 ```yaml
 pois:
