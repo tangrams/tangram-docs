@@ -590,13 +590,6 @@ draw:
             tile_edges: true
 ```
 
-####`texture`
-Optional _block_ or _URL_. As a _block_, defines the start of an inline `texture` block. As a _URL_, defines the file path of an image to be used as a texture.
-
-May be applied to _polygons_, _points_, or _lines_ styles.
-
-See the top-level [`textures`](textures.md) object for more.
-
 ####`transition`
 [[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time. `time` values can be either in seconds (`s`) or milliseconds (`ms`).
 
