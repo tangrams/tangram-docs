@@ -103,7 +103,7 @@ Material properties can be controlled with pixel-level detail when used with ***
 
 ![](images/earth.png)
 
-Textures are loaded by setting the `texture` parameter to the url of an image:
+Textures are loaded by setting the `texture` parameter to the url of an image or the name of an entry in the [`textures`](textures.md) block:
 
 ```yaml
 material:
