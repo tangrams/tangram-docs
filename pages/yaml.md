@@ -183,7 +183,13 @@ outline:
 
 #### `$geometry`
 
-The `$geometry` keyword can specify a [filter](Filters-Overview.md) to match a specific type of geometry, for cases when a FeatureCollection includes multiple geometry types:
+The `$geometry` keyword can specify a [filter](Filters-Overview.md) to match a specific type of geometry, for cases when a FeatureCollection includes multiple geometry types.
+
+Allowable values for this filter are:
+
+- `polygon`
+- `point`
+- `line`
 
 ```yaml
 labels:
