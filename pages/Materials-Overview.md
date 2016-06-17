@@ -50,7 +50,7 @@ stylename:
 ###`specular`
 In our lighting model, "specular" is the "highlight" color of a material. It can be thought of as the reflection of the light source itself on the surface of an object. The `shininess` parameter controls the size of the highlight: larger numbers produce smaller highlights, which makes the object appear shinier.
 
-By default, these are set to `specular: 0` and `shininess: 0.2` 
+By default, these are set to `specular: 0` and `shininess: 0.2`
 
 ```yaml
 lights:
@@ -99,11 +99,11 @@ stylename:
 
 ## Textures
 
-Material properties can be controlled with pixel-level detail when used with ***texture maps***. 
+Material properties can be controlled with pixel-level detail when used with ***texture maps***.
 
 ![](images/earth.png)
 
-Textures are loaded by setting the `texture` parameter to the url of an image:
+Textures are loaded by setting the `texture` parameter to the url of an image or the name of an entry in the [`textures`](textures.md) block:
 
 ```yaml
 material:
@@ -112,7 +112,7 @@ material:
 ```
 
 ###Mapping
-When using a texture, you must specify one of four `mapping` modes, which determine the method used to apply the texture to an object. In every case, texture coordinates are applied to the vertices of the geometry, and the image is drawn according to those coordinates. 
+When using a texture, you must specify one of four `mapping` modes, which determine the method used to apply the texture to an object. In every case, texture coordinates are applied to the vertices of the geometry, and the image is drawn according to those coordinates.
 
 ### `mapping: uv`
 UV mapping is related to the size and proportions of the geometry. With this method, a bounding box is applied to contiguous surfaces, and texture coordinates are applied to the corners of the bounding box. In the following example, a grid image is applied to each polygon. On larger shapes, the UVs are tiled, resulting in a tiled image.
@@ -179,7 +179,7 @@ Each `texture` can also have the following properties:
 
 ### Normals
 
-The `normal` of a polygon is a three-dimensional vector describing the direction that it is considered to be facing. The direction that a 3D plane is facing may seem obvious, but most 3D engines allow a polygon's apparent direction to be changed without modifying the geometry, which is useful in many situations. 
+The `normal` of a polygon is a three-dimensional vector describing the direction that it is considered to be facing. The direction that a 3D plane is facing may seem obvious, but most 3D engines allow a polygon's apparent direction to be changed without modifying the geometry, which is useful in many situations.
 
 Tangram's polygon model assigns normals to the vertices at the corners of a polygon when the geometry is constructed, and these values are interpolated across the face of the polygon to calculate the normal at any given point. This information is used as part of the diffuse and specular lighting calculations.
 

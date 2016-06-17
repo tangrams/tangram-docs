@@ -26,11 +26,11 @@ styles:
     red-wall:
         base: polygons
         material:
-            diffuse: red 
+            diffuse: red
 ```
 
 
-#### `ambient` 
+#### `ambient`
 Optional parameter. Can be a _number_ from `0`-`1`, `[R, G, B]`, `hex-color`, `css color name`, or _texture_. Defaults to the `diffuse` value.
 
 ```yaml
@@ -89,7 +89,7 @@ material:
 
 #### `texture`
 
-Optional _named texture_, _URL_, or _texture object_. No default.
+Optional _named texture_ or _URL_. No default.
 
 For more, see [textures#texture](textures.md#texture).
 
@@ -133,6 +133,6 @@ material:
         mapping: uv
         scale: 2.0
         amount: 0.5
-``` 
+```
 
 See also: [texture parameters](textures.md#texture-parameters).

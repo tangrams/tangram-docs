@@ -11,12 +11,7 @@ textures:
         url: demos/images/brick.jpg
 ```
 
-####`texture`
-Optional _named texture, _URL_, or _texture object_. No default.
-
-A _texture object_ may be defined either in the top-level `textures` element or inline.
-
-When defined in the top-level `textures` element, it is declared as a _texture name_ which allows it to be referenced by name in other `texture` parameters, including in `styles` and `materials` definitions:
+When a texture is defined in the top-level `textures` element, it is declared with a _texture name_ which allows it to be referenced by name in other `texture` parameters, including in `styles` and `materials` definitions:
 
 ```yaml
 # here we define and name the texture
@@ -31,47 +26,20 @@ styles:
         texture: pois
 ```
 
-A _texture object_ may also be defined inline, anywhere a `texture` parameter may be specified:
+Outside of the `textures` element, a new texture may be defined inline by providing a URL instead of a texture name:
 ```yaml
-# defining a texture 
+# defining a new texture inline
 styles:
     rock:
         base: polygons
         material:
             normal:
-                texture:
-                    url: rock.jpg
+                texture: images/rock.jpg
                 mapping: uv
 ```
+These textures will use the default [parameters](#texture parameters) described below. To use custom parameters for a texture, you must declare it in the `textures` element.
 
-```yaml
-# defining a texture inline in the texture parameter of a style based on points
-styles:
-    animals-style:
-        base: points
-        texture:
-            url: path/to/image.png
-            filtering: mipmap
-            sprites:
-                bunny: [0, 0, 32, 32]
-                fox: [0, 32, 32, 32]
-```
-
-Whether defined in the `textures` element or inline, at a minimum, a `URL` or `element` must be passed:
-
-```yaml
-textures:
-    ghost:
-        url: images/ghost.png
-```
-
-```yaml
-styles:
-    points:
-        texture: images/ghost.png
-```
-
-If provided for a _lines_ style, the texture is repeated across the line, with the width of the texture matching the width of the line, and the texture y coordinate scaled to match the aspect ratio of the image (its height over its width).
+If a texture is provided for a _lines_ style, the texture is repeated across the line, with the width of the texture matching the width of the line, and the texture y coordinate scaled to match the aspect ratio of the image (its height over its width).
 
 ## texture parameters
 
@@ -141,7 +109,7 @@ For using sprites in _draw styles_, see [`sprite`](draw.md#sprite).
 #### sprite name
 Required _string_. Can be anything. No default.
 
-Defines an area of a texture to be used as an individual sprite, as _[x origin, y origin, width, height]_ in pixels. 
+Defines an area of a texture to be used as an individual sprite, as _[x origin, y origin, width, height]_ in pixels.
 
 ```yaml
 textures:
