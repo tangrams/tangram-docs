@@ -48,7 +48,7 @@ cameras:
 ```
 
 ####`position`
-Optional _[lat, lng]_ or _[lat, lng, zoom]_. Defaults to `[-74.00976419448854, 40.70532700869127, 16]`, the southern tip of Manhattan.
+Optional _[lat, lng]_ or _[lat, lng, zoom]_. No default.
 
 Sets the longitude and latitude of the camera, in degrees.
 ```yaml
