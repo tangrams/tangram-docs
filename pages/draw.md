@@ -655,7 +655,7 @@ draw:
             style: italic
             weight: bold
             fill: '#cccccc'
-            stroke: white
+            stroke: { color: white, width: 2 }
             transform: uppercase
 ```
 
