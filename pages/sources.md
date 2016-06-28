@@ -135,7 +135,7 @@ sources:
 ####`scripts`
 Optional _[strings]_, specifying the URL of a JavaScript file.
 
-These scripts will be loaded before the data is processed so that they are available to the `transform` function.
+These scripts will be loaded before the data is processed so that they are available to the [`transform`](sources.md#transform) function.
 
 ```yaml
 scripts: [ 'https://url.com/js/script.js', 'local_script.js']
