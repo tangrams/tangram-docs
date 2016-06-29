@@ -14,11 +14,12 @@ lights:
         diffuse: white
         specular: white
 
-stylename:
-    material:
-        diffuse: 0.5
-        ambient: 0
-        specular: 0
+styles:
+    stylename:
+        material:
+            diffuse: 0.5
+            ambient: 0
+            specular: 0
 ```
 ![](images/diffuse-surface.png)
 ![](images/diffuse.png)
@@ -35,13 +36,14 @@ lights:
         diffuse: white
         specular: white
 
-stylename:
-    material:
-        emission: 0
-        ambient: 0.5
-        diffuse: 0
-        specular: 0
-        shininess: 0.2
+styles:
+    stylename:
+        material:
+            emission: 0
+            ambient: 0.5
+            diffuse: 0
+            specular: 0
+            shininess: 0.2
 ```
 ![](images/ambient-surface.png)
 ![](images/ambient.png)
@@ -61,11 +63,12 @@ lights:
         diffuse: white
         specular: white
 
-stylename:
-    material:
-        diffuse: 0.0
-        ambient: 0
-        specular: 0.5
+styles:
+    stylename:
+        material:
+            diffuse: 0.0
+            ambient: 0
+            specular: 0.5
         shininess: 2.0
 ```
 ![](images/specular-surface.png)
@@ -87,11 +90,12 @@ lights:
         diffuse: 0
         specular: 0
 
-stylename:
-    material:
-        emission: [.9,.9,.9]
-        ambient: 0
-        diffuse: 0.0
+styles:
+    stylename:
+        material:
+            emission: [.9,.9,.9]
+            ambient: 0
+            diffuse: 0.0
 ```
 ![](images/emission-surface.png)
 ![](images/emission.png)
