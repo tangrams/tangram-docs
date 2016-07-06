@@ -24,6 +24,8 @@ Specific documentation about implementing Tangram on various platforms is availa
 
 ### Demos and Examples
 
-A variety of example maps are available at our documentation's [Demos and Examples](https://mapzen.com/documentation/tangram/Demos/) page. Tangram is free and open source, and is available for both commercial and non-commercial purposes. The [source code](https://github.com/tangrams) is open to view and modify, and contributions are welcomed.  
+A variety of example maps are available at our documentation's [Demos and Examples](https://mapzen.com/documentation/tangram/Demos/) page. 
 
-Learn more about the concepts, objects, and parameters of the scene file in the topics in the sidebar. Or, to jump right in, follow this [walkthrough](walkthrough.md) to learn how to make a map with Tangram JS.
+Learn more about the concepts, objects, and parameters of the scene file in the topics in the sidebar. Or, to jump right in, follow this [walkthrough](tutorials/walkthrough.md) to learn how to make a map with Tangram JS. More tutorials are available on the [Tutorials](Tutorials.md) page.
+
+Tangram is free and open source, and is available for both commercial and non-commercial purposes. The [source code](https://github.com/tangrams) is open to view and modify, and contributions are welcomed.  
