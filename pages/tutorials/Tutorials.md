@@ -1,4 +1,4 @@
-## Tutorials
+This page covers a multitude of tutorials.
 
 ### Basic walkthroughs
 
