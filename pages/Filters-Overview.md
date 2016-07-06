@@ -117,7 +117,7 @@ filter:
 To match a property whose value is a boolean, use the list syntax:
 ```yaml
 filter:
-    bridge: [true]
+    boolean_property: [true]
 ```
 A feature filter can also evaluate one or more properties in a JavaScript function:
 ```yaml
@@ -303,7 +303,7 @@ roads:
         filter: { kind: highway }
         draw: { lines: { color: red } }
     bridges:
-        filter: { kind: bridge }
+        filter: { is_bridge: yes }
         draw: { lines: { color: blue } }
 ```
 
@@ -315,9 +315,9 @@ roads:
         filter: { kind: highway }
         draw: { lines: { color: red } }
         highway-bridges:
-            filter: { kind: bridge }
+            filter: { is_bridge: yes }
             draw: { lines: { color: blue } }
     other-bridges:
-        filter: { kind: bridge, not: { kind: highway} }
+        filter: { is_bridge: yes, not: { kind: highway} }
         draw: { lines: { color: green } }
 ```
