@@ -100,6 +100,11 @@ element:
 ```yaml
 element: { parameter: [ item1, item2, item3 ] }
 ```
+
+Note that _lists_ and _mappings_ are interpreted differently in various situations.
+
+See also: [Lists Imply Any, Mappings Imply All](Filters-Overview.md#lists-imply-any-mappings-imply-all)
+
 ## syntax mixing
 
 _Block syntax_ can enclose _flow syntax_, but not the other way around – once you start an object in _flow syntax_, you have to finish it before you can move back into _block syntax_.
