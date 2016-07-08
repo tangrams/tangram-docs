@@ -8,7 +8,7 @@ Tangram is designed to use vector data sources such as Mapzen’s free [vector t
 
 All of these effects are possible thanks to [OpenGL](https://en.wikipedia.org/wiki/OpenGL). You can write graphics card programs, known as [shaders](Shaders-Overview.md), and even JavaScript to add interactivity, mix data sources, and control the design of your maps.
 
-Tangram is available in two delicious flavors: [Tangram JS](https://github.com/tangrams/tangram) is a [Leaflet](http://leafletjs.com/) plugin for browser-based mapping, and [Tangram ES](https://github.com/tangrams/tangram-es) is a C++ library for native mobile and embedded-devices.
+Tangram is available in two delicious flavors: [Tangram JS](https://github.com/tangrams/tangram) is a [Leaflet](http://leafletjs.com/) plugin for browser-based mapping, and [Tangram ES](https://github.com/tangrams/tangram-es) is a C++ library for native mobile and embedded devices.
 
 ### Conceptual Overviews
 
