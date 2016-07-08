@@ -12,7 +12,7 @@ layers:
         data:
             source: osm
             layer: roads
-        style: ...
+        draw: ...
 ```
 
 Specifying `layer: roads` in the [`data`](layers.md#data) block matches this GeoJSON object:
@@ -31,7 +31,7 @@ layers:
     roads:
         data:
             source: osm
-        style: ...
+        draw: ...
 ```
 
 ## Feature filters
@@ -42,23 +42,22 @@ Once a top-level `layer` filter has been applied, feature-level [`filter`](layer
 layers:
     roads:
         data: { source: osm }
-        style: ...
 
         highway:
             filter:
                 kind: highway
-            style: ...
+            draw: ...
 ```
 
 Here, a top-level layer named "roads" matches the "roads" layer in the "osm" data source. It has a `style` block, which will apply to all features in the "roads" layer unless it is overridden, functioning as a kind of "default" style.
 
-Then, a _sublayer_ named "highway" is declared, with its own `filter` and `style`. Its `style` block will apply only to roads which match its `filter` – in this case, those with the property "kind", with a value of "highway".
+Then, a _sublayer_ named "highway" is declared, with its own `filter` and `draw`. Its `draw` block will apply only to roads which match its `filter` – in this case, those with the property "kind", with a value of "highway".
 
 #### Inheritance
 
-Higher-level filters continue to apply at lower levels, which means that higher-level styles will be inherited by lower levels, unless the lower level explicitly overrides it.
+Higher-level filters continue to apply at lower levels, which means that higher-level `draw` parameters will be inherited by lower levels, unless the lower level explicitly overrides it.
 
-Using sublayers and inheritance, you may specify increasingly specific filters and styles to account for as many special cases as you like.
+Using sublayers and inheritance, you may specify increasingly specific filters and draw styles to account for as many special cases as you like.
 
 ## Matching
 
