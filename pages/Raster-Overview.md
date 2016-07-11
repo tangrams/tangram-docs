@@ -152,7 +152,7 @@ layers:
 
 When a style declares `raster: custom`, any shaders defined in that style can directly sample the raster for custom effects.
 
-This example uses the `sampleRaster()` method to unpack Mapzen elevation tiles for color display:
+This example uses the [`sampleRaster()`](styles.md#raster) method to unpack Mapzen elevation tiles for color display:
 
 ```yaml
 styles:
