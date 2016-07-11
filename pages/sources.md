@@ -179,7 +179,7 @@ Setting `filtering: nearest` allows for the raster tiles to be pixelated when sc
 ####`rasters`
 Optional _list_ of `Raster` sources to be "attached" to the `source`. No default for non-`Raster` sources. A `Raster` source is available to itself by default.
 
-Attaching a `Raster` to another `source` makes that `Raster` available to any shaders used to draw that `source` via the `sampleRaster()` function.
+Attaching a `Raster` to another `source` makes that `Raster` available to any shaders used to draw that `source` via the [`sampleRaster()`](styles.md#raster) function.
 
 (See [Geometry Masking](Raster-Overview.md#Geometry-Masking) for examples.)
 
