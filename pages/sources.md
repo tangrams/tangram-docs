@@ -26,7 +26,7 @@ Four options are currently supported:
 - `MVT` (Mapbox Vector Tiles)
 - `Raster`
 
-As of v0.2, Tangram supports either tiled or untiled datasources.
+Note that these names are _case-sensitive_. As of v0.2, Tangram supports either tiled or untiled datasources.
 
 #### url
 Required _string_. Specifies the source's _URL_. No default.
