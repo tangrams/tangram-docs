@@ -68,7 +68,7 @@ If the _style_ specified by a _draw group_ is neither a built-in _style_ nor a _
 Many style parameters, such as `color`, are shared among draw styles – others are unique to particular draw styles.
 
 ####`align`
-Optional _string_, one of `left`, `center`, `right`. Default is `center`, unless `anchor` is set (see below).
+Optional _string_ or _array of strings_, one of `left`, `center`, `right`. Default is `center`, unless `anchor` is set (see below).
 
 Sets alignment of text for multi-line labels — see [`text_wrap`](draw.md#text_wrap).
 
@@ -80,7 +80,17 @@ text:
 ####`anchor`
 Optional _string_, one of `center`, `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. Default is `center`.
 
-Applies to the `text` and `points` styles. Places the label or point/sprite on the specified side or corner of the feature. If `offset` is also set, it is applied *in addition to* the anchor.
+Applies to the `text` and `points` styles. Places the label or point/sprite on the specified side or corner of the feature. When an _array_ us used, each anchor position is tried in the order listed until a placement which does not collide is found.
+
+```yaml
+draw:
+   points:
+      ...
+      text:
+         anchor: [bottom, right, left, top]
+```
+
+If `offset` is also set, it is applied *in addition to* the anchor.
 
 ```yaml
 text:
