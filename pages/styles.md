@@ -111,6 +111,13 @@ The unit of the _dash pattern_ is the width of its line, e.g. a value of `[1, 1]
 
 If the _dash pattern_ contains an odd number of entries, it is repeated to form an even pattern (as in SVG). This means that the `[1, 1]` example above is equivalent to just `[1]`. Similarly, `[3, 1, 1]` would become `[3, 1, 1, 3, 1, 1]`.
 
+```yaml
+styles:
+    dashed-lines:
+        base: lines
+        dash: [0.5,0.5]
+```
+
 ##### Dash coloring
 
 The dashes are colored using the feature's _color_ as assigned by the layer's _draw_ group (aka the "vertex color").
@@ -119,7 +126,15 @@ By default, the "spaces" in the dash pattern are transparent. Alternatively, an 
 
 ####`dash_background_color`
 
-Optional _color_. Sets an opaque background color for lines frawn using the `dash` parameter.
+Optional _color_. Sets an opaque background color for lines frawn using the `dash` parameter. Default is transparent.
+
+```yaml
+styles:
+    dashed-lines:
+        base: lines
+        dash: [0.5,0.5]
+        dash_background_color: [0.086,0.149,0.290]
+```
 
 See [`dash`](styles.md#dash).
 
