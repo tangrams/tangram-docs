@@ -78,7 +78,7 @@ text:
 ```
 
 ####`anchor`
-Optional _string_, one of `center`, `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. Default is `center`.
+Optional _string_, one of `center`, `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. Default is `['bottom', 'top', 'right', 'left', 'bottom-right', 'bottom-left', 'top-right', 'top-left']`.
 
 Applies to the `text` and `points` styles. Places the label or point/sprite on the specified side or corner of the feature. When an _array_ us used, each anchor position is tried in the order listed until a placement which does not collide is found.
 
