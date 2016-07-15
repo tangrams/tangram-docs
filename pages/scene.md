@@ -13,13 +13,15 @@ Optional block that can be used to set the map's background color, using a `colo
 ##### `color`
 Optional _color_. Default is `[0., 0., 0.]`.
 
-Specifies the color that will be drawn where no features are drawn.
+Specifies the color that will be drawn where no features are drawn. Alpha is not respected.
 
 ```yaml
 scene:
     background:
         color: white
 ```
+
+See also: [`color`](draw.md#color).
 
 #### animated
 Optional _boolean_, `true` or `false`. Default is `false`.
