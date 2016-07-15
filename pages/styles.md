@@ -101,7 +101,7 @@ styles:
 For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
 
 ####`dash`
-Optional _array_. Defines a dash pattern for use with line textures.
+Optional _array_ of _integers_. Defines a dash pattern for use with line textures. No default.
 
 Applies to _lines_ styles.
 
@@ -115,7 +115,7 @@ If the _dash pattern_ contains an odd number of entries, it is repeated to form 
 styles:
     dashed-lines:
         base: lines
-        dash: [0.5,0.5]
+        dash: [1, 1]
 ```
 
 ##### Dash coloring
@@ -132,7 +132,7 @@ Optional _color_. Sets an opaque background color for lines frawn using the `das
 styles:
     dashed-lines:
         base: lines
-        dash: [0.5,0.5]
+        dash: [1, 1]
         dash_background_color: [0.086,0.149,0.290]
 ```
 
