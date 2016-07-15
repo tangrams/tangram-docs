@@ -150,11 +150,20 @@ poi-icons:
 
 ####`color`
 
-Required* RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _hexcolor_, _web color name_, or _stops_. Can also be a _function_ which returns an array of _[r, g, b]_ or _[r, g, b, a]_** values, or a _web color name_. RGB/RGBA value range is 0-1. No default.
+Required* RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _CSS color_, or _stops_. Can also be a _function_ which returns a color. RGB/RGBA value range is 0-1. No default.
 
 Applies to `points`, `polygons`, and `lines`. (For `text`, see [fill](draw.md#fill).) Specifies the vertex color of the feature. This color will be passed to any active shaders and used in any light calculations as "color".
 
-*`color` is not required if a style is used which specifies a shader with a _color block_ or a _filter block_.
+_CSS colors_ include the following color formats, as specified in the [W3C's Cascading Style Sheets specification](http://www.w3schools.com/cssref/css_colors_legal.asp):
+
+- _named colors_: `red`, `blue`, `periwinkle`, `rebeccapurple`
+- _hex colors_: `"#fff"`, `"#000"`, `"#9CE6E5"`
+- _RGB colors_: `rgb(255, 190, 0)`
+- _RGBA colors_**: `rgb(255, 190, 0, .5)`
+- _HSL colors_: `hsl(180, 100%, 100%)`
+- _HSL colors_**: `hsla(180, 100%, 100%, 50%)`
+
+*`color` is not required if a style is used which specifies a shader with a _color block_ or a _filter block_. See [shaders: blocks](shaders.md#blocks).
 
 **Currently, alpha values are ignored in the `add` and `multiply` `blend` modes, and respected in the `inlay` and `overlay` modes. For more on this, see the [`blend`](styles.md#blend) entry.
 
