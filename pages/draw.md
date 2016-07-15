@@ -401,6 +401,15 @@ roads:
             ...
 ```
 
+####`required`
+Optional _boolean_. Default is `false`.
+
+Applies to _text_ blocks under _point_ styles.
+
+When `true`, stipulates that any _text_ attached to a _point_ must draw with the point. When `false`, a _point_ and associated _text_ will be tested for collisions separately, and if the _text_ collides, the _point_ will be drawn alone.
+
+Note that attached _text_ will never draw without its _point_.
+
 ####`size`
 Optional _number_, in `px`. Default is `32px`.
 
@@ -468,7 +477,7 @@ Applies to _points_ styles only.
 
 This block allows _points_ styles to define an associated text label for each point, such as for POIs.
 
-Text added in this way can be styled with the same syntax as the _text_ rendering style, but with different default values that take into account the "parent" point (see "Text behavior" below).
+Text added in this way can be styled with the same syntax as the _text_ rendering style, but with different default values that take into account the "parent" point (see "[Text behavior](draw.md#text_behavior)" below).
 
 For example, to create an icon with a _text_ label, using a style "icons" that has `base: points`:
 
@@ -481,7 +490,7 @@ For example, to create an icon with a _text_ label, using a style "icons" that h
             font: ...
 ```
 
-##### Text behavior
+#### Text behavior
 
 The default text style behavior is adjusted to account for the parent point:
 - **Anchor**:
