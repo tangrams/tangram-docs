@@ -178,28 +178,6 @@ draw:
     points:
         color: [1.0, .5, .5, .5] # 50% alpha
 ```
-####`dash`
-Optional _array_. Defines a dash pattern for use with line textures.
-
-Applies to _lines_ styles.
-
-A _dash pattern_ is an array defining a pattern of alternating dashes and spaces, e.g. `[2, 1]` creates a pattern of dashes that are each 2 units long, separated by spaces that are 1 unit long.
-
-The unit of the _dash pattern_ is the width of its line, e.g. a value of `[1, 1]` creates a series of square dashes (separated by square spaces).
-
-If the _dash pattern_ contains an odd number of entries, it is repeated to form an even pattern (as in SVG). This means that the `[1, 1]` example above is equivalent to just `[1]`. Similarly, `[3, 1, 1]` would become `[3, 1, 1, 3, 1, 1]`.
-
-##### Dash coloring
-
-The dashes are colored using the feature's _color_ as assigned by the layer's _draw_ group (aka the "vertex color").
-
-By default, the "spaces" in the dash pattern are transparent. Alternatively, an opaque background color can be assigned with the dash_background_color parameter, which is useful for typical "stairs" or "railway"-like patterns.
-
-####`dash_background_color`
-
-Optional _color_. Sets an opaque background color for lines frawn using the `dash` parameter.
-
-See [`dash`](draw.md#dash).
 
 ####`extrude`
 Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are in meters.
