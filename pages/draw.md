@@ -626,6 +626,28 @@ draw:
         visible: false
 ```
 
+This paramater is also available for `text` blocks attached to a `points` layer:
+
+```yaml
+draw:
+    points:
+        color: red
+        size: 5px
+        text:
+            visible: false
+```
+
+As well as `outline` blocks under `lines` layers:
+
+```yaml
+draw:
+    lines:
+        color: white
+        width: 2px
+        outline:
+            visible: false
+```
+
 ####`width`
 Required _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
