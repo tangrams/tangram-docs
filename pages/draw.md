@@ -156,7 +156,7 @@ Applies to `points`, `polygons`, and `lines`. (For `text`, see [fill](draw.md#fi
 
 _CSS colors_ include the following color formats, as specified in the [W3C's Cascading Style Sheets specification](http://www.w3schools.com/cssref/css_colors_legal.asp):
 
-- _named colors_: `red`, `blue`, `periwinkle`, `rebeccapurple`
+- _named colors_: `red`, `blue`, `salmon`, `rebeccapurple`
 - _hex colors_: `"#fff"`, `"#000"`, `"#9CE6E5"`
 - _RGB colors_: `rgb(255, 190, 0)`
 - _RGBA colors_**: `rgb(255, 190, 0, .5)`
