@@ -482,7 +482,7 @@ draw:
 ####`text`
 Optional _block_. Declares the beginning of a `text` block of a `points` style.
 
-Applies to _points_ styles only.
+Applies to _points_ styles only. (For the `text` _draw style_, see the [Styles Overview](Styles-Overview.md#text-1).)
 
 This block allows _points_ styles to define an associated text label for each point, such as for POIs.
 
