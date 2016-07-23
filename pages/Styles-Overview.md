@@ -90,9 +90,7 @@ Points styles have access to a variety of special uniforms and parameters.
 ## text
 The `text` style is similar to the `sprites` style, in that it builds a rectangle at a point. However, instead of being colored with a custom texture, this style builds its own texture, containing text.
 
-The content of the text is based on a parameter specified in the scene file, which can be useful for debugging.
-
-The style of the text is also specified in the scene file.
+The content of the text is based on the [`text_source`](draw.md#text-source) parameter. The style of the text is specified by the [`font`](draw.md#font-parameters) parameters.
 
 #### `text` parameters
 Styles which are extensions of the `text` style can take the following special parameters:
