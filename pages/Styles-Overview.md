@@ -7,31 +7,41 @@ Draw styles are referenced in two places in the scene file: when defining custom
 ## draw styles
 
 #### `polygons`
-The `polygons` draw style tessellates and extrudes vector shapes into 3D geometry. It requires polygonal data.
+The `polygons` _draw style_ tessellates and extrudes vector shapes into 3D geometry. It requires polygonal data. See [`polygons`](#polygons).
 
 #### `lines`
-The `lines` draw style can turn either polygonal or line data into lines.
+The `lines` _draw style_ can turn either polygonal or line data into lines. See [`lines`](#lines).
 
 #### `points`
-The `points` draws a filled circle at the location of the data point. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+The `points` _draw style_ draws a filled circle at the location of the data point. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
 Technically, this draw style creates a small quad, which is then colored with a default shader which draws a dot. This behavior can be overridden with either a custom shader or a texture.
 
+See [`points`](#points).
+
 #### `text`
-The `text` draw style draws text labels at a given point. It can work with point, line, or polygon data. When used with lines, the label will be drawn along the line. When used with polygons, the label will be drawn at the polygon's centroid. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+The `text` _draw style_ draws text labels at a given point. It can work with point, line, or polygon data. When used with lines, the label will be drawn along the line. When used with polygons, the label will be drawn at the polygon's centroid. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
+See [`text`](#text).
+ 
 #### `raster`
-The `raster` draw style draws one tile-sized square per tile and paints it with the appropriate tile from a `Raster` data source.
+The `raster` _draw style_ draws one tile-sized square per tile and paints it with the appropriate tile from a `Raster` data source. See [`raster`](#raster).
 
-These _draw styles_ are used as the foundation for all custom styling in Tangram. When defining a style, they are explicitly referenced under the style name with the `base` parameter:
+## Using Styles
+
+These built-in _draw styles_ are used as the foundation for all custom styling in Tangram. When writing an inline style under a `layer`, they are referenced in _draw groups_, in one of two ways:
+
+A _draw group_ with a custom name may reference a _style_ by name with the `style` parameter:
 
 ```yaml
-styles:
-    buildings:
-        base: polygons
+roads:
+    draw:
+        my_style:
+            style: polygons
+            color: blue
 ```
 
-And when writing an inline style under a `layer`, they are referenced in _draw groups_:
+Or, if a _draw group_ is named for one of the _draw styles_, the `style` parameter may be omitted:
 
 ```yaml
 roads:
@@ -42,7 +52,26 @@ roads:
             color: red
 ```
 
-In this way, the same data can be drawn in multiple styles simultaneously.
+By defining multiple _draw groups_ the same feature may be drawn using multiple styles simultaneously:
+
+```yaml
+roads:
+    draw:
+        polygons:
+            color: blue
+        lines:
+            color: red
+```
+
+When defining a custom style, the built-in _draw groups_ are explicitly referenced under the new style name with the `base` parameter:
+
+```yaml
+styles:
+    buildings:
+        base: polygons
+```
+
+In this way, custom styles may "extend" the behavior or the built-in _draw styles_.
 
 ## polygons
 The *polygons* draw style requires a datasource containing coordinates connected by lines into a "closed" shape. If the lines of the polygon start and stop at different places, it is an "open" shape, and the `polygons` draw style can't use it. But if a sequence of lines connects back onto its own starting point, it is considered "closed", and can be extruded into a 3D shape.
@@ -134,7 +163,7 @@ These two styles are identical.
 
 #### modifications
 
-Once you've mix'ed in a style, you can add or modify any properties you like.
+Once you've mixed in a style, you can add or modify any properties you like.
 
 For example, you could create a new style called styleB that "inherits from" an existing style called styleA, and then adds custom shader blocks:
 
