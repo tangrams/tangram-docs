@@ -10,7 +10,7 @@ Tangram makes heavy use of the YAML structures known as "mappings," known elsewh
 parameter: value
 ```
 
-When nested, YAML calls this a "collection" – we usually call it an _element_:
+When nested, YAML calls this a "collection" – we usually call this an _element_ with a number of _parameters_:
 ```yaml
 element:
     parameter1: value
