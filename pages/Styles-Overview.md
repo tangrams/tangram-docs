@@ -85,6 +85,11 @@ Styles which are extensions of the `polygons` draw style can take the following 
 - `materials` : see [materials](materials.md)
 - `shaders`: see [shaders](shaders.md)
 
+#### `polygons` draw group requirements
+[Draw groups](draw.md#draw-group) which use the `polygons` draw style must specify, at minimum, the following parameters in order to be drawn:
+
+- [color](draw.md#color)
+
 #### `polygons` shader specs
 The `polygons` style allows [shaders](shaders.md) to be written which take advantage of certain unique attributes and uniforms.
 
@@ -99,6 +104,12 @@ Styles which are extensions of the `lines` draw style can take the following par
 - `blend`
 - `materials` : see [materials](materials.md)
 - `shaders`: see [shaders](shaders.md)
+
+#### `lines` draw group requirements
+[Draw groups](draw.md#draw-group) which use the `lines` draw style must specify, at minimum, the following parameters in order to be drawn:
+
+- [color](draw.md#color)
+- [width](draw.md#width)
 
 #### `lines` shader specs
 The `lines` draw style allows [shaders](shaders.md) to be written which take advantage of certain unique attributes and uniforms.
@@ -115,6 +126,12 @@ If the point is used to draw a dot, the size and color of this circle can be spe
 Points styles have access to a variety of special uniforms and parameters.
 
 `points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the [`priority`](draw.md#priority) draw parameter.
+
+#### `points` draw group requirements
+[Draw groups](draw.md#draw-group) which use the `points` draw style must specify, at minimum, the following parameters in order to be drawn:
+
+- [color](draw.md#color)
+- [size](draw.md#size)
 
 ## text
 The `text` style is similar to the `sprites` style, in that it builds a rectangle at a point. However, instead of being colored with a custom texture, this style builds its own texture, containing text.
@@ -137,6 +154,11 @@ Styles which are extensions of the `text` style can take the following special p
 - [`move_into_tile`](draw.md#move_into_tile): Increases number of labels that will display, by moving some to fit within tile bounds (JS-only)
 
 These parameters are described in the [draw](draw.md) entry.
+
+#### `text` draw group requirements
+[Draw groups](draw.md#draw-group) which use the `text` draw style must specify, at minimum, the following parameters in order to be drawn:
+
+- [font](draw.md#font)
 
 ## `raster`
 The `raster` style renders [Raster data sources](sources.md#Raster), such as traditional raster tiles.
