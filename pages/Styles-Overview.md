@@ -90,9 +90,6 @@ Styles which are extensions of the `polygons` draw style can take the following 
 
 - [color](draw.md#color)
 
-#### `polygons` shader specs
-The `polygons` style allows [shaders](shaders.md) to be written which take advantage of certain unique attributes and uniforms.
-
 ## lines
 The *lines* style requires a datasource containing connected coordinates. Thus it can accept either linear or polygonal input data. It draws a rectangle along each line segment, and can optionally draw special [`join`](draw.md#join) and [`cap`](draw.md#cap) styles.
 
@@ -111,9 +108,6 @@ Styles which are extensions of the `lines` draw style can take the following par
 - [color](draw.md#color)
 - [width](draw.md#width)
 
-#### `lines` shader specs
-The `lines` draw style allows [shaders](shaders.md) to be written which take advantage of certain unique attributes and uniforms.
-
 ## points
 The `points` draw style is used to draw dots or sprites at points of interest. It also builds a rectangle at a point, and can be colored in a variety of ways:
 
@@ -122,8 +116,6 @@ The `points` draw style is used to draw dots or sprites at points of interest. I
 - with a `sprite` from a `texture`
 
 If the point is used to draw a dot, the size and color of this circle can be specified in the scene file with the `size` and `color` parameters.
-
-Points styles have access to a variety of special uniforms and parameters.
 
 `points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the [`priority`](draw.md#priority) draw parameter.
 
