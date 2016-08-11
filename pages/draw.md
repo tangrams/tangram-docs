@@ -65,7 +65,7 @@ If the _style_ specified by a _draw group_ is neither a built-in _style_ nor a _
 
 ## style parameters
 
-Many style parameters, such as `color`, are shared among draw styles – others are unique to particular draw styles.
+Many style parameters, such as [`color`](#color), are shared among draw styles – others are unique to particular draw styles.
 
 ####`align`
 Optional _string_ or _array of strings_, one of `left`, `center`, `right`. Default is `center`, unless `anchor` is set (see below).
