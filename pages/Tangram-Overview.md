@@ -66,6 +66,8 @@ For example, with Tangram-JS:
     var layer = Tangram.leafletLayer({
         scene: 'scene.zip'
     });
+    
+    layer.addTo(map);
 ```
 
 Tangram will unpack the zip internally, expecting only a single .yaml file to be in the zip's root, which it will use as the scene file. Any other .yaml files (eg [basemaps](https://mapzen.com/blog/introducing-refill-cinnabar-and-zinc-styles-for-tangram/) or [blocks](https://github.com/tangrams/blocks) included with the [import](https://mapzen.com/documentation/tangram/import/) block) must therefore be in subdirectories, and all paths in the .yaml file must be relative to this root scene file.
