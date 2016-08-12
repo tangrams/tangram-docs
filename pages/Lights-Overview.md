@@ -1,3 +1,5 @@
+*This is the conceptual overview for Tangram's lighting system. For technical reference, see the [Lights page](lights.md).*
+
 Tangram uses a common computer graphics lighting system, in which **light** from light sources interacts with **materials** defined on objects. We have implemented a number of *light types* including *point lights*, *directional lights*, and *ambient lights*.
 
 First, a bit about *light components*.
