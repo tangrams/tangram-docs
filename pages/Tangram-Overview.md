@@ -1,18 +1,18 @@
 *This is a conceptual overview of the Tangram map rendering engine. For a complete technical reference of Tangram's configuration and parameters, refer to the rest of the documentation.*
 
-Tangram is an open-source 3D rendering engine specifically designed for drawing maps. We are implementing it in two official flavors: [Tangram-JS](https://github.com/tangrams/tangram) for use in web browsers, and [Tangram-ES](https://github.com/tangrams/tangram-es) for native mapping on mobile devices, with the goal of produce identical results with each.
+Tangram is an open-source 3D rendering engine specifically designed for drawing maps, using the [OpenGL](https://en.wikipedia.org/wiki/OpenGL) graphics API. It parses tiled and untiled vector data in a variety of sources, and produces a 3D scene with geometry, labels, and icons all built and styled on the fly. It also accepts tiled raster inputs, with special facility for processing terrain data.
 
-Both libraries use a "scene file" to configure and modify the data sources, filters, and display options used when drawing the map - this scene file is interchangable between libraries.
+Tangram is implemented in two official flavors: [Tangram-JS](https://github.com/tangrams/tangram) for use in web browsers, and [Tangram-ES](https://github.com/tangrams/tangram-es) for native mapping on mobile devices.
+
+Both libraries use a "scene file" to configure and modify the data sources, filters, and display options used when drawing the map. The scene file is written in YAML using a custom, Tangram-specific syntax.
 
 ## Tangram-JS
 
-Tangram-JS is a JavaScript library for use in web browsers. It uses [WebGL](https://www.khronos.org/webgl/) to construct and draw vector and raster map data at high speeds. It provides an API through a `scene.config` object, which is essentially the scene file in JavaScript object form. This config object may be modified at run-time and updated to change nearly any
+Tangram-JS is a JavaScript library for use in web browsers. It uses [WebGL](https://www.khronos.org/webgl/) to construct and draw vector and raster map data at high speeds. It provides an API through a `scene.config` object, which is essentially the scene file in JavaScript object form – this config object may be modified at run-time to change nearly any property of the scene.
 
 ### Leaflet
 
-Tangram-JS includes an interface to the popular [Leaflet](http://leafletjs.com/) web-mapping library. In this way Tangram-JS is a Leaflet "plugin."
-
-Leaflet handles user interaction such as clicking, zooming, and panning.
+Tangram-JS includes an interface to the popular [Leaflet](http://leafletjs.com/) web-mapping library. In this way Tangram-JS is technically a Leaflet "plugin," with Leaflet handling user interaction such as clicking, zooming, and panning, and Tangram providing the content of each tile.
 
 ### JavaScript Setup
 
@@ -48,7 +48,7 @@ If you'd like to refer to a specific release of Tangram, you may specify its ver
 
 ## Tangram-ES
 
-Tangram-ES is a C++ library intended for use in mobile applications. It uses [OpenGL ES](https://www.khronos.org/opengles/) to construct and draw vector and raster map data at high speeds. It's available for inclusion in Android apps through an [Android SDK](https://mapzen.com/documentation/tangram/android-sdk/0.4/).
+Tangram-ES is a C++ library intended for use in mobile applications. It uses [OpenGL ES](https://www.khronos.org/opengles/) to construct and draw vector and raster map data at high speeds. Its available for inclusion in Android apps through an [Android SDK](https://mapzen.com/documentation/tangram/android-sdk/0.4/).
 
 ## The Scene File
 
