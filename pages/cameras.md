@@ -2,7 +2,7 @@
 
 ####`cameras`
 
-The `cameras` element is a required top-level element in the [scene file](Scene-file.md). Individual cameras are defined by a *camera name* under this element.
+The `cameras` element is an optional top-level element in the [scene file](Scene-file.md). Individual cameras are defined by a *camera name* under this element.
 ```yaml
 cameras:
     camera1:
