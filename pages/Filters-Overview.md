@@ -24,6 +24,9 @@ Specifying `layer: roads` in the [`data`](layers.md#data) block matches this Geo
     ]}
 }
 ```
+
+### Layer name shortcut
+
 If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this example, the layer name "roads" matches a layer in the data:
 
 ```yaml
