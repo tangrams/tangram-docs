@@ -8,7 +8,7 @@ Both libraries use a "scene file" to configure and modify the data sources, filt
 
 ## Tangram-JS
 
-Tangram-JS is a JavaScript library for use in web browsers. It uses [WebGL](https://www.khronos.org/webgl/) to construct and draw vector and raster map data at high speeds. It provides an API through a `scene.config` object, which is essentially the scene file in JavaScript object form – this config object may be modified at run-time to change nearly any property of the scene.
+[Tangram-JS](https://github.com/tangrams/tangram) is a JavaScript library for use in web browsers. It uses [WebGL](https://www.khronos.org/webgl/) to construct and draw vector and raster map data at high speeds. It provides an API through a `scene.config` object, which is essentially the scene file in JavaScript object form – this config object may be modified at run-time to change nearly any property of the scene.
 
 ### Leaflet
 
@@ -48,7 +48,7 @@ If you'd like to use a specific release of Tangram, you may specify its version 
 
 ## Tangram-ES
 
-Tangram-ES is a C++ library intended for use in mobile applications. It uses [OpenGL ES](https://www.khronos.org/opengles/) to construct and draw vector and raster map data at high speeds. It is available for inclusion in Android apps through an [Android SDK](https://mapzen.com/documentation/tangram/android-sdk/0.4/).
+[Tangram-ES](https://github.com/tangrams/tangram-es) is a C++ library intended for use in mobile applications. It uses [OpenGL ES](https://www.khronos.org/opengles/) to construct and draw vector and raster map data at high speeds. It is available for inclusion in Android apps through an [Android SDK](https://mapzen.com/documentation/tangram/android-sdk/0.4/).
 
 ## The Scene File
 
@@ -77,7 +77,7 @@ Tangram will unpack the zip internally, expecting only a single .yaml file to be
 The Tangram documentation has three major sections:
 
 - **Overviews** like this one,
-- **Technical API Reference**, and
+- **Syntax Reference**, and
 - **Tutorials**.
 
 ## Getting Started
@@ -89,8 +89,8 @@ The [Tangram Walkthrough](https://mapzen.com/documentation/tangram/walkthrough/)
 Questions? Suggestions? Typos? Bug fixes? We welcome contributions, either to the libraries or to the documentation itself. Learn more or file an issue at the links below:
 
 - [Tangram-JS README](https://github.com/tangrams/tangram/blob/master/README.md)
-- [Tangram-ES README](https://github.com/tangrams/tangram-es/blob/master/README.md)
 - [Tangram-JS issues](https://github.com/tangrams/tangram/issues)
+- [Tangram-ES README](https://github.com/tangrams/tangram-es/blob/master/README.md)
 - [Tangram-ES issues](https://github.com/tangrams/tangram-es/issues)
 - [Tangram Documentation issues](https://github.com/tangrams/tangram-docs/issues)
 - [Contributing to Tangram-JS](https://github.com/tangrams/tangram/blob/master/CONTRIBUTING.md)
