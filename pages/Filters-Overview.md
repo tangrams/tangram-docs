@@ -25,7 +25,7 @@ Specifying `layer: roads` in the [`data`](layers.md#data) block matches this Geo
 }
 ```
 
-### Layer name shortcut
+#### Layer name shortcut
 
 If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this example, the layer name "roads" matches a layer in the data:
 
@@ -56,7 +56,7 @@ Here, a top-level layer named "roads" matches the "roads" layer in the "osm" dat
 
 Then, a _sublayer_ named "highway" is declared, with its own `filter` and `draw`. Its `draw` block will apply only to roads which match its `filter` – in this case, those with the property "kind", with a value of "highway".
 
-### Inheritance
+#### Inheritance
 
 Higher-level filters continue to apply at lower levels, which means that higher-level `draw` parameters will be inherited by lower levels, unless the lower level explicitly overrides it.
 
