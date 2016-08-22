@@ -308,7 +308,9 @@ roads:
 ####`order`
 Required _integer_ or _function_. No default.
 
-Applies to all _draw styles_. Sets the drawing order of the _draw style_, to be used in case of depth collisions. Higher-ordered layers will be drawn over lower-ordered layers. Child layers override parent layers.
+Applies to the _polygon_ and _lines_ styles, by default, and to the `points` and `text` styles when the `inlay` _draw style_ is used.
+
+Sets the drawing order of the _draw style_, to be used in case of z-depth collisions (when two features are at the same "z" height in space). In this case, higher-ordered layers will be drawn over lower-ordered layers. Child layer settings override parent layer settings.
 
 ```yaml
 layers:
@@ -322,6 +324,7 @@ layers:
                     order: 2   # this layer's order is now 2
 ```
 
+Note that by default, `points` and `text` layers are drawn with the `overlay` _draw style_, which relies on collision tests to determine draw order, as determined by a feature's [`priority`](draw.md#priority).
 
 ####`outline`
 Optional element. Defines the start of an outline style block.
@@ -332,7 +335,7 @@ Applies to `lines`. Draws an outline around the feature. `outline` elements can 
 ####`priority`
 _integer_ or _function_. Default is the local system's max integer value.
 
-Applies to `text`. Sets the label priority of the feature. _functions_ must return integers.
+Applies to `points` and `text`. Sets the label priority of the feature. _functions_ must return integers.
 
 Lower values will have higher priority, e.g. `priority: 1` labels will be drawn before those with `priority: 2`; labels are drawn in a "first-come-first-drawn" method, so earlier labels are more likely to fit in the available space.
 
