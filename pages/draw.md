@@ -659,6 +659,18 @@ draw:
         width: 9
 ```
 
+```yaml
+draw:
+    lines:
+        width: 4px
+```
+
+```yaml
+draw:
+    lines:
+        width: 18m
+```
+
 ####`z`
 Optional _number_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
