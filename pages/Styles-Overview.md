@@ -7,25 +7,25 @@ Draw styles are referenced in two places in the scene file: when defining custom
 ## draw styles
 
 #### `polygons`
-The `polygons` _draw style_ tessellates and extrudes vector shapes into 3D geometry. It requires polygonal data. See [`polygons`](#polygons-1).
+The `polygons` _draw style_ tessellates and extrudes vector shapes into 3D geometry. It requires polygonal data. See [`polygons`](#polygons_1).
 
 #### `lines`
-The `lines` _draw style_ can turn either polygonal or line data into lines. See [`lines`](#lines-1).
+The `lines` _draw style_ can turn either polygonal or line data into lines. See [`lines`](#lines_1).
 
 #### `points`
 The `points` _draw style_ draws a filled circle at the location of the data point. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
 Technically, this draw style creates a small quad, which is then colored with a default shader which draws a dot. This behavior can be overridden with either a custom shader or a texture.
 
-See [`points`](#points-1).
+See [`points`](#points_1).
 
 #### `text`
 The `text` _draw style_ draws text labels at a given point. It can work with point, line, or polygon data. When used with lines, the label will be drawn along the line. When used with polygons, the label will be drawn at the polygon's centroid. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
-See [`text`](#text-1).
+See [`text`](#text_1).
  
 #### `raster`
-The `raster` _draw style_ draws one tile-sized square per tile and paints it with the appropriate tile from a `Raster` data source. See [`raster`](#raster-1).
+The `raster` _draw style_ draws one tile-sized square per tile and paints it with the appropriate tile from a `Raster` data source. See [`raster`](#raster_1).
 
 ## Using Styles
 
