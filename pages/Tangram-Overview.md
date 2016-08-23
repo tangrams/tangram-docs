@@ -14,6 +14,14 @@ Both libraries use a "scene file" to configure and modify the data sources, filt
 
 Tangram-JS includes an interface to the popular [Leaflet](http://leafletjs.com/) web-mapping library. In this way Tangram-JS is technically a Leaflet "plugin," with Leaflet handling user interaction such as clicking, zooming, and panning, and Tangram providing the content of each tile.
 
+Note: Tangram requires that the Leaflet map use the default "Web Mercator" Coordinate Reference System, also known as EPSG:3857. As this is the default, it is not necessary to specify it in the Leaflet instantiation, but here's what that would look like:
+
+```
+var map = L.map('map', {
+    crs: L.CRS.EPSG3857
+});
+```
+
 ### JavaScript Setup
 
 The latest release of Tangram can be included in your web page with a `script` tag:
