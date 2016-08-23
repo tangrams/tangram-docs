@@ -124,6 +124,22 @@ The dashes are colored using the feature's _color_ as assigned by the layer's _d
 
 By default, the "spaces" in the dash pattern are transparent. Alternatively, an opaque background color can be assigned with the [dash_background_color](styles.md#dash_background_color) parameter, which is useful for typical "stairs" or "railway"-like patterns.
 
+```yaml
+styles:
+    dashed-lines:
+        base: lines
+        dash: [1, 2]
+        
+layers:
+    earth:
+        data: { source: osm }
+        draw:
+            dashed-lines:
+                order: 1
+                width: 3px
+                color: orange
+```
+
 ####`dash_background_color`
 
 Optional _color_. Sets an opaque background color for lines frawn using the `dash` parameter. Default is transparent.
