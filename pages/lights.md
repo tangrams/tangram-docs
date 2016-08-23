@@ -10,6 +10,8 @@ lights:
         type: directional
 ```
 
+Note: To have your map colors match your style colors exactly in all cases, use no lights. By definition, lights apply differing illumunation values in different situations. If no lights are defined, lighting calculations will not be performed, and the map's colors will be taken directly from the scene file's color declarations.
+
 #### Light names
 Required _string_. Can be anything*. No default.
 
