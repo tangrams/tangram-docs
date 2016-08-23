@@ -1,5 +1,7 @@
 *This is the conceptual overview for Tangram's lighting system. For technical reference, see the [Lights page](lights.md).*
 
+A Tangram map is a 3D scene, containing 3D objects constructed from your map data. The colors of those objects are taken from the [color](draw.md) declarations in your [scene file](Scene-file.md), but the way those colors appear may be modified by _lights_. (If no lights are defined, the colors will be displayed on the map with no modifications.)
+
 Tangram uses a common computer graphics lighting system, in which **light** from light sources interacts with **materials** defined on objects. We have implemented a number of *light types* including *point lights*, *directional lights*, and *ambient lights*.
 
 First, a bit about *light components*.
