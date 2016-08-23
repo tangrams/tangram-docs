@@ -28,6 +28,8 @@ Four options are currently supported:
 
 Note that these names are _case-sensitive_. As of v0.2, Tangram supports either tiled or untiled datasources.
 
+Note: Tangram expects tiles in `TopoJSON` or `GeoJSON` formats to contain latitude-longitude coordinates.
+
 #### url
 Required _string_. Specifies the source's _URL_. No default.
 
