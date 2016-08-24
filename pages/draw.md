@@ -618,7 +618,7 @@ poi-icons:
 ```
 
 ####`visible`
-Optional _boolean_ or _function_ returning `true` or `false`. Default is `true`.
+Optional _boolean_. Default is `true`.
 
 If `false`, features will not be drawn.
 
