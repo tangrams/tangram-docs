@@ -111,6 +111,29 @@ text:
     anchor: bottom-left # the label will use `align: right` by default
 ```
 
+####`buffer`
+[JS-only] Optional _integer_ or _[integer, integer]_, in _px_. No default.
+
+Applies to `points` and `text`. Sets the distance from the feature from which other features are allowed to be drawn. A single value will be applied to all sides of the feature; a two-element array specifies separate horizontal and vertical buffering values.
+
+```yaml
+draw:
+    points:
+        buffer: [2px, 1px]: creates a two-pixel buffer on the left and right sides of the feature, and a one-pixel buffer on its top and bottom.
+```
+
+Buffers may be applied to both a _point_ and its attached _text_:
+
+```yaml
+draw:
+    points:
+        buffer: 1px # point portion has a one-pixel buffer
+        ...
+        text:
+            buffer: 2px # text portion has a two-pixel buffer
+            ...
+```
+
 ####`cap`
 Optional _string_, one of `butt`, `square`, or `round` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
 
