@@ -173,7 +173,7 @@ For example, the [layers](layers.md) element has three possible parameters: `dat
 
 #### `function`
 
-Strings starting with `function` will be passed to the style builder as JavaScript in certain contexts: `color`, `width`, `order`, `interactive`, `visible`, `filter`, `size`, `fill`, and `stroke`.
+Strings starting with `function` will be passed to the style builder as JavaScript in certain contexts, including: `color`, `width`, `order`, `interactive`, `visible`, `filter`, `size`, `fill`, and `stroke`. These functions will be evaluated at runtime, and the returned value will be passed to the parameter.
 
 ```yaml
 # Single-line JavaScript example:
