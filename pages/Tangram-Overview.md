@@ -54,6 +54,10 @@ If you'd like to use a specific release of Tangram, you may specify its version 
 <script src="https://mapzen.com/tangram/0.8/tangram.min.js"></script>
 ```
 
+### Multiple Maps
+
+Due to architectural limitations, there can be only one Tangram map per "browsing context". This means there can be only one embedded Tangram map on a web page, and one Tangram layer per Leaflet map. To work around this, multiple maps may be loaded in iframes – we make frequent use of the [Tangram-frame repository](https://github.com/tangrams/tangram-frame) for this purpose, by using Tangram-frame links as the "src" of iframes.
+
 ## Tangram-ES
 
 [Tangram-ES](https://github.com/tangrams/tangram-es) is a C++ library intended for use in mobile applications. It uses [OpenGL ES](https://www.khronos.org/opengles/) to construct and draw vector and raster map data at high speeds. It is available for inclusion in Android apps through an [Android SDK](https://mapzen.com/documentation/tangram/android-sdk/0.4/).
