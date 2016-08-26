@@ -114,7 +114,7 @@ text:
 ####`buffer`
 [JS-only] Optional _integer_ or _[integer, integer]_, in _px_. No default.
 
-Applies to `points` and `text`. Sets the distance from the feature from which other features are allowed to be drawn. A single value will be applied to all sides of the feature; a two-element array specifies separate horizontal and vertical buffering values.
+Applies to `points` and `text`. Specifies an optional buffer area that expands the collision bounding box of the feature, to avoid features from being rendered closer together than desired. A single value will be applied to all sides of the feature; a two-element array specifies separate horizontal and vertical buffering values.
 
 ```yaml
 draw:
