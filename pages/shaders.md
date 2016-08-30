@@ -163,7 +163,7 @@ shaders:
 #### `position`
 Optional element. Defines the start of a `position` block, written in GLSL, which is injected into the _vertex_ shader.
 
-This block has access to the `position` variable, which contains the position of the current vertex, and takes the form `vec3(x, y, z)`.
+This block has access to the `position` variable, which contains the position of the current vertex, and takes the form `vec3(x, y, z)`, in Mercator-projected meters.
 
 ```yaml
 blocks:
@@ -173,7 +173,7 @@ blocks:
 #### `width`
 Optional element. Defines the start of a `width` block, written in GLSL, which is injected into the _vertex_ shader.
 
-This block has access to the `width` variable for the `lines` style. `width` is a `float`.
+This block has access to the `width` variable for the `lines` style. `width` is a `float` in Mercator-projected meters.
 
 ```yaml
 blocks:
@@ -183,7 +183,7 @@ blocks:
 #### `normal`
 Optional element. Defines the start of a `normal` block, written in GLSL, which is injected into the _fragment_ shader when `lighting: fragment`, or into the _vertex_ shader when `lighting: vertex` (it is not injected when `lighting: false`). `fragment` lighting allows for each pixel's normal to be modified before lighting is applied, while `vertex` lighting only enables each vertex's normal to be modified before lighting is applied (providing for less flexibility but increased performance).
 
-This block has access to the `normal` variable, which takes the form `vec3(x, y, z)`.
+This block has access to the `normal` variable, which takes the form `vec3(x, y, z)`, and specifies the angle of light reflection, as determined by the vector formed by the combination of the three axes.
 
 ```yaml
 blocks:
