@@ -163,7 +163,7 @@ shaders:
 #### `position`
 Optional element. Defines the start of a `position` block, written in GLSL, which is injected into the _vertex_ shader.
 
-This block has access to the `position` variable, which contains the position of the current vertex, and takes the form `vec3(x, y, z)`, in Mercator-projected meters.
+This block has access to the `position` variable, which contains the position of the current vertex, and takes the form `vec3(x, y, z)`, in Mercator-projected meters, relative to the center of the view.
 
 ```yaml
 blocks:
