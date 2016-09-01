@@ -51,7 +51,7 @@ There is another `block` type called `global`, where you can add global variable
 
 #### `position`
 
-In this block you can move the vertices of the geometry. This block will be added to the *vertex* shader, where it has access to the `position` variable, with the format `vec4(x, y, z, w)`, in Mercator-projected meters. In the following example, the top vertices of the building are displaced with a combination of sine waves.
+In this block you can move the vertices of the geometry. This block will be added to the *vertex* shader, where it has access to the `position` variable, with the format `vec4(x, y, z, w)`, in Mercator-projected meters, relative to the center of the view. In the following example, the top vertices of the building are displaced with a combination of sine waves.
 
 ```yaml
 styles:
