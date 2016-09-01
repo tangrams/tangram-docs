@@ -72,7 +72,7 @@ styles:
 
 Styles will be rendered in the following order:
 
-- All `opaque` styles render first.
+- All opaque styles render first.
 - All non-opaque styles without a defined `blend_order` (see [below](styles.md#blend_order)) render next, sorted by `add`, `multiply`, `inlay`, `overlay`,
 - All non-opaque styles with a defined `blend_order` render last, sorted by `blend_order` (ascending), sub-sorted by `add`, `multiply`, `inlay`, `overlay`.
 
