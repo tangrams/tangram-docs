@@ -93,7 +93,7 @@ light1:
 
 #### `direction`
 
-Required _vector_. `[x, y, z]`. Defaults to `[0.2, 0.7, -0.5]`
+Optional _vector_. `[x, y, z]`. Defaults to `[0.2, 0.7, -0.5]`
 
 ```yaml
 light1:
