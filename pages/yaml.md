@@ -163,7 +163,7 @@ width: [[13, 0px], [14, 3px], [16, 5px], [18, 10px]]
 
 ## units
 
-When scalar values with units are specified in the scene file, Tangram accepts _px_ for pixels, _px2_ for square pixels, and _m_ for Mercator meters, which are the standard metric for measurement on a web map. Mercator meters differ from standard meters in that they will vary in apparent length based on distance from the equator.
+When scalar values with units are specified in the scene file, Tangram accepts _px_ for pixels and _m_ for Mercator meters, which are a typical unit of measurement on a web map. Mercator meters differ from standard meters in that they will vary in apparent length based on distance from the equator.
 
 ## reserved keywords
 
