@@ -161,9 +161,29 @@ color: [10, [0.3, 0.4, 0.3], [14, [0.5, 0.825, 0.5]]]
 width: [[13, 0px], [14, 3px], [16, 5px], [18, 10px]]
 ```
 
-## units
+## value types
+
+Tangram accepts a variety of values and units depending on the parameter.
 
 When scalar values with units are specified in the scene file, Tangram accepts _px_ for pixels and _m_ for Mercator meters, which are a typical unit of measurement on a web map. Mercator meters differ from standard meters in that they will vary in apparent length based on distance from the equator.
+
+Colors may be specified in a variety of ways, including as GLSL-style arrays of values from 0-1:
+
+    - RGB array: `[.5, 0., 1.]`
+    - RGBA array: `[.5, 0., 1.]`
+    
+As well as any of the CSS specification types:
+
+    - Named colors: `red`, `blue`, `salmon`
+    - Hex#: `"#fff"`, `"#000"`, `"#9CE6E5"`
+    - RGB: `rgb(255, 190, 0)`
+    - RGBA#*: `rgb(255, 190, 0, .5)`
+    - HSL: `hsl(180, 100%, 100%)`
+    - HSL#*: `hsla(180, 100%, 100%, 50%)`
+
+
+*Hex values must be in quotes, to prevent interpretation as a YAML comment.
+**Currently, alpha values are ignored in the `add` and `multiply` `blend` modes, and respected in the `inlay` and `overlay` modes. For more on this, see the [`blend`](styles.md#blend) entry.
 
 ## reserved keywords
 
