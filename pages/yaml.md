@@ -165,7 +165,7 @@ width: [[13, 0px], [14, 3px], [16, 5px], [18, 10px]]
 
 Tangram accepts a variety of values and units depending on the parameter.
 
-When scalar values with units are specified in the scene file, Tangram accepts _px_ for pixels and _m_ for Mercator meters, which are a typical unit of measurement on a web map. Mercator meters differ from standard meters in that they will vary in apparent length based on distance from the equator.
+When scalar values with units are specified in the scene file, Tangram accepts _px_ for pixels and _m_ for Mercator meters, which are a typical unit of measurement on a web map. (Mercator meters have the same apparent length anywhere on a Mercator-projected map, whereas an actual meter's apparent length on a Mercator map varies with distance from the equator. A Mercator meter and a real meter are equal in length at the equator.)
 
 Colors may be specified in a variety of ways, including as GLSL-style arrays of values from 0-1:
 
