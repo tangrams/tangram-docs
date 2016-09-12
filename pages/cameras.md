@@ -76,6 +76,11 @@ camera1:
     active: false
 ```
 
+####`max_tilt`
+[ES-only] Optional _number_ or _[stops](yaml.md#stops)_. Degrees. Defaults to `90`. 
+
+Sets the maximum angle from vertical that the camera is permitted to tilt. For cameras with `type: isometric` the tilt is further constrained at high zooms to prevent the viewing plane from intersecting the ground. 
+
 ##perspective camera parameters
 
 ####`focal_length`
