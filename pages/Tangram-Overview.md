@@ -30,7 +30,7 @@ The latest release of Tangram can be included in your web page with a `script` t
 <script src="https://mapzen.com/tangram/tangram.min.js"></script>
 ```
 
-Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene name through the [options object](#options-object):
+Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](#options-object):
 
 ```javascript
 var map = L.map();
