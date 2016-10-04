@@ -80,13 +80,16 @@ var layer = Tangram.leafletLayer({
     attribution: 'Map made with <a href="https://mapzen.com/tangram" target="_blank">Tangram</a>'
 });
 ```
-#### preUpdate/postupdate
-The `preUpdate` and `postUpdate` parameters allow functions to be referenced or defined, to be run immediately before or after Tangram draws a frame.
+#### preUpdate/postUpdate
+The `preUpdate` and `postUpdate` parameters allow functions to be referenced or defined, to be called immediately before and/or after Tangram's frame update loop runs (up to 60 frames per second, depending on hardware and scene complexity). These functions are called each frame, continuously, regardless of whether the Tangram scene is animated (e.g. the map may not be visually changing in any way, but the update functions will still be called). They are passed a single argument, a flag indicating if Tangram will render (for `preUpdate`), or just did render (for `postUpdate`) new content.
 ```javascript
 var layer = Tangram.leafletLayer({
     preUpdate: myPreUpdateFunction,
-    postUpdate: function() {
+    postUpdate: function(didRender) {
         console.log('postUpdate!');
+        if (didRender) {
+            console.log('new frame rendered!');
+        }
     }
 });
 ```
