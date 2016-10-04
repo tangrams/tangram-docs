@@ -16,7 +16,7 @@ Tangram-JS includes an interface to the popular [Leaflet](http://leafletjs.com/)
 
 Note: Tangram requires that the Leaflet map use the default "Web Mercator" Coordinate Reference System, also known as EPSG:3857. As this is the default, it is not necessary to specify it in the Leaflet instantiation, but here's what that would look like:
 
-```
+```javascript
 var map = L.map('map', {
     crs: L.CRS.EPSG3857
 });
@@ -30,9 +30,9 @@ The latest release of Tangram can be included in your web page with a `script` t
 <script src="https://mapzen.com/tangram/tangram.min.js"></script>
 ```
 
-Then, Tangram can be instantiated as a Leaflet layer:
+Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene name through the [options object](#options-object):
 
-```js
+```javascript
 var map = L.map();
 
 var layer = Tangram.leafletLayer({
@@ -52,6 +52,43 @@ If you'd like to use a specific release of Tangram, you may specify its version 
 
 ```html
 <script src="https://mapzen.com/tangram/0.8/tangram.min.js"></script>
+```
+
+### options object
+
+When Tangram's Leaflet layer is instantiated, various parameters may be passed to the layer inside the _options object_ to control the layer's appearance and behavior.
+
+```javascript
+var layer = Tangram.leafletLayer({
+    scene: 'scene.yaml',
+    attribution: 'attribution string'
+});
+```
+This object may contain any of the [standard Leaflet layer options](http://leafletjs.com/reference.html), plus a number of Tangram-specific options, listed below.
+
+#### scene
+The `scene` parameter specifies the URL of the [scene file](Scene-file.md) to be loaded.
+```javascript
+var layer = Tangram.leafletLayer({
+    scene: 'scene.yaml'
+});
+```
+#### attribution
+The `attribution` parameter specifies HTML which will be inserted into the Leaflet attribution string.
+```javascript
+var layer = Tangram.leafletLayer({
+    attribution: 'Map made with <a href="https://mapzen.com/tangram" target="_blank">Tangram</a>'
+});
+```
+#### preUpdate/postupdate
+The `preUpdate` and `postUpdate` parameters allow functions to be referenced or defined, to be run immediately before or after Tangram draws a frame.
+```javascript
+var layer = Tangram.leafletLayer({
+    preUpdate: myPreUpdateFunction,
+    postUpdate: function() {
+        console.log('postUpdate!');
+    }
+});
 ```
 
 ### Multiple Maps
