@@ -67,24 +67,15 @@ var layer = Tangram.leafletLayer({
 This object may contain any of the [standard Leaflet layer options](http://leafletjs.com/reference.html), plus a number of Tangram-specific options, listed below.
 
 #### scene
-The `scene` parameter specifies the URL of the [scene file](Scene-file.md) to be loaded.
+The required `scene` parameter specifies the URL of the [scene file](Scene-file.md) to be loaded.
 ```javascript
 var layer = Tangram.leafletLayer({
     scene: 'scene.yaml'
 });
 ```
 
-#### attribution
-The `attribution` parameter specifies HTML which will be inserted into the Leaflet attribution string.
-```javascript
-var layer = Tangram.leafletLayer({
-    attribution: 'Map made with <a href="https://mapzen.com/tangram" target="_blank">Tangram</a>',
-    ...
-});
-```
-
 #### preUpdate/postUpdate
-The `preUpdate` and `postUpdate` parameters allow functions to be referenced or defined, to be called immediately before and/or after Tangram's frame update loop runs (up to 60 frames per second, depending on hardware and scene complexity). These functions are called each frame, continuously, regardless of whether the Tangram scene is animated (e.g. the map may not be visually changing in any way, but the update functions will still be called). They are passed a single argument, a flag indicating if Tangram will render (for `preUpdate`), or just did render (for `postUpdate`) new content.
+The optional `preUpdate` and `postUpdate` parameters allow functions to be referenced or defined, to be called immediately before and/or after Tangram's frame update loop runs (up to 60 frames per second, depending on hardware and scene complexity). These functions are called each frame, continuously, regardless of whether the Tangram scene is animated (e.g. the map may not be visually changing in any way, but the update functions will still be called). They are passed a single argument, a flag indicating if Tangram will render (for `preUpdate`), or just did render (for `postUpdate`) new content.
 ```javascript
 var layer = Tangram.leafletLayer({
     preUpdate: myPreUpdateFunction,
@@ -99,7 +90,7 @@ var layer = Tangram.leafletLayer({
 ```
 
 #### modifyScrollWheel
-By default, Tangram modifies Leaflet's scrollwheel behavior, for better synchronization with its own render loop while zooming. If this interferes with your application, you can disable this behavior with the `modifyScrollWheel` option:
+By default, Tangram modifies Leaflet's scrollwheel behavior, for better synchronization with its own render loop while zooming. If this interferes with your application, you can disable this behavior with the optional `modifyScrollWheel` option:
 
 ```javascript
 var layer = Tangram.leafletLayer({
