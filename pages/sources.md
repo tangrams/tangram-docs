@@ -185,6 +185,12 @@ Attaching a `Raster` to another `source` makes that `Raster` available to any sh
 
 (See [Geometry Masking](Raster-Overview.md#Geometry-Masking) for examples.)
 
+**Note:** a simple _string_ value will not function correctly – even a single `raster` must be in _list_ format, e.g. surrounded by square brackets:
+
+```yaml
+rasters: [stamen-terrain]
+```
+
 When a `Raster` source itself has additional raster sources set in the `rasters` property, the "parent" source will be the first raster sampler, and those from `rasters` will be added afterward. (essentially it is as if the parent source was inserted as the first item in the rasters array).
 
 For more, see the [Raster Overview](Raster-Overview.md).
