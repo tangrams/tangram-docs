@@ -39,7 +39,7 @@ layers:
             color: [0.3, 0.3, 0.3] # overwrites previous color array with new color array
 ```
 
-####O bjects vs. Arrays
+#### Objects vs. Arrays
 One important aspect of the merge behavior is that it applies to all *YAML maps/JS objects*, but **not** to *YAML sequences/JS arrays*. While key/value objects merge (with new keys inserted, and existing keys overwriting the previous value), _arrays_ are treated as scalar values that entirely overwrite the previous value (rather than merging the array contents).
 
 ## Style Composition
