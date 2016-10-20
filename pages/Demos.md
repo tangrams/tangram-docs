@@ -4,7 +4,6 @@
 - [generic-demo](https://github.com/tangrams/generic-demo) - A typical generic Tangram setup for inhouse use
 
 ### Styling
-- [poi-labels-demo](https://github.com/tangrams/poi-labels-demo) - A demo showing sprites and text labels on POIs
 - [highways-demo](https://github.com/tangrams/highways-demo) - A demo showing contextual highway styles
 - [raster-baselayer-demo](https://github.com/tangrams/raster-baselayer-demo) - A Tangram map with a raster baselayer
 
