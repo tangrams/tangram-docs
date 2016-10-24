@@ -135,7 +135,7 @@ sources:
 *This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
 
 ####`scripts`
-Optional _[strings]_, specifying the URL of a JavaScript file.
+[[JS-only](https://github.com/tangrams/tangram)] Optional _[strings]_, specifying the URL of a JavaScript file.
 
 These scripts will be loaded before the data is processed so that they are available to the [`transform`](sources.md#transform) function.
 
@@ -144,7 +144,7 @@ scripts: [ 'https://url.com/js/script.js', 'local_script.js']
 ```
 
 ####`extra_data`
-Optional _YAML_, defining custom data to be used in post-processing.
+[[JS-only](https://github.com/tangrams/tangram)] Optional _YAML_, defining custom data to be used in post-processing.
 
 This data is made available to `transform` functions as the second parameter. `extra_data` could also be manipulated dynamically at run-time, via the `scene.config` variable (the serialized form of the scene file); for example, `scene.config.sources.source_name.extra_data` could be assigned an arbitrary JSON object, after which `scene.rebuild()` could be called to re-process the tile data.
 
@@ -196,9 +196,11 @@ When a `Raster` source itself has additional raster sources set in the `rasters`
 For more, see the [Raster Overview](Raster-Overview.md).
 
 ####`transform`
-Optional _function_.
+[[JS-only](https://github.com/tangrams/tangram)] Optional _function_.
 
 This allows the data to be manipulated *after* it is loaded but *before* it is styled. Transform functions are useful for custom post-processing, either where you may not have direct control over the source data, or where you have a dynamic manipulation you would like to perform that incorporates other data separate from the source. The `transform` function is passed a `data` object, with a GeoJSON FeatureCollection assigned to each layer name, e.g. `data.buildings` would provide data from the `buildings` layer, with individual features accessible in `data.buildings.features`. 
+
+*The `transform` function is currently only supported for tiled GeoJSON and TopoJSON data sources; support may be added for other source formats in the future.*
 
 ```yaml
 transform: |
