@@ -101,13 +101,18 @@ styles:
 For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
 
 ####`dash`
-Optional _array_ of _integers_. Defines a dash pattern for use with line textures. No default.
+Optional _array_ of _numbers_. Defines a dash pattern for use with line textures. No default.
 
 Applies to _lines_ styles.
 
 A _dash pattern_ is an array defining a pattern of alternating dashes and spaces, e.g. `[2, 1]` creates a pattern of dashes that are each 2 units long, separated by spaces that are 1 unit long.
 
-The unit of the _dash pattern_ is the width of its line, e.g. a value of `[1, 1]` creates a series of square dashes (separated by square spaces).
+The unit of the _dash pattern_ is the width of its line, for example:
+
+- `[1]` creates a series of square dashes and spaces.
+- `[2]` creates a series of dashes and spaces whose length is twice the width of the line.
+- `[.5]` creates a series of dashes and spaces whose length is half the width of the line.
+- `[2, 1]` creates a dash which is twice as long as the line's width, with spaces the length of the line's width.
 
 If the _dash pattern_ contains an odd number of entries, it is repeated to form an even pattern (as in SVG). This means that the `[1, 1]` example above is equivalent to just `[1]`. Similarly, `[3, 1, 1]` would become `[3, 1, 1, 3, 1, 1]`.
 
@@ -116,6 +121,13 @@ styles:
     dashed-lines:
         base: lines
         dash: [1, 1]
+```
+
+```yaml
+styles:
+    dashed-lines:
+        base: lines
+        dash: [.5, 1]
 ```
 
 ##### Dash coloring
