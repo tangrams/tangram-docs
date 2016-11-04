@@ -41,7 +41,7 @@ sources:
         url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 ```
 
-### source parameters
+### required source parameters
 Source objects can take a number of parameters – only [`type`](#type) and [`url`](#url) are required.
 
 #### type
@@ -122,6 +122,8 @@ mapbox:
     type: MVT
     url: https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=...
 ```
+
+### optional source parameters
 
 #### `enforce_winding`
 *This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
