@@ -81,10 +81,11 @@ Requests an update to the drawn map. If the map contains animated elements, this
 #### `screenshot()`
 This queues a screenshot request, returning a Promise that fulfills when the screenshot is available.
 
-The promise resolves with an object containing two properties:
+The promise resolves with an object containing three properties:
 
 - `url`: a data URL of the Canvas contents, suitable for loading into an `<img>` or opening in a new tab/window.
 - `blob`: a `Blob` of type `image/png`, suitable for saving to a file, either manually or with a third-party library such as [FileSaver.js](https://github.com/eligrey/FileSaver.js/).
+- `type`: the string `png`.
 
 ```javascript
 scene.screenshot().then(function(screenshot) { window.open(screenshot.url); });
