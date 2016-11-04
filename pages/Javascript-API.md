@@ -131,7 +131,11 @@ layer = Tangram.leafletLayer({
 #### `startVideoCapture(), stopVideoCapture()`
 `startVideoCapture()` uses [MediaRecorder](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder) functionality in Chrome and Firefox to capture a [WebM](https://en.wikipedia.org/wiki/WebM)-encoded movie of a Tangram map. `startVideoCapture()` will return `false` on other browsers.
 
-`stopVideoCapture()` returns a promise that will resolve with `url` and `blob` properties, as well as a `type` property with the value `webm`.
+`stopVideoCapture()` returns a promise that will resolve with an object containing three properties:
+
+- `url`: a data URL to the video, suitable for opening in a new tab/window.
+- `blob`: a `Blob` of type `video/webm`, suitable for saving to a file, either manually or with a third-party library such as [FileSaver.js](https://github.com/eligrey/FileSaver.js/).
+- `type`: the string `webm`.
 
 ```javascript
 scene.startVideoCapture();
