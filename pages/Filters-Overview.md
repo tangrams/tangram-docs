@@ -220,6 +220,8 @@ See [`generate_label_centroids`](sources.md#generate_label_centroids)
 
 #### Filter functions
 
+##### Range functions
+
 The filter functions `min` and `max` are equivalent to `>=` and `<` in a JavaScript function, and can be used in combination.
 
 ```yaml
@@ -232,6 +234,23 @@ filter:
 filter:
     $zoom: { min: 5, max: 10 }  # matches zooms 5-9
 ```
+
+##### `px2`
+Range functions can also accept a special screen-space area unit called `px2`:
+
+```yaml
+filter: { area: { min: 500px2 } }
+```
+
+This example filters the feature's area property by the number of _square mercator meters_ that cover a 500 pixel screen area at the current zoom level. This means that the area property must be in square mercator meters, as the property provided by Mapzen vector tiles is.
+
+As with other pixel-based values in the scene file, the `px2` units are expressed in _logical pixels_ (or "CSS pixels"), meaning they are interpreted at a pixel density of 1, and are automatically scaled up for higher density displays.
+
+The `px2` unit syntax can be used to simplify more cumbersome per-zoom filters.
+
+Note that a `px2` area filter can only be applied if the data source already contains a suitable area property – it does not need to be named area, as any property name can be specified in the filter, but it must already exist in the data source.
+
+##### Boolean functions
 
 The following Boolean filter functions are also available:
 
