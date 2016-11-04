@@ -127,6 +127,21 @@ layer = Tangram.leafletLayer({
 };
 ```
 
+#### `startVideoCapture(), stopVideoCapture()`
+`startVideoCapture()` uses [MediaRecorder](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder) functionality in Chrome and Firefox to capture a [WebM](https://en.wikipedia.org/wiki/WebM)-encoded movie of a Tangram map. `startVideoCapture()` will return `false` on other browsers.
+
+`stopVideoCapture()` returns a promise that will resolve with `url` and `blob` properties, as well as a `type` property with the value `webm`.
+
+```javascript
+scene.startVideoCapture();
+```
+
+```javascript
+scene.stopVideoCapture().then(function(video) {
+    saveAs(video.blob, 'tangram-video-' + (+new Date()) + '.webm');
+});
+```
+
 #### `updateConfig()`
 Re-parses the `scene.config` object and redraws the scene, updating data sources, cameras, lights, rendering styles and shaders, and reloading textures. If `updateConfig({ rebuild: true })` is specified, geometry will also be rebuilt (necessary in cases where `scene.config.layers` have been modified).
 
