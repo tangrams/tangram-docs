@@ -205,6 +205,20 @@ sources:
         generate_label_centroids: true
 ```
 
+#### `max_display_zoom`, `min_display_zoom`
+Optional _integer_. No default.
+
+`max_display_zoom` sets the highest zoom level which will be requested from the datasource. `mix_display_zoom` sets the lowest zoom level which will be requested from the datasource. Outside of this range, tiles will not be requested nor displayed.
+
+```yaml
+sources:
+    local:
+        type: GeoJSON
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
+        max_display_zoom: 9
+        max_display_zoom: 18
+```
+
 #### `max_zoom`
 Optional _integer_. Default is _18_.
 
