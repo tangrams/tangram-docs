@@ -125,6 +125,19 @@ mapbox:
 
 ### optional source parameters
 
+#### `bounds`
+Optional _array of lat/lngs_. No default.
+
+The `bounds` of a data source are specified as a single, flattened 4-element array of lat/lng values, in the order `[w, s, e, n]`. When specified, tiles for this datasource will not be requested outside of this bounding box.
+
+```yaml
+sources:
+    mapzen:    
+        type: TopoJSON
+        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+        bounds: [-74.1274, 40.5780, -73.8004, 40.8253] # [w, s, e, n]
+```
+
 #### `enforce_winding`
 *This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
 
