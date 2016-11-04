@@ -74,7 +74,17 @@ https://vector.mapzen.com/osm/buildings/{z}/{x}/{y}.json
 ```
 
 ##### curly braces
-When tiles are requested, Tangram will parse the datasource url and interpret items in curly braces according to the convention used by Leaflet and others,  replacing e.g. `{z}` with the appropriate zoom level.
+When tiles are requested, Tangram will parse the datasource url and interpret items in curly braces according to the convention used by Leaflet and others.
+
+```yaml
+mapzen:
+    type: TopoJSON
+    url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+```
+
+In the example above, Tangram will automatically replace `{x}`, `{y}`, and `{z}` with the correct tile coordinates and zoom level for each tile, depending on which tiles are visible in the current scene, and the result will be something like:
+
+`https://tile.mapzen.com/mapzen/vector/v1/all/16/19296/24640.topojson`
 
 ##### access tokens
 The `url` may require an access token:
