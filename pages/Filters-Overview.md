@@ -213,7 +213,7 @@ layers:
         data: {source: osm}
         points:
             filter:
-                label_placement: yes
+                label_placement: true
 ```
 
 See [`generate_label_centroids`](sources.md#generate_label_centroids)
