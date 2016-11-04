@@ -446,7 +446,7 @@ When `true`, stipulates that any _text_ attached to a _point_ must draw with the
 Note that attached _text_ will never draw without its _point_.
 
 ####`size`
-Optional _number_, in `px`. Default is `32px`.
+Optional _number_, in `px` or _stops_. Default is `32px`.
 
 Applies to `points`.
 
@@ -455,6 +455,13 @@ draw:
     points:
         size: 32px
         sprite: museum
+```
+
+```yaml
+draw:
+    points:
+        size: [[13, 64px], [16, 18px], [18, 22px]]
+        sprite: highway
 ```
 
 ####`sprite`
