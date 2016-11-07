@@ -31,9 +31,9 @@ styles:
 ## style parameters
 
 ####`base`
-Optional _string_, naming one of the built-in _draw styles_. No default.
+Optional _string_, naming one of Tangram's built-in _draw styles_: `polygons`, `lines`, `points`, `text`, or `raster`. No default.
 
-Defines the expected input geometry of the custom style, which determines what other kinds of parameters the style can take. Tangram's built-in styles are `polygons`, `lines`, `points`, `text`, and `raster`. No default.
+Defines the expected input geometry of the custom style, which determines what other kinds of parameters the style can take.
 
 ```yaml
 styles:
