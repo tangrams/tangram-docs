@@ -262,6 +262,19 @@ draw:
         join: round
 ```
 
+####`max_lines`
+Optional _integer_. No default.
+
+Applies to the `text` style. When the `text_wrap: true` parameter is present, `max_lines` sets the maximum number of lines that a text label is allowed to occupy. If a label would wrap onto more lines, the label is truncated with a `…` character at the end of the last visible word.
+
+```yaml
+draw:
+    text:
+         text_source: function(){ return "This is a very very very very very very very long label." }
+         text_wrap: true
+         max_lines: 2
+```
+
 ####`miter_limit`
 Optional _integer_. Default is 3.
 
