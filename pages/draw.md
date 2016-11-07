@@ -379,7 +379,7 @@ Applies to `points` when used to draw line or polygon features.
 ####`placement_min_length_ratio`
 Optional _number_. Default is `1`. No units.
 
-Applies to `line` styles. Specifies the minimum line segment length as a ratio to the width of the point being placed. This prevents points drawn on lines (such as road shields) from being drawn on line segments which are smaller than the point itself.
+Applies to `points` styles used to draw line or polygon features, when the `placement` parameter is set to `spaced` or `midpoint`. Specifies the minimum line segment length as a ratio to the width of the point being placed. This prevents points drawn on lines (such as road shields) from being drawn on line segments which are smaller than the point itself.
 
 Examples:
 
