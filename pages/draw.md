@@ -369,7 +369,7 @@ Applies to `lines`. Draws an outline around the feature. `outline` elements can 
 
 
 ####`priority`
-_integer_ or _function_. Default is the local system's max integer value.
+Optional _integer_ or _function_. Default is the local system's max integer value.
 
 Applies to `points` and `text`. Sets the label priority of the feature. _functions_ must return integers.
 
