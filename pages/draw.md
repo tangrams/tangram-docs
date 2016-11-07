@@ -367,6 +367,31 @@ Optional element. Defines the start of an outline style block.
 
 Applies to `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
 
+####`placement`
+Optional _string_, one of `vertex`, `spaced`, `midpoint`, or `centroid`. Defines the placement method of a `point` drawn on a `line`.
+
+Applies to `points` when used to draw line or polygon features.
+
+- `placement: vertex`: place points at line/polygon vertices
+- `placement: midpoint`: place points at line/polygon segment midpoints (better for shields where you want them away from ambiguous intersections)
+- `placement: spaced`: place points along a line/polygon at fixed intervals defined in pixels with `placement_spacing`; useful for symbols like one-way street arrows where consistent spacing is desirable
+
+####`placement_min_length_ratio`
+Optional _number_. Default is `1`. No units.
+
+Applies to `line` styles. Specifies the minimum line segment length as a ratio to the width of the point being placed. This prevents points drawn on lines (such as road shields) from being drawn on line segments which are smaller than the point itself.
+
+Examples:
+
+- `placement_min_length_ratio: 1` (default value) will only place points on line segments that are at least as long as the point itself (the point must fit 100% along the line segment)
+- `placement_min_length_ratio: 0` disables this behavior by allowing a point to place on a line segment of any length (minimum length of 0).
+- `placement_min_length_ratio: 2` requires the line segment to be at least twice as long as the point
+- `placement_min_length_ratio: 0.5` requires the line segment to be only 50% as long as the point
+
+####`placement_spacing`
+Optional _integer_, _stops_, or _function_. Units are `px`. Default is `80px`.
+
+Applies to `points` styles, when `placement: spaced` is defined. 
 
 ####`priority`
 Optional _integer_ or _function_. Default is the local system's max integer value.
