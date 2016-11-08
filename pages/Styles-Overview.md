@@ -143,7 +143,6 @@ Styles which are extensions of the `text` style can take the following special p
 - [`repeat_distance`](draw.md#repeat_distance): Sets the distance beyond which label text may repeat.
 - [`repeat_group`](draw.md#repeat_group): Optional grouping mechanism for fine-grained control over text repetition.
 - [`collide`](draw.md#collide): Sets whether label collides with other labels or points/sprites.
-- [`move_into_tile`](draw.md#move_into_tile): Increases number of labels that will display, by moving some to fit within tile bounds (JS-only)
 
 These parameters are described in the [draw](draw.md) entry.
 
