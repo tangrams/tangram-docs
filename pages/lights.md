@@ -10,7 +10,7 @@ lights:
         type: directional
 ```
 
-Note: To have your map colors match your style colors exactly in all cases, use no lights. By definition, lights apply differing illumunation values in different situations. If no lights are defined, lighting calculations will not be performed, and the map's colors will be taken directly from the scene file's color declarations.
+Note: To have your map colors match your style colors exactly in all cases, do not specify any lights. In this case, the **default light** will be a _directional light_ whose _diffuse_ and _ambient_ components have been tuned to exactly produce 100% illumination, while providing some shading on 3D-extruded features. In this way, 3D buildings will have shading, while the colors of all other flat features will precisely match their `color` declarations.
 
 #### Light names
 Required _string_. Can be anything*. No default.
