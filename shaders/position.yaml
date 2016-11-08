@@ -2,19 +2,6 @@ cameras:
     camera1:
         type: isometric
 
-lights:
-    # light1:
-    #     type: directional
-    #     direction: [0, 1, -.5]
-    #     diffuse: .5
-    #     ambient: .5
-    light2:
-        type: point
-        position: [0, 0, 500]
-        origin: ground
-        ambient: .5
-        diffuse: 1.
-
 styles:
     buildings:
         base: polygons
@@ -37,7 +24,7 @@ styles:
 sources:
     osm:
         type: TopoJSON
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=mapzen-QF1osLn
         max_zoom: 16
 
 layers:
@@ -47,7 +34,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
         data:
@@ -55,9 +42,8 @@ layers:
             layer: landuse
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
-                color: '#aaffaa'
-                interactive: true
+                order: function() { return feature.sort_rank; }
+                color: '#bbeebb'
 
     water:
         data:
@@ -65,7 +51,7 @@ layers:
             layer: water
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#88bbee'
 
     roads:
@@ -73,58 +59,18 @@ layers:
             source: osm
             layer: roads
         filter:
-            not: {kind: [ferry]}
+            not: {kind: [ferry, path, service, rail]}
         draw:
             lines:
-                order: function() { return feature.sort_key; }
-                color: gray    
+                order: function() { return feature.sort_rank; }
+                color: [.6, .6, .6]
                 width: 8
         highway:
             filter:
                 kind: highway
             draw:
                 lines:
-                    color: '#cc6666'
-                    width: 12
-                outline:
-                    order: 352 # magic
-                    style: lines
-                    color: grey
                     width: 18
-        tunnel:
-            filter:
-                is_tunnel: yes
-            draw:
-                lines:
-                    color: tan
-            rail:
-                filter:
-                    kind: rail
-                draw:
-                    lines:
-                        width: 0
-        minor_road:
-            filter:
-                kind: minor_road
-            draw:
-                lines:
-                    color: lightgrey
-                    width: 5
-        path:
-            filter:
-                kind: path
-            draw:
-                lines:
-                    color: [0.8, 0.8, 0.8]
-                    width: 3
-        rail:
-            filter:
-                kind: rail
-                is_tunnel: no
-            draw:
-                lines:
-                    color: pink
-                    width: 3
     buildings:
         data:
             source: osm
@@ -132,12 +78,6 @@ layers:
         draw:
             polygons:
                 style: buildings
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [.7,.7,.7]
                 extrude: true
-            outline:
-                order: function() { return feature.sort_key + 1; }
-                style: lines
-                color: gray
-                width: 1px
-
