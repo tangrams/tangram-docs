@@ -293,7 +293,9 @@ draw:
 ####`move_into_tile`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _boolean_. Default is _true_.
 
-Applies to `text` styles. Moves the label into the tile if the label would otherwise cross a tile boundary. This should be set to _false_ if using `anchor`/`align` functionality for text + icon combinations – otherwise, text can get out of sync with expected position.
+Applies to `text` styles. Moves the label into the tile if the label would otherwise cross a tile boundary.
+
+Note that this parameter is not available for `points` styles, nor for text labels attached to points.
 
 ####`offset`
 Optional _[float x, float y]_ _array_ or _stops_, in `px`. No default.
