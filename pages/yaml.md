@@ -286,7 +286,7 @@ Bear in mind that in multi-line strings, pound signs lose their ability to comme
 
 ## `url`
 
-`url` attributes may be used to link to external YAML files in the `styles` element, as well as in the shader block elements `globals`, `color`, and `position`. This allows for more modular shader construction as well as easy sharing of styles.
+`url` attributes may be used to link to external YAML files in the `styles` element, as well as in the shader block elements `global`, `color`, `normal`, and `position`. This allows for more modular shader construction as well as easy sharing of styles.
 
 #### linked `styles`
 
@@ -311,7 +311,7 @@ dots:
 ```yaml
 shaders:
     blocks:
-        globals:
+        global:
             url: functions/hsv2rgb.glsl
 ```
 
