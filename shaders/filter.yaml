@@ -4,50 +4,30 @@ cameras:
 
 lights:
     light1:
-        type: directional
-        direction: [0, 1, -.5]
-        diffuse: .1
-        ambient: .2
-    light2:
         type: point
-        position: [0, 0, 700]
-        origin: ground
-        ambient: .2
-        diffuse: .9
+        diffuse: 1.5
+        radius: [500, 600]
 
 styles:
     buildings:
         base: polygons
         animated: true
-        material:
-            ambient: 1.0
-            diffuse: 1.0
         shaders:
             blocks:
-                global: |
-                    float random(in vec3 _st){ 
-                        return fract(sin(dot(_st.xyz,
-                                             vec3(12.9898,78.233,32.4355)))* 
-                            43758.5453123);
-                    }
-
-                    vec3 hsb2rgb( in float hue, in float sat, in float bri ){
-                        vec3 rgb = clamp(abs(mod(hue*6.0+vec3(0.0,4.0,2.0),
-                                                 6.0)-3.0)-1.0, 
-                                         0.0, 
-                                         1.0 );
-                        rgb = rgb*rgb*(3.0-2.0*rgb);
-                        return bri * mix(vec3(1.0), rgb, sat);
-                    }
+                color: |
+                    // brighten with elevation
+                    color = vec4(worldPosition().z * .002 + .5);
                 filter: |
-                    vec3 pos = worldPosition().xyz*0.05;
-                    color.xyz = hsb2rgb( random(abs(floor(pos))) , .5, .8 );
-                    
+                    // animated green bars
+                    vec3 filter = vec3(0.5, 1.0, 0.5) * abs(floor(sin(worldPosition().x * .05 + u_time)));
+                    // add green after lighting
+                    color.rgb += filter;
+
 sources:
     osm:
         type: TopoJSON
         url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=mapzen-QF1osLn
-        max_zoom: 16
+        max_zoom: 18
 
 layers:
     earth:
@@ -56,81 +36,9 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
-                color: '#ddeeee'
-    landuse:
-        data:
-            source: osm
-            layer: landuse
-        draw:
-            polygons:
-                order: function() { return feature.sort_key; }
-                color: '#aaffaa'
-                interactive: true
+                order: 0
+                color: lightgray
 
-    water:
-        data:
-            source: osm
-            layer: water
-        draw:
-            polygons:
-                order: function() { return feature.sort_key; }
-                color: '#88bbee'
-
-    roads:
-        data:
-            source: osm
-            layer: roads
-        draw:
-            lines:
-                order: function() { return feature.sort_key; }
-                color: gray    
-                width: 8
-        highway:
-            filter:
-                kind: highway
-            draw:
-                lines:
-                    color: '#cc6666'
-                    width: 12
-                outline:
-                    style: lines
-                    color: grey
-                    width: 3
-        tunnel:
-            filter:
-                is_tunnel: yes
-            draw:
-                lines:
-                    color: tan
-            rail:
-                filter:
-                    kind: rail
-                draw:
-                    lines:
-                        width: 0
-        minor_road:
-            filter:
-                kind: minor_road
-            draw:
-                lines:
-                    color: lightgrey
-                    width: 5
-        path:
-            filter:
-                kind: path
-            draw:
-                lines:
-                    color: [0.8, 0.8, 0.8]
-                    width: 3
-        rail:
-            filter:
-                kind: rail
-                is_tunnel: no
-            draw:
-                lines:
-                    color: pink
-                    width: 3
     buildings:
         data:
             source: osm
@@ -138,13 +46,5 @@ layers:
         draw:
             polygons:
                 style: buildings
-                order: function() { return feature.sort_key; }
-                color: white
-                # color: Style.color.pseudoRandomColor
+                order: 3
                 extrude: true
-            outline:
-                order: 352 # magic
-                style: lines
-                color: black
-                width: 1px
-        
