@@ -116,7 +116,7 @@ styles:
             diffuse: 1.0
         shaders:
             blocks:
-                globals: |
+                global: |
                     float random(in vec3 _st){ 
                         return fract(sin(dot(_st.xyz,
                                              vec3(12.9898,78.233,32.4355)))* 
@@ -152,7 +152,7 @@ styles:
             diffuse: 1.0
         shaders:
             blocks:
-                globals: |
+                global: |
                     float random(in vec3 _st){ 
                         return fract(sin(dot(_st.xyz,
                                              vec3(12.9898,78.233,32.4355)))* 
