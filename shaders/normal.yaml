@@ -3,26 +3,21 @@ cameras:
         type: isometric
 
 lights:
-    # light1:
-    #     type: directional
-    #     direction: [0, 1, -.5]
-    #     diffuse: .4
-    #     ambient: .4
     blue:
         type: point
-        position: [1000, -200, 1000]
+        position: [800, 0, 800]
         origin: ground
         diffuse: cyan
-        radius: [700,2000]
-    pink:
+        radius: [700,1500]
+    red:
         type: point
-        position: [-1000, -200, 1000]
+        position: [-800, 0, 800]
         origin: ground
-        diffuse: red
-        radius: [700,2000]
+        diffuse: [1.5, 0., 0.]
+        radius: [700,1500]
 
 styles:
-    buildings:
+    ripple:
         base: polygons
         animated: true
         material:
@@ -31,11 +26,8 @@ styles:
         shaders:
             blocks:
                 normal: |
-                    vec3 pos = worldPosition().xyz*0.1;
-                    normal.xyz += vec3( sin(pos.x+u_time) +
-                                        sin(pos.y+u_time) +
-                                        sin(pos.z+u_time)) * .5;
-                    normal = normalize(normal);
+                    vec3 pos = worldPosition().xyz*0.02;
+                    normal.x += sin(pos.x + u_time);
                     
 sources:
     osm:
@@ -50,6 +42,7 @@ layers:
             layer: earth
         draw:
             polygons:
+                style: ripple
                 order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
@@ -58,6 +51,7 @@ layers:
             layer: landuse
         draw:
             polygons:
+                style: ripple
                 order: function() { return feature.sort_rank; }
                 color: [.7, .7, .7]
 
@@ -67,6 +61,7 @@ layers:
             layer: water
         draw:
             polygons:
+                style: ripple
                 order: function() { return feature.sort_rank; }
                 color: '#88bbee'
 
@@ -76,7 +71,7 @@ layers:
             layer: buildings
         draw:
             polygons:
-                style: buildings
+                style: ripple
                 order: function() { return feature.sort_rank; }
                 color: [.7,.7,.7]
                 extrude: true
