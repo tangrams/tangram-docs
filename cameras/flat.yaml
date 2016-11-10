@@ -2,13 +2,6 @@ cameras:
     camera1:
         type: flat
 
-lights:
-    light1:
-        type: directional
-        direction: [0, 1, -.5]
-        diffuse: 1.
-        ambient: .5
-
 sources:
     osm:
         type: TopoJSON
@@ -22,7 +15,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: 0
                 color: '#ddeeee'
     landuse:
         data:
@@ -30,7 +23,7 @@ layers:
             layer: landuse
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: 1
                 color: '#bbeebb'
 
     water:
@@ -39,47 +32,28 @@ layers:
             layer: water
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: 2
                 color: '#88bbee'
 
     roads:
         data:
             source: osm
             layer: roads
-        filter: { not: { kind: [rail, ferry, path]}}
+        filter: { not: { kind: [rail, ferry, path, minor_road]}}
         draw:
             lines:
-                order: function() { return feature.sort_rank; }
-                color: gray
+                order: 3
+                color: [.8, .8, .8]
                 width: 8
-        highway:
-            filter:
-                kind: highway
-            draw:
-                lines:
-                    color: [0.831, 0.592, 0.592, 1.00]
-                    width: 12
-                    outline:
-                        color: grey
-                        width: 3
-        minor_road:
-            filter:
-                kind: minor_road
-            draw:
-                lines:
-                    color: lightgrey
-                    width: 5
-    
     buildings:
         data:
             source: osm
             layer: buildings
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: 4
                 color: |
                     function () {
-                        var h = feature.id%.66+.33;
-                        return [h, h, h];
+                        return [feature.id, feature.id+.2, feature.id+.2];
                     }
                 extrude: true
