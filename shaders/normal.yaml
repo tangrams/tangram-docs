@@ -30,7 +30,7 @@ styles:
                     normal.x += sin(pos.x + u_time);
                     
 sources:
-    osm:
+    mapzen:
         type: TopoJSON
         url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=mapzen-QF1osLn
         max_zoom: 16
@@ -38,7 +38,7 @@ sources:
 layers:
     earth:
         data:
-            source: osm
+            source: mapzen
             layer: earth
         draw:
             polygons:
@@ -47,7 +47,7 @@ layers:
                 color: '#ddeeee'
     landuse:
         data:
-            source: osm
+            source: mapzen
             layer: landuse
         draw:
             polygons:
@@ -57,7 +57,7 @@ layers:
 
     water:
         data:
-            source: osm
+            source: mapzen
             layer: water
         draw:
             polygons:
@@ -67,7 +67,7 @@ layers:
 
     buildings:
         data:
-            source: osm
+            source: mapzen
             layer: buildings
         draw:
             polygons:

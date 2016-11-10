@@ -14,7 +14,7 @@ lights:
         specular: .2
 
 sources:
-    osm:
+    mapzen:
         type: TopoJSON
         url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=mapzen-QF1osLn
         max_zoom: 16
@@ -22,7 +22,7 @@ sources:
 layers:
     earth:
         data:
-            source: osm
+            source: mapzen
             layer: earth
         draw:
             polygons:
@@ -30,7 +30,7 @@ layers:
                 color: '#ddeeee'
     landuse:
         data:
-            source: osm
+            source: mapzen
             layer: landuse
         draw:
             polygons:
@@ -38,7 +38,7 @@ layers:
                 color: '#aaffaa'
     water:
         data:
-            source: osm
+            source: mapzen
             layer: water
         draw:
             polygons:
@@ -46,7 +46,7 @@ layers:
                 color: '#88bbee'
     roads:
         data:
-            source: osm
+            source: mapzen
             layer: roads
         filter: { not: { kind: [path, rail, ferry] } }
         draw:
@@ -56,7 +56,7 @@ layers:
                 width: 8
     buildings:
         data:
-            source: osm
+            source: mapzen
             layer: buildings
         draw:
             polygons:
