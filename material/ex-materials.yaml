@@ -120,7 +120,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
         data:
@@ -129,10 +129,8 @@ layers:
         draw:
             polygons:
                 style: grass
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#aaffaa'
-                interactive: true
-
     water:
         data:
             source: osm
@@ -140,60 +138,18 @@ layers:
         draw:
             polygons:
                 style: water
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#88bbee'
-
     roads:
         data:
             source: osm
             layer: roads
+        filter: { not: { kind: [rail, ferry, path] } }
         draw:
             lines:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: gray    
                 width: 8
-        highway:
-            filter:
-                kind: highway
-            draw:
-                lines:
-                    style: roads
-                    color: '#cc6666'
-                    width: 12
-        tunnel:
-            filter:
-                is_tunnel: yes
-            draw:
-                lines:
-                    color: tan
-            rail:
-                filter:
-                    kind: rail
-                draw:
-                    lines:
-                        width: 0
-        minor_road:
-            filter:
-                kind: minor_road
-            draw:
-                lines:
-                    color: lightgrey
-                    width: 5
-        path:
-            filter:
-                kind: path
-            draw:
-                lines:
-                    color: [0.8, 0.8, 0.8]
-                    width: 3
-        rail:
-            filter:
-                kind: rail
-                is_tunnel: no
-            draw:
-                lines:
-                    color: pink
-                    width: 3
     
     buildings:
         data:
@@ -202,7 +158,7 @@ layers:
         draw:
             polygons:
                 style: rock
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: |
                     function () {
                         var h = feature.height || 20;

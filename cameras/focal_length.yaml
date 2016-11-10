@@ -36,34 +36,6 @@ layers:
                 order: function() { return feature.sort_rank; }
                 color: '#88bbee'
 
-    roads:
-        data:
-            source: osm
-            layer: roads
-        filter: { not: { kind: [ferry, rail, path]}}
-        draw:
-            lines:
-                order: function() { return feature.sort_rank; }
-                color: gray
-                width: 8
-        highway:
-            filter:
-                kind: highway
-            draw:
-                lines:
-                    color: '#cc6666'
-                    width: 12
-                    outline:
-                        color: grey
-                        width: 3
-        minor_road:
-            filter:
-                kind: minor_road
-            draw:
-                lines:
-                    color: lightgrey
-                    width: 5
-    
     buildings:
         data:
             source: osm

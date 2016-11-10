@@ -39,7 +39,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
         data:
@@ -47,7 +47,7 @@ layers:
             layer: landuse
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#aaffaa'
                 interactive: true
 
@@ -57,7 +57,7 @@ layers:
             layer: water
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 style: uvs
                 color: [1,1,1]
 
@@ -67,7 +67,7 @@ layers:
             layer: roads
         draw:
             lines:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: gray    
                 width: 8
         highway:
@@ -121,6 +121,6 @@ layers:
         draw:
             polygons:
                 style: uvs
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [1,1,1]
                 extrude: true

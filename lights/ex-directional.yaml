@@ -1,14 +1,13 @@
 cameras:
     camera1:
         type: perspective
-        focal_length: [[16, 2], [20, 6]] # pairs of [zoom, focal len]
-        vanishing_point: [-250, -250] # relative to center of screen, in pixels
+        vanishing_point: [0, -500] # relative to center of screen, in pixels
 
 lights:
     light1:
         type: directional
-        direction: [0, 1, -.5]
-        diffuse: 1.
+        direction: [1, 1, -.3]
+        diffuse: .7
         ambient: .3
 
 sources:
@@ -24,7 +23,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
         data:
@@ -32,7 +31,7 @@ layers:
             layer: landuse
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#aaffaa'
                 interactive: true
 
@@ -42,78 +41,26 @@ layers:
             layer: water
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#88bbee'
 
     roads:
         data:
             source: osm
             layer: roads
+        filter: { not: { kind: [rail, ferry, path, minor_road]}}
         draw:
             lines:
-                order: function() { return feature.sort_key; }
-                color: gray    
+                order: function() { return feature.sort_rank; }
+                color: [.8, .8, .8]
                 width: 8
-        highway:
-            filter:
-                kind: highway
-            draw:
-                lines:
-                    color: '#cc6666'
-                    width: 12
-                outline:
-                    order: 352 # magic
-                    style: lines
-                    color: grey
-                    width: 3
-        tunnel:
-            filter:
-                is_tunnel: yes
-            draw:
-                lines:
-                    color: tan
-            rail:
-                filter:
-                    kind: rail
-                draw:
-                    lines:
-                        width: 0
-        minor_road:
-            filter:
-                kind: minor_road
-            draw:
-                lines:
-                    color: lightgrey
-                    width: 5
-        path:
-            filter:
-                kind: path
-            draw:
-                lines:
-                    color: [0.8, 0.8, 0.8]
-                    width: 3
-        rail:
-            filter:
-                kind: rail
-                is_tunnel: no
-            draw:
-                lines:
-                    color: pink
-                    width: 3
-    
+
     buildings:
         data:
             source: osm
             layer: buildings
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
-                color: |
-                    function () {
-                        var h = feature.height || 20;
-                        h = Math.min((h + 50)/ 250, .8);
-                        h = Math.max(h, .4);
-                        return [h, h, h];
-                    }
+                order: function() { return feature.sort_rank; }
+                color: white
                 extrude: true
-

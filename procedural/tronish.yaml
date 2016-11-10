@@ -117,24 +117,24 @@ layers:
             source: osm
         draw:
             grid:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
         data:
             source: osm
         draw:
             grid:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#ff00ff'
     water:
         data:
             source: osm
         draw:
             tiledCross:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [0,0,0]
             outline:
-                order: function() { return feature.sort_key + 1; }
+                order: function() { return feature.sort_rank + 1; }
                 style: lines
                 color: [0.654,0.897,1.000]
                 width: 1px
@@ -144,7 +144,7 @@ layers:
             source: osm
         draw:
             roads:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [0, 0, 0]
                 width: 8
         oneway:
@@ -193,10 +193,10 @@ layers:
             source: osm
         draw:
             walls:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [0, 0, 0]
             outline:
-                order: function() { return feature.sort_key + 1; }
+                order: function() { return feature.sort_rank + 1; }
                 style: lines
                 color: [0.654,0.897,1.000]
                 width: 1px
