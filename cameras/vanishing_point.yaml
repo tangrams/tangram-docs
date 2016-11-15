@@ -1,7 +1,7 @@
 cameras:
     camera1:
         type: perspective
-        vanishing_point: [400,-400]
+        vanishing_point: [400,-100]
         focal_length: 1.
 
 sources:
@@ -27,7 +27,6 @@ layers:
             polygons:
                 order: 1
                 color: '#aaffaa'
-                interactive: true
 
     water:
         data:

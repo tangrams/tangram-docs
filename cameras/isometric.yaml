@@ -26,7 +26,6 @@ layers:
             polygons:
                 order: 1
                 color: '#aaffaa'
-                interactive: true
 
     water:
         data:
