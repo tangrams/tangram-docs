@@ -24,7 +24,7 @@ cameras:
 [ ![](images/perspective.png) ](http://tangrams.github.io/tangram-docs/?cameras/perspective.yaml)
 
 #### `focal_length`
-The `focal_length` parameter is connected to the camera's height, and they modify each other in order to maintain a consistent view area. This allows the "zoom level" of a particular map view to remain constant unless changed directly. (You might know this trick as a "dolly zoom", first used in Hitchcock's Vertigo, and frequently used by Kubrick.)
+The `focal_length` parameter is connected to the camera's height, and they modify each other in order to maintain a consistent view area. This allows the "zoom level" of a particular map view to remain constant unless changed directly. (You might know this trick as a "[dolly zoom](https://en.wikipedia.org/wiki/Dolly_zoom)", first used in Hitchcock's _Vertigo_.)
 
 The effect of changing the `focal_length` is therefore identical to scaling the height of all 3D objects in the scene, but without changing the geometry at all.
 
@@ -40,7 +40,7 @@ With our perspective camera, if you decrease the `focal_length`, the camera will
 cameras:
     camera1:
         type: perspective
-        focal_length: 2
+        focal_length: .5
 ```
 
 [ ![](images/focal_length.png) ](http://tangrams.github.io/tangram-docs/?cameras/focal_length.yaml)
@@ -59,7 +59,7 @@ cameras:
 
 ### isometric camera
 
-More properly called an orthographic or parallel projection, the **isometric** camera can be thought of as a perspective camera with an infinitely long focal length. It produces a flattened perspective that can resemble satellite photos, or the view through a telephoto lens.
+Also called an orthographic or parallel projection, the **isometric** camera can be thought of as a perspective camera with an infinitely long focal length. It produces a flattened perspective that can resemble satellite photos, or the view through a telephoto lens.
 
 ![](images/isometric.jpg)
 ![](images/isometric-view.jpg)
