@@ -1,17 +1,8 @@
-cameras:
-    camera1:
-        type: perspective
-        focal_length: [[16, 2], [20, 6]] # pairs of [zoom, focal len]
-        vanishing_point: [-250, -250] # relative to center of screen, in pixels
-
 lights:
     light1:
         type: point
         position: [0, 0, 100px]
         origin: ground
-        ambient: .3
-        diffuse: 1.
-        specular: .2
 
 sources:
     mapzen:
@@ -26,7 +17,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: 1
                 color: '#ddeeee'
     landuse:
         data:
@@ -34,7 +25,7 @@ layers:
             layer: landuse
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: 2
                 color: '#aaffaa'
                 interactive: true
 
@@ -44,78 +35,26 @@ layers:
             layer: water
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: 3
                 color: '#88bbee'
 
     roads:
         data:
             source: mapzen
             layer: roads
+        filter: { not: { kind: [path, rail, ferry] } }
         draw:
             lines:
-                order: function() { return feature.sort_rank; }
-                color: gray    
-                width: 8
-        highway:
-            filter:
-                kind: highway
-            draw:
-                lines:
-                    color: '#cc6666'
-                    width: 12
-                outline:
-                    order: 352 # magic
-                    style: lines
-                    color: grey
-                    width: 3
-        tunnel:
-            filter:
-                is_tunnel: yes
-            draw:
-                lines:
-                    color: tan
-            rail:
-                filter:
-                    kind: rail
-                draw:
-                    lines:
-                        width: 0
-        minor_road:
-            filter:
-                kind: minor_road
-            draw:
-                lines:
-                    color: lightgrey
-                    width: 5
-        path:
-            filter:
-                kind: path
-            draw:
-                lines:
-                    color: [0.8, 0.8, 0.8]
-                    width: 3
-        rail:
-            filter:
-                kind: rail
-                is_tunnel: no
-            draw:
-                lines:
-                    color: pink
-                    width: 3
-    
+                order: 3
+                color: lightgray
+                width: 8    
     buildings:
         data:
             source: mapzen
             layer: buildings
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
-                color: |
-                    function () {
-                        var h = feature.height || 20;
-                        h = Math.min((h + 50)/ 250, .8);
-                        h = Math.max(h, .4);
-                        return [h, h, h];
-                    }
+                order: 4
+                color: grey
                 extrude: true
 
