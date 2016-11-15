@@ -48,7 +48,7 @@ styles:
             shininess: 0.2
 ```
 ![](images/ambient-surface.png)
-![](images/ambient.png)
+![](images/ambient-sphere.png)
 
 
 ###`specular`
