@@ -10,7 +10,7 @@ Apart from this, our cameras should be recognizable to anyone familiar with 3D. 
 
 ## Camera types
 
-Tangram has three camera types: `perspective`, `isometric`, and `flat`. In most ways they are like typical 3D cameras, with some limitations and enhancements to make them better suited to a web map context. For instance, for now you can't tilt or rotate them. Also, their position is set as _[lat, long, zoom]_ instead of in 3D coordinates.
+Tangram has three camera types: `perspective`, `isometric`, and `flat`. In most ways they are like typical 3D cameras, with some limitations and enhancements to make them better suited to displaying maps. For instance, because Tangram-JS is a Leaflet plugin, for now you can't tilt or rotate the cameras. Also, their position is set with _[lat, long, zoom]_ instead of 3D coordinates.
 
 ### perspective camera
 The **perspective** camera is the most like a 3D camera, but with some unique parameters, including `focal_length` and `vanishing_point`.
