@@ -1,8 +1,12 @@
 cameras:
     camera1:
         type: perspective
-        vanishing_point: [400,-100]
-        focal_length: 1.
+        vanishing_point: [0, -500] # relative to center of screen, in pixels
+
+lights:
+    light1:
+        type: ambient
+        ambient: 1
 
 sources:
     mapzen:
@@ -17,7 +21,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: 0
+                order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
         data:
@@ -25,7 +29,7 @@ layers:
             layer: landuse
         draw:
             polygons:
-                order: 1
+                order: function() { return feature.sort_rank; }
                 color: '#aaffaa'
 
     water:
@@ -34,7 +38,7 @@ layers:
             layer: water
         draw:
             polygons:
-                order: 2
+                order: function() { return feature.sort_rank; }
                 color: '#88bbee'
 
     roads:
@@ -44,7 +48,7 @@ layers:
         filter: { not: { kind: [rail, ferry, path, minor_road]}}
         draw:
             lines:
-                order: 3
+                order: function() { return feature.sort_rank; }
                 color: [.8, .8, .8]
                 width: 8
 
@@ -54,7 +58,12 @@ layers:
             layer: buildings
         draw:
             polygons:
-                order: 4
-                color: [.7, .7, .7]
+                order: function() { return feature.sort_rank; }
+                color: |
+                    function () {
+                        var h = feature.height || 20;
+                        h = Math.min((h + 50)/ 250, .8);
+                        h = Math.max(h, .4);
+                        return [h, h, h];
+                    }
                 extrude: true
-

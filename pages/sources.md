@@ -36,7 +36,7 @@ Specifies the beginning of a source block.
 The source below is named `osm`:
 ```yaml
 sources:
-    osm:
+    mapzen:
         type: GeoJSON
         url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.json
 ```
@@ -63,7 +63,7 @@ Required _string_. Specifies the source's _URL_. No default.
 
 ```yaml
 sources:
-    osm:
+    mapzen:
         type: MVT
         url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 ```

@@ -1,7 +1,8 @@
-cameras:
-    camera1:
-        type: isometric
-        axis: [1,1]
+lights:
+    light1:
+        type: point
+        position: [0, 0, 100px]
+        origin: ground
 
 sources:
     mapzen:
@@ -16,7 +17,7 @@ layers:
             layer: earth
         draw:
             polygons:
-                order: 0
+                order: 1
                 color: '#ddeeee'
     landuse:
         data:
@@ -24,8 +25,9 @@ layers:
             layer: landuse
         draw:
             polygons:
-                order: 1
-                color: '#bbeebb'
+                order: 2
+                color: '#aaffaa'
+                interactive: true
 
     water:
         data:
@@ -33,26 +35,19 @@ layers:
             layer: water
         draw:
             polygons:
-                order: 2
+                order: 3
                 color: '#88bbee'
 
     roads:
         data:
             source: mapzen
             layer: roads
-        filter: { not: { kind: [ferry, rail, path]}}
+        filter: { not: { kind: [path, rail, ferry] } }
         draw:
             lines:
                 order: 3
-                color: gray    
-                width: 8
-        highway:
-            filter:
-                kind: highway
-            draw:
-                lines:
-                    width: 15
-
+                color: lightgray
+                width: 8    
     buildings:
         data:
             source: mapzen
@@ -60,5 +55,6 @@ layers:
         draw:
             polygons:
                 order: 4
-                color: [.7, .7, .7]
+                color: grey
                 extrude: true
+

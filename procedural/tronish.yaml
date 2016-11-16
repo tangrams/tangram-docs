@@ -106,45 +106,45 @@ styles:
                     float pct = grid(v_texcoord,10.,0.1)*0.5;
                     color.rgb = mix(vec3(0.051,0.071,0.278)*0.8,vec3(0.239,0.431,0.718)*0.6,pct)*0.5;
 sources:
-    osm:
+    mapzen:
         type: TopoJSON
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=mapzen-QF1osLn
         max_zoom: 16
 
 layers:
     earth:
         data:
-            source: osm
+            source: mapzen
         draw:
             grid:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
         data:
-            source: osm
+            source: mapzen
         draw:
             grid:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: '#ff00ff'
     water:
         data:
-            source: osm
+            source: mapzen
         draw:
             tiledCross:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [0,0,0]
             outline:
-                order: function() { return feature.sort_key + 1; }
+                order: function() { return feature.sort_rank + 1; }
                 style: lines
                 color: [0.654,0.897,1.000]
                 width: 1px
                 tile_edges: false
     roads:
         data:
-            source: osm
+            source: mapzen
         draw:
             roads:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [0, 0, 0]
                 width: 8
         oneway:
@@ -190,13 +190,13 @@ layers:
                     width: 3
     buildings:
         data:
-            source: osm
+            source: mapzen
         draw:
             walls:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [0, 0, 0]
             outline:
-                order: function() { return feature.sort_key + 1; }
+                order: function() { return feature.sort_rank + 1; }
                 style: lines
                 color: [0.654,0.897,1.000]
                 width: 1px
@@ -210,7 +210,7 @@ layers:
                     extrude: function () { return feature.height > 20 || $zoom >= 16; }
 
     road_labels:
-        data: { source: osm, layer: roads }
+        data: { source: mapzen, layer: roads }
         filter: { name: true, $zoom: { min: 14 } }
         draw:
             text:
@@ -221,7 +221,7 @@ layers:
                     fill: [.9,.9,1.]
                     stroke: { color: black , width: 3 }
     places:
-        data: { source: osm }
+        data: { source: mapzen }
         filter: { name: true }
         draw:
             text:
