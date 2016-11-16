@@ -82,7 +82,7 @@ lights:
         ambient: .3
 ```
 
-[ ![](images/lights-directional.png) ](http://tangrams.github.io/tangram-docs/?lights/directional.yaml)
+[ ![](images/ex-directional.png) ](http://tangrams.github.io/tangram-docs/?lights/directional.yaml)
 
 
 ### Ambient Light
@@ -98,7 +98,7 @@ lights:
         ambient: 1
 ```
 
-[ ![](images/lights-ambient.png) ](http://tangrams.github.io/tangram-docs/?lights/ambient.yaml)
+[ ![](images/lights-ambient.jpg) ](http://tangrams.github.io/tangram-docs/?lights/ambient.yaml)
 
 ### Point Light
 
@@ -141,7 +141,7 @@ Origin can be specified as relative to three different spaces: *world*, *camera*
     diffuse: 1.
     specular: .2
     ```
-[ ![](images/lights-pointlight3.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-02.yaml)
+[ ![](images/ex-pointlight-02.png) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-02.yaml)
 
 ###Other light parameters
 
