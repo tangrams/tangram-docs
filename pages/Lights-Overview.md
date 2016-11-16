@@ -84,7 +84,6 @@ lights:
 
 [ ![](images/ex-directional.png) ](http://tangrams.github.io/tangram-docs/?lights/directional.yaml)
 
-
 ### Ambient Light
 
 This light casts a global ambient light into the scene. 
@@ -161,7 +160,7 @@ A light radius defines the limit of the light's effect. It can be specified in o
     diffuse: 1.
     specular: .2
     ```
-    [ ![](images/lights-pointlight-radius.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-radius-00.yaml)
+    [ ![](images/lights-radius.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-radius-00.yaml)
 
 - A pair of values sets an inner and outer radius. The inner radius defines an area of constant illumunation, without any attenuation.
 
@@ -173,7 +172,7 @@ A light radius defines the limit of the light's effect. It can be specified in o
     diffuse: 1.
     specular: .2
     ```
-    [ ![](images/lights-pointlight-radius2.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-radius-01.yaml)
+    [ ![](images/lights-radius2.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-radius-01.yaml)
 
 #### attenuation 
 
@@ -188,7 +187,7 @@ The attenuation of a light defines the way a light's intensity decreases as the 
     diffuse: 1.
     specular: .2
     ```
-    [ ![](images/lights-pointlight-attenuation.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-attenuation-00.yaml)
+    [ ![](images/lights-attenuation.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-attenuation-00.yaml)
 
 - With a single radius value, the attenuation curve operates between the position of the light to the outer radius.
     ```yaml
@@ -200,7 +199,7 @@ The attenuation of a light defines the way a light's intensity decreases as the 
     diffuse: 1.
     specular: .2
     ```
-    [ ![](images/lights-pointlight-attenuation2.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-attenuation-01.yaml)
+    [ ![](images/lights-attenuation2.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-attenuation-01.yaml)
 
 - With a pair of inner/outer radius values, the attenuation curve will operate between the inner and the outer radius.
     ```yaml
@@ -212,7 +211,7 @@ The attenuation of a light defines the way a light's intensity decreases as the 
     diffuse: 1.
     specular: .2
     ```
-    [ ![](images/lights-pointlight-attenuation3.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-attenuation-02.yaml)
+    [ ![](images/lights-attenuation3.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-attenuation-02.yaml)
 
 
 ### Spotlight
