@@ -72,7 +72,7 @@ Feature filters can match any named feature property in the data, as well as a f
 
 Feature properties in a GeoJSON datasource are listed in a JSON member specifically named "properties":
 
-```json
+```
 {
     "type": "Feature",
     "id": "248156318",
@@ -82,6 +82,7 @@ Feature properties in a GeoJSON datasource are listed in a JSON member specifica
         "height": 63.4000000
     }
 ```
+
 Analogous property structures exist in other data formats such as TopoJSON and Mapbox Vector Tiles. Tangram makes these structures available to `filter` blocks by property name, and also to any JavaScript filter functions under the `feature` keyword.
 
 The json feature above will match these two filters:
