@@ -123,7 +123,7 @@ When using a texture, you must specify one of four `mapping` modes, which determ
 ### `mapping: uv`
 UV mapping is related to the size and proportions of the geometry. With this method, a bounding box is applied to contiguous surfaces, and texture coordinates are applied to the corners of the bounding box. In the following example, a grid image is applied to each polygon. On larger shapes, the UVs are tiled, resulting in a tiled image.
 
-![](images/grid-small.jpg)
+![](images/uv-coords.png)
 
 ```yaml
 material:
