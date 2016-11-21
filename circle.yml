@@ -1,0 +1,10 @@
+machine:
+  python:
+    version: 2.7.10
+
+deployment:
+  release:
+    branch: "migurski/circle-docs-pipeline"
+    commands:
+      - pip install 'Circle-Tickler == 1.0.1'
+      - tickle-circle mapzen mapzen-docs-generator master $CIRCLE_TOKEN
