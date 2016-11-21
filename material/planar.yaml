@@ -7,29 +7,25 @@ styles:
         base: polygons
         material:
             diffuse:
-                texture: uv-grid.png
+                texture: https://raw.githubusercontent.com/tangrams/tangram-docs/gh-pages/pages/images/uv-grid.png
                 mapping: planar
-                scale: 0.005
+                scale: 0.008
 
 lights:
-    # light1:
-    #     type: directional
-    #     direction: [-.5, -.5, -.5]
-    #     diffuse: .5
-    #     ambient: .5
+    light1:
+        visible: true
+        type: directional
+        direction: [-.5, -.5, -.5]
+        diffuse: .2
+        ambient: .4
     light2:
         type: point
         origin: camera
-        position: [0, -1000px, 0px]
-        diffuse: 1
-        radius: [1000px, 1700px]
-        # attenuation: .01
-    # light3:
-    #     type: point
-    #     position: [0, 0, 100px]
-    #     origin: ground
+        position: [0, -500px, 0px]
+        diffuse: .7
+        radius: [1000px, 2500px]
+        attenuation: .5
 
-        
 sources:
     mapzen:
         type: TopoJSON
@@ -43,8 +39,8 @@ layers:
             layer: earth
         draw:
             polygons:
-                order:order: function() { return feature.sort_rank; }
-                color: '#ddeeee'
+                order: function() { return feature.sort_rank; }
+                color: '#cdd'
     landuse:
         data:
             source: mapzen
@@ -52,7 +48,7 @@ layers:
         draw:
             polygons:
                 order: function() { return feature.sort_rank; }
-                color: '#aabbaa'
+                color: '#bcb'
                 interactive: true
 
     water:
@@ -72,9 +68,9 @@ layers:
         draw:
             lines:
                 order: function() { return feature.sort_rank; }
-                color: gray    
+                color: '#ccc'
                 width: 8
-    
+
     buildings:
         data:
             source: mapzen
@@ -83,5 +79,5 @@ layers:
             polygons:
                 style: uvs
                 order: function() { return feature.sort_rank; }
-                color: [1,1,1]
+                color: white
                 extrude: true

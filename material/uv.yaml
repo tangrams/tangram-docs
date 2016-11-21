@@ -1,30 +1,30 @@
 cameras:
     camera1:
-        type: perspective
-        focal_length: [[16, 2], [20, 6]] # pairs of [zoom, focal len]
-        vanishing_point: [-250, -250] # relative to center of screen, in pixels
-
-lights:
-    light1:
-        type: directional
-        direction: [0, 1, -.5]
-        diffuse: .5
-        ambient: .2
-    light2:
-        type: point
-        position: [0, 0, 500px]
-        origin: ground
-        ambient: .3
-        diffuse: .5
-        specular: .2
-
+        type: isometric
+        axis: [0, .5]
 styles:
     uvs:
         base: polygons
         material:
             diffuse:
-                texture: grid.jpg
-                mapping: uv
+                texture: https://raw.githubusercontent.com/tangrams/tangram-docs/gh-pages/pages/images/uv-grid.png
+                mapping: triplanar
+                scale: 0.008
+
+lights:
+    light1:
+        visible: true
+        type: directional
+        direction: [-.5, -.5, -.5]
+        diffuse: .2
+        ambient: .4
+    light2:
+        type: point
+        origin: camera
+        position: [0, -500px, 0px]
+        diffuse: .7
+        radius: [1000px, 2500px]
+        attenuation: .5
 
 sources:
     mapzen:
@@ -40,7 +40,7 @@ layers:
         draw:
             polygons:
                 order: function() { return feature.sort_rank; }
-                color: '#ddeeee'
+                color: '#cdd'
     landuse:
         data:
             source: mapzen
@@ -48,7 +48,7 @@ layers:
         draw:
             polygons:
                 order: function() { return feature.sort_rank; }
-                color: '#aaffaa'
+                color: '#bcb'
                 interactive: true
 
     water:
@@ -58,19 +58,19 @@ layers:
         draw:
             polygons:
                 order: function() { return feature.sort_rank; }
-                style: uvs
-                color: [1,1,1]
+                color: [.7,.7,1]
 
     roads:
         data:
             source: mapzen
             layer: roads
+        filter: { not: { kind: [rail, ferry, path] } }
         draw:
             lines:
                 order: function() { return feature.sort_rank; }
-                color: gray    
+                color: '#ccc'
                 width: 8
-    
+
     buildings:
         data:
             source: mapzen
@@ -79,5 +79,5 @@ layers:
             polygons:
                 style: uvs
                 order: function() { return feature.sort_rank; }
-                color: [1,1,1]
+                color: white
                 extrude: true
