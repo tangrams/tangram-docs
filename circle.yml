@@ -4,7 +4,7 @@ machine:
 
 test:
   override:
-    true
+    - true
 
 deployment:
   release:
