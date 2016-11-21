@@ -131,7 +131,7 @@ material:
         texture: ./material/grid.jpg
         mapping: uv
 ```
-[ ![](images/uv.png) ](http://tangrams.github.io/tangram-docs/?material/ex-uv.yaml#19/40.70533/-74.00975)
+[ ![](images/uv.png) ](http://tangrams.github.io/tangram-docs/?material/uv.yaml#19/40.70533/-74.00975)
 
 ###`mapping: planar`
 Planar mapping uses only 2D world coordinates. As you can see the pattern is constant across surfaces that face up but is stretched on the sides of geometries.
@@ -144,7 +144,7 @@ material:
         scale: 0.01
 ```
 
-[ ![](images/planar.png) ](http://tangrams.github.io/tangram-docs/?material/ex-planar.yaml#19/40.70533/-74.00975)
+[ ![](images/planar.png) ](http://tangrams.github.io/tangram-docs/?material/planar.yaml#19/40.70533/-74.00975)
 
 ###`mapping: triplanar`
 This is similar to `planar`, but along all three world-space axes. Where a face does not point directly along one axis, the result will be a blend of more than one axis; thus it is computationally more expensive.
@@ -157,7 +157,7 @@ material:
         scale: 0.01
 ```
 
-[ ![](images/triplanar.png) ](http://tangrams.github.io/tangram-docs/?material/ex-triplanar.yaml#19/40.70533/-74.00975)
+[ ![](images/triplanar.png) ](http://tangrams.github.io/tangram-docs/?material/triplanar.yaml#19/40.70533/-74.00975)
 
 ###`mapping: spheremap`
 A "spherical environment map", or "spheremap", is an unusual kind of mapping which is dependent on camera position. It uses a texture to color faces depending on their relative angle to the camera. You can think of a spheremap as a hemisphere over the scene, on which the texture has been painted – each polygon in the scene is colored depending on the part of the texture at which it points.
@@ -173,7 +173,7 @@ material:
         mapping: spheremap
 ```
 
-[ ![](images/spheremap.png) ](http://tangrams.github.io/tangram-docs/?material/ex-spheremap.yaml#19/40.70533/-74.00975)
+[ ![](images/spheremap.png) ](http://tangrams.github.io/tangram-docs/?material/spheremap.yaml#19/40.70533/-74.00975)
 
 ###Other properties
 Each `texture` can also have the following properties:
@@ -207,7 +207,7 @@ material:
     specular: 0
 ```
 
-[ ![](images/normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-normals.yaml#19/40.70533/-74.00975)
+[ ![](images/normals.png) ](http://tangrams.github.io/tangram-docs/?material/normals.yaml#19/40.70533/-74.00975)
 
 #Composition
 
@@ -275,4 +275,4 @@ shaders:
             normal += snoise(vec3(worldPosition().xy*0.08,u_time*.5))*0.02;
 ```
 
-[ ![](images/dynamic-normals.png) ](http://tangrams.github.io/tangram-docs/?material/ex-dynamic-normals.yaml)
+[ ![](images/dynamic-normals.png) ](http://tangrams.github.io/tangram-docs/?material/dynamic-normals.yaml)
