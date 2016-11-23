@@ -154,7 +154,7 @@ layers:
 
 ####`dash_background_color`
 
-Optional _color_. Sets an opaque background color for lines frawn using the `dash` parameter. Default is transparent.
+Optional _color_. Sets an opaque background color for lines drawn using the `dash` parameter. Default is transparent.
 
 ```yaml
 styles:
