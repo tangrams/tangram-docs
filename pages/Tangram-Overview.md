@@ -103,10 +103,6 @@ var layer = Tangram.leafletLayer({
 
 Due to architectural limitations, there can be only one Tangram map per "browsing context". This means there can be only one embedded Tangram map on a web page, and one Tangram layer per Leaflet map. To work around this, multiple maps may be loaded in iframes – we make frequent use of the [Tangram-frame repository](https://github.com/tangrams/tangram-frame) for this purpose, by using Tangram-frame links as the "src" of iframes.
 
-## Tangram-ES
-
-[Tangram-ES](https://github.com/tangrams/tangram-es) is a C++ library intended for use in mobile applications. It uses [OpenGL ES](https://www.khronos.org/opengles/) to construct and draw vector and raster map data at high speeds. It is available for inclusion in Android apps through an [Android SDK](https://mapzen.com/documentation/tangram/android-sdk/0.4/).
-
 ## The Scene File
 
 Both Tangram-JS and Tangram-ES use a "scene file" written in YAML to set up and draw maps; both libraries can use the same scene file, and its structure and syntax is interchangable between the two libraries, with a very small number of exceptions as noted in the documentation with `[JS only]` or `[ES only]`.
@@ -123,31 +119,8 @@ For example, with Tangram-JS:
     var layer = Tangram.leafletLayer({
         scene: 'scene.zip'
     });
-    
+
     layer.addTo(map);
 ```
 
 Tangram will unpack the zip internally, expecting only a single .yaml file to be in the zip's root, which it will use as the scene file. Any other .yaml files (eg [basemaps](https://mapzen.com/blog/introducing-refill-cinnabar-and-zinc-styles-for-tangram/) or [blocks](https://github.com/tangrams/blocks) included with the [import](https://mapzen.com/documentation/tangram/import/) block) must therefore be in subdirectories, and all paths in the .yaml file must be relative to this root scene file.
-
-## Documentation
-
-The Tangram documentation has three major sections:
-
-- **Overviews** like this one,
-- **Syntax Reference**, and
-- **Tutorials**.
-
-## Getting Started
-
-The [Tangram Walkthrough](https://mapzen.com/documentation/tangram/walkthrough/) is a step-by-step guide to creating your first Tangram map, and is a great place to start no matter what your eventual goal is.
-
-## Contributing
-
-Questions? Suggestions? Typos? Bug fixes? We welcome contributions, either to the libraries or to the documentation itself. Learn more or file an issue at the links below:
-
-- [Tangram-JS README](https://github.com/tangrams/tangram/blob/master/README.md)
-- [Tangram-JS issues](https://github.com/tangrams/tangram/issues)
-- [Tangram-ES README](https://github.com/tangrams/tangram-es/blob/master/README.md)
-- [Tangram-ES issues](https://github.com/tangrams/tangram-es/issues)
-- [Tangram Documentation issues](https://github.com/tangrams/tangram-docs/issues)
-- [Contributing to Tangram-JS](https://github.com/tangrams/tangram/blob/master/CONTRIBUTING.md)
