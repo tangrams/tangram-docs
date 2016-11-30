@@ -221,7 +221,7 @@ This map uses Mapzen's vector tile service for the data. If you want to put this
 3. Copy the text of the key to your clipboard. It should take the form of `vector-tiles-` and some additional characters.
 4. Open the scene.yaml file.
 5. In the `sources:` block, paste your key after the equals sign in
- `https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=<vector-tiles-xxxxxxx>`.
+ `https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson`.
 6. Commit the change to the gh-pages branch.
 
 ###Summary and next steps

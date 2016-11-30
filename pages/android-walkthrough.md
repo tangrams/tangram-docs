@@ -63,7 +63,7 @@ Mapzen provides a free vector tile service with GeoJSON, TopoJSON, and MVT tiles
 sources:
   mapzen:
     type: MVT
-    url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
+    url:  https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.mvt
     url_params:
       api_key: [YOUR API KEY HERE]
 ```
@@ -77,4 +77,3 @@ In this guide, you learned how to add a Tangram map to your Android application.
  - Learn how to write or edit a Tangram [scene file](https://mapzen.com/documentation/tangram/Scene-file/),
  - See [more examples](https://github.com/tangrams/tangram-android-demos) of things your application can do with the map, or
  - Look at the [reference documentation](https://mapzen.com/documentation/tangram/android-sdk/0.2.1/) for the Tangram Android SDK.
-
