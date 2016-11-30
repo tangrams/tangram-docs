@@ -100,7 +100,7 @@ Loads a new `source` object (see [`sources`](sources.md)), returning a Promise w
 If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the [`sources`](sources.md#sources) specification.
 
 ```javascript
-scene.setDataSource('osm', { type: 'TopoJSON', url: 'https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson' });
+scene.setDataSource('osm', { type: 'TopoJSON', url: 'https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson' });
 ```
 
 ```javascript

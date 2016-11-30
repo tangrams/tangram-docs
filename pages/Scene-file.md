@@ -57,13 +57,13 @@ To create a map, the scene file requires only:
 - data interpretation rules (filters)
 - styling rules
 
-Here's a very simple scene file:
+Here's a simple scene file:
 
 ```yaml
 sources:
     mapzen:
         type: TopoJSON
-        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
 
 layers:
     earth:
@@ -75,22 +75,17 @@ layers:
     water:
         data: { source: mapzen }
         draw:
-            polygons: 
+            polygons:
                 order: 1
                 color: lightblue
 
     roads:
         data: { source: mapzen }
         draw:
-            lines: 
+            lines:
                 order: 2
                 color: white
                 width: 1.5px
 ```
 
-In this example, all three elements are included – this will produce a (very simple) map!
-
-## Examples
-For more examples of scene files, check out our [demos](https://github.com/tangrams?query=demo) – ours are usually named `scene.yaml`.
-
-For even more amazing examples, check out the [Tangram Sandbox](http://tangrams.github.io/tangram-sandbox/)!
+In this example, all three elements are included – this will produce a map.
