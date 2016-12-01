@@ -100,7 +100,7 @@ styles:
                     normal = normalize(normal);
 ```
 
-[ ![](images/normal.png) ](http://tangrams.github.io/tangram-docs/?shaders/normal.yaml)
+[ ![](images/shaders-normal.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/normal.yaml)
 
 #### `color`
 
@@ -136,7 +136,7 @@ styles:
                     color.xyz *= hsb2rgb( random(abs(floor(pos))) , .5, .8 );
 ```
 
-[ ![](images/color.png) ](http://tangrams.github.io/tangram-docs/?shaders/color.yaml)
+[ ![](images/shaders-color.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/color.yaml)
 
 #### `filter`
 
@@ -172,7 +172,7 @@ styles:
                     color.xyz = hsb2rgb( random(abs(floor(pos))) , .5, .8 );
 ```
 
-[ ![](images/filter.png) ](http://tangrams.github.io/tangram-docs/?shaders/filter.yaml)
+[ ![](images/shaders-filter.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/filter.yaml)
 
 #### Defines and Uniforms
 
