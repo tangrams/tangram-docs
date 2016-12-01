@@ -73,7 +73,7 @@ styles:
                     }
 ```
 
-[ ![](images/position.png) ](http://tangrams.github.io/tangram-docs/?shaders/position.yaml)
+[ ![](images/shaders-position.gif) ](http://tangrams.github.io/tangram-docs/?shaders/position.yaml)
 
 #### `normal`
 
