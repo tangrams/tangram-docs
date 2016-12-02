@@ -376,13 +376,13 @@ Optional _string_, one of `vertex`, `spaced`, `midpoint`, or `centroid`. Defines
 
 - `placement: vertex`: place points at line/polygon vertices
 - `placement: midpoint`: place points at line/polygon segment midpoints (better for road shields, which you want away from ambiguous intersections)
-- `placement: spaced`: place points along a line/polygon at fixed intervals defined in pixels with `placement_spacing` ( useful for symbols like one-way street arrows where consistent spacing is desirable)
+- `placement: spaced`: place points along a line/polygon at fixed intervals defined in pixels with `placement_spacing` (useful for symbols like one-way street arrows where consistent spacing is desirable)
 - `placement: centroid`: place points at polygon centroids (not applicable to lines)
 
 ####`placement_min_length_ratio`
 Optional _number_, _stops_, or _function_. Default is `1`. No units.
 
-Applies to `points` styles used to draw line or polygon features, when the `placement` parameter is set to `spaced` or `midpoint`. Specifies the minimum line segment length as a ratio to the size (greater of width or height) of the point being placed. This prevents points from being drawn on line segments which are smaller than the point itself (for example, a road shield bigger than the road it is labelling).
+Applies to `points` styles used to draw line or polygon features, when the `placement` parameter is set to `spaced` or `midpoint`. Specifies the minimum line segment length as a ratio to the size (greater of width or height) of the point being placed. This prevents points from being drawn on line segments which are smaller than the point itself (for example, a road shield bigger than the road it is labeling).
 
 Examples:
 
