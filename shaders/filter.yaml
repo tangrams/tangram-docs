@@ -15,7 +15,7 @@ styles:
         shaders:
             blocks:
                 color: |
-                    // brighten with elevation
+                    // brighten with height
                     color = vec4(worldPosition().z * .002 + .5);
                 filter: |
                     // animated green bars
