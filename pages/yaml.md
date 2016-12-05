@@ -200,6 +200,8 @@ Strings starting with `function` will be passed to the style builder as JavaScri
 width: function () { return 2.5 * Math.log($zoom); }
 ```
 
+Note that functions cannot return a unit type – so in cases where a function is specifying a width, the default unit of _meters_ will be assumed. To return _pixel_ values, use the [`$meters_per_pixel`](#$meters_per_pixel) keyword.
+
 #### `$geometry`
 
 The `$geometry` keyword can specify a [filter](Filters-Overview.md) to match a specific type of geometry, for cases when a FeatureCollection includes multiple geometry types.
