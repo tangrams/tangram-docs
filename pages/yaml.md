@@ -197,16 +197,7 @@ Strings starting with `function` will be passed to the style builder as JavaScri
 
 ```yaml
 # Single-line JavaScript example:
-width: function () { return 2.5 * Math.log(zoom); }
-```
-
-#### `$zoom`
-
-The `$zoom` keyword may be used to define [filters](Filters-Overview.md) with optional `min` and `max` parameters.
-
-```yaml
-outline:
-   filter: { $zoom: { min: 15, max: 20 } }
+width: function () { return 2.5 * Math.log($zoom); }
 ```
 
 #### `$geometry`
@@ -222,6 +213,23 @@ Allowable values for this filter are:
 ```yaml
 labels:
    filter: { $geometry: point }
+```
+
+#### `$meters_per_pixel`
+
+The `$meters_per_pixel` keyword is equal to the number of meters equivalent to a single pixel at the current zoom level. It may be used in [draw](draw.md) style functions, which assume that all returned values specifying a length or size are in meters. This keyword can therefore be used to return an amount in pixels.
+
+```yaml
+width: function() { return $zoom / 4. * $meters_per_pixel; }
+```
+
+#### `$zoom`
+
+The `$zoom` keyword may be used to define [filters](Filters-Overview.md) with optional `min` and `max` parameters.
+
+```yaml
+outline:
+   filter: { $zoom: { min: 15, max: 20 } }
 ```
 
 ## multi-line strings
