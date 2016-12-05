@@ -745,6 +745,12 @@ draw:
         width: 18m
 ```
 
+```yaml
+draw:
+    lines:
+        width: function() { return $zoom / 4 * $meters_per_pixel; }
+```
+
 ####`z`
 Optional _number_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
