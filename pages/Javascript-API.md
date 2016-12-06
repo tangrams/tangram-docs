@@ -41,7 +41,7 @@ Each object contains sub-objects which correlate to each element's subelements a
            active: true}
 ```
 
-After changes are made to the `config` object, calling `scene.updateConfig()` will update the scene with the changes.
+After changes are made to the `config` object, calling [`scene.updateConfig()`](#updateConfig) will update the scene with the changes, and automatically trigger a [`scene.rebuild()`](#rebuild).
 
 #### `getActiveCamera()`
 Returns the active camera.
@@ -148,7 +148,7 @@ scene.stopVideoCapture().then(function(video) {
 ```
 
 #### `updateConfig()`
-Re-parses the `scene.config` object and redraws the scene, updating data sources, cameras, lights, rendering styles and shaders, and reloading textures. If `updateConfig({ rebuild: true })` is specified, geometry will also be rebuilt (necessary in cases where `scene.config.layers` have been modified).
+Re-parses the `scene.config` object and triggers [`scene.rebuild()`](#rebuild) which also redraws the scene, updating data sources, cameras, lights, rendering styles and shaders, and reloading textures. If `updateConfig({ rebuild: true })` is specified, geometry will also be rebuilt (necessary in cases where `scene.config.layers` have been modified).
 
 ```javascript
 scene.updateConfig()
