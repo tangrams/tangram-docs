@@ -1,0 +1,13 @@
+sources:
+    mapzen:
+        type: TopoJSON
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+
+layers:
+    roads:
+        data: { source: mapzen }
+        draw:
+            lines:
+                order: 1
+                width: 5px
+                color: gray
