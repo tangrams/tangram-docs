@@ -7,7 +7,7 @@ layers:
     buildings:
         data: { source: mapzen }
         draw:
-            buildings:
+            polygons:
                 order: 1
                 color: [.7, .7, .7]
                 extrude: true
