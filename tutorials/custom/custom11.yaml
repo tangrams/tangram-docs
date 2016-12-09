@@ -1,0 +1,21 @@
+sources:
+    mapzen:
+        type: TopoJSON
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+
+styles:
+    _custom:
+        base: polygons
+        shaders:
+            blocks:
+                color: |
+                    color.rgb = vec3(1, 0, 1);
+
+layers:
+    buildings:
+        data: { source: mapzen }
+        draw:
+            _custom:
+                order: 1
+                order: 1
+                extrude: true

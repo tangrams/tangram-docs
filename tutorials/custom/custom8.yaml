@@ -1,0 +1,18 @@
+sources:
+    mapzen:
+        type: TopoJSON
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+
+styles:
+    _transparent:
+        base: polygons
+        blend: overlay
+
+layers:
+    buildings:
+        data: { source: mapzen }
+        draw:
+            _transparent:
+                order: 1
+                color: [.75, .75, .75, .3]
+                extrude: true
