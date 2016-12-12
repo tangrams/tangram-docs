@@ -505,13 +505,6 @@ draw:
         sprite: highway
 ```
 
-```yaml
-draw:
-    points:
-        size: [[13, [64px, 64px]], [16, [18px, 18px]], [18, [22px,22px]]]
-        sprite: highway
-```
-
 ####`sprite`
 Optional _string_, one of any named `sprites` in the style's `texture` element, or a _function_ returning such a string.
 
