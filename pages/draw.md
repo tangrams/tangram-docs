@@ -487,7 +487,8 @@ When `true`, stipulates that any _text_ attached to a _point_ must draw with the
 Note that attached _text_ will never draw without its _point_.
 
 ####`size`
-Optional _number_, in `px` or _[x, y]_ in `px` or _stops_ having both 1D or 2D values. Default is `32px`.
+Optional _number_, in `px` or _[x, y]_ in `px` or _stops_ having both 1D or 2D values. Default is `32px`. Mixed 1D and
+2D stop values are not allowed with size draw rule.
 
 Applies to `points`.
 
