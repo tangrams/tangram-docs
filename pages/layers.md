@@ -17,6 +17,9 @@ layers:
     landuse:
         ...
 ```
+
+Note: If a `layer` filter is not specified in a `data` parameter, Tangram will attempt to use the _layer name_ as the filter. See [Layer Name Shortcut](Filters-Overview.md#layer-name-shortcut).
+
 ## layer parameters
 
 ####`data`
