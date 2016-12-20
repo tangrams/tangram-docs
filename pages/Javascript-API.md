@@ -103,6 +103,8 @@ If `name` doesn't match an existing source, a new source object will be created.
 scene.setDataSource('osm', { type: 'TopoJSON', url: 'https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson' });
 ```
 
+This `source` object can be used in situations where the data to be drawn is inside a JavaScript variable, instead of in a separate file:
+
 ```javascript
 var geojson_data = {};
 ...
