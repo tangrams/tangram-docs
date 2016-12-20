@@ -101,7 +101,11 @@ var layer = Tangram.leafletLayer({
 
 ### Multiple Maps
 
-Due to architectural limitations, there can be only one Tangram map per "browsing context". This means there can be only one embedded Tangram map on a web page, and one Tangram layer per Leaflet map. To work around this, multiple maps may be loaded in iframes – we make frequent use of the [Tangram-frame repository](https://github.com/tangrams/tangram-frame) for this purpose, by using Tangram-frame links as the "src" of iframes.
+Due to architectural limitations, there can be only one Tangram map per "browsing context". This means there can be only one embedded Tangram map on a web page, and one Tangram layer per Leaflet map, although Tangram may be composited with other kinds of Leaflet layers.
+
+To put multiple Tangram maps on a web page, multiple maps may be loaded in iframes – we make frequent use of the [Tangram-frame repository](https://github.com/tangrams/tangram-frame) for this purpose, by using Tangram-frame links as the "src" of iframes.
+
+To layer Tangram maps, we recommend use of the [`import`](import.md) functionality – in this way you can load basemaps and style your own data on top.
 
 ## Tangram-ES
 
