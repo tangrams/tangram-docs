@@ -1,0 +1,18 @@
+import: https://mapzen.com/carto/walkabout-style/walkabout-style.yaml
+
+sources:
+    _mine:
+        type: GeoJSON
+        url: https://gist.githubusercontent.com/anonymous/3a123362d5154004c8627c58861fd4ad/raw/158818805546eb51caac93d7f6c029c744bc9d7e/map.geojson
+
+layers:
+    _blob:
+        data: { source: _mine }
+        draw:
+            polygons:
+                order: 360
+                color: [.5, 1, .5]
+            lines:
+                order: 361
+                width: 5px
+                color: [.5, .5, 1]
