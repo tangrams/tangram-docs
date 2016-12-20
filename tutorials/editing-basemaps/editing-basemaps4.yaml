@@ -1,0 +1,207 @@
+import: https://mapzen.com/carto/refill-style-no-labels/refill-style-no-labels.yaml
+
+layers:
+    roads:
+        draw:
+            lines:
+                color: red
+        natural_earth_highways:
+            draw:
+                lines:
+                    color: red
+            major_road:
+                draw:
+                    lines:
+                        color: red
+            minor_road:
+                draw:
+                    lines:
+                        color: red
+            ferry:
+                draw:
+                    lines:
+                        color: red
+        highway:
+            draw:
+                lines:
+                    color: red
+            link:
+                draw:
+                    lines:
+                        color: red
+                tunnel-link:
+                    draw:
+                        lines:
+                            color: red
+            tunnel:
+                draw:
+                    lines:
+                        color: red
+        major_road:
+            # default style
+            draw:
+                lines:
+                    color: red
+            trunk_primary:
+                draw:
+                    lines:
+                        color: red
+                routes:
+                    draw:
+                        lines:
+                            color: red
+                    tunnel:
+                        draw:
+                            lines:
+                                color: red
+            link:
+                draw:
+                    lines:
+                        color: red
+            tunnel:
+                draw:
+                    lines:
+                        color: red
+            secondary:
+                draw:
+                    lines:
+                        color: red
+                routes:
+                    draw:
+                        lines:
+                            color: red
+                    tunnel:
+                        draw:
+                            lines:
+                                color: red
+                in_park:
+                    draw:
+                        lines:
+                            color: red
+
+                    golf_course:
+                        draw:
+                            lines:
+                    nature_reserve:
+                        draw:
+                            lines:
+                    conservation:
+                        draw:
+                            lines:
+                    zoo:
+                        draw:
+                            lines:
+
+            tertiary:
+                draw:
+                    lines:
+                        color: red
+                routes:
+                    draw:
+                        lines:
+                            color: red
+                    tunnel:
+                        draw:
+                            lines:
+                                color: red
+                link:
+                    draw:
+                        lines:
+                            color: red
+                in_park:
+                    draw:
+                        lines:
+                            color: red
+        minor_road:
+            draw:
+                lines:
+                    color: red
+            in_park:
+                draw:
+                    lines:
+                        color: red
+            in_university:
+                draw:
+                    lines:
+                        color: red
+            in_hospital:
+                draw:
+                    lines:
+                        color: red
+            tunnel:
+                draw:
+                    lines:
+                        color: red
+        service_road:
+            draw:
+                lines:
+                    color: red
+            in_park:
+                draw:
+                    lines:
+                        color: red
+        path:
+            draw:
+                lines:
+                    color: red
+            early:
+            pedestrian:
+                draw:
+                    lines:
+                        color: red
+            in_park:
+                draw:
+                    lines:
+                        color: red
+                golf_course:
+                    draw:
+                        lines:
+                            color: red
+                nature_reserve:
+                    draw:
+                        lines:
+                            color: red
+                conservation:
+                    draw:
+                        lines:
+                            color: red
+            in_cemetery_garden:
+                draw:
+                    lines:
+                        color: red
+            in_zoo:
+                draw:
+                    lines:
+                        color: red
+            in_university:
+                draw:
+                    lines:
+                        color: red
+            in_hospital:
+                draw:
+                    lines:
+                        color: red
+        track:
+            draw:
+                lines:
+                    color: red
+            in_park:
+                draw:
+                    lines:
+                        color: red
+        steps:
+            draw:
+                dashedline:
+                    color: red
+            in_park:
+                draw:
+                    dashedline:
+                        color: red
+            in_university:
+                draw:
+                    dashedline:
+                        color: red
+            in_hospital:
+                draw:
+                    dashedline:
+                        color: red
