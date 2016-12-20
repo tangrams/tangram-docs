@@ -1,18 +1,8 @@
-sources:
-    mapzen:
-        type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
-
-styles:
-    _dashes:
-        base: lines
-        dash: [1, 1]
+import: https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/simple-basemap.yaml
 
 layers:
     roads:
-        data: { source: mapzen }
-        draw:
-            _dashes:
-                order: 1
-                width: 5px
-                color: gray
+        major_road:
+            draw:
+                lines:
+                    color: orange
