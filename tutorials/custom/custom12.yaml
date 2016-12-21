@@ -17,5 +17,4 @@ layers:
         draw:
             _custom:
                 order: 1
-                order: 1
                 extrude: true
