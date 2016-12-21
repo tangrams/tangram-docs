@@ -10,7 +10,7 @@ styles:
         shaders:
             blocks:
                 color: |
-                    color.rgb = worldPosition().zzz / 100.;
+                    color.rgb *= worldPosition().zzz / 100.;
                     color *= sin(u_time);
 
 layers:

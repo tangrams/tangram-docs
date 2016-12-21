@@ -9,7 +9,7 @@ styles:
         shaders:
             blocks:
                 color: |
-                    color.rgb = vec3(worldPosition().z) / 100.;
+                    color.rgb *= vec3(worldPosition().z) / 100.;
 
 layers:
     buildings:
@@ -17,4 +17,5 @@ layers:
         draw:
             _custom:
                 order: 1
+                color: white
                 extrude: true
