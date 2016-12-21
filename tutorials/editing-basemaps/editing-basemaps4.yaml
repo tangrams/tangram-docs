@@ -38,7 +38,6 @@ layers:
                     lines:
                         color: red
         major_road:
-            # default style
             draw:
                 lines:
                     color: red
@@ -82,16 +81,19 @@ layers:
                     golf_course:
                         draw:
                             lines:
+                                color: red
                     nature_reserve:
                         draw:
                             lines:
+                                color: red
                     conservation:
                         draw:
                             lines:
+                                color: red
                     zoo:
                         draw:
                             lines:
-
+                                color: red
             tertiary:
                 draw:
                     lines:
