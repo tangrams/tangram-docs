@@ -235,9 +235,9 @@ When the value of this parameter is:
 Since features drawn as `lines` have no height (e.g. they are flat 2D objects), they do not use the `min_height` values. They are simply raised to the specified `height`.
 
 ####`font`
-Optional element. Defines the start of a font style block. (See [font-parameters](draw.md#font-parameters).)
+Required element for the `text` style. Defines the start of a font style block. (See [font-parameters](draw.md#font-parameters).)
 
-Applies to the `text` style.
+Applies only to the `text` style.
 
 ####`interactive`
 Optional _boolean_ or _function_ returning `true` or `false`. Default is `false`.
@@ -765,7 +765,7 @@ draw:
 
 ## `font` parameters
 
-The `font` object has a number of unique parameters.
+The `font` object has a number of unique parameters. None are required, but least one must be specified for a `text` style to be drawn.
 
 ```yaml
 draw:
