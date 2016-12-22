@@ -208,7 +208,7 @@ sources:
 #### `max_display_zoom`, `min_display_zoom`
 Optional _integer_. No default.
 
-`max_display_zoom` sets the highest zoom level which will be requested from the datasource. `mix_display_zoom` sets the lowest zoom level which will be requested from the datasource. Outside of this range, tiles will not be requested nor displayed.
+`max_display_zoom` sets the highest zoom level which will be requested from the datasource. `min_display_zoom` sets the lowest zoom level which will be requested from the datasource. Outside of this range, tiles will not be requested nor displayed.
 
 ```yaml
 sources:
@@ -223,6 +223,8 @@ sources:
 Optional _integer_. Default is _18_.
 
 Sets the highest zoom level which will be requested from the datasource. At higher zoom levels, the data from this zoom level will continue to be displayed.
+
+There is no corresponding `min_zoom` parameter, for reasons of performance.
 
 ```yaml
 sources:
