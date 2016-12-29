@@ -171,7 +171,7 @@ scene.subscribe({
         console.log('scene error:', e);
     },
     warning: function (e) {
-        console.log('scene warning:' e);
+        console.log('scene warning:', e);
     }
 });
 ```
