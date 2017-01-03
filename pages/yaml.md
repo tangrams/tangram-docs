@@ -217,6 +217,15 @@ labels:
    filter: { $geometry: point }
 ```
 
+#### `$layer`
+
+The `$layer` keyword can specify a [filter](Filters-Overview.md) to match a feature from a particular named layer, for cases when a datasource includes multiple geometry types.
+
+```yaml
+labels:
+   filter: { $layer: roads }
+```
+
 #### `$meters_per_pixel`
 
 The `$meters_per_pixel` keyword is equal to the number of meters equivalent to a single pixel at the current zoom level. It may be used in [draw](draw.md) style functions, which assume that all returned values specifying a length or size are in meters. This keyword can therefore be used to return an amount in pixels.
