@@ -217,14 +217,19 @@ labels:
    filter: { $geometry: point }
 ```
 
+See [keyword properties](Filters-Overview.md#keyword-properties).
+
 #### `$layer`
 
-The `$layer` keyword can specify a [filter](Filters-Overview.md) to match a feature from a particular named layer, for cases when a datasource includes multiple geometry types.
+The `$layer` keyword can specify a [feature filter](Filters-Overview.md) to match a feature from a given named layer in the datasource, for cases when a Tangram layer's [`source`](sources.md) includes multiple layers.
 
 ```yaml
-labels:
-   filter: { $layer: roads }
+data: { source: osm, layer: [buildings, pois] }
+buildings:
+    filter: { $layer: buildings }
 ```
+
+See [keyword properties](Filters-Overview.md#keyword-properties).
 
 #### `$meters_per_pixel`
 
@@ -234,6 +239,8 @@ The `$meters_per_pixel` keyword is equal to the number of meters equivalent to a
 width: function() { return $zoom / 4. * $meters_per_pixel; }
 ```
 
+See [keyword properties](Filters-Overview.md#keyword-properties).
+
 #### `$zoom`
 
 The `$zoom` keyword may be used to define [filters](Filters-Overview.md) with optional `min` and `max` parameters.
@@ -242,6 +249,8 @@ The `$zoom` keyword may be used to define [filters](Filters-Overview.md) with op
 outline:
    filter: { $zoom: { min: 15, max: 20 } }
 ```
+
+See [keyword properties](Filters-Overview.md#keyword-properties).
 
 ## multi-line strings
 
