@@ -114,7 +114,7 @@ text:
 ####`angle`
 Optional _number_ or _string_ `auto`. Numeric values of the angle are in degrees.
 
-Applies to `points` and `text` style.
+Applies to `points` style. Rotates the point.
 
 When `auto` is specified, angles are computed according to the underlying geometry.
 
