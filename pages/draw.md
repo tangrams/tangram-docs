@@ -111,6 +111,13 @@ text:
     anchor: bottom-left # the label will use `align: right` by default
 ```
 
+####`angle`
+Optional _number_ or _string_ `auto`. Numeric values of the angle are in degrees.
+
+Applies to `points` and `text` style.
+
+When `auto` is specified, angles are computed according to the underlying geometry.
+
 ####`buffer`
 [JS-only] Optional _integer_ or _[integer, integer]_, in _px_. No default.
 
