@@ -22,6 +22,13 @@ var map = L.map('map', {
 });
 ```
 
+#### Leaflet versions
+
+As Tangram-JS is a Leaflet plugin, it is updated when Leaflet updates. So, certain versions of Tangram must be matched to certain versions of Leaflet.
+
+- Tangram 0.7.2 and earlier versions require Leaflet 1.0.0-beta.2 and previous.
+- Tangram 0.8 and later require Leaflet 1.0.0.
+
 ### JavaScript Setup
 
 The latest release of Tangram can be included in your web page with a `script` tag:
