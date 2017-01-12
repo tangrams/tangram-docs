@@ -153,17 +153,6 @@ draw:
         cap: round
 ```
 
-####`centroid`
-Optional _boolean_, default is `false`.
-
-Applies to the `points` style. If true, draws points only at the centroid of a polygon.
-
-```yaml
-draw:
-    points:
-        centroid: true
-```
-
 ####`collide`
 Optional _boolean_. Defaults to `true`.
 
@@ -352,15 +341,6 @@ roads:
             offset: [[13, [0, 6px]], [15, [0, 9px]]]
 ```
 
-####`optional`
-Optional _boolean_. Default is `false`.
-
-Applies to _text_ blocks under _point_ styles.
-
-When `true`, stipulates that any _text_ attached to a _point_ must draw with the point. When `false`, a _point_ and associated _text_ will be tested for collisions separately, and if the _text_ collides, the _point_ will be drawn alone.
-
-Note that attached _text_ will never draw without its _point_.
-
 ####`order`
 Required _integer_ or _function_. No default.
 
@@ -388,12 +368,20 @@ Optional element. Defines the start of an outline style block.
 Applies to `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
 
 ####`placement`
-Optional _string_, one of `vertex`, `spaced`, `midpoint`, or `centroid`. Defines the placement method of one or more points, when a `points`-based style is used to draw line or polygon features. Default is `vertex`.
+Optional _string_, one of `vertex`, `spaced`, `midpoint`, or `centroid`. Default is `vertex`.
+
+Applies to `points` styles. Defines the placement method of one or more points, when a `points`-based style is used to draw line or polygon features. 
 
 - `placement: vertex`: place points at line/polygon vertices
 - `placement: midpoint`: place points at line/polygon segment midpoints (better for road shields, which you want away from ambiguous intersections)
 - `placement: spaced`: place points along a line/polygon at fixed intervals defined in pixels with `placement_spacing` (useful for symbols like one-way street arrows where consistent spacing is desirable)
 - `placement: centroid`: place points at polygon centroids (not applicable to lines)
+
+```yaml
+draw:
+    points:
+        placement: centroid
+```
 
 ####`placement_min_length_ratio`
 Optional _number_, _stops_, or _function_. Default is `1`. No units.
@@ -492,6 +480,15 @@ roads:
          text:
             ...
 ```
+
+####`required`
+Optional _boolean_. Default is `false`.
+
+Applies to _text_ blocks under _point_ styles.
+
+When `true`, stipulates that any _text_ attached to a _point_ must draw with the point. When `false`, a _point_ and associated _text_ will be tested for collisions separately, and if the _text_ collides, the _point_ will be drawn alone.
+
+Note that attached _text_ will never draw without its _point_.
 
 ####`size`
 Optional _number_ in `px`, _[x, y]_ in `px`, or _stops_ having either 1D or 2D values. Mixed 1D and
