@@ -22,6 +22,17 @@ var map = L.map('map', {
 });
 ```
 
+#### versions
+
+Tangram versions are matched to Leaflet versions to ensure ongoing compatability, primarily with scrollwheel behavior relating to fractional zoom. In general, the latest version of Tangram is based on the latest version of Leaflet, but if you require a specific version of Leaflet or Tangram, refer to the below compatability table.
+
+| Leaflet version | Tangram version
+|-----------------|-----------------
+| 0.7.7           | 0.7 and previous
+| 1.x             | 0.8 and later
+
+Note that the documentation always refers to the latest version of Tangram – legacy scene file syntax is not guaranteed to work.
+
 ### JavaScript Setup
 
 The latest release of Tangram can be included in your web page with a `script` tag:
