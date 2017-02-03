@@ -1,4 +1,4 @@
-machine:
+          machine:
   python:
     version: 2.7.10
 
@@ -8,7 +8,7 @@ test:
 
 deployment:
   release:
-    branch: "master"
+    branch: "gh-pages"
     commands:
       - pip install 'Circle-Tickler == 1.0.1'
       - tickle-circle mapzen documentation master $CIRCLE_TOKEN
