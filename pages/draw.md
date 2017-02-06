@@ -113,9 +113,12 @@ text:
 
 ####`flat` 
 [[ES-only](https://github.com/tangrams/tangram-es)]
+
 Optional _boolean_. Applies to point style.
+
 If marked `true`, points drawn will not be affected by viewport, and will stick to the ground.
-Example Use case: Street Arrows.
+
+This can be used to draw elements such as one-way arrows on streets.
 
 
 ####`angle`
