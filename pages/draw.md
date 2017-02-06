@@ -114,12 +114,11 @@ text:
 ####`flat` 
 [[ES-only](https://github.com/tangrams/tangram-es)]
 
-Optional _boolean_. Applies to point style.
+Optional _boolean_. Default is `false`.
 
-If marked `true`, points drawn will not be affected by viewport, and will stick to the ground.
+Applies to `points` styles. If marked `true`, points will be drawn flat on the ground in 3D space, and respond to 3D camera movement accordingly.
 
 This can be used to draw elements such as one-way arrows on streets.
-
 
 ####`angle`
 Optional _number_ or _string_ `auto`. Numeric values of the angle are in degrees.
