@@ -111,6 +111,13 @@ text:
     anchor: bottom-left # the label will use `align: right` by default
 ```
 
+####`flat` 
+[[ES-only](https://github.com/tangrams/tangram-es)]
+Optional _boolean_. Applies to point style.
+If marked `true`, points drawn will not be affected by viewport, and will stick to the ground.
+Example Use case: Street Arrows.
+
+
 ####`angle`
 Optional _number_ or _string_ `auto`. Numeric values of the angle are in degrees.
 
