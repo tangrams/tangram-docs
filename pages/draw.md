@@ -351,6 +351,17 @@ roads:
             offset: [[13, [0, 6px]], [15, [0, 9px]]]
 ```
 
+####`optional`
+Optional _boolean_. Default is `false`.
+
+Applies to _text_ blocks under _point_ styles.
+
+When `true`, stipulates that any _text_ attached to a _point_ must draw with the point. When
+`false`, a _point_ and associated _text_ will be tested for collisions separately, and if the _text_
+collides, the _point_ will be drawn alone.
+
+Note that attached _text_ will never draw without its _point_.
+
 ####`order`
 Required _integer_ or _function_. No default.
 
@@ -490,15 +501,6 @@ roads:
          text:
             ...
 ```
-
-####`required`
-Optional _boolean_. Default is `false`.
-
-Applies to _text_ blocks under _point_ styles.
-
-When `true`, stipulates that any _text_ attached to a _point_ must draw with the point. When `false`, a _point_ and associated _text_ will be tested for collisions separately, and if the _text_ collides, the _point_ will be drawn alone.
-
-Note that attached _text_ will never draw without its _point_.
 
 ####`size`
 Optional _number_ in `px`, _[x, y]_ in `px`, or _stops_ having either 1D or 2D values. Mixed 1D and
