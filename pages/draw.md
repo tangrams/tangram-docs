@@ -356,8 +356,8 @@ Optional _boolean_. Default is `false`.
 
 Applies to _text_ blocks under _point_ styles.
 
-When `true`, stipulates that any _text_ attached to a _point_ must draw with the point. When
-`false`, a _point_ and associated _text_ will be tested for collisions separately, and if the _text_
+When `false`, stipulates that any _text_ attached to a _point_ must draw with the point. When
+`true`, a _point_ and associated _text_ will be tested for collisions separately, and if the _text_
 collides, the _point_ will be drawn alone.
 
 Note that attached _text_ will never draw without its _point_.
