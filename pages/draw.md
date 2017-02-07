@@ -737,7 +737,7 @@ draw:
 ```
 
 ####`width`
-Required _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
+Required _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`. A _function_ must return a unitless _number_ in mercator meters.
 
 Applies to `lines`. Sets the width of a feature.
 
