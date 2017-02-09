@@ -68,7 +68,7 @@ function loadOldCode(frame, el) {
         }
         // set the value of the codeMirror editor
         var editor = frame.contentWindow.editor;
-        var scene = frame.contentWindow.layer.scene;
+        var scene;
         var load_event = { load: function() {
                 // set it again to force a Tangram update
                 // console.log('setvalue2', frame, new Date().getTime() / 1000)
@@ -77,6 +77,7 @@ function loadOldCode(frame, el) {
             }};
 
         function setCode(code) {
+            scene = frame.contentWindow.layer.scene;
             if (scene.initializing) {
                 scene.subscribe(load_event);
             } else {
