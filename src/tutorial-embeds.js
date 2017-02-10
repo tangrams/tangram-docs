@@ -77,7 +77,7 @@ function loadOldCode(frame, el) {
             console.log('layer already exists')
             setTimeout(function() {
                 // use a setTimeout 0 to make this a separate entry in the browser's event queue, so it won't happen until the editor is ready
-                setCode(code);
+                getScene();
             }, 0);
         } else {
             Object.defineProperty(frame.contentWindow, 'layer', {
@@ -90,10 +90,32 @@ function loadOldCode(frame, el) {
                 set: function(val) {
                     console.log('waited for layer')
                     this._layer = val;
-                    setCode(code);
+                    getScene();
                 }
             });
         }
+
+        function getScene(code) {
+            try {
+                scene = frame.contentWindow.layer.scene;
+            } catch(e) {
+                console.log("tangram doesn't exist")
+
+                // wait for the Tangram scene object to be defined
+                Object.defineProperty(frame.contentWindow, 'scene', {
+                    configurable: true,
+                    enumerable: true,
+                    writeable: true,
+                    get: function() {
+                        return this._scene;
+                    },
+                    set: function(val) {
+                        console.log('waited for scene')
+                        this._scene = val;
+                        setCode(code);
+                    }
+                });
+            }
 
         // create an event
         var load_event = { load: function() {
@@ -102,16 +124,13 @@ function loadOldCode(frame, el) {
                 scene.unsubscribe(this);
                 // put the old code in the editor pane
                 editor.doc.setValue(code);
-            }};
+            }
+        };
+
 
         function setCode(code) {
-            try {
-                scene = frame.contentWindow.layer.scene;
-            } catch(e) {
-                console.log("tangram doesn't exist")
-            }
             if (scene && scene.initializing) {
-                console.log("tangram exists but ain;t ready")
+                console.log("tangram exists but ain't ready")
                 // Tangram ain't ready - subscribe to its load_event
                 scene.subscribe(load_event);
             } else {
