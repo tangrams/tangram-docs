@@ -47,8 +47,10 @@ function moveFrameToElement(frame, el) {
     }
     // if code was saved previously, load it
     if (el.getAttribute("code") !='' && el.getAttribute("code") != 'null') {
+        console.log('loading old code');
         loadOldCode(frame, el);
     } else {
+        console.log('waiting for frame to load');
         // show the iframe once it's loaded
         frame.onload = function() {
             frame.style.visibility = "visible";
