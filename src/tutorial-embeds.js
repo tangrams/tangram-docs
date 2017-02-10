@@ -73,10 +73,12 @@ function loadOldCode(frame, el) {
         // set the value of the codeMirror editor
         var editor = frame.contentWindow.editor;
         var scene;
+        var layer;
 
         // wait for Tangram's leafletLayer to be defined
         if (frame.contentWindow.layer) {
             console.log('layer already exists')
+            layer = frame.contentWindow.layer;
             setTimeout(function() {
                 // use a setTimeout 0 to make this a separate entry in the browser's event queue, so it won't happen until the editor is ready
                 getScene();
@@ -92,6 +94,8 @@ function loadOldCode(frame, el) {
                 set: function(val) {
                     console.log('waited for layer')
                     this._layer = val;
+                    console.log('layer val:', val);
+                    layer = val;
                     getScene();
                 }
             });
@@ -99,12 +103,14 @@ function loadOldCode(frame, el) {
 
         function getScene(code) {
             try {
-                scene = frame.contentWindow.layer.scene;
+                scene = layer.scene;
+                console.log('scene?', scene);
+                setCode(code);
             } catch(e) {
-                console.log("scene doesn't exist, waiting")
-
+                console.log("scene doesn't exist, waiting");
+                console.log('layer:', layer);
                 // wait for the Tangram scene object to be defined
-                Object.defineProperty(frame.contentWindow.layer, 'scene', {
+                Object.defineProperty(layer, 'scene', {
                     configurable: true,
                     enumerable: true,
                     writeable: true,
@@ -114,6 +120,7 @@ function loadOldCode(frame, el) {
                     set: function(val) {
                         console.log('waited for scene')
                         this._scene = val;
+                        scene = val;
                         setCode(code);
                     }
                 });
@@ -132,9 +139,7 @@ function loadOldCode(frame, el) {
 
 
         function setCode(code) {
-            try {
-                scene = frame.contentWindow.layer.scene;
-            } catch(e) {
+            if (typeof scene == 'undefined') {
                 console.log("still no scene >:(");
                 return false;
             }
