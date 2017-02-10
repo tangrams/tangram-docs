@@ -52,6 +52,8 @@ function moveFrameToElement(frame, el) {
         // show the iframe once it's loaded
         frame.onload = function() {
             frame.style.visibility = "visible";
+            // for safari
+            frame.style.height = "";
         }
     }
 }
@@ -115,6 +117,8 @@ function loadOldCode(frame, el) {
 
         // show iframe
         frame.style.visibility = "visible";
+        // for safari
+        frame.style.height = "";
     }
 }
 
@@ -123,7 +127,6 @@ window.onload = function() {
     for (x = 0; x < numberOfFrames; x++) {
         frames[x] = document.createElement("iframe");
         frames[x].classList.add("demoframeclass");
-        // debugg   er
         frames[x].setAttribute("id", "frame"+x);
         document.getElementsByClassName("documentation-content")[0].appendChild(frames[x]);
         loaders[x] = document.createElement("div");
@@ -201,6 +204,8 @@ window.onload = function() {
                 if (safeword) continue;
                 // hide the demoframe
                 frames[j].style.visibility = "hidden";
+                // for safari
+                frames[j].style.height = "0px";
                 // remove any onloads in case it's in the middle of loading something
                 frames[j].onload = null;
                 // save current code state in a property called "code" on the parent div
