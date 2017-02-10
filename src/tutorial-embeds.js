@@ -116,6 +116,7 @@ function loadOldCode(frame, el) {
                     }
                 });
             }
+        }
 
         // create an event
         var load_event = { load: function() {
