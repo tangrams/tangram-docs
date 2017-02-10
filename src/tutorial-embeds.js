@@ -102,7 +102,6 @@ function loadOldCode(frame, el) {
         function getScene(code) {
             try {
                 scene = layer.scene;
-                console.log('scene?', scene);
                 setCode(code);
             } catch(e) {
                 // wait for the Tangram scene object to be defined
