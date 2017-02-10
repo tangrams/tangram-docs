@@ -102,7 +102,7 @@ function loadOldCode(frame, el) {
                 console.log("tangram doesn't exist")
 
                 // wait for the Tangram scene object to be defined
-                Object.defineProperty(frame.contentWindow, 'scene', {
+                Object.defineProperty(frame.contentWindow.layer, 'scene', {
                     configurable: true,
                     enumerable: true,
                     writeable: true,
