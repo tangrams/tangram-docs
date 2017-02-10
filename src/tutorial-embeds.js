@@ -18,7 +18,7 @@ Example div:
 var frames = [];
 var winners = [];
 var loaders = [];
-var numberOfFrames = 3;
+var numberOfFrames = 1;
 
 // find distance of element from center of viewport
 function distanceFromCenter(el) {
@@ -69,26 +69,50 @@ function loadOldCode(frame, el) {
         // set the value of the codeMirror editor
         var editor = frame.contentWindow.editor;
         var scene;
+
+        // wait for Tangram's leafletLayer to be defined
+        if (frame.contentWindow.layer) {
+            setTimeout(function() {
+                // use a setTimeout 0 to make this a separate entry in the browser's event queue, so it won't happen until the editor is ready
+                setCode(code);
+            }, 0);
+        } else {
+            Object.defineProperty(frame.contentWindow, 'layer', {
+                configurable: true,
+                enumerable: true,
+                writeable: true,
+                get: function() {
+                    return this._layer;
+                },
+                set: function(val) {
+                    this._layer = val;
+                    setCode(code);
+                }
+            });
+        }
+
+        // create an event
         var load_event = { load: function() {
-                // set it again to force a Tangram update
-                // console.log('setvalue2', frame, new Date().getTime() / 1000)
+                // immediately unsubscribe
                 scene.unsubscribe(this);
+                // put the old code in the editor pane
                 editor.doc.setValue(code);
             }};
 
         function setCode(code) {
-            scene = frame.contentWindow.layer.scene;
-            if (scene.initializing) {
+            try {
+                scene = frame.contentWindow.layer.scene;
+            } catch(e) {
+            }
+            if (scene && scene.initializing) {
+                // Tangram ain't ready - subscribe to its load_event
                 scene.subscribe(load_event);
             } else {
+                // put the old code in the editor pane
                 editor.doc.setValue(code);
             }
         }
 
-        setTimeout(function() {
-            // use a setTimeout 0 to make this a separate entry in the browser's event queue, so it won't happen until the editor is ready
-            setCode(code);
-        }, 0);
         // show iframe
         frame.style.visibility = "visible";
     }
@@ -109,7 +133,7 @@ window.onload = function() {
     checkVis();
 
     // throttle checkVis function
-    window.onscroll = throttle(function() {checkVis()}, 1000);
+    window.onscroll = throttle(function() {checkVis()}, 250);
 
     function throttle(fn, threshhold, scope) {
       threshhold || (threshhold = 250);
