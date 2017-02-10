@@ -15,10 +15,16 @@ Example div:
 
 */
 
+// set number of editor frames to use
+var editorheight = document.getElementsByClassName("demo")[0].offsetHeight;
+var numberOfFrames = Math.floor(window.innerHeight / editorheight);
+// minimum of 1, maximum of 3
+numberOfFrames = Math.min(1, Math.max(4, numberOfFrames));
+
+// set variables
 var frames = [];
 var winners = [];
 var loaders = [];
-var numberOfFrames = 3;
 
 // find distance of element from center of viewport
 function distanceFromCenter(el) {
