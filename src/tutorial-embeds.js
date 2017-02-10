@@ -108,6 +108,7 @@ function loadOldCode(frame, el) {
             try {
                 scene = frame.contentWindow.layer.scene;
             } catch(e) {
+                console.log("tangram doesn't exist")
             }
             if (scene && scene.initializing) {
                 console.log("tangram exists but ain;t ready")
@@ -115,7 +116,6 @@ function loadOldCode(frame, el) {
                 scene.subscribe(load_event);
             } else {
                 console.log('tangram already exists')
-
                 // put the old code in the editor pane
                 editor.doc.setValue(code);
             }
