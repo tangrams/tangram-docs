@@ -74,6 +74,7 @@ function loadOldCode(frame, el) {
 
         // wait for Tangram's leafletLayer to be defined
         if (frame.contentWindow.layer) {
+            console.log('layer already exists')
             setTimeout(function() {
                 // use a setTimeout 0 to make this a separate entry in the browser's event queue, so it won't happen until the editor is ready
                 setCode(code);
@@ -87,6 +88,7 @@ function loadOldCode(frame, el) {
                     return this._layer;
                 },
                 set: function(val) {
+                    console.log('waited for layer')
                     this._layer = val;
                     setCode(code);
                 }
@@ -95,6 +97,7 @@ function loadOldCode(frame, el) {
 
         // create an event
         var load_event = { load: function() {
+                console.log('waited for tangram')
                 // immediately unsubscribe
                 scene.unsubscribe(this);
                 // put the old code in the editor pane
@@ -107,9 +110,12 @@ function loadOldCode(frame, el) {
             } catch(e) {
             }
             if (scene && scene.initializing) {
+                console.log("tangram exists but ain;t ready")
                 // Tangram ain't ready - subscribe to its load_event
                 scene.subscribe(load_event);
             } else {
+                console.log('tangram already exists')
+
                 // put the old code in the editor pane
                 editor.doc.setValue(code);
             }
