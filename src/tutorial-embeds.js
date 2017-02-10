@@ -60,7 +60,7 @@ function moveFrameToElement(frame, el) {
         frame.onload = function() {
             frame.style.visibility = "visible";
             // for safari
-            frame.style.height = "";
+            frame.style.height = editorheight+"px";
         }
     }
 }
@@ -148,7 +148,7 @@ function loadOldCode(frame, el) {
         // show iframe
         frame.style.visibility = "visible";
         // for safari
-        frame.style.height = "";
+        frame.style.height = editorheight+"px";
     }
 }
 
