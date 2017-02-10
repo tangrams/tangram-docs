@@ -244,7 +244,7 @@ window.onload = function() {
                 // hide the demoframe
                 frames[j].style.visibility = "hidden";
                 // for safari
-                frames[j].style.height = "0px";
+                frames[j].style.height = "1px"; // 1px for Windows
                 // remove any onloads in case it's in the middle of loading something
                 frames[j].onload = null;
                 // save current code state in a property called "code" on the parent div
