@@ -130,6 +130,12 @@ function loadOldCode(frame, el) {
 
 
         function setCode(code) {
+            try {
+                scene = frame.contentWindow.layer.scene;
+            } catch(e) {
+                console.log("still no scene >:(");
+                return false;
+            }
             if (scene && scene.initializing) {
                 console.log("tangram exists but ain't ready")
                 // Tangram ain't ready - subscribe to its load_event
