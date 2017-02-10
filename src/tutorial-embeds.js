@@ -18,7 +18,7 @@ Example div:
 var frames = [];
 var winners = [];
 var loaders = [];
-var numberOfFrames = 1;
+var numberOfFrames = 3;
 
 // find distance of element from center of viewport
 function distanceFromCenter(el) {
