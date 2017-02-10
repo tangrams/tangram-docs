@@ -19,7 +19,7 @@ Example div:
 var editorheight = document.getElementsByClassName("demo")[0].offsetHeight;
 var numberOfFrames = Math.floor(window.innerHeight / editorheight);
 // minimum of 1, maximum of 3
-numberOfFrames = Math.min(1, Math.max(4, numberOfFrames));
+numberOfFrames = Math.min(4, Math.max(1, numberOfFrames));
 
 // set variables
 var frames = [];
