@@ -41,3 +41,7 @@
 .CodeMirror {
     width: 100%;
 }
+
+.button.btn.button-icon.refresh-button {
+    display: none;
+}

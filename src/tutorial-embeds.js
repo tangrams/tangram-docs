@@ -4,13 +4,13 @@ tutorial-embeds.css
 author: Peter Richardson 2017
 contact: peter@mapzen.com
 
-This code was written for use in Tangram tutorials pages to allow multiple Tangram Play embeds on a page while limiting resource usage. It expects a number of target divs on a page, each with class="demo", an empty "code" attribute, and a "source" attribute which is to be the "src" of a loaded iframe.
+This code was written for use in Tangram tutorials pages to allow multiple Tangram Play embeds on a page while limiting resource usage. It expects a number of target divs on a page, each with class="demo" and a "source" attribute which is to be the "src" of a loaded iframe.
 
-It creates a number of iframes (set by the numberOfFrames variable) and moves them from place to place, setting the src of each. It then saves any changes made in the Play editor to the "code" attribute, and if that frame is loaded again later it uses that attribute to restore the code.
+It creates a number of iframes (set by the numberOfFrames variable) and moves them from place to place, setting the src of each. It then saves any changes made in the Play editor to a blob, and sets a new "source" attribute with a BlobURL.
 
 Example div:
 
-    <div class="demo" id="demo6" code="" source="http://localhost:8080/embed/?go=👌&scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.yaml#17/40.76442/-73.98058"></div>
+    <div class="demo" id="demo6" source="http://localhost:8080/embed/?go=👌&scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.yaml#17/40.76442/-73.98058"></div>
     </div>
 
 */
@@ -42,115 +42,137 @@ function distanceFromCenter(el) {
     return Math.abs(windowCenter - elementCenter);
 }
 
+function loadFunction() {
+    // hide Play embed's "refresh" button
+    // todo: figure out a way to make this load the original source
+    this.contentWindow.document.getElementsByClassName("refresh-button")[0].style.display = "none";
+    showFrame(this);
+    el = this.element;
+    if (typeof el != 'undefined') {
+        // remove loader
+        if (el.getElementsByClassName('demo-loading').length > 1) console.log('multiple loaders')
+        while (el.getElementsByClassName('demo-loading').length > 0) el.removeChild(el.getElementsByClassName('demo-loading')[0]);
+    }
+    checkVis();
+}
+
 // move iframe to target element
 function moveFrameToElement(frame, el) {
     if (typeof el == 'undefined') return false;
+    // position iframe
     newtop = el.offsetTop;
     frame.style.top = newtop+"px";
     frame.style.left = el.offsetLeft+"px";
-    // get the source if it has been set
+
+    // show the iframe once it's loaded
+    frame.addEventListener('load', loadFunction, false);
+
+    // set the source of the iframe from the saved property
     if (typeof el.getAttribute("source") != 'undefined') {
         frame.src = el.getAttribute("source");
-    }
-    // if code was saved previously, load it
-    if (el.getAttribute("code") !='' && el.getAttribute("code") != 'null') {
-        loadOldCode(frame, el);
     } else {
-        // show the iframe once it's loaded
-        frame.onload = function() {
-            frame.style.visibility = "visible";
-            // for safari
-            frame.style.height = editorheight+"px";
-        }
+        return new Error("no src set for demo frame:", frame);
+    }
+    if (frame.contentWindow.document.readyState == 'complete') {
+        // Win/Chrome won't trigger multiple onloads on an iframe :/
+        // just show it
+        console.log(frame.id, 'complete??')
+        // showFrame(frame);
     }
 }
 
-// load previously-saved code into an editor
-function loadOldCode(frame, el) {
-    // get source from the element's "code" attribute
-    var code = el.getAttribute("code");
-    if (typeof code == 'undefined') return false;
-    frame.onload = function() {
-        // set the value of the codeMirror editor
-        var editor = frame.contentWindow.editor;
-        var scene, layer;
+function showFrame(frame) {
+    frame.style.visibility = "visible";
+    // for mac/safari and win/chrome
+    frame.style.height = editorheight+"px";
+}
 
-        // wait for Tangram's leafletLayer to be defined
-        if (frame.contentWindow.layer) {
-            layer = frame.contentWindow.layer;
-            setTimeout(function() {
-                // use a setTimeout 0 to make this a separate entry in the browser's event queue, so it won't happen until the editor is ready
-                getScene();
-            }, 0);
-        } else {
-            Object.defineProperty(frame.contentWindow, 'layer', {
-                configurable: true,
-                enumerable: true,
-                writeable: true,
-                get: function() {
-                    return this._layer;
-                },
-                set: function(val) {
-                    this._layer = val;
-                    layer = val;
-                    getScene();
+// http://stackoverflow.com/a/20420424/738675
+function replaceUrlParam(url, paramName, paramValue){
+    if(paramValue == null)
+        paramValue = '';
+    var pattern = new RegExp('\\b('+paramName+'=).*?(&|$|#)')
+    if(url.search(pattern)>=0){
+        return url.replace(pattern,'$1' + paramValue + '$2');
+    }
+    return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue 
+}
+
+// check visibility of demos - show ones closest to the center of the viewport and hide the others to go easy on the GPU
+function checkVis() {
+    var elements = document.getElementsByClassName("demo");
+    var ranking = [];
+    // sort frame wrappers by distance from center of screen
+    for (var i=0; i < elements.length; i++) {
+        el = elements[i];
+        dist = distanceFromCenter(el);
+        ranking.push([el, dist]);
+        if (typeof el.demoframe == 'undefined') el.demoframe = null;
+    }
+    ranking.sort(function(a, b) {
+        return a[1] - b[1]
+    });
+    // add the top ranked to the winners list
+    for (var i=0; i < frames.length; i++) {
+        winners[i] = ranking[i][0];
+    }
+    // clear the demoframe property of the others
+    for (var i=winners.length; i < ranking.length; i++) {
+        ranking[i][0].demoframe = null;
+    }
+    // for each winner, place a frame
+    for (var i=0; i < winners.length; i++) {
+        // if there's already a frame there, move on
+        if (winners[i].demoframe != null) {
+            if (winners[i].demoframe.contentWindow.document.readyState == 'complete' && winners[i].demoframe.style.height == "1px") {
+                console.log(winners[i].demoframe.id, 'is hiding at', winners[i].id);
+                winners[i].demoframe.src = winners[i].demoframe.src;
+                // showFrame(winners[i].demoframe);
+            }
+            // winners[i].demoframe.src = winners[i].demoframe.src;
+            continue;
+        }
+        // place each frame at a winner
+        for (var j=0; j < frames.length; j++) {
+            var safeword = false;
+            // check to see if it's already at one of the winners
+            for (var k=0; k < winners.length; k++) {
+                // if so, skip it
+                if (frames[j].element == winners[k]) {
+                    safeword = true;
+                    break;
                 }
-            });
+            }
+            // if the safeword was triggered, move to the next winner
+            if (safeword) continue;
+
+            // hide the demoframe
+            // Mac/Safari can't set iframe visibility,
+            // Win/Chrome can't set an iframe height to ""
+            // so just squash it down :/
+            frames[j].style.height = "1px";
+            // remove any event listeners in case it's in the middle of loading something
+            frames[j].removeEventListener('load', loadFunction, false);
+            // save current code state in a property called "code" on the parent div
+            if (typeof frames[j].contentWindow.scene != 'undefined') {
+                blob = new Blob([frames[j].contentWindow.editor.getValue()], {type: "text/plain"})
+                var urlCreator = window.URL || window.webkitURL; 
+                var newsrc = urlCreator.createObjectURL(blob);
+                var newsource = replaceUrlParam(frames[j].element.getAttribute("source"), "scene", newsrc);
+                frames[j].element.setAttribute("source", newsource);
+            }
+            // add demoframe and winner as properties of each other for tracking
+            frames[j].element = winners[i];
+            winners[i].demoframe = frames[j];
+
+            // add a loading bar to the destination element
+            winners[i].appendChild(loaders[i]);
+            // move the demoframe
+            moveFrameToElement(frames[j], winners[i]);
+            break;
         }
-
-        // wait for Tangram's scene object to be defined
-        function getScene(code) {
-            try {
-                scene = layer.scene;
-                setCode(code);
-            } catch(e) {
-                // wait for the Tangram scene object to be defined
-                Object.defineProperty(layer, 'scene', {
-                    configurable: true,
-                    enumerable: true,
-                    writeable: true,
-                    get: function() {
-                        return this._scene;
-                    },
-                    set: function(val) {
-                        this._scene = val;
-                        scene = val;
-                        setCode(code);
-                    }
-                });
-            }
-        }
-
-        // create an event
-        var load_event = { load: function() {
-                // immediately unsubscribe
-                scene.unsubscribe(this);
-                // put the old code in the editor pane
-                editor.doc.setValue(code);
-            }
-        };
-
-        // trigger the code-setting mechanism
-        function setCode(code) {
-            if (typeof scene == 'undefined') {
-                // still no scene - porblem
-                return false;
-            }
-            if (scene && scene.initializing) {
-                // Tangram ain't ready - subscribe to its load_event
-                scene.subscribe(load_event);
-            } else {
-                // put the old code in the editor pane
-                editor.doc.setValue(code);
-            }
-        }
-
-        // show iframe
-        frame.style.visibility = "visible";
-        // for safari
-        frame.style.height = editorheight+"px";
     }
-}
+};
 
 window.onload = function() {
     // create new iframes
@@ -189,68 +211,4 @@ window.onload = function() {
         }
       };
     }
-
-    // check visibility of demos - show ones closest to the center of the viewport and hide the others to go easy on the GPU
-    function checkVis() {
-        var elements = document.getElementsByClassName("demo");
-        var ranking = [];
-        // sort frame wrappers by distance from center of screen
-        for (var i=0; i < elements.length; i++) {
-            el = elements[i];
-            dist = distanceFromCenter(el);
-            ranking.push([el, dist]);
-            if (typeof el.demoframe == 'undefined') el.demoframe = null;
-        }
-        ranking.sort(function(a, b) {
-            return a[1] - b[1]
-        });
-        // add the top ranked to the winners list
-        for (var i=0; i < frames.length; i++) {
-            winners[i] = ranking[i][0];
-        }
-        // clear the demoframe property of the others
-        for (var i=winners.length; i < ranking.length; i++) {
-            ranking[i][0].demoframe = null;
-        }
-        // for each winner, place a frame
-        for (var i=0; i < winners.length; i++) {
-            // if there's already a frame there, move on
-            if (winners[i].demoframe != null) {
-                continue;
-            }
-            // place each frame at a winner
-            for (var j=0; j < frames.length; j++) {
-                var safeword = false;
-                // check to see if it's already at one of the winners
-                for (var k=0; k < winners.length; k++) {
-                    // if so, skip it
-                    if (frames[j].element == winners[k]) {
-                        safeword = true;
-                        break;
-                    }
-                }
-                // if the safeword was triggered, move to the next winner
-                if (safeword) continue;
-                // hide the demoframe
-                frames[j].style.visibility = "hidden";
-                // for safari
-                frames[j].style.height = "1px"; // 1px for Windows
-                // remove any onloads in case it's in the middle of loading something
-                frames[j].onload = null;
-                // save current code state in a property called "code" on the parent div
-                if (typeof frames[j].contentWindow.scene != 'undefined') {
-                    frames[j].element.setAttribute("code", frames[j].contentWindow.editor.getValue());
-                }
-                // add demoframe and winner as properties of each other for tracking
-                frames[j].element = winners[i];
-                winners[i].demoframe = frames[j];
-
-                // add a loading bar to the destination element
-                winners[i].appendChild(loaders[i]);
-                // move the demoframe
-                moveFrameToElement(frames[j], winners[i]);
-                break;
-            }
-        }
-    };
 }
