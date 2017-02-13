@@ -57,11 +57,13 @@ function loadFunction() {
 // move iframe to target element
 function moveFrameToElement(frame, el) {
     if (typeof el == 'undefined') return false;
+
+    // empty the iframe
+    frame.contentDocument.write("<div height='100%'>&nbsp;</div>");
     // position iframe
     newtop = el.offsetTop;
     frame.style.top = newtop+"px";
     frame.style.left = el.offsetLeft+"px";
-
     // show the iframe once it's loaded
     frame.addEventListener('load', loadFunction, false);
 
@@ -71,17 +73,6 @@ function moveFrameToElement(frame, el) {
     } else {
         return new Error("no src set for demo frame:", frame);
     }
-    if (frame.contentWindow.document.readyState == 'complete') {
-        // Win/Chrome won't trigger multiple onloads on an iframe :/
-        // just show it
-        showFrame(frame);
-    }
-}
-
-function showFrame(frame) {
-    frame.style.visibility = "visible";
-    // for mac/safari and win/chrome
-    frame.style.height = editorheight+"px";
 }
 
 // http://stackoverflow.com/a/20420424/738675
@@ -121,10 +112,6 @@ function checkVis() {
     for (var i=0; i < winners.length; i++) {
         // if there's already a frame there, move on
         if (winners[i].demoframe != null) {
-            if (winners[i].demoframe.contentWindow.document.readyState == 'complete' && winners[i].demoframe.style.height == "1px") {
-                // frame is hiding, force a refresh
-                winners[i].demoframe.src = winners[i].demoframe.src;
-            }
             continue;
         }
         // place each frame at a winner
@@ -141,11 +128,6 @@ function checkVis() {
             // if the safeword was triggered, move to the next winner
             if (safeword) continue;
 
-            // hide the demoframe
-            // Mac/Safari can't set iframe visibility,
-            // Win/Chrome can't set an iframe height to ""
-            // so just squash it down :/
-            frames[j].style.height = "1px";
             // remove any event listeners in case it's in the middle of loading something
             frames[j].removeEventListener('load', loadFunction, false);
             // save current code state in a property called "code" on the parent div
