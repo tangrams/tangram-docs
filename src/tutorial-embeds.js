@@ -86,6 +86,17 @@ function replaceUrlParam(url, paramName, paramValue){
     return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue 
 }
 
+function makeBlobURL(str) {
+    blob = new Blob([str], {type: "text/plain"});
+    if(window.navigator.msSaveOrOpenBlob) {
+        // ie/edge can't do it >:/
+        return false;
+    } else {
+        var urlCreator = window.URL || window.webkitURL; 
+        return urlCreator.createObjectURL(blob);
+    }
+}
+
 // check visibility of demos - show ones closest to the center of the viewport and hide the others to go easy on the GPU
 function checkVis() {
     var elements = document.getElementsByClassName("demo");
@@ -130,13 +141,13 @@ function checkVis() {
 
             // remove any event listeners in case it's in the middle of loading something
             frames[j].removeEventListener('load', loadFunction, false);
-            // save current code state in a property called "code" on the parent div
+            // save current code state to a BlobURL, set it as the parent's new "source"
             if (typeof frames[j].contentWindow.scene != 'undefined') {
-                blob = new Blob([frames[j].contentWindow.editor.getValue()], {type: "text/plain"})
-                var urlCreator = window.URL || window.webkitURL; 
-                var newsrc = urlCreator.createObjectURL(blob);
-                var newsource = replaceUrlParam(frames[j].element.getAttribute("source"), "scene", newsrc);
-                frames[j].element.setAttribute("source", newsource);
+                newsrc = makeBlobURL(frames[j].contentWindow.editor.getValue());
+                if (newsrc) {
+                    newsource = replaceUrlParam(frames[j].element.getAttribute("source"), "scene", newsrc);
+                    frames[j].element.setAttribute("source", newsource);
+                }
             }
             // add demoframe and winner as properties of each other for tracking
             frames[j].element = winners[i];
