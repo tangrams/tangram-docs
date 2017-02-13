@@ -42,13 +42,14 @@ function distanceFromCenter(el) {
     return Math.abs(windowCenter - elementCenter);
 }
 
+// moveFrameToElement's 'load' event callback
 function loadFunction() {
     // hide Play embed's "refresh" button
     // todo: figure out a way to make this load the original source
     this.contentDocument.getElementsByClassName("refresh-button")[0].style.display = "none";
     el = this.element;
     if (typeof el != 'undefined') {
-        // remove loader
+        // remove any loaders
         while (el.getElementsByClassName('demo-loading').length > 0) el.removeChild(el.getElementsByClassName('demo-loading')[0]);
     }
     checkVis();
@@ -75,6 +76,7 @@ function moveFrameToElement(frame, el) {
     }
 }
 
+// replace the value of a parameter in a url
 // http://stackoverflow.com/a/20420424/738675
 function replaceUrlParam(url, paramName, paramValue){
     if(paramValue == null)
