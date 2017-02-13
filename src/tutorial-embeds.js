@@ -50,7 +50,6 @@ function loadFunction() {
     el = this.element;
     if (typeof el != 'undefined') {
         // remove loader
-        if (el.getElementsByClassName('demo-loading').length > 1) console.log('multiple loaders')
         while (el.getElementsByClassName('demo-loading').length > 0) el.removeChild(el.getElementsByClassName('demo-loading')[0]);
     }
     checkVis();
@@ -76,8 +75,7 @@ function moveFrameToElement(frame, el) {
     if (frame.contentWindow.document.readyState == 'complete') {
         // Win/Chrome won't trigger multiple onloads on an iframe :/
         // just show it
-        console.log(frame.id, 'complete??')
-        // showFrame(frame);
+        showFrame(frame);
     }
 }
 
@@ -125,11 +123,9 @@ function checkVis() {
         // if there's already a frame there, move on
         if (winners[i].demoframe != null) {
             if (winners[i].demoframe.contentWindow.document.readyState == 'complete' && winners[i].demoframe.style.height == "1px") {
-                console.log(winners[i].demoframe.id, 'is hiding at', winners[i].id);
+                // frame is hiding, force a refresh
                 winners[i].demoframe.src = winners[i].demoframe.src;
-                // showFrame(winners[i].demoframe);
             }
-            // winners[i].demoframe.src = winners[i].demoframe.src;
             continue;
         }
         // place each frame at a winner
