@@ -45,8 +45,7 @@ function distanceFromCenter(el) {
 function loadFunction() {
     // hide Play embed's "refresh" button
     // todo: figure out a way to make this load the original source
-    this.contentWindow.document.getElementsByClassName("refresh-button")[0].style.display = "none";
-    showFrame(this);
+    this.contentDocument.getElementsByClassName("refresh-button")[0].style.display = "none";
     el = this.element;
     if (typeof el != 'undefined') {
         // remove loader
