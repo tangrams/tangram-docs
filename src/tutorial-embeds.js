@@ -4,20 +4,20 @@ tutorial-embeds.css
 author: Peter Richardson 2017
 contact: peter@mapzen.com
 
-This code was written for use in Tangram tutorials pages to allow multiple Tangram Play embeds on a page while limiting resource usage. It expects a number of target divs on a page, each with class="demo" and a "source" attribute which is to be the "src" of a loaded iframe.
+This code was written for use in Tangram tutorials pages to allow multiple Tangram Play embeds on a page while limiting resource usage. It expects a number of target divs on a page, each with class="play-embed" and a "source" attribute which is to be the "src" of a loaded iframe.
 
 It creates a number of iframes (set by the numberOfFrames variable) and moves them from place to place, setting the src of each. It then saves any changes made in the Play editor to a blob, and sets a new "source" attribute with a BlobURL.
 
 Example div:
 
-    <div class="demo" id="demo6" source="http://localhost:8080/embed/?go=👌&scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.yaml#17/40.76442/-73.98058"></div>
+    <div class="play-embed" source="http://localhost:8080/embed/?go=👌&scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.yaml#17/40.76442/-73.98058"></div>
     </div>
 
 */
 
 // set number of editor frames to use
-var editorheight = document.getElementsByClassName("demo")[0].offsetHeight;
-var numberOfFrames = Math.floor(window.innerHeight / editorheight);
+var embedheight = document.getElementsByClassName("play-embed")[0].offsetHeight;
+var numberOfFrames = Math.floor(window.innerHeight / embedheight);
 // minimum of 1, maximum of 3
 numberOfFrames = Math.min(4, Math.max(1, numberOfFrames));
 
@@ -50,7 +50,7 @@ function loadFunction() {
     el = this.element;
     if (typeof el != 'undefined') {
         // remove any loaders
-        while (el.getElementsByClassName('demo-loading').length > 0) el.removeChild(el.getElementsByClassName('demo-loading')[0]);
+        while (el.getElementsByClassName('embed-loading').length > 0) el.removeChild(el.getElementsByClassName('embed-loading')[0]);
     }
     checkVis();
 }
@@ -72,7 +72,7 @@ function moveFrameToElement(frame, el) {
     if (typeof el.getAttribute("source") != 'undefined') {
         frame.src = el.getAttribute("source");
     } else {
-        return new Error("no src set for demo frame:", frame);
+        return new Error("no src set for embed frame:", frame);
     }
 }
 
@@ -99,16 +99,16 @@ function makeBlobURL(str) {
     }
 }
 
-// check visibility of demos - show ones closest to the center of the viewport and hide the others to go easy on the GPU
+// check visibility of embeds - show ones closest to the center of the viewport and hide the others to go easy on the GPU
 function checkVis() {
-    var elements = document.getElementsByClassName("demo");
+    var elements = document.getElementsByClassName("play-embed");
     var ranking = [];
     // sort frame wrappers by distance from center of screen
     for (var i=0; i < elements.length; i++) {
         el = elements[i];
         dist = distanceFromCenter(el);
         ranking.push([el, dist]);
-        if (typeof el.demoframe == 'undefined') el.demoframe = null;
+        if (typeof el.embedframe == 'undefined') el.embedframe = null;
     }
     ranking.sort(function(a, b) {
         return a[1] - b[1]
@@ -117,14 +117,14 @@ function checkVis() {
     for (var i=0; i < frames.length; i++) {
         winners[i] = ranking[i][0];
     }
-    // clear the demoframe property of the others
+    // clear the embedframe property of the others
     for (var i=winners.length; i < ranking.length; i++) {
-        ranking[i][0].demoframe = null;
+        ranking[i][0].embedframe = null;
     }
     // for each winner, place a frame
     for (var i=0; i < winners.length; i++) {
         // if there's already a frame there, move on
-        if (winners[i].demoframe != null) {
+        if (winners[i].embedframe != null) {
             continue;
         }
         // place each frame at a winner
@@ -151,13 +151,13 @@ function checkVis() {
                     frames[j].element.setAttribute("source", newsource);
                 }
             }
-            // add demoframe and winner as properties of each other for tracking
+            // add embedframe and winner as properties of each other for tracking
             frames[j].element = winners[i];
-            winners[i].demoframe = frames[j];
+            winners[i].embedframe = frames[j];
 
             // add a loading bar to the destination element
             winners[i].appendChild(loaders[i]);
-            // move the demoframe
+            // move the embedframe
             moveFrameToElement(frames[j], winners[i]);
             break;
         }
