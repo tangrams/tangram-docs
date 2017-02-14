@@ -170,7 +170,7 @@ window.onload = function() {
         var embed = embeds[x];
         href = embed.getAttribute("source");
         link = "<span class='caption' style='margin-bottom: 1em'><a target='_blank' href='"+href+"'>( Open in Play ▶ )</a></span>";
-        embed.innerHTML += link;
+        embed.outerHTML += link;
     }
 
     // create new iframes
