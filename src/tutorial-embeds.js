@@ -166,22 +166,22 @@ function checkVis() {
 
 window.onload = function() {
     // create links
-    var demos = document.getElementsByClassName('demo');
-    for (x=0; x < demos.length; x++) {
-        var demo = demos[x];
-        href = demo.getAttribute("source");
+    var embeds = document.getElementsByClassName('play-embed');
+    for (x=0; x < embeds.length; x++) {
+        var embed = embeds[x];
+        href = embed.getAttribute("source");
         link = "<span class='caption'><a target='_blank' href='"+href+"'>( Open in Play ▶ )</a></span>";
-        demo.outerHTML += link;
+        embed.outerHTML += link;
     }
 
     // create new iframes
     for (x = 0; x < numberOfFrames; x++) {
         frames[x] = document.createElement("iframe");
-        frames[x].classList.add("demoframeclass");
+        frames[x].classList.add("embed-frame");
         frames[x].setAttribute("id", "frame"+x);
         document.getElementsByClassName("documentation-content")[0].appendChild(frames[x]);
         loaders[x] = document.createElement("div");
-        loaders[x].classList.add("demo-loading");
+        loaders[x].classList.add("embed-loading");
     }
 
     checkVis();
