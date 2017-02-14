@@ -42,3 +42,7 @@
 .button.btn.button-icon.refresh-button {
     display: none;
 }
+.caption {
+    margin-bottom: 1em;
+    display: inline-block;
+}
