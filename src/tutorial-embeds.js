@@ -165,6 +165,15 @@ function checkVis() {
 };
 
 window.onload = function() {
+    // create links
+    var demos = document.getElementsByClassName('demo-wrap');
+    for (x=0; x < demos.length; x++) {
+        var demo = demos.[x];
+        href = demo.getElementsByClassName('demo').getAttribute("source");
+        link = "<span class='caption'><a target='_blank' href='"+href+"'>( Open in Play ▶ )</a></span>";
+        demo.innerHTML += link;
+    }
+
     // create new iframes
     for (x = 0; x < numberOfFrames; x++) {
         frames[x] = document.createElement("iframe");
