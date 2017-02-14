@@ -169,7 +169,7 @@ window.onload = function() {
     var demos = document.getElementsByClassName('demo-wrap');
     for (x=0; x < demos.length; x++) {
         var demo = demos[x];
-        href = demo.getElementsByClassName('demo').getAttribute("source");
+        href = demo.getElementsByClassName('demo')[0].getAttribute("source");
         link = "<span class='caption'><a target='_blank' href='"+href+"'>( Open in Play ▶ )</a></span>";
         demo.innerHTML += link;
     }
