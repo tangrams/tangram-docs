@@ -23,7 +23,7 @@
     }
 }
 .demo-wrap {
-    /*position: relative;*/
+    margin-bottom: 1em;
 }
 .demo {
     width: 100%;
