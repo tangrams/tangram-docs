@@ -169,8 +169,8 @@ window.onload = function() {
     for (x=0; x < embeds.length; x++) {
         var embed = embeds[x];
         href = embed.getAttribute("source");
-        link = "<span class='caption'><a target='_blank' href='"+href+"'>( Open in Play ▶ )</a></span>";
-        embed.outerHTML += link;
+        link = "<span class='caption' style='margin-bottom: 1em'><a target='_blank' href='"+href+"'>( Open in Play ▶ )</a></span>";
+        embed.innerHTML += link;
     }
 
     // create new iframes
