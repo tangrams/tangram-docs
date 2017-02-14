@@ -10,8 +10,7 @@ It creates a number of iframes (set by the numberOfFrames variable) and moves th
 
 Example div:
 
-    <div class="play-embed" source="http://localhost:8080/embed/?go=👌&scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.yaml#17/40.76442/-73.98058"></div>
-    </div>
+    <div class="play-embed" source="https://precog.mapzen.com/tangrams/tangram-play/master/embed/?go=👌&scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom1.yaml#16.50417/40.78070/-73.96085"></div>
 
 */
 
