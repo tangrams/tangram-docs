@@ -1,4 +1,4 @@
-import: https://mapzen.com/carto/walkabout-style/walkabout-style.yaml
+import: https://mapzen.com/carto/walkabout-style/3.0.0/walkabout-style.yaml
 
 sources:
     _mine:

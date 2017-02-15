@@ -1,4 +1,4 @@
-import: https://mapzen.com/carto/refill-style-no-labels/refill-style-no-labels.yaml
+import: https://mapzen.com/carto/refill-style-no-labels/6.0.0/refill-style-no-labels.yaml
 
 layers:
     roads:
