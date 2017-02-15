@@ -6,6 +6,7 @@ sources:
 styles:
     _transparent:
         base: polygons
+        blend: overlay
 
 layers:
     buildings:
