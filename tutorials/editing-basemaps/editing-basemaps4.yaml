@@ -146,7 +146,6 @@ layers:
             draw:
                 lines:
                     color: red
-            early:
             pedestrian:
                 draw:
                     lines:
