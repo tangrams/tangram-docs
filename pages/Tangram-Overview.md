@@ -51,6 +51,12 @@ var layer = Tangram.leafletLayer({
 });
 ```
 
+### Mapzen.js and API key
+
+Tangram may also be used via [Mapzen.js](https://mapzen.com/documentation/mapzen-js/), which is Mapzen's JavaScript SDK. Mapzen.js combines web support for a variety of Mapzen services, including Tangram, [Mapzen Search](https://mapzen.com/products/search/), and the [Mapzen Basemap Styles](https://mapzen.com/documentation/cartography/styles/).
+
+To use hosted Mapzen services, including the [Mapzen Vector Tile service](https://mapzen.com/projects/vector-tiles/), you'll need a free [Mapzen API key](https://mapzen.com/developers/).
+
 ### Builds and Names
 
 Tangram is built in "minified" and debug" versions, named `tangram.min.js` and `tangram.debug.js`. The `min` file is smaller, and so downloads faster – the `debug` file is larger, but is easier to read for debugging purposes. Note that for personal reasons, Tangram requires that the library file be named one of these two things. If you rename the file, Tangram will not draw maps for you.
