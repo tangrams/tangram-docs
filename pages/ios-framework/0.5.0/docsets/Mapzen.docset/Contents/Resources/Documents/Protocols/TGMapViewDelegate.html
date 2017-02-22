@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TGMapViewDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    <link rel='shortcut icon' href='https://mapzen.com/common/styleguide/images/favicon.ico' type='image/x-icon' />
+
+  </head>
+  <body>
+
+    <a name="//apple_ref/objc/Protocol/TGMapViewDelegate" class="dashAnchor"></a>
+
+    <a title="TGMapViewDelegate Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Mapzen Docs
+        </a>
+         (99% documented)
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/tangrams/tangram-es">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Mapzen Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      TGMapViewDelegate Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGGeoPolygon.html">TGGeoPolygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGGeoPolyline.html">TGGeoPolyline</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGHttpHandler.html">TGHttpHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGLabelPickResult.html">TGLabelPickResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMapViewController.html">TGMapViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMarkerPickResult.html">TGMarkerPickResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@TangramMapVersionNumber">TangramMapVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@TangramMapVersionString">TangramMapVersionString</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGCameraType.html">TGCameraType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGDebugFlag.html">TGDebugFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGEaseType.html">TGEaseType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGLabelType.html">TGLabelType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TGMapViewDelegate.html">TGMapViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TGRecognizerDelegate.html">TGRecognizerDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Definitions.html#/c:TGHttpHandler.h@T@TGDownloadCompletionHandler">TGDownloadCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Definitions.html#/c:TGMarkerPickResult.h@T@TGMapMarkerId">TGMapMarkerId</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/c:TGGeoPoint.h@F@TGGeoPointMake">TGGeoPointMake</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TGGeoPoint.html">TGGeoPoint</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>TGMapViewDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="k">@protocol</span> <span class="nc">TGMapViewDelegate</span> <span class="o">&lt;</span><span class="n">NSObject</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p>A map view delegate that can be implemented to receive miscellaneous map event.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    All of those methods are called from main thread, those methods are all <strong>optional</strong>.
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGMapViewDelegate(im)mapView:didLoadSceneAsync:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:didLoadSceneAsync:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGMapViewDelegate(im)mapView:didLoadSceneAsync:">-mapView:didLoadSceneAsync:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called after a <code>-[TGMapViewController loadSceneFileAsync:]</code> or
+<code>-[TGMapViewController loadSceneFileAsync:sceneUpdates:]</code> is completed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">mapView</span>
+    <span class="nf">didLoadSceneAsync</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">scene</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="n">didLoadSceneAsync</span> <span class="nv">scene</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a pointer to the map view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>scene</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the path to the scene that has been loaded</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGMapViewDelegate(im)mapView:didSelectFeature:atScreenPosition:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:didSelectFeature:atScreenPosition:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGMapViewDelegate(im)mapView:didSelectFeature:atScreenPosition:">-mapView:didSelectFeature:atScreenPosition:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Always called after the method <code>-[TGMapViewController pickFeatureAt:]</code> is called on the map view.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>If no feature have been selected, <code>feature</code> will be <code>nil</code>, and <code>position</code> <code>(0, 0)</code>.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">mapView</span>
+    <span class="nf">didSelectFeature</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">feature</span>
+    <span class="nf">atScreenPosition</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">position</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="n">didSelectFeature</span> <span class="nv">feature</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?,</span> <span class="n">atScreenPosition</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a pointer to the map view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>feature</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a dictionnary containing the data contained by the selected feature, may be <code>nil</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the screen position at which the feature has been selected</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGMapViewDelegate(im)mapView:didSelectLabel:atScreenPosition:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:didSelectLabel:atScreenPosition:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGMapViewDelegate(im)mapView:didSelectLabel:atScreenPosition:">-mapView:didSelectLabel:atScreenPosition:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Always called after the method <code>-[TGMapViewController pickLabelAt:]</code> is called on the map view.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>If no feature have been selected, <code>feature</code> will be <code>nil</code>, and <code>position</code> <code>(0, 0)</code>.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">mapView</span>
+      <span class="nf">didSelectLabel</span><span class="p">:(</span><span class="n">nullable</span> <span class="n"><a href="../Classes/TGLabelPickResult.html">TGLabelPickResult</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">labelPickResult</span>
+    <span class="nf">atScreenPosition</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">position</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="n">didSelectLabel</span> <span class="nv">labelPickResult</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGLabelPickResult.html">TGLabelPickResult</a></span><span class="p">?,</span> <span class="n">atScreenPosition</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a pointer to the map view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labelPickResult</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the label pick result object containing information about the label being picked, may be <code>nil</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the screen position at which the feature has been selected</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGMapViewDelegate(im)mapView:didSelectMarker:atScreenPosition:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:didSelectMarker:atScreenPosition:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGMapViewDelegate(im)mapView:didSelectMarker:atScreenPosition:">-mapView:didSelectMarker:atScreenPosition:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Always called after the method <code>-[TGMapViewController pickMarkerAt:]</code> is called on the map view.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>If no feature have been selected, <code>feature</code> will be <code>nil</code>, and <code>position</code> <code>(0, 0)</code>.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">mapView</span>
+     <span class="nf">didSelectMarker</span><span class="p">:(</span><span class="n">nullable</span> <span class="n"><a href="../Classes/TGMarkerPickResult.html">TGMarkerPickResult</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">markerPickResult</span>
+    <span class="nf">atScreenPosition</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">position</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="n">didSelectMarker</span> <span class="nv">markerPickResult</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMarkerPickResult.html">TGMarkerPickResult</a></span><span class="p">?,</span> <span class="n">atScreenPosition</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a pointer to the map view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>markerPickResult</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the marker pick result object containing information about the marker being picked, may be <code>nil</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the screen position at which the feature has been selected</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGMapViewDelegate(im)mapViewDidCompleteLoading:"></a>
+                    <a name="//apple_ref/objc/Method/-mapViewDidCompleteLoading:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGMapViewDelegate(im)mapViewDidCompleteLoading:">-mapViewDidCompleteLoading:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called whenever the view did complete loading and building of all of the visible tiles of the current view.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapViewDidCompleteLoading</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">mapView</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapViewDidCompleteLoading</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a pointer to the map view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2017 <a class="link" href="https://www.mapzen.com/" target="_blank" rel="external">Mapzen</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
