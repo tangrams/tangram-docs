@@ -12,7 +12,7 @@ The [latest release of Tangram](github.com/tangrams/tangram/releases) can be inc
 <script src="https://mapzen.com/tangram/tangram.min.js"></script>
 ```
 
-Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](#options-object):
+Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](Tangram-Overview/#leaflet-options):
 
 ```javascript
 var map = L.map();
@@ -22,7 +22,7 @@ var layer = Tangram.leafletLayer({
 });
 ```
 
-For a complete setup tutorial, see our [Tangram Walkthrough].
+For a complete setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
 
 ## Tangram-ES
 
