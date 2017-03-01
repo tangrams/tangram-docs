@@ -28,7 +28,7 @@ For a complete setup tutorial, see our [Tangram Walkthrough].
 
 Tangram-ES is the C++ version of Tangram, based on OpenGL ES, designed for mobile and embedded systems. It currently targets five platforms: Android, iOS, Mac OS X, Ubuntu Linux, and Raspberry Pi.
 
-For a complete tutorial for setting up Tangram-ES on Android, see our [Android Walkthrough].
+For a complete tutorial for setting up Tangram-ES on Android, see our [Android Walkthrough](android-walkthrough.md).
 
 ## API keys
 
