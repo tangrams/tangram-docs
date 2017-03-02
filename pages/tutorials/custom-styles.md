@@ -44,7 +44,7 @@ Start with a buildings data layer drawn with a basic `polygons` style:
 
 <div class="play-embed" source="https://precog.mapzen.com/tangrams/tangram-play/master/embed/?go=👌&scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.yaml#17/40.76442/-73.98058"></div>
 
-Add a new style based on the `polygons` style – this one is named "_transparent". Then, add a `blend` mode of `overlay`.
+Add a new style based on the `polygons` style – this one is named "\_transparent". Then, add a `blend` mode of `overlay`.
 
 <div class="play-embed" source="https://precog.mapzen.com/tangrams/tangram-play/master/embed/?go=👌&scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom7.yaml&lines=7-9#17/40.76442/-73.98058"></div>
 
