@@ -23,7 +23,7 @@ Tangram-JS versions are matched to Leaflet versions to ensure ongoing compatabil
 
 The latest release of Tangram-JS may always be referenced at:
 
-https://mapzen.com/tangram/0.8/tangram.min.js
+https://mapzen.com/tangram/tangram.min.js
 
 for the minified version, and 
 
