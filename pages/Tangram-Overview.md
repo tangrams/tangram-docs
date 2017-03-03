@@ -27,7 +27,7 @@ https://mapzen.com/tangram/tangram.min.js
 
 for the minified version, and 
 
-https://mapzen.com/tangram/0.8/tangram.debug.js
+https://mapzen.com/tangram/tangram.debug.js
 
 for the debug version.
 
