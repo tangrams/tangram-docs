@@ -383,7 +383,7 @@ Note that by default, `points` and `text` layers are drawn with the `overlay` _d
 ####`outline`
 Optional element. Defines the start of an outline style block.
 
-Applies to `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
+Applies to `points` and `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
 
 ####`placement`
 Optional _string_, one of `vertex`, `spaced`, `midpoint`, or `centroid`. Default is `vertex`.
