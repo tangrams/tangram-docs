@@ -139,7 +139,7 @@ Tangram will unpack the zip internally, expecting only a single .yaml file to be
 
 ## Getting Started
 
-Check out our [Tangram Setup Guides](Tangram-Setup.md) for more information about getting started with your Tangram installation.
+Check out our [Tangram Setup Guides](../Tangram-Setup.md) for more information about getting started with your Tangram installation.
 
 
 ## Contributing
