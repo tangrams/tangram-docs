@@ -22,7 +22,11 @@ var layer = Tangram.leafletLayer({
 });
 ```
 
-For a complete setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
+For a complete manual setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
+
+### JavaScript Bundling
+
+Tangram-JS may be imported or required as an ES6 module. If in this process the Tangram debug file (`tangram.debug.js`) is renamed, the source map file must also be renamed to match (by adding `.map` to whatever the new file's name is).
 
 ## Tangram-ES
 
