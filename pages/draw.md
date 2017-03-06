@@ -385,6 +385,28 @@ Optional element. Defines the start of an outline style block.
 
 Applies to `points` and `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
 
+```yaml
+draw:
+    lines:
+        order: 1
+        width: 2px
+        color: white
+        outline:
+            width: 1px
+            color: blue
+```
+
+```yaml
+draw:
+    points:
+        width: 10px
+        color: white
+        outline:
+            width: 1px
+            color: blue
+```
+
+
 ####`placement`
 Optional _string_, one of `vertex`, `spaced`, `midpoint`, or `centroid`. Default is `vertex`.
 
