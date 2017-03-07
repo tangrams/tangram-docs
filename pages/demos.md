@@ -2,9 +2,9 @@ Use these links to begin your Tangram journey.
 
 ## Tutorials
 
-[Custom Styles Tutorial](tutorials/custom-styles.md) – learn three ways to create a custom style in Tangram.
+[Custom Styles Tutorial](../tutorials/custom-styles.md) – learn three ways to create a custom style in Tangram.
 
-[Editing Basemaps](tutorials/editing-basemaps.md) – learn how to customize a Mapzen house style.
+[Editing Basemaps](../tutorials/editing-basemaps.md) – learn how to customize a Mapzen house style.
 
 ## Demos
 
