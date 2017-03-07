@@ -1,6 +1,14 @@
-This is a collection of demonstration projects created as examples of Tangram functionality.
+Use these links to begin your Tangram journey.
 
-### Basic Demos
+## Tutorials
+
+[Custom Styles Tutorial](tutorials/custom-styles.md) – learn three ways to create a custom style in Tangram.
+
+[Editing Basemaps](tutorials/editing-basemaps.md) – learn how to customize a Mapzen house style.
+
+## Demos
+
+### Introductory
 
 - [simple-demo](https://github.com/tangrams/simple-demo) - The simplest possible Tangram setup.
 - [generic-demo](https://github.com/tangrams/generic-demo) - A typical generic Tangram setup for inhouse use
@@ -23,3 +31,15 @@ This is a collection of demonstration projects created as examples of Tangram fu
 
 ### Advanced Demos
 - [terrain-demos](https://github.com/tangrams/terrain-demos) - manipulating heightmap data in Tangram
+
+## Third-Party Examples
+
+[New York Times: How North Carolina Voted](https://www.nytimes.com/interactive/2016/11/08/us/elections/north-carolina-presidential-election-precinct-maps.html)
+
+[Reuters: Lead Map](http://reut.rs/2hZEBIS)
+
+[Boston Globe: Snow Map](https://apps.bostonglobe.com/metro/graphics/2016/12/snow-totals/)
+
+[LA Times: breaking news](https://twitter.com/latimes/status/812120574713614336)
+
+[Washington Post: Election Opposites Map](https://www.washingtonpost.com/news/the-fix/wp/2016/11/15/bringing-america-together-find-the-closest-place-that-voted-the-opposite-of-where-you-live/)
