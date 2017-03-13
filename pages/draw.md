@@ -169,6 +169,8 @@ Applies to `points` and `text`.
 
 A point or text draw group marked with `collide: false` will not be checked for any collisions.
 
+_[JS only]_ Only points and text elements from the same datasource will collide with each other.
+
 ```yaml
 poi-icons:
     draw:
@@ -616,6 +618,8 @@ The default text style behavior is adjusted to account for the parent point:
     - Points `collide: false`, text `collide: true`: all points will render, text will render if it fits.
     - Points `collide: true`, text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
     - Both `collide: false`: all points and text should render, regardless of overlap.
+
+_[JS only]_ Only labels from the same datasource will collide with each other.
 
 ####`text_source`
 Optional _string_, _function_, or _array_. Default is `name`.
