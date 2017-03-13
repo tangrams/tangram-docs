@@ -360,7 +360,7 @@ When `optional: true`, the point will draw even if the text label does not fit. 
 Note that attached _text_ will never draw without its _point_.
 
 ####`order`
-Required _integer_ or _function_. No default.
+Required _integer_ or _function_. No default. (Not required for the _overlay_ style.)
 
 Applies to the _polygon_ and _lines_ styles, by default, and to the `points` and `text` styles when the `inlay` _draw style_ is used.
 
@@ -378,7 +378,7 @@ layers:
                     order: 2   # this layer's order is now 2
 ```
 
-Note that by default, `points` and `text` layers are drawn with the `overlay` _draw style_, which relies on collision tests to determine draw order, as determined by a feature's [`priority`](draw.md#priority).
+Note that by default, `points` and `text` layers are drawn with the `overlay` _draw style_, which relies on collision tests to determine draw order, as determined by a feature's [`priority`](draw.md#priority). When the _overlay_ style is used with any _draw style_, _order_ will have no effect and is not required.
 
 ####`outline`
 Optional element. Defines the start of an outline style block.
