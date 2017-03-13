@@ -425,6 +425,8 @@ Optional _integer_ or _function_. Default is the local system's max integer valu
 
 Applies to `points` and `text`. Sets the label priority of the feature. _functions_ must return integers.
 
+_[JS only]_ Only points and text elements from the same datasource will collide with each other, so _priority_ values only apply within a single datasource.
+
 Lower values will have higher priority, e.g. `priority: 1` labels will be drawn before those with `priority: 2`; labels are drawn in a "first-come-first-drawn" method, so earlier labels are more likely to fit in the available space.
 
 For example, to set a `places` labels to have priority over others:
