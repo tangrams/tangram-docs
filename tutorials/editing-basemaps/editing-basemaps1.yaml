@@ -1,7 +1,7 @@
 import: https://mapzen.com/carto/walkabout-style/walkabout-style.yaml
 
 global:
-    # Sign up for a Mapzen API key to enjoy higher rate limits
+    # Sign up for a Mapzen API key to use the Mapzen basemaps
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
     sdk_mapzen_api_key: mapzen-AvWa8DQ     # set this value to your Mapzen API key
 
