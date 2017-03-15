@@ -10,6 +10,7 @@ layers:
         data: { source: mapzen }
         draw:
             lines:
+                order: 0
                 color: gray
                 width: 2px
         major_road:
