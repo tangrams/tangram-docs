@@ -1,6 +1,6 @@
-Use these links to begin your Tangram journey.
+Use these links to begin your Tangram journey and start experimenting. 
 
-### Introductory 
+### Introductory examples
 
 - [simple-demo](https://github.com/tangrams/simple-demo) - The simplest possible Tangram setup.
 - [generic-demo](https://github.com/tangrams/generic-demo) - A typical generic Tangram setup for in-house use
