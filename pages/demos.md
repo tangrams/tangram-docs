@@ -1,17 +1,15 @@
 Use these links to begin your Tangram journey.
 
-## Demos
-
-### Introductory
+### Introductory 
 
 - [simple-demo](https://github.com/tangrams/simple-demo) - The simplest possible Tangram setup.
-- [generic-demo](https://github.com/tangrams/generic-demo) - A typical generic Tangram setup for inhouse use
+- [generic-demo](https://github.com/tangrams/generic-demo) - A typical generic Tangram setup for in-house use
 
 ### Styling
 - [highways-demo](https://github.com/tangrams/highways-demo) - contextual highway styles
 - [raster-baselayer-demo](https://github.com/tangrams/raster-baselayer-demo) - A Tangram map over a raster baselayer
 
-### Data Filtering
+### Data filtering
 - [filters-demo](https://github.com/tangrams/filters-demo) - filtering data with stylesheet filters, geometry filters, and shader filters
 - [road-filters-demo](https://github.com/tangrams/road-filters-demo) - filtering data with the stylesheet
 - [explorer](https://github.com/tangrams/explorer) - exploring our vector datasource
@@ -23,10 +21,10 @@ Use these links to begin your Tangram journey.
 ### Shaders
 - [shaders-demo](https://github.com/tangrams/shaders-demo) - some ways to use GLSL shaders
 
-### Advanced Demos
+### Terrain 
 - [terrain-demos](https://github.com/tangrams/terrain-demos) - manipulating heightmap data in Tangram
 
-## Third-Party Examples
+## Third-party examples
 
 [New York Times: How North Carolina Voted](https://www.nytimes.com/interactive/2016/11/08/us/elections/north-carolina-presidential-election-precinct-maps.html)
 
