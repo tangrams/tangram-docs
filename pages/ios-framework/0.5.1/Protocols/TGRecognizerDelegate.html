@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TGRecognizerDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    <link rel='shortcut icon' href='https://mapzen.com/common/styleguide/images/favicon.ico' type='image/x-icon' />
+
+  </head>
+  <body>
+
+    <a name="//apple_ref/objc/Protocol/TGRecognizerDelegate" class="dashAnchor"></a>
+
+    <a title="TGRecognizerDelegate Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Mapzen Docs
+        </a>
+         (97% documented)
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/tangrams/tangram-es">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Mapzen Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      TGRecognizerDelegate Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGGeoPolygon.html">TGGeoPolygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGGeoPolyline.html">TGGeoPolyline</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGHttpHandler.html">TGHttpHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGLabelPickResult.html">TGLabelPickResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMapData.html">TGMapData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMapViewController.html">TGMapViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMarker.html">TGMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMarkerPickResult.html">TGMarkerPickResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@TangramMapVersionNumber">TangramMapVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@TangramMapVersionString">TangramMapVersionString</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGCameraType.html">TGCameraType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGDebugFlag.html">TGDebugFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGEaseType.html">TGEaseType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGLabelType.html">TGLabelType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TGMapViewDelegate.html">TGMapViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TGRecognizerDelegate.html">TGRecognizerDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Definitions.html#/c:TGHttpHandler.h@T@TGDownloadCompletionHandler">TGDownloadCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Definitions.html#/c:TGMapData.h@T@TGFeatureProperties">TGFeatureProperties</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/c:TGGeoPoint.h@F@TGGeoPointMake">TGGeoPointMake</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TGGeoPoint.html">TGGeoPoint</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>TGRecognizerDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="k">@protocol</span> <span class="nc">TGRecognizerDelegate</span> <span class="o">&lt;</span><span class="n">NSObject</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p>A gesture recognizer delegate that can be implemented to receive gesture events from the map view.
+The map view will first check whether a gestureDelegate is available, then check whether it responds
+to any <code>shouldRecognize*</code> method:</p>
+
+<ul>
+<li><p>If the <code>TGRecognizerDelegate</code> responds to <code>shouldRecognize</code>, the map view calls it before proceeding with
+its default implementation based on the resturn status of <code>shouldRecognize</code>.</p></li>
+<li><p>If the <code>TGRecognizerDelegate</code> doesn&rsquo;t respond to <code>shouldRecognize*</code>, the map view will proceed with
+calling default gesture handling code.</p></li>
+</ul>
+
+<p>Finally, the map view checks whether the <code>TGRecognizerDelegate</code> implements <code>didRecognize*</code> and call this
+method if so.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Those methods are all <strong>optional</strong>.
+All the screen positions in this interface are in <em>logical pixel</em> or <em>drawing coordinate system</em>
+(based on a <code>UIKit</code> coordinate system); which is independent of the phone pixel density. Refer the
+<a href="https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/GraphicsDrawingOverview/GraphicsDrawingOverview.html">Apple documentation</a>
+<em>Coordinate Systems and Drawing in iOS</em> for more informations.
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeSingleTapGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:shouldRecognizeSingleTapGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeSingleTapGesture:">-mapView:recognizer:shouldRecognizeSingleTapGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the map view should handle a single tap gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                         <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">shouldRecognizeSingleTapGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">shouldRecognizeSingleTapGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether the map view should proceed by handling this gesture behavior</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeDoubleTapGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:shouldRecognizeDoubleTapGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeDoubleTapGesture:">-mapView:recognizer:shouldRecognizeDoubleTapGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the map view should handle a double tap gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                         <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">shouldRecognizeDoubleTapGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">shouldRecognizeDoubleTapGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether the map view should proceed by handling this gesture behavior</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeLongPressGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:shouldRecognizeLongPressGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeLongPressGesture:">-mapView:recognizer:shouldRecognizeLongPressGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the map view should handle a long press gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                         <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">shouldRecognizeLongPressGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">shouldRecognizeLongPressGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether the map view should proceed by handling this gesture behavior</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizePanGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:shouldRecognizePanGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizePanGesture:">-mapView:recognizer:shouldRecognizePanGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the map view should handle a pan gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                   <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">shouldRecognizePanGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">displacement</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">shouldRecognizePanGesture</span> <span class="nv">displacement</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>displacement</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel displacement of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether the map view should proceed by handling this gesture behavior</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizePinchGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:shouldRecognizePinchGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizePinchGesture:">-mapView:recognizer:shouldRecognizePinchGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the map view should handle a pinch gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                     <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">shouldRecognizePinchGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">shouldRecognizePinchGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether the map view should proceed by handling this gesture behavior</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeRotationGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:shouldRecognizeRotationGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeRotationGesture:">-mapView:recognizer:shouldRecognizeRotationGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the map view should handle a rotation gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                        <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">shouldRecognizeRotationGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">shouldRecognizeRotationGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether the map view should proceed by handling this gesture behavior</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeShoveGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:shouldRecognizeShoveGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:shouldRecognizeShoveGesture:">-mapView:recognizer:shouldRecognizeShoveGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the map view should handle a shove gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                     <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">shouldRecognizeShoveGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">displacement</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">shouldRecognizeShoveGesture</span> <span class="nv">displacement</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>displacement</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel displacement of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether the map view should proceed by handling this gesture behavior</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeSingleTapGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:didRecognizeSingleTapGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeSingleTapGesture:">-mapView:recognizer:didRecognizeSingleTapGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the map view just handled a single tap gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                      <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">didRecognizeSingleTapGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">didRecognizeSingleTapGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeDoubleTapGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:didRecognizeDoubleTapGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeDoubleTapGesture:">-mapView:recognizer:didRecognizeDoubleTapGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the map view just handled a single double gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                      <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">didRecognizeDoubleTapGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">didRecognizeDoubleTapGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeLongPressGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:didRecognizeLongPressGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeLongPressGesture:">-mapView:recognizer:didRecognizeLongPressGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the map view just handled a long press gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                      <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">didRecognizeLongPressGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">didRecognizeLongPressGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizePanGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:didRecognizePanGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizePanGesture:">-mapView:recognizer:didRecognizePanGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the map view just handled a pan gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">didRecognizePanGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">displacement</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">didRecognizePanGesture</span> <span class="nv">displacement</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>displacement</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel displacement of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizePinchGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:didRecognizePinchGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizePinchGesture:">-mapView:recognizer:didRecognizePinchGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the map view just handled a pinch gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                  <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">didRecognizePinchGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">didRecognizePinchGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeRotationGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:didRecognizeRotationGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeRotationGesture:">-mapView:recognizer:didRecognizeRotationGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the map view just handled a rotation gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                     <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">didRecognizeRotationGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">didRecognizeRotationGesture</span> <span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel location of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeShoveGesture:"></a>
+                    <a name="//apple_ref/objc/Method/-mapView:recognizer:didRecognizeShoveGesture:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)TGRecognizerDelegate(im)mapView:recognizer:didRecognizeShoveGesture:">-mapView:recognizer:didRecognizeShoveGesture:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the map view just handled a shove gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mapView</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+                  <span class="nf">recognizer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">UIGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">recognizer</span>
+    <span class="nf">didRecognizeShoveGesture</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">displacement</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMapViewController.html">TGMapViewController</a></span><span class="p">,</span> <span class="nv">recognizer</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">didRecognizeShoveGesture</span> <span class="nv">displacement</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recognizer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>UIGestureRecognizer</code> associated with the gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>displacement</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the logical pixel displacement of the recognized gesture</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2017 <a class="link" href="https://www.mapzen.com/" target="_blank" rel="external">Mapzen</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
