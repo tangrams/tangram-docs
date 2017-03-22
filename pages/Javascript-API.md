@@ -160,7 +160,7 @@ scene.updateConfig()
 
 Tangram provides a number of event handlers and emitters.
 
-####`error` and `warning`
+#### `error` and `warning`
 The `error` event is fired when an unrecoverable error occurred while processing the scene. The callback is passed an object with `type`, `message` (text error message), `error` (JS error object), and `url` (the URL from which the scene was loaded) properties.
 
 The `warning` event is fired when a recoverable issue occurred while processing the scene. The callback is passed an object with a `type`, which indicates the scope of the issue (e.g. textures, sources, etc.), along with additional type-specific properties.
