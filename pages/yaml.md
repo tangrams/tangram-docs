@@ -49,7 +49,7 @@ In this documentation, we refer to both parameters and elements as "objects".
 
 YAML supports two kinds of syntax when writing nested objects: _block syntax_ and _flow syntax_.
 
-####block syntax
+#### block syntax
 
 _Block syntax_ requires each level of an object to be indented with spaces – any number of spaces or tabs is allowed, as long as it's consistent throughout the file. It is relatively easy to read, though it tends to result in longer files.
 
@@ -96,7 +96,7 @@ element:
         - item 3
 ```
 
-####flow lists
+#### flow lists
 ```yaml
 element: { parameter: [ item1, item2, item3 ] }
 ```
