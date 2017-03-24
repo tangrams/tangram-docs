@@ -51,7 +51,10 @@ layers:
         data: { source: osm }
         enabled: false
 ```
-[This parameter was renamed from `visible`. The `visible` parameter will be supported at the layer level in v0.12, but will be deprecated in a future release.]
+
+Unlike the `draw`-level [`visible`](draw.md#visible) parameter, once set, the `enabled` parameter _cannot_ be overridden by any descendant layers. This is useful for culling large portions of the layer tree, e.g. for layer-toggle controls and/or overlays.
+
+[This parameter was renamed from `visible` to avoid confusion with the `-draw`-level `visible` parameter. Layer-level `visible` parameters will be supported through v0.12, but will be deprecated in a future release.]
 
 ####`draw`
 Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [draw](draw.md) entry.
