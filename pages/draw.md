@@ -704,8 +704,10 @@ poi-icons:
     draw:
         points:
            transition:
-                [show, hide]:
+                show:
                     time: .5s
+                hide:
+                    time: 0.25s
 ```
 
 #### `visible`
