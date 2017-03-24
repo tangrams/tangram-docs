@@ -1,6 +1,6 @@
 *This is the technical documentation for Tangram's `styles` object. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
-####`styles`
+#### `styles`
 The `styles` element is an optional top-level element in the [scene file](Scene-file.md). It takes only one kind of element, a named _style object_.
 
 Styles defined under this element can be referenced by name inside a [draw](draw.md) group with the `style` parameter.
@@ -30,7 +30,7 @@ styles:
 
 ## style parameters
 
-####`base`
+#### `base`
 Optional _string_, naming one of Tangram's built-in _draw styles_: `polygons`, `lines`, `points`, `text`, or `raster`. No default.
 
 Defines the expected input geometry of the custom style, which determines what other kinds of parameters the style can take.
@@ -45,7 +45,7 @@ styles:
 
 For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
 
-####`animated`
+#### `animated`
 Optional _boolean_, `true` or `false`. When `true`, the renderer will attempt to redraw the style every frame.
 ```yaml
 styles:
@@ -54,7 +54,7 @@ styles:
         animated: true
 ```
 
-####`blend`
+#### `blend`
 Optional _string_, one of `opaque`, `add`, `multiply`, `overlay`, or `inlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have a default of `opaque`.
 
 When set, features drawn with this style will be composited into the scene using the method specified, for a transparent effect.
@@ -78,7 +78,7 @@ Styles will be rendered in the following order:
 
 Each group above also now has a final sub-sort by style name, to provide a consistent render order and resolve ambiguities.
 
-####`blend_order`
+#### `blend_order`
 Optional _integer_ greater than or equal to 0. No default.
 
 Controls the order in which styles with non-opaque blending (`add`, `multiply`, `inlay`, `overlay`) are rendered. Styles with a greater `blend_order` value will be drawn on top.
@@ -100,7 +100,7 @@ styles:
 
 For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
 
-####`dash`
+#### `dash`
 Optional _array_ of _numbers_. Defines a dash pattern for use with line textures. No default.
 
 Applies to _lines_ styles.
@@ -152,7 +152,7 @@ layers:
                 color: orange
 ```
 
-####`dash_background_color`
+#### `dash_background_color`
 
 Optional _color_. Sets an opaque background color for lines drawn using the `dash` parameter. Default is transparent.
 
@@ -197,7 +197,7 @@ layers:
     icons: # draw with defaults
 ```
 
-####`lighting`
+#### `lighting`
 Optional _string_, one of `fragment`, `vertex`, or `false`. Sets the lighting type of the style. Default is `fragment`.
 
 - `fragment`: lighting will be calculated once per pixel.
@@ -211,7 +211,7 @@ styles:
         lighting: false
 ```
 
-####`material`
+#### `material`
 Optional parameter. Starts a material definition block. For more on materials, see the [materials technical reference](materials.md).
 
 ```yaml
@@ -222,7 +222,7 @@ styles:
             ...
 ```
 
-####`mix`
+#### `mix`
 Optional _string_ or _list_, naming one or more custom styles. No default.
 
 Copies properties from other custom styles.
@@ -243,7 +243,7 @@ styles:
 
 For more, see the [Styles Overview](Styles-Overview.md#style-composition-with-mix).
 
-####`raster`
+#### `raster`
 Optional _string_, one of `color`, `normal`, or `custom`. Controls interpretation of any attached `Raster` sources. Default is `color`.
 
 The `raster` parameter determines how any `Raster` sources attached with the `rasters` parameter will be interpreted and applied to the geometry, and whether the sources' texture data will be made available to any shaders.
@@ -261,7 +261,7 @@ When a style has `raster: custom`, any shaders defined in the style can directly
 
 For examples, see [Raster Overview#Direct Sampler Access](Raster-Overview.md#Direct-Sampler-Access).
 
-####`shaders`
+#### `shaders`
 Optional _string_. Begins the shaders definition object. For more on materials, see the [shaders technical reference](shaders.md).
 
 ```yaml
@@ -273,7 +273,7 @@ styles:
             ...
 ```
 
-####`texture`
+#### `texture`
 Optional _URL_, _texture object_, or _named texture_ on the "points" _draw style_. No default.
 
 Assigns a _texture_ for use as the color of the point.
@@ -287,7 +287,7 @@ styles:
 
 For more, see [textures#texture](textures.md#texture).
 
-####`texcoords`
+#### `texcoords`
 Optional _boolean_, `true` or `false`. When `true`, the geometry will be assigned texture coordinates, for use with `texture` objects in combination with the `mapping` parameter – for more, see [textures](textures.md). This option only affects `polygons` and `lines` styles. Default is `false`.
 
 ```yaml
@@ -318,19 +318,3 @@ When `texcoords: true` for any lines-based style, the value of `v_texcoord.x` wi
 For example, setting `color.rgb = vec3(fract(v_texcoord.y));` creates a pattern of repeating greyscale gradient squares across the line.
 
 The pattern's aspect ratio can be adjusted by dividing the `v_texcoord.y`, for example `fract(v_texcoord.y / 2.)` creates a pattern that is twice as long as it is wide.
-
-####`url`
-Optional _URL_. Imports a style definition from a URL. The URL should point to a YAML file that includes one or more style definitions, in the same format they appear under the top-level `styles` element in the [scene file](Scene-file.md).
-
-```yaml
-styles:
-    halftone:
-        url: halftone.yaml
-```
-
-In `halftone.yaml`:
-```yaml
-halftone:
-    base: polygons
-    ...
-```

@@ -272,7 +272,7 @@ When a `Raster` source itself has additional raster sources set in the `rasters`
 
 For more, see the [Raster Overview](Raster-Overview.md).
 
-####`transform`
+#### `transform`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _function_.
 
 This allows the data to be manipulated *after* it is loaded but *before* it is styled. Transform functions are useful for custom post-processing, either where you may not have direct control over the source data, or where you have a dynamic manipulation you would like to perform that incorporates other data separate from the source. The `transform` function is passed a `data` object, with a GeoJSON FeatureCollection assigned to each layer name, e.g. `data.buildings` would provide data from the `buildings` layer, with individual features accessible in `data.buildings.features`.

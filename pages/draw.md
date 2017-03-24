@@ -1,6 +1,6 @@
 *This is the technical documentation for Tangram's styling system. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
 
-####`draw`
+#### `draw`
 `draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer-name). It provides one or more *draw groups* for rendering the features that match the _layer_ or _sublayer_ directly above it. These _draw groups_ are the sub-elements of the `draw` element, as in this example:
 ```yaml
 ...
@@ -15,7 +15,7 @@ layers:
 ```
 A `draw` element can specify multiple groups, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once according to the style of `draw_group` and once with that of `another_draw_group`.
 
-####draw group
+#### draw group
 The name of a _draw group_ can be any string. The sub-elements of a _draw group_ are parameters that determine various properties of how a feature will be drawn. These _style parameters_ are described in detail below.
 
 A _draw group_ must specify the _style_ that will be used to draw a feature. It can do this in two ways:
@@ -67,7 +67,7 @@ If the _style_ specified by a _draw group_ is neither a built-in _style_ nor a _
 
 Many style parameters, such as [`color`](#color), are shared among draw styles – others are unique to particular draw styles.
 
-####`align`
+#### `align`
 Optional _string_ or _array of strings_, one of `left`, `center`, `right`. Default is `center`, unless `anchor` is set (see below).
 
 Sets alignment of text for multi-line labels — see [`text_wrap`](draw.md#text_wrap).
@@ -77,7 +77,7 @@ text:
     align: left
 ```
 
-####`anchor`
+#### `anchor`
 Optional _string_, one of `center`, `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, or `bottom-right`. Default is `['bottom', 'top', 'right', 'left']`.
 
 Applies to the `text` and `points` styles. Places the label or point/sprite on the specified side or corner of the feature. When an _array_ us used, each anchor position is tried in the order listed until a placement which does not collide is found.
@@ -111,7 +111,7 @@ text:
     anchor: bottom-left # the label will use `align: right` by default
 ```
 
-####`flat` 
+#### `flat` 
 [[ES-only](https://github.com/tangrams/tangram-es)]
 
 Optional _boolean_. Default is `false`.
@@ -120,14 +120,14 @@ Applies to `points` styles. If marked `true`, points will be drawn flat on the g
 
 This can be used to draw elements such as one-way arrows on streets.
 
-####`angle`
+#### `angle`
 Optional _number_ or _string_ `auto`. Numeric values of the angle are in degrees.
 
 Applies to `points` style. Rotates the point.
 
 When `auto` is specified, angles are computed according to the underlying geometry.
 
-####`buffer`
+#### `buffer`
 [JS-only] Optional _integer_ or _[integer, integer]_, in _px_. No default.
 
 Applies to `points` and `text`. Specifies an optional buffer area that expands the collision bounding box of the feature, to avoid features from being rendered closer together than desired. A single value will be applied to all sides of the feature; a two-element array specifies separate horizontal and vertical buffering values.
@@ -150,7 +150,7 @@ draw:
             ...
 ```
 
-####`cap`
+#### `cap`
 Optional _string_, one of `butt`, `square`, or `round` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `butt`.
 
 Applies to the `lines` style. Sets the shape of the ends of features.
@@ -162,12 +162,14 @@ draw:
         cap: round
 ```
 
-####`collide`
+#### `collide`
 Optional _boolean_. Defaults to `true`.
 
 Applies to `points` and `text`.
 
 A point or text draw group marked with `collide: false` will not be checked for any collisions.
+
+_[JS only]_ Only points and text elements from the same datasource will collide with each other.
 
 ```yaml
 poi-icons:
@@ -176,7 +178,7 @@ poi-icons:
            collide: false
 ```
 
-####`color`
+#### `color`
 
 Required* RGB _[number, number, number]_, RGBA _[number, number, number, number]_, _CSS color_, or _stops_. Can also be a _function_ which returns a color. RGB/RGBA value range is 0-1. No default.
 
@@ -226,7 +228,7 @@ draw:
         color: [1.0, .5, .5, .5] # 50% alpha
 ```
 
-####`extrude`
+#### `extrude`
 Optional _boolean_, _number_, _[min, max]_, or _function_ returning any of the previous values. No default. Units are in meters.
 
 Applies to `polygons` and `lines`. Extrudes features drawn with the `polygons` draw style into 3D space along the z-axis. Raises elements drawn with the `lines` draw style straight up from the ground plane.
@@ -239,12 +241,12 @@ When the value of this parameter is:
 
 Since features drawn as `lines` have no height (e.g. they are flat 2D objects), they do not use the `min_height` values. They are simply raised to the specified `height`.
 
-####`font`
+#### `font`
 Required element for the `text` style. Defines the start of a font style block. (See [font-parameters](draw.md#font-parameters).)
 
 Applies only to the `text` style.
 
-####`interactive`
+#### `interactive`
 Optional _boolean_ or _function_ returning `true` or `false`. Default is `false`.
 
 Applies to all _draw styles_. When `true`, activates _Feature Selection_, allowing this drawing of the feature to be queried via the [JavaScript API](Javascript-API.md) (see [getFeatureAt](Javascript-API.md#getfeatureatpixel).)
@@ -257,7 +259,7 @@ draw:
         interactive: true
 ```
 
-####`join`
+#### `join`
 Optional _string_, one of `bevel`, `round`, or `miter` following the [SVG protocol](http://www.w3.org/TR/SVG/painting.html#StrokeLinecapProperty). Default is `miter`.
 
 Applies to `lines`. Sets the shape of joints in multi-segment lines.
@@ -269,7 +271,7 @@ draw:
         join: round
 ```
 
-####`max_lines`
+#### `max_lines`
 Optional _integer_. No default.
 
 Applies to the `text` style. When the `text_wrap: true` parameter is present, `max_lines` sets the maximum number of lines that a text label is allowed to occupy. If a label would wrap onto more lines, the label is truncated with a `…` character at the end of the last visible word.
@@ -282,7 +284,7 @@ draw:
          max_lines: 2
 ```
 
-####`miter_limit`
+#### `miter_limit`
 Optional _integer_. Default is 3.
 
 Applies to `lines` with a `join` parameter set to "miter". When the length of a miter join is longer than the ratio of the `miter_limit` to the width of the line, that join is converted from a "miter" to a "bevel". This prevents excessively "spiky" corners on sharply curved lines.
@@ -297,14 +299,14 @@ draw:
       miter_limit: 2
 ```
 
-####`move_into_tile`
+#### `move_into_tile`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _boolean_. Default is _true_.
 
 Applies to `text` styles. Moves the label into the tile if the label would otherwise cross a tile boundary.
 
 Note that this parameter is not available for `points` styles, nor for text labels attached to points.
 
-####`offset`
+#### `offset`
 Optional _[float x, float y]_ _array_ or _stops_, in `px`. No default.
 
 Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen.
@@ -350,7 +352,7 @@ roads:
             offset: [[13, [0, 6px]], [15, [0, 9px]]]
 ```
 
-####`optional`
+#### `optional`
 Optional _boolean_. Default is `false`.
 
 Applies to _text_ blocks under _point_ styles.
@@ -359,7 +361,7 @@ When `optional: true`, the point will draw even if the text label does not fit. 
 
 Note that attached _text_ will never draw without its _point_.
 
-####`order`
+#### `order`
 Required _integer_ or _function_. No default. (Not required for the _overlay_ style.)
 
 Applies to the _polygon_ and _lines_ styles, by default, and to the `points` and `text` styles when the `inlay` _draw style_ is used.
@@ -380,7 +382,7 @@ layers:
 
 Note that by default, `points` and `text` layers are drawn with the `overlay` _draw style_, which relies on collision tests to determine draw order, as determined by a feature's [`priority`](draw.md#priority). When the _overlay_ style is used with any _draw style_, _order_ will have no effect and is not required.
 
-####`outline`
+#### `outline`
 Optional element. Defines the start of an outline style block.
 
 Applies to `points` and `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
@@ -408,7 +410,7 @@ draw:
 
 Note that outlines on a `points` style will be ignored if it being drawn with a texture or sprite.
 
-####`placement`
+#### `placement`
 Optional _string_, one of `vertex`, `spaced`, `midpoint`, or `centroid`. Default is `vertex`.
 
 Applies to `points` styles. Defines the placement method of one or more points, when a `points`-based style is used to draw line or polygon features. 
@@ -424,7 +426,7 @@ draw:
         placement: centroid
 ```
 
-####`placement_min_length_ratio`
+#### `placement_min_length_ratio`
 Optional _number_, _stops_, or _function_. Default is `1`. No units.
 
 Applies to `points` styles used to draw line or polygon features, when the `placement` parameter is set to `spaced` or `midpoint`. Specifies the minimum line segment length as a ratio to the size (greater of width or height) of the point being placed. This prevents points from being drawn on line segments which are smaller than the point itself (for example, a road shield bigger than the road it is labeling).
@@ -436,15 +438,17 @@ Examples:
 - `placement_min_length_ratio: 2` requires the line segment to be at least twice as long as the point
 - `placement_min_length_ratio: 0.5` requires the line segment to be only 50% as long as the point
 
-####`placement_spacing`
+#### `placement_spacing`
 Optional _integer_, _stops_, or _function_. Units are `px`. Default is `80px`.
 
 Applies to `points` styles, when `placement: spaced` is defined. 
 
-####`priority`
+#### `priority`
 Optional _integer_ or _function_. Default is the local system's max integer value.
 
 Applies to `points` and `text`. Sets the label priority of the feature. _functions_ must return integers.
+
+_[JS only]_ Only points and text elements from the same datasource will collide with each other, so _priority_ values only apply within a single datasource.
 
 Lower values will have higher priority, e.g. `priority: 1` labels will be drawn before those with `priority: 2`; labels are drawn in a "first-come-first-drawn" method, so earlier labels are more likely to fit in the available space.
 
@@ -462,7 +466,7 @@ draw:
         priority: function() { return Math.min(10 - Math.floor(feature.area / 1000), 10); }
 ```
 
-####`repeat_distance`
+#### `repeat_distance`
 Optional _number_, in `px`. Default is `256px`.
 
 Applies to `text`. Specifies minimum distance between labels in the same `repeat_group`, measuring from the center of each label. Only applies per tile – labels may still be drawn closer than the `repeat_distance` across a tile boundary.
@@ -481,7 +485,7 @@ draw:
       ...
 ```
 
-####`repeat_group`
+#### `repeat_group`
 Optional _string_. No default.
 
 Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set `draw` layer and label text belong to the same `repeat_group`.
@@ -522,7 +526,7 @@ roads:
             ...
 ```
 
-####`size`
+#### `size`
 Optional _number_ in `px`, _[x, y]_ in `px`, or _stops_ having either 1D or 2D values. Mixed 1D and
 2D stop values are not allowed. Default is `32px`.
 
@@ -542,7 +546,7 @@ draw:
         sprite: highway
 ```
 
-####`sprite`
+#### `sprite`
 Optional _string_, one of any named `sprites` in the style's `texture` element, or a _function_ returning such a string.
 
 Applies to `points`. Sets the `sprite` to be used when drawing a feature.
@@ -563,7 +567,7 @@ draw:
 
 Note that if any `sprites` are defined for a texture, a `sprite` must be declared for any _points_ drawn with that texture, or nothing will be drawn.
 
-####`sprite_default`
+#### `sprite_default`
 Optional _string_. Sets a default sprite for cases when the matching function fails.
 
 Applies to `points`.
@@ -576,7 +580,7 @@ poi-icons:
             sprite_default: generic
 ```
 
-####`style`
+#### `style`
 Optional _string_, naming a style defined in the [`styles`](styles.md) block.
 
 Applies to all _draw groups_.
@@ -590,7 +594,7 @@ draw:
     ...
 ```
 
-####`text`
+#### `text`
 Optional _block_. Declares the beginning of a `text` block of a `points` style.
 
 Applies to _points_ styles only. (For the `text` _draw style_, see the [Styles Overview](Styles-Overview.md#text-1).)
@@ -640,7 +644,7 @@ The default text style behavior is adjusted to account for the parent point:
     - Points `collide: true`, text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
     - Both `collide: false`: all points and text should render, regardless of overlap.
 
-####`text_source`
+#### `text_source`
 Optional _string_, _function_, _array_, or _mapping_. Default is `name`.
 
 Applies to `text`. Defines the source of the label text.
@@ -698,7 +702,7 @@ draw:
 
 Separate left and right-side labels are then placed along the line, with each label automatically offset by the height of the text. If an `offset` parameter is specified, it will be applied in addition to this automatic offset, with the Y value pushing each label in an opposite direction, away from the line.
 
-####`text_wrap`
+#### `text_wrap`
 Optional _boolean_ or _int_, in characters. Default is 15.
 
 Enables text wrapping for labels. Wrapping is enabled by default for point labels, and disabled for line labels.
@@ -712,7 +716,7 @@ text:
     text_wrap: false # disables wrapping.
 ```
 
-####`tile_edges`
+#### `tile_edges`
 Optional _boolean_, one of `true` or `false`. Default is `false`.
 
 Applies to `lines`. Enables the drawing of borders on the edges of tiles. Usually not desirable visually, but useful for debugging.
@@ -724,7 +728,7 @@ draw:
             tile_edges: true
 ```
 
-####`transition`
+#### `transition`
 [[ES-only](https://github.com/tangrams/tangram-es)] Optional _map_ , where key is one or both of `hide` and `show` and value is a _map_ of `time` to time. `time` values can be either in seconds (`s`) or milliseconds (`ms`).
 
 Applies to `points` and `text`. Sets the transition time from `hide` to `show`.
@@ -740,7 +744,7 @@ poi-icons:
                     time: .5s
 ```
 
-####`visible`
+#### `visible`
 Optional _boolean_. Default is `true`.
 
 If `false`, features will not be drawn.
@@ -774,7 +778,7 @@ draw:
             visible: false
 ```
 
-####`width`
+#### `width`
 Required _number_, _stops_, or _function_. No default. Units are meters `m` or pixels `px`. Default units are `m`. A _function_ must return a unitless _number_ in mercator meters.
 
 Applies to `lines`. Sets the width of a feature.
@@ -803,7 +807,7 @@ draw:
         width: function() { return $zoom / 4 * $meters_per_pixel; }
 ```
 
-####`z`
+#### `z`
 Optional _number_. No default. Units are meters `m` or pixels `px`. Default units are `m`.
 
 Applies to `polygons` and `lines`. Sets the z-offset of a feature.
@@ -831,12 +835,12 @@ draw:
             transform: uppercase
 ```
 
-####`family`
+#### `family`
 Optional _string_, naming a typeface. Sets the font-family of the label. Default is `Helvetica`.
 
 `family` can be any typeface available to the operating system. The default will be used as a fallback if the other specified families are not available.
 
-####`fill`
+#### `fill`
 Optional _color_ or _stops_. Follows the specs of [color](draw.md#color). Default is `white`.
 
 Sets the fill color of the label.
@@ -850,7 +854,7 @@ font:
     fill: [[14, white], [18, gray]]
 ```
 
-####`size`
+#### `size`
 Optional _number_ or _stops_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
 
 ```yaml
@@ -865,7 +869,7 @@ font:
     size: [[14, 12px], [16, 16px], [20, 24px]]
 ```
 
-####`stroke`
+#### `stroke`
 Optional _{color, width}_ or _stops_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
 
 Sets the stroke color and width of the label. Width is interpreted as pixels.
@@ -881,15 +885,15 @@ font:
         width: [[14, 2px], [18, 6px]]    # increase stroke width at high zoom
 ```
 
-####`style`
+#### `style`
 Optional _string_, specifying a font style. No default.
 
 Currently supports only `italic`.
 
-####`transform`
+#### `transform`
 Optional _string_, one of `capitalize`, `uppercase`, or `lowercase`. Sets a text transform style. No default.
 
 `capitalize` will make the first letter in each word uppercase. `uppercase` and `lowercase` will change all letters to be uppercase and lowercase, respectively.
 
-####`weight`
+#### `weight`
 Optional _string_ or _number_. Strings may be one of `lighter`, `normal`, `bold`, or `bolder`; integers may be any CSS-style font weight from `100`-`900`. Default is `normal`.

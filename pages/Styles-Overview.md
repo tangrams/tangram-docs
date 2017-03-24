@@ -15,12 +15,16 @@ The `lines` _draw style_ can turn either polygonal or line data into lines. See 
 #### `points`
 The `points` _draw style_ draws a filled circle at the location of the data point. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
+_[JS only]_ Only points from the same datasource will collide with each other.
+
 Technically, this draw style creates a small quad, which is then colored with a default shader which draws a dot. This behavior can be overridden with either a custom shader or a texture.
 
 See [`points`](#points_1).
 
 #### `text`
 The `text` _draw style_ draws text labels at a given point. It can work with point, line, or polygon data. When used with lines, the label will be drawn along the line. When used with polygons, the label will be drawn at the polygon's centroid. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+
+_[JS only]_ Only text elements from the same datasource will collide with each other.
 
 See [`text`](#text_1).
  
@@ -118,6 +122,8 @@ The `points` draw style is used to draw dots or sprites at points of interest. I
 If the point is used to draw a dot, the size and color of this circle can be specified in the scene file with the `size` and `color` parameters.
 
 `points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the [`priority`](draw.md#priority) draw parameter.
+
+_[JS only]_ Only points and text elements from the same datasource will collide with each other.
 
 #### `points` draw group requirements
 [Draw groups](draw.md#draw-group) which use the `points` draw style must specify, at minimum, the following parameters in order to be drawn:

@@ -18,7 +18,7 @@ Tangram's lighting model is based on the [Blinn-Phong shading model](https://en.
 ![](images/amb-dif-spe.png)
 
 
-##Materials
+## Materials
 
 The way lights affect the appearance of an object also depends on the object's ***material***.
 
@@ -42,7 +42,7 @@ Object materials define the colors of objects, per shading component. So, a red 
 
 In the Blinn-Phong model, the separate light components are also additive. Importantly, a single material can define all three properties, and they can all interact together.
 
-####Example: colored light components
+#### Example: colored light components
 
 Let's analyze the following example of a pure white material lit with green diffuse, blue specular, and red ambient light:
 
@@ -103,7 +103,7 @@ lights:
 
 Point lights act like a light bulb in a scene, casting rays in all directions from a central point, which is positioned in conjunction with the `origin` property.
 
-####origin
+#### origin
 Origin can be specified as relative to three different spaces: *world*, *camera*, and *ground*: (try each demo to see the difference):
 
 - In *world space*, the light position is relative to a point on the map:
@@ -142,11 +142,11 @@ Origin can be specified as relative to three different spaces: *world*, *camera*
     ```
 [ ![](images/lights-pointlight-02.jpg) ](http://tangrams.github.io/tangram-docs/?lights/pointlight-02.yaml)
 
-###Other light parameters
+### Other light parameters
 
 Optionally, you can limit the effect of a point light or spotlight with the *radius* and *attenuation* parameters. By default, lights have no set radius or attenuation.
 
-####radius
+#### radius
 
 A light radius defines the limit of the light's effect. It can be specified in one of two ways:
 
