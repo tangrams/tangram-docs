@@ -26,7 +26,7 @@ For a complete manual setup tutorial, see our [Tangram Walkthrough](walkthrough.
 
 ### JavaScript Bundling
 
-Tangram-JS may be imported or required as a module in ES6, CommonJS, or AMD (Asynchronous Module Definition). If in this process the Tangram debug file (`tangram.debug.js`) is renamed, the source map file must also be renamed to match (by adding `.map` to whatever the new file's name is).
+Tangram-JS may be imported or required as a module in ES6, CommonJS, or AMD (Asynchronous Module Definition).
 
 ## Tangram-ES
 
