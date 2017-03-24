@@ -641,7 +641,7 @@ The default text style behavior is adjusted to account for the parent point:
     - Both `collide: false`: all points and text should render, regardless of overlap.
 
 ####`text_source`
-Optional _string_, _function_, or _array_. Default is `name`.
+Optional _string_, _function_, _array_, or _mapping_. Default is `name`.
 
 Applies to `text`. Defines the source of the label text.
 
@@ -682,6 +682,21 @@ draw:
 ```
 
 The above example will display an English label (name:en) when available, and will fall back to the default local name when not available.
+
+When the value is a _mapping_, it can define two optional subparameters: `left` and `right`. Each of these values is evaluated as a single `text_source` value (as a string, array, or function).
+
+For example:
+
+```yaml
+draw:
+    text:
+        ...
+        text_source:
+            left: 'name:left'    # feature property name for left-side labels
+            right: 'name:right'  # feature property name for right-side labels
+```
+
+Separate left and right-side labels are then placed along the line, with each label automatically offset by the height of the text. If an `offset` parameter is specified, it will be applied in addition to this automatic offset, with the Y value pushing each label in an opposite direction, away from the line.
 
 ####`text_wrap`
 Optional _boolean_ or _int_, in characters. Default is 15.
