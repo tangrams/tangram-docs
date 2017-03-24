@@ -166,7 +166,7 @@ styles:
 
 See [`dash`](styles.md#dash).
 
-####`draw`
+#### `draw`
 Optional `draw` _block_, specifying [`draw`](draw.md) parameter defaults. These defaults will be applied to any `draw` group using the parent `style`, and may be overridden or supplemented as normal.
 
 This example sets a default `size` for icons:
