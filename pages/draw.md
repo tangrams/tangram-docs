@@ -406,6 +406,7 @@ draw:
             color: blue
 ```
 
+Note that outlines on a `points` style will be ignored if it being drawn with a texture or sprite.
 
 ####`placement`
 Optional _string_, one of `vertex`, `spaced`, `midpoint`, or `centroid`. Default is `vertex`.
