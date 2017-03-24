@@ -43,7 +43,7 @@ Tangram-ES releases are tagged according to their target platform.
 
 [See the latest Tangram-ES releases here.](https://github.com/tangrams/tangram-es/releases)
 
-<div class="alert">Note that the documentation always refers to the latest release of Tangram – reverse compatibility of scene file syntax is not guaranteed.</div>
+Note: the documentation always refers to the latest release of Tangram – reverse compatibility of scene file syntax is not guaranteed.
 
 ## Leaflet
 

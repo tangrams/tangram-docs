@@ -102,7 +102,7 @@ https://tile.mapzen.com/mapzen/vector/v1/buildings/{z}/{x}/{y}.topojson
 ```
 
 ##### curly braces
-When tiles are requested, Tangram will parse the datasource url and interpret items in curly braces according to the convention used by Leaflet and others.
+When tiles are requested, Tangram will parse the datasource url and interpret items in curly braces according to conventions used by Leaflet and others. Tangram currently supports `{x}` `{y}` for tile coordinates and `{z}` for zoom level, as well as `{s}` for subdomain when paired with the [`url_subdomains`](#url_subdomains) parameter.
 
 ```yaml
 mapzen:
@@ -113,6 +113,24 @@ mapzen:
 In the example above, Tangram will automatically replace `{x}`, `{y}`, and `{z}` with the correct tile coordinates and zoom level for each tile, depending on which tiles are visible in the current scene, and the result will be something like:
 
 `https://tile.mapzen.com/mapzen/vector/v1/all/16/19296/24640.topojson`
+
+#### url_subdomains
+
+If an `{s}` parameter is used in a url, the `url_subdomains` parameter should define an array specifying the subdomains to be used in tile requests:
+
+```yaml
+sources:
+    source-name:
+        type: MVT
+        url: https://{s}.some-tile-server.com/{z}/{y}/{x}.mvt
+        url_subdomains: [a, b, c]
+```
+
+This example would cause the following hosts to be used for tile requests:
+
+https://a.some-tile-server.com/{z}/{y}/{x}.mvt
+https://b.some-tile-server.com/{z}/{y}/{x}.mvt
+https://c.some-tile-server.com/{z}/{y}/{x}.mvt
 
 ##### access tokens
 The `url` may require an access token:

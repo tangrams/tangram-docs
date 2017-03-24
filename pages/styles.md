@@ -166,6 +166,37 @@ styles:
 
 See [`dash`](styles.md#dash).
 
+#### `draw`
+Optional `draw` _block_, specifying [`draw`](draw.md) parameter defaults. These defaults will be applied to any `draw` group using the parent `style`, and may be overridden or supplemented as normal.
+
+This example sets a default `size` for icons:
+
+```
+styles:
+  # setting up style with default draw size
+  icons:
+    base: points
+    texture: icons
+    draw:
+      size: 16px # default size
+
+layers:
+  ...
+  draw:
+    # drawing style with default size, plus setting sprite
+    icons:
+      sprite: coffee
+```
+
+It's possible to specify all needed draw parameters in this way, though a `draw` group specifying the style must still be specified in the `layers` block. In this case, it is enough to specify an empty draw group:
+
+```
+layers:
+  ...
+  draw:
+    icons: # draw with defaults
+```
+
 #### `lighting`
 Optional _string_, one of `fragment`, `vertex`, or `false`. Sets the lighting type of the style. Default is `fragment`.
 

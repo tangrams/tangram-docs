@@ -2,7 +2,7 @@
 
 The easiest way to use Tangram in a web page is via [Mapzen.js](https://mapzen.com/documentation/mapzen-js/), which is Mapzen's JavaScript SDK. Mapzen.js combines web support for a variety of Mapzen services, including Tangram, [Mapzen Search](https://mapzen.com/products/search/), and the [Mapzen Basemap Styles](https://mapzen.com/documentation/cartography/styles/).
 
-## Manual JavaScript Setup
+## Script Tag Setup
 
 Tangram-JS is a JavaScript library designed for use in [Leaflet](http://leaflet.org) maps.
 
@@ -22,7 +22,11 @@ var layer = Tangram.leafletLayer({
 });
 ```
 
-For a complete setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
+For a complete manual setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
+
+### JavaScript Bundling
+
+Tangram-JS may be imported or required as a module in ES6, CommonJS, or AMD (Asynchronous Module Definition).
 
 ## Tangram-ES
 
