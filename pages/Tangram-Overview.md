@@ -104,6 +104,18 @@ var layer = Tangram.leafletLayer({
 });
 ```
 
+#### webGLContextOptions
+Using this option, WebGL context options may be explicitly added or overridden.
+
+```javascript
+var layer = Tangram.leafletLayer({
+    scene: ...,
+    webGLContextOptions: {
+      preserveDrawingBuffer: true,
+      antialias: false
+    }
+  });
+```  
 ### Multiple Maps
 
 Due to architectural limitations, there can be only one Tangram map per "browsing context". This means there can be only one embedded Tangram map on a web page, and one Tangram layer per Leaflet map, although Tangram may be composited with other kinds of Leaflet layers.
