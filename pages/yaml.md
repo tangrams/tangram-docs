@@ -45,6 +45,13 @@ This is because the value of "parameter1" can't be both "value1" and an object c
 
 In this documentation, we refer to both parameters and elements as "objects".
 
+Note: YAML key names can't start with a number.
+
+```yaml
+sources:
+    1860: # THIS WON'T WORK
+````
+
 ## object syntax
 
 YAML supports two kinds of syntax when writing nested objects: _block syntax_ and _flow syntax_.
