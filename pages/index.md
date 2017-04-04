@@ -22,6 +22,8 @@ The **Syntax Reference** section of the documentation enumerates and describes t
 
 Specific documentation about implementing Tangram on various platforms is available in the **API documentation**. The scene file syntax is platform-independent, and should function the same way everywhere – any exceptions are marked.
 
+Note: the documentation always refers to the latest release of Tangram – reverse compatibility of scene file syntax is not guaranteed.
+
 ### Demos and Examples
 
 A variety of example maps are available at our documentation's [Demos and Examples](https://mapzen.com/documentation/tangram/Demos/) page. Tangram is free and open source, and is available for both commercial and non-commercial purposes. The [source code](https://github.com/tangrams) is open to view and modify, and contributions are welcomed.  
