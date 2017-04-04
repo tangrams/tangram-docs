@@ -22,7 +22,7 @@ The **Syntax Reference** section of the documentation enumerates and describes t
 
 Specific documentation about implementing Tangram on various platforms is available in the **API documentation**. The scene file syntax is platform-independent, and should function the same way everywhere – any exceptions are marked.
 
-Note: the documentation always refers to the latest release of Tangram – reverse compatibility of scene file syntax is not guaranteed.
+Note: the documentation always refers to the [latest release of Tangram](https://github.com/tangrams/tangram/releases) – reverse compatibility of scene file syntax is not guaranteed.
 
 ### Demos and Examples
 
