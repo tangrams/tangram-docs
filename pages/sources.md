@@ -168,6 +168,17 @@ These scripts will be loaded before the data is processed so that they are avail
 scripts: [ 'https://url.com/js/script.js', 'local_script.js']
 ```
 
+#### `tms`
+Setting `tms: true` on the source will enable support for the TMS tile coordinate protocol.
+
+```yaml
+sources:
+    mapzen:    
+        type: TopoJSON
+        url: http://demo.opengeo.org/geoserver/gwc/service/tms/ 1.0.0/ne:ne@EPSG:900913@png/{z}/{x}/{y}.png
+        tms: true
+```
+
 #### `extra_data`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _YAML_, defining custom data to be used in post-processing.
 
