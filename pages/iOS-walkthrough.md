@@ -97,6 +97,5 @@ class ViewController: TGMapViewController {
 ### Next steps
 In this guide, you learned how to add a Tangram map to your iOS application. Now you can:
 
-- Learn how to write or edit a Tangram [scene file](https://mapzen.com/documentation/tangram/Scene-file/),
-- See [more examples](https://github.com/tangrams/tangram-android-demos) of things your application can do with the map, or
+- Learn how to write or edit a Tangram [scene file](https://mapzen.com/documentation/tangram/Scene-file/) or,
 - Look at the [reference documentation](https://mapzen.com/documentation/tangram/ios-framework/0.6.0/) for the Tangram iOS framework.
