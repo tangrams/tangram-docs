@@ -45,6 +45,8 @@ If you are not using CocoaPods, you can download the latest version of the frame
 
 ![](images/XCode-Codesign.png)
 
+>If you are using CocoaPods, make sure to open your `xcworkspace` project (not `xcodeproj`).
+
 2. **Create a basic `ViewController` that inherits from `TGMapViewController`**.
 
 ```swift
@@ -65,7 +67,7 @@ class ViewController: TGMapViewController {
 
 `TGMapViewController` description can be found on the [iOS framework documentation](https://mapzen.com/documentation/tangram/ios-framework/0.6.0/).
 
-3. **Add a GLKit View to your storyboard**.
+3. **Add a GLKit View to your storyboard**. Make sure to select the storyboard you want the map to be rendered on, then add the `GLKit View` that Tangram will use to perform rendering.
 
 ![](images/XCode-GLKView.png)
 
