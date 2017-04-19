@@ -283,6 +283,19 @@ When a `Raster` source itself has additional raster sources set in the `rasters`
 
 For more, see the [Raster Overview](Raster-Overview.md).
 
+#### `tile_size`
+Optional _integer_. Default is `256`. Default units are `px`.
+
+Must be a power of `2` greater than or equal to `256`. Allows tile sizes larger than the default.
+
+```yaml
+sources:
+    mapzen:
+        type: ...
+        url: ...
+        tile_size: 512px
+```
+
 #### `transform`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _function_.
 
