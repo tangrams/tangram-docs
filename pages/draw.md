@@ -622,6 +622,13 @@ The default text style behavior is adjusted to account for the parent point:
   - The point and text can have separate `anchor` values:
     - The `anchor` of the `text` controls the text's placement *relative to the size and position* of its parent point.
     - The `anchor` of the `points` portion moves the *entire entity* (point + text) relative to the underlying geometry point.
+- **Collision**:
+  - The point is required, but its text is optional: while the `points` portion of the style will render according to its collision test, the `text` portion will only render if **both** it and its parent point passed collision tests, e.g. if the point is occluded, then the text won't render either, even if it is not occluded.
+  - Different collision behaviors can be achieved by setting the `collide: false` flag on either or both of the point and text:
+    - Both `collide: true` (default): nothing will overlap, text will only be rendered if point also fits.
+    - Points `collide: false`, text `collide: true`: all points will render, text will render if it fits.
+    - Points `collide: true`, text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
+    - Both `collide: false`: all points and text should render, regardless of overlap.
 - **Offset**:
   - Text is automatically offset to account for its anchor relative to its parent point (see description above).
   - Further manual offset is possible with the `offset` parameter, which moves the text in screen space, e.g. text with `anchor: bottom` will automatically be placed below the sprite, and an additional `offset: [8px, 0]` in the scene file would move the text another 8 pixels to the right.
@@ -636,13 +643,6 @@ The default text style behavior is adjusted to account for the parent point:
             text:
                ...
     ```
-- **Collision**:
-  - The point is required, but its text is optional: while the `points` portion of the style will render according to its collision test, the `text` portion will only render if **both** it and its parent point passed collision tests, e.g. if the point is occluded, then the text won't render either, even if it is not occluded.
-  - Different collision behaviors can be achieved by setting the `collide: false` flag on either or both of the point and text:
-    - Both `collide: true` (default): nothing will overlap, text will only be rendered if point also fits.
-    - Points `collide: false`, text `collide: true`: all points will render, text will render if it fits.
-    - Points `collide: true`, text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
-    - Both `collide: false`: all points and text should render, regardless of overlap.
 
 #### `text_source`
 Optional _string_, _function_, _array_, or _mapping_. Default is `name`.
