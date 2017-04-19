@@ -30,7 +30,7 @@ This will open up XCode, you can then build and run the sample project.
 Using the recommended way of using the framework with CocoaPods, adding the Tangram Pod to your app is as simple as adding the following to your `Podfile`:
 
 ```sh
-pod 'Tangram-es', '~> 0.6.0'
+pod 'Tangram-es', '~> 0.6.1'
 ```
 
 Then run from your shell:
@@ -65,7 +65,7 @@ class ViewController: TGMapViewController {
 }
 ```
 
-`TGMapViewController` description can be found on the [iOS framework documentation](https://mapzen.com/documentation/tangram/ios-framework/0.6.0/).
+`TGMapViewController` description can be found on the [iOS framework documentation](https://mapzen.com/documentation/tangram/ios-framework/0.6.1/).
 
 3. **Add a GLKit View to your storyboard**. Make sure to select the storyboard you want the map to be rendered on, then add the `GLKit View` that Tangram will use to perform rendering.
 
@@ -98,4 +98,4 @@ class ViewController: TGMapViewController {
 In this guide, you learned how to add a Tangram map to your iOS application. Now you can:
 
 - Learn how to write or edit a Tangram [scene file](https://mapzen.com/documentation/tangram/Scene-file/) or,
-- Look at the [reference documentation](https://mapzen.com/documentation/tangram/ios-framework/0.6.0/) for the Tangram iOS framework.
+- Look at the [reference documentation](https://mapzen.com/documentation/tangram/ios-framework/0.6.1/) for the Tangram iOS framework.
