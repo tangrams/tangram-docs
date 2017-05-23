@@ -50,7 +50,7 @@ Note: YAML key names can't start with a number.
 ```yaml
 sources:
     1860: # THIS WON'T WORK
-````
+```
 
 ## object syntax
 
