@@ -146,16 +146,14 @@ After you specify the source, you need to list the layers from that source that 
 You specify how the display the features in the layers in the `draw:` block. There, you can enter basic information about colors and symbol sizes, as well as use more complex drawing techniques. For example, you can define shading or animations, enter code blocks, or reference other `.yaml` files. You can also specify the drawing order of layers to put certain layers on top of others. For example, in `scene.yaml`, the earth polygon layer, which represents landmasses, has an order of 0, meaning it will be underneath all other layers. Layers with order values of greater numbers are drawn on top of those with smaller numbers.
 
 1. In `scene.yaml`, review the items under `layers:` to see which layers and feature types (`kind:`) are displayed in the map, and review the `draw:` block under each layer.
-2. Under `water:`, change the `color:` value to `'#003366'`. Be sure to enclose the value in single quotation marks. Your `water:` block should look like this.
-```
-[...]
+2. Under `water:`, change the `color:` value to `'#003366'`. Be sure to enclose the value in quotation marks. Your `water:` block should look like this.
+```yaml
 water:
   data: { source: mapzen }
     draw:
       polygons:
         order: 2
         color: '#003366'
-[...]
 ```
 3. Save `scene.yaml` and refresh the browser to see the updates.
 
