@@ -117,19 +117,19 @@ The updated map looks washed out and the new spot light is barely visible, so yo
 2. Change `ambient:` to `.3`. Your `lights:` section should look like this:
 ```
 lights:
-  		light1:
-      		type: directional
-      		direction: [0, 1, -.5]
-      		diffuse: .1
-      		ambient: .3
-  		light2:
-      		visible: true
-      		type: point
-      		position: [-74.0170, 40.7031, 100]
-      		origin: world
-      		ambient: .3
-      		diffuse: 1
-      		specular: .2
+	light1:
+    type: directional
+    direction: [0, 1, -.5]
+    diffuse: .1
+    ambient: .3
+  light2:
+    visible: true
+    type: point
+    position: [-74.0170, 40.7031, 100]
+    origin: world
+    ambient: .3
+    diffuse: 1
+    specular: .2
 ```
 3. Save `scene.yaml` and refresh the map.
 
@@ -213,7 +213,7 @@ Optionally, go back to the README file and update it on the gh-pages branch to d
 
 ### Put a Tangram map into production
 
-This map uses Mapzen's vector tile service for the data. If you want to put this map into production beyond the purposes of this tutorial, you'll need to [sign up for a Mapzen account key](https://mapzen.com/documentation/overview/account-settings/#sign-up-for-a-mapzen-account) and substitute your own API key for the one provided in the demo. Follow these steps to learn how to change the API key.
+This map uses Mapzen's vector tile service for the data. If you want to put this map into production beyond the purposes of this tutorial, you'll need to [sign up for a Mapzen account](https://mapzen.com/documentation/overview/account-settings/#sign-up-for-a-mapzen-account) and substitute your own API key for the one provided in the demo. Follow these steps to learn how to change the API key.
 
 1. Sign in at https://mapzen.com and [create a new API key](https://mapzen.com/documentation/overview/api-keys/#create-an-api-key).
 2. Optionally, set a name for the project, such as My Tangram Map.
