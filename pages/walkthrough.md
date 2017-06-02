@@ -117,7 +117,7 @@ The updated map looks washed out and the new spot light is barely visible, so yo
 2. Change `ambient:` to `.3`. Your `lights:` section should look like this:
 ```
 lights:
-	light1:
+  light1:
     type: directional
     direction: [0, 1, -.5]
     diffuse: .1
@@ -150,11 +150,11 @@ You specify how the display the features in the layers in the `draw:` block. The
 ```
 [...]
 water:
-		data: { source: mapzen }
-		draw:
-				polygons:
-						order: 2
-						color: '#003366'
+  data: { source: mapzen }
+    draw:
+      polygons:
+        order: 2
+        color: '#003366'
 [...]
 ```
 3. Save `scene.yaml` and refresh the browser to see the updates.
