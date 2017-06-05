@@ -244,7 +244,7 @@ sources:
     local:
         type: GeoJSON
         url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.json
-        max_display_zoom: 9
+        min_display_zoom: 9
         max_display_zoom: 18
 ```
 
