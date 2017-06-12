@@ -71,6 +71,16 @@ var layer = Tangram.leafletLayer({
 ```
 This object may contain any of the [standard Leaflet layer options](http://leafletjs.com/reference.html), plus a number of Tangram-specific options, listed below.
 
+#### introspection
+
+When set to `true`, this parameter will load the scene with `introspection` enabled, making a call to [`scene.setIntrospection(true)`](JavaScript-API.md#setintrospection_boolean_) unnecessary.
+
+```javascript
+var layer = Tangram.leafletLayer({
+    introspection: true
+});
+```
+
 #### scene
 The required `scene` parameter specifies the URL of the [scene file](Scene-file.md) to be loaded.
 ```javascript
