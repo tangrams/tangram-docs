@@ -22,6 +22,8 @@ var layer = Tangram.leafletLayer({
 });
 ```
 
+A Tangram map may be de-instantiated, with all associated resources de-allocated, by calling `layer.remove()` on the leafletLayer.
+
 For a complete manual setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
 
 ### JavaScript Bundling
