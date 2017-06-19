@@ -527,8 +527,8 @@ roads:
 ```
 
 #### `size`
-Optional _number_ in `px`, _[x, y]_ in `px`, or _stops_ having either 1D or 2D values. Mixed 1D and
-2D stop values are not allowed. Default is `32px`.
+Optional _number_ in `px`, _[x, y]_ in `px`, _stops_ having either 1D or 2D values (mixed 1D and
+2D stop values are not allowed), or _function_. Default is `px`.
 
 Applies to `points`.
 
@@ -544,6 +544,13 @@ draw:
     points:
         size: [[13, 64px], [16, 18px], [18, 22px]]
         sprite: highway
+```
+
+```yaml
+draw:
+    points:
+        size: function() { return (feature.height||0)/10 + 3; } # add 1px for every 10 meters of height (plus 3px base)
+        color: red
 ```
 
 #### `sprite`
