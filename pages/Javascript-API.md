@@ -46,10 +46,12 @@ After changes are made to the `config` object, calling [`scene.updateConfig()`](
 #### `getActiveCamera()`
 Returns the active camera.
 
-#### `getFeatureAt(pixel)`
-Simple object-picking may be enabled by setting any layer's `interactive` parameter to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. These objects can then be queried with the `getFeatureAt()` function, which takes pixel coordinates within the map view in the form `{ x, y }`, and returns a promise containing the feature (if any) at those pixel coordinates (if multiple features are drawn at that location, only the top-most one is returned).
+#### `getFeatureAt(pixel, { radius })`
+Simple object-picking may be enabled by setting any layer's `interactive` parameter to `true`. This will enable Tangram's "feature selection" capability for objects in that layer. These objects can then be queried with the `getFeatureAt()` function, which takes pixel coordinates within the map view in the form `{ x, y }`.
 
-The promise resolves with a `selection` object:
+An optional `radius` value may be passed, interpreted as pixels. Default radius is zero.
+
+The method returns a promise containing the feature (if any) at those pixel coordinates (if multiple features are drawn at that location, only the top-most one is returned). The promise resolves with a `selection` object:
 
 ```javascript
 { feature, changed, pixel, leaflet_event }
@@ -59,6 +61,31 @@ The promise resolves with a `selection` object:
 - `changed`: a flag indicating whether the selected feature changed since the last query
 - `pixel`: the XY location within the map container where the event occurred, in the form `{ x, y }`
 - `leaflet_event`: the Leaflet event that triggered the selection
+
+This method may be instantiated in a number of ways:
+
+- Direct scene interface:
+```yaml
+scene.getFeatureAt(pixel, { radius });
+```
+
+- Leaflet layer interface for setting selection handlers:
+```yaml
+layer.setSelectionEvents (events, { radius })
+```
+
+- Leaflet layer instantiation:
+```yaml
+layer = Tangram.leafletLayer({
+   scene: 'path/to/scene.yaml',
+   events: {
+      click: clickHandler,
+   },
+   selectionRadius: 10
+};
+```
+
+When using a radius, the feature closest to the center point will be returned. As with existing feature selection, only features marked as interactive: true will register.
 
 #### `load(scene_url, base_path)`
 Loads the specified scene by url and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
