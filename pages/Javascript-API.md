@@ -72,6 +72,23 @@ Reloads and rebinds [textures](textures.md) in the scene.
 
 Textures will only be reloaded if any of the texture definition's parameters changed, or if the texture is tied to a DOM element.
 
+#### `queryFeatures()`
+Queries the tiles which intersect the viewport and returns the features contained in those tiles.
+
+An optional [filter](Filters-Overview.md) object can be provided, using the same syntax used for selecting features for styling in layers. If no filter is provided, all features will be returned.
+
+This example will return all restaurants in the pois layer in the visible tiles:
+
+```yaml
+scene.queryFeatures({ filter: { $layer: 'pois', kind: 'restaurant' } });
+```
+
+Because tiles typically extend offscreen, the results may include nearby features outside of the visible area.
+
+Query results are returned as a promise that resolves with an array of matching features.
+
+Note: This functionality is separate from the existing [`scene.getFeatureAt()`](#getfeatureatpixel) method, which returns a single feature at a given pixel location.
+
 #### `rebuild()`
 Rebuilds the current scene from scratch.
 
