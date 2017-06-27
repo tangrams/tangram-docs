@@ -87,12 +87,30 @@ layer = Tangram.leafletLayer({
 
 When using a radius, the feature closest to the center point will be returned. As with existing feature selection, only features marked as interactive: true will register.
 
-#### `load(scene_url, base_path)`
+#### `load(scene_url, base_path, file_type)`
 Loads the specified scene by url and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
 
 `scene_url` is the path to a scene file. By default, relative paths within this file (for images and other resources) are relative to its host url.
 
 `base_path` is an optional argument specifying an alternate base URL for resolving relative paths in the scene file. It is primarily useful for development and debugging.
+
+`file_type` is an optional argument to support cases where zipped files may be loaded locally, such as from a blob URL.
+
+Using Scene.load():
+
+```javascript
+scene.load(zip_blob_url, { file_type: 'zip' });
+```
+
+Using Tangram.leafletLayer:
+
+```javascript
+layer = Tangram.leafletLayer({
+   scene: zip_blob_url,
+   sceneFileType: 'zip',
+   ...
+});
+```
 
 #### `loadTextures()`
 Reloads and rebinds [textures](textures.md) in the scene.
