@@ -135,6 +135,12 @@ The promise resolves with an object containing three properties:
 scene.screenshot().then(function(screenshot) { window.open(screenshot.url); });
 ```
 
+The optional `background` parameter allows a background color to be set for screenshots. The default is "white". This may be any [`color`](draw.md#color) value, including `transparent`.
+
+```javascript
+scene.screenshot({ background: 'transparent' }).then(s => window.open(s.url))
+```
+
 #### `setActiveCamera(camera)`
 Sets the active camera to the camera specified by name, as named in the scene file.
 
