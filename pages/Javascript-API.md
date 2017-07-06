@@ -97,13 +97,13 @@ scene.load(scene_url, { base_path: 'https://site.com/scene/resources/' });
 
 `file_type` is an optional argument to support cases where zipped files may be loaded locally, such as from a blob URL.
 
-Using Scene.load():
+Using `Scene.load()`:
 
 ```javascript
 scene.load(zip_blob_url, { file_type: 'zip' });
 ```
 
-Using Tangram.leafletLayer:
+Using `Tangram.leafletLayer`:
 
 ```javascript
 layer = Tangram.leafletLayer({
