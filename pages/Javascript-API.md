@@ -141,7 +141,7 @@ Rebuilds the current scene from scratch.
 #### `requestRedraw()`
 Requests an update to the drawn map. If the map contains animated elements, this happens once per frame automatically. If not, it happens whenever the map view changes (pan, zoom, etc.).
 
-#### `screenshot()`
+#### `screenshot({ background = 'white' })`
 This queues a screenshot request, returning a Promise that fulfills when the screenshot is available.
 
 The promise resolves with an object containing three properties:
