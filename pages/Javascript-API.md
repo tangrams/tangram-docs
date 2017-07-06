@@ -62,17 +62,7 @@ The method returns a promise containing the feature (if any) at those pixel coor
 - `pixel`: the XY location within the map container where the event occurred, in the form `{ x, y }`
 - `leaflet_event`: the Leaflet event that triggered the selection
 
-This method may be instantiated in a number of ways:
-
-- Direct scene interface:
-```yaml
-scene.getFeatureAt(pixel, { radius });
-```
-
-- Leaflet layer interface for setting selection handlers:
-```yaml
-layer.setSelectionEvents (events, { radius })
-```
+In addition to the `scene.getFeatureAt()` method, the `radius` parameter may be set when creating or configuring the Leaflet layer:
 
 - Leaflet layer instantiation:
 ```yaml
@@ -81,8 +71,13 @@ layer = Tangram.leafletLayer({
    events: {
       click: clickHandler,
    },
-   selectionRadius: 10
+   selectionRadius: 10 // radius of 10px
 };
+```
+
+- Leaflet layer interface for setting selection handlers:
+```yaml
+layer.setSelectionEvents (events, { radius: 5 }) // radius of 5px
 ```
 
 When using a radius, the feature closest to the center point will be returned. As with existing feature selection, only features marked as interactive: true will register.
