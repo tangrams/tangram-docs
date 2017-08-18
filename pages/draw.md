@@ -884,6 +884,8 @@ Optional _{color, width}_ or _stops_. _colors_ follow the specs of [color](draw.
 
 Sets the stroke color and width of the label. Width is interpreted as pixels.
 
+(To draw a stroke around a line or polygon, use [`outline`](draw.md#outline).)
+
 ```yaml
 font:
     stroke: { color: white, width: 2 }
