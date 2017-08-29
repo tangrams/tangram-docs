@@ -155,7 +155,7 @@ If `visible: false`, the query will be restricted only to features that were NOT
 
 Example: `scene.queryFeatures({ filter: { $layer: 'pois' }, visible: false })` will return all POIs that were not drawn.
 
-#####unique
+##### unique
 
 The `unique` parameter indicates whether (and how) duplicate features should be included in the results. Valid values are `true` (default), `false`/`null`, a string providing a single feature property (id), or an array of feature properties (`['kind', 'operator']`)
 
@@ -165,7 +165,7 @@ A `false` or `null` value will return all features, without any regard to their 
 
 A single string, or array of strings, will only return features that are unique with regard to the named feature properties (and geometry if `geometry: true`). For example, `unique: id` will avoid features with duplicate ids in the results, and `unique: ['kind', 'operator']` will only return a single feature for each unique combination of `kind` and `operator` property values.
 
-#####group_by
+##### group_by
 The `group_by` parameter can be used to group results by one or more unique property values. Valid values are `false`/`null` (the default), a string providing a single feature property (kind), or an array of feature properties (`['kind', 'kind_detail']`).
 
 When grouping properties are specified, the `queryFeatures()` results will be an object (still returned via a promise), where each key is a unique value according to the grouping criteria, and the value of each key is an array of results for that key.
@@ -189,7 +189,7 @@ Example: `queryFeatures({ filter: { $layer: 'pois' }, group_by: ['kind', 'kind_d
 ```
 The caller can optionally use `JSON.parse()` to parse these stringified grouping keys for additional processing.
 
-#####geometry
+##### geometry
 By default, `queryFeatures()` does not return feature geometry, nor consider geometry when determining if a feature is unique (see unique parameter above). Only type and properties will be returned in the query results.
 
 When `geometry: true`, an additional geometry property will also be returned, containing the feature's geometry (as a GeoJSON geometry object).
