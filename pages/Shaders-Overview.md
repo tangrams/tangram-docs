@@ -121,6 +121,8 @@ styles:
 
 #### `filter`
 
+_[For data filters, see [`filters`](filters.md).]_
+
 In this `block` you can change the `color` value of a surface pixel by pixel, post-lighting. The `color` variable is a `vec4(r,g,b,a)`. This is the right place to apply effects like crosshatching, color adjustments, and halftones.
 
 ```yaml

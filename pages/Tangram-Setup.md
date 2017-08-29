@@ -12,7 +12,7 @@ The [latest release of Tangram](github.com/tangrams/tangram/releases) can be inc
 <script src="https://mapzen.com/tangram/tangram.min.js"></script>
 ```
 
-Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](Tangram-Overview/#leaflet-options):
+Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](Tangram-Overview.md#leaflet-options):
 
 ```javascript
 var map = L.map();
@@ -21,6 +21,8 @@ var layer = Tangram.leafletLayer({
     scene: 'scene.yaml'
 });
 ```
+
+A Tangram map may be de-instantiated, with all associated resources de-allocated, by calling `layer.remove()` on the leafletLayer.
 
 For a complete manual setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
 

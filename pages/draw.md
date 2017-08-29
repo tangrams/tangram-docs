@@ -527,8 +527,8 @@ roads:
 ```
 
 #### `size`
-Optional _number_ in `px`, _[x, y]_ in `px`, or _stops_ having either 1D or 2D values. Mixed 1D and
-2D stop values are not allowed. Default is `32px`.
+Optional _number_ in `px`, _[x, y]_ in `px`, _stops_ having either 1D or 2D values (mixed 1D and
+2D stop values are not allowed), or _function_. Default is `px`.
 
 Applies to `points`.
 
@@ -544,6 +544,13 @@ draw:
     points:
         size: [[13, 64px], [16, 18px], [18, 22px]]
         sprite: highway
+```
+
+```yaml
+draw:
+    points:
+        size: function() { return (feature.height||0)/10 + 3; } # add 1px for every 10 meters of height (plus 3px base)
+        color: red
 ```
 
 #### `sprite`
@@ -623,11 +630,12 @@ The default text style behavior is adjusted to account for the parent point:
     - The `anchor` of the `text` controls the text's placement *relative to the size and position* of its parent point.
     - The `anchor` of the `points` portion moves the *entire entity* (point + text) relative to the underlying geometry point.
 - **Collision**:
-  - The point is required, but its text is optional: while the `points` portion of the style will render according to its collision test, the `text` portion will only render if **both** it and its parent point passed collision tests, e.g. if the point is occluded, then the text won't render either, even if it is not occluded.
+  - The point is required, but its text is not: while the `points` portion of the style will render according to its collision test, the `text` portion will only render if **both** it and its parent point passed collision tests, e.g. if the point is occluded, then the text won't render either, even if it is not occluded.
   - Different collision behaviors can be achieved by setting the `collide: false` flag on either or both of the point and text:
     - Both `collide: true` (default): nothing will overlap, text will only be rendered if point also fits.
-    - Points `collide: false`, text `collide: true`: all points will render, text will render if it fits.
-    - Points `collide: true`, text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
+    - Points `collide: false`, text `collide: true` (default) and text `optional: true`: all points will render, text will render over points when the text fits (text will collide text but not points). This setting is helpful for labeling a dot density map.
+    - Points `collide: false`, text `collide: true` (default): only points with text that fits will render
+    - Points `collide: true` (default), text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
     - Both `collide: false`: all points and text should render, regardless of overlap.
 - **Offset**:
   - Text is automatically offset to account for its anchor relative to its parent point (see description above).
@@ -875,6 +883,8 @@ font:
 Optional _{color, width}_ or _stops_. _colors_ follow the specs of [color](draw.md#color). _width_ may be an _int_ or _stops_. No default.
 
 Sets the stroke color and width of the label. Width is interpreted as pixels.
+
+(To draw a stroke around a line or point, use [`outline`](draw.md#outline); to draw a stroke around a polygon, create two separate `draw` groups for `polygons` and `lines`.)
 
 ```yaml
 font:
