@@ -119,9 +119,22 @@ Reloads and rebinds [textures](textures.md) in the scene.
 Textures will only be reloaded if any of the texture definition's parameters changed, or if the texture is tied to a DOM element.
 
 #### `queryFeatures()`
-Queries the tiles which intersect the viewport and returns the features contained in those tiles.
+Queries the tiles which intersect the viewport and returns the features contained in those tiles. (For querying a single feature at a given pixel location, see [`scene.getFeatureAt()`](#getfeatureatpixel).)
 
-An optional [filter](Filters-Overview.md) object can be provided, using the same syntax used for selecting features for styling in layers. If no filter is provided, all features will be returned.
+The query method has the following signature and default parameters: `queryFeatures({ filter = null, visible = null, unique = true, group_by = null, geometry = false })`
+
+`queryFeatures()` will query the features from tiles that currently intersect the map viewport.
+
+The method returns a promise with an array of matching features, e.g. `queryFeatures().then(features => console.log(features));` will print the matching features to the console. (An array is the default return type, see `group_by` below for an alternate format.)
+
+Each returned result will have a properties field for that feature. See the `geometry` option below to include feature geometry with the results.
+
+Optional parameters described below will further limit the set of features returned.
+
+Because tiles usually include some area outside the viewport, the `queryFeatures()` method can be thought of as roughly querying the visible area, but results may include some nearby features as well. This effect can also be caused by tile over-zooming, for data sources with a `max_zoom`.
+
+##### filter
+An optional [filter](Filters-Overview.md) object can be provided, using the same syntax used for selecting features for styling in layers. If no filter is provided, all features will be returned (subject to other parameters defined below).
 
 This example will return all restaurants in the pois layer in the visible tiles:
 
@@ -129,11 +142,59 @@ This example will return all restaurants in the pois layer in the visible tiles:
 scene.queryFeatures({ filter: { $layer: 'pois', kind: 'restaurant' } });
 ```
 
-Because tiles typically extend offscreen, the results may include nearby features outside of the visible area.
+Filters used with this method support an additional parameter, `$source`, which can be used to specify a data source name to filter features by. For example, `filter: { $source: 'mapzen' }` will only return features from the "mapzen" data source. (This parameter is not relevant for filters in layers because the data source is already explicitly selected by the data block.)
 
-Query results are returned as a promise that resolves with an array of matching features.
+##### visible
+By default, all features in the tile source data will be returned, regardless of whether they were rendered in the scene or not.
 
-Note: This functionality is separate from the existing [`scene.getFeatureAt()`](#getfeatureatpixel) method, which returns a single feature at a given pixel location.
+If `visible: true`, the query will be restricted only to features that were rendered in the scene. Note that this means the feature matched a visible draw group within layers, and was not culled by collision detection (in the case of points or labels). It does not guarantee, however, that the feature is visible from any given view position; it may be drawn but underneath another feature with a higher order value, or it may be behind another 3d object such as a building.
+
+Example: `scene.queryFeatures({ filter: { $layer: 'landuse', $geometry: 'polygon' }, visible: true })` will return all visible landuse polygons.
+
+If `visible: false`, the query will be restricted only to features that were NOT rendered in the scene. This is useful for providing feedback on data that is related to the scene but which you don't want to actually visualize, or for understanding which features were not drawn due to collision (lack of available space on screen).
+
+Example: `scene.queryFeatures({ filter: { $layer: 'pois' }, visible: false })` will return all POIs that were not drawn.
+
+#####unique
+
+The `unique` parameter indicates whether (and how) duplicate features should be included in the results. Valid values are `true` (default), `false`/`null`, a string providing a single feature property (id), or an array of feature properties (`['kind', 'operator']`)
+
+The default value, `true`, will limit features to those that are entirely unique, meaning it will exclude features with identical properties (and if the `geometry: true` option described below is also set, features with identical geometry will be excluded as well). This is useful for avoiding duplicate features that may be included in multiple tiles, such as building polygons in Mapzen's vector tiles.
+
+A `false` or `null` value will return all features, without any regard to their properties or geometry.
+
+A single string, or array of strings, will only return features that are unique with regard to the named feature properties (and geometry if `geometry: true`). For example, `unique: id` will avoid features with duplicate ids in the results, and `unique: ['kind', 'operator']` will only return a single feature for each unique combination of `kind` and `operator` property values.
+
+#####group_by
+The `group_by` parameter can be used to group results by one or more unique property values. Valid values are `false`/`null` (the default), a string providing a single feature property (kind), or an array of feature properties (`['kind', 'kind_detail']`).
+
+When grouping properties are specified, the `queryFeatures()` results will be an object (still returned via a promise), where each key is a unique value according to the grouping criteria, and the value of each key is an array of results for that key.
+
+When a single property is provided for grouping, the results key will be the value of that property.
+
+Example: `queryFeatures({ filter: { $layer: 'pois' }, group_by: 'kind' })` will return results like:
+
+`{ station: Array(8), jewelry: Array(19), bus_stop: Array(5)... }`
+
+When multiple properties are provided the grouping, the results key will be a stringified object for each unique combination of values.
+
+Example: `queryFeatures({ filter: { $layer: 'pois' }, group_by: ['kind', 'kind_detail'] })` will return results like:
+```javascript
+{
+  '{"kind":"restaurant","kind_detail":"chinese"}': Array(8),
+  '{"kind":"restaurant","kind_detail":"french"}': Array(4),
+  '{"kind":"restaurant","kind_detail":"indian"}': Array(3),
+  ...
+}
+```
+The caller can optionally use `JSON.parse()` to parse these stringified grouping keys for additional processing.
+
+#####geometry
+By default, `queryFeatures()` does not return feature geometry, nor consider geometry when determining if a feature is unique (see unique parameter above). Only type and properties will be returned in the query results.
+
+When `geometry: true`, an additional geometry property will also be returned, containing the feature's geometry (as a GeoJSON geometry object).
+
+Including feature geometry in the result can be useful for further visualizations outside of Tangram, such as with Leaflet markets or SVG paths, or even direct exports of raw GeoJSON.
 
 #### `rebuild()`
 Rebuilds the current scene from scratch.
