@@ -196,6 +196,73 @@ When `geometry: true`, an additional geometry property will also be returned, co
 
 Including feature geometry in the result can be useful for further visualizations outside of Tangram, such as with Leaflet markets or SVG paths, or even direct exports of raw GeoJSON.
 
+## Use Cases
+
+Here are a few examples of ways the `queryFeatures()` parameters can be used.
+
+**Get a list of unique subway lines in tile data**
+```
+scene.queryFeatures({ filter: { $layer: 'transit', kind: 'subway' }, group_by: 'ref' }).then(results => {
+  console.log(Object.keys(results));
+});
+
+--->
+["1", "2", "3", "4", "5", "6", "W", "R", "J", "Z", "PATH", "E", "C", "A", "D", "B", "Q", "N"]
+```
+
+**Get a count of visible POIs by kind, each time new tiles are rendered**
+```
+scene.subscribe({
+  view_complete: function() { // when new tiles are rendered
+    scene.queryFeatures({ filter: { $layer: 'pois' }, visible: true, group_by: 'kind' }).then(results => {
+      for (let key in results) { 
+        results[key] = results[key].length;
+      }
+      console.log(results);
+    });
+  }
+});
+
+--->
+{
+  "station": 6,
+  "cafe": 20,
+  "bank": 5,
+  "restaurant": 34,
+  "convenience": 10,
+  "place_of_worship": 5,
+  "bus_stop": 5,
+  "hotel": 10,
+  "museum": 1,
+  "pub": 3,
+  "bar": 2,
+  "hospital": 1
+}
+```
+
+**Add Leaflet markers for visible restaurant POIs**
+```
+scene.queryFeatures({ filter: { $layer: 'pois', kind: 'restaurant' }, visible: true, geometry: true }).then(results => {
+  results.forEach(feature => {
+    L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).addTo(map);
+  });
+});
+```
+![screen shot 2017-06-12 at 1 43 48 pm](https://user-images.githubusercontent.com/16733/27047203-368c1a0c-4f75-11e7-87d5-7608b6ef68da.png)
+
+**Add Leaflet polylines (SVG) for major roads**
+```
+scene.queryFeatures({ filter: { $layer: 'roads', kind: 'major_road' }, unique: false, visible: true, geometry: true }).then(results => {
+  results.forEach(feature => L.geoJSON(feature, {
+    style: function () {
+        return { color: 'red' };
+    }
+  }).addTo(map))
+});
+```
+![screen shot 2017-06-12 at 1 48 01 pm](https://user-images.githubusercontent.com/16733/27047385-e9c44be4-4f75-11e7-90e0-c6be3d70ec94.png)
+
+
 #### `rebuild()`
 Rebuilds the current scene from scratch.
 
