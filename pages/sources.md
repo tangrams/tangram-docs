@@ -284,7 +284,7 @@ When a `Raster` source itself has additional raster sources set in the `rasters`
 For more, see the [Raster Overview](Raster-Overview.md).
 
 #### `tile_size`
-Optional _int_. Must be a power of 2, greater than or equal to `256`. Default is `256`. No units.
+Optional _integer_. Must be a power of 2, greater than or equal to `256`. Default is `256`. No units.
 
 This specifies the size in pixels that each map tile will cover in the viewport (when the camera is positioned top-down). Traditionally map tiles for the "web Mercator" projection are 256x256 pixels, but some tile services now provide tiles intended for display at 512x512 pixels as well.
 
