@@ -133,7 +133,7 @@ Optional parameters described below will further limit the set of features retur
 
 Because tiles usually include some area outside the viewport, the `queryFeatures()` method can be thought of as roughly querying the visible area, but results may include some nearby features as well. This effect can also be caused by tile over-zooming, for data sources with a `max_zoom`.
 
-##### filter
+##### `filter`
 An optional [filter](Filters-Overview.md) object can be provided, using the same syntax used for selecting features for styling in layers. If no filter is provided, all features will be returned (subject to other parameters defined below).
 
 This example will return all restaurants in the pois layer in the visible tiles:
@@ -144,7 +144,7 @@ scene.queryFeatures({ filter: { $layer: 'pois', kind: 'restaurant' } });
 
 Filters used with this method support an additional parameter, `$source`, which can be used to specify a data source name to filter features by. For example, `filter: { $source: 'mapzen' }` will only return features from the "mapzen" data source. (This parameter is not relevant for filters in layers because the data source is already explicitly selected by the data block.)
 
-##### visible
+##### `visible`
 By default, all features in the tile source data will be returned, regardless of whether they were rendered in the scene or not.
 
 If `visible: true`, the query will be restricted only to features that were rendered in the scene. Note that this means the feature matched a visible draw group within layers, and was not culled by collision detection (in the case of points or labels). It does not guarantee, however, that the feature is visible from any given view position; it may be drawn but underneath another feature with a higher order value, or it may be behind another 3d object such as a building.
@@ -155,7 +155,7 @@ If `visible: false`, the query will be restricted only to features that were NOT
 
 Example: `scene.queryFeatures({ filter: { $layer: 'pois' }, visible: false })` will return all POIs that were not drawn.
 
-##### unique
+##### `unique`
 
 The `unique` parameter indicates whether (and how) duplicate features should be included in the results. Valid values are `true` (default), `false`/`null`, a string providing a single feature property (id), or an array of feature properties (`['kind', 'operator']`)
 
@@ -165,7 +165,7 @@ A `false` or `null` value will return all features, without any regard to their 
 
 A single string, or array of strings, will only return features that are unique with regard to the named feature properties (and geometry if `geometry: true`). For example, `unique: id` will avoid features with duplicate ids in the results, and `unique: ['kind', 'operator']` will only return a single feature for each unique combination of `kind` and `operator` property values.
 
-##### group_by
+##### `group_by`
 The `group_by` parameter can be used to group results by one or more unique property values. Valid values are `false`/`null` (the default), a string providing a single feature property (kind), or an array of feature properties (`['kind', 'kind_detail']`).
 
 When grouping properties are specified, the `queryFeatures()` results will be an object (still returned via a promise), where each key is a unique value according to the grouping criteria, and the value of each key is an array of results for that key.
@@ -189,14 +189,14 @@ Example: `queryFeatures({ filter: { $layer: 'pois' }, group_by: ['kind', 'kind_d
 ```
 The caller can optionally use `JSON.parse()` to parse these stringified grouping keys for additional processing.
 
-##### geometry
+##### `geometry`
 By default, `queryFeatures()` does not return feature geometry, nor consider geometry when determining if a feature is unique (see unique parameter above). Only type and properties will be returned in the query results.
 
 When `geometry: true`, an additional geometry property will also be returned, containing the feature's geometry (as a GeoJSON geometry object).
 
 Including feature geometry in the result can be useful for further visualizations outside of Tangram, such as with Leaflet markets or SVG paths, or even direct exports of raw GeoJSON.
 
-## Use Cases
+##### Use Cases
 
 Here are a few examples of ways the `queryFeatures()` parameters can be used.
 
