@@ -276,15 +276,39 @@ styles:
 ```
 
 #### `texture`
-Optional _URL_, _texture object_, or _named texture_ on the "points" _draw style_. No default.
+Optional _URL_, _texture object_, or _named texture_ on the "points" _draw style_ or within a points-based _draw group_. No default.
 
 Assigns a _texture_ for use as the color of the point.
+
+When used within a _draw style_ definition, `texture` sets the default texture to be used with a given point style:
 
 ```yaml
 styles:
     ghosts:
         base: points
-        texture: images/ghost.png
+        texture: images/inky.png
+```
+
+When used within a _draw group_, `texture` may be used to override or clear a texture declaration:
+
+```yaml
+layers:
+    ghosts:
+        filter: ...
+        draw:
+            points:
+                ... # use default
+        blinky:
+            filter: ...
+            draw:
+                points:
+                    style: ghosts
+                    texture: images/blinky.png # override in sublayer
+        other:
+            filter: ...
+            draw:
+                ghosts:
+                    texture: null # override in sublayer
 ```
 
 For more, see [textures#texture](textures.md#texture).
