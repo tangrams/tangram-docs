@@ -55,11 +55,13 @@ styles:
 ```
 
 #### `blend`
-Optional _string_, one of `opaque`, `add`, `multiply`, `overlay`, or `inlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have a default of `opaque`.
+Optional _string_, one of `opaque`, `translucent`, `add`, `multiply`, `overlay`, or `inlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have a default of `opaque`.
 
 When set, features drawn with this style will be composited into the scene using the method specified, for a transparent effect.
 
-The `overlay` and `inlay` blend modes apply traditional transparency using the alpha channel. Features drawn with `overlay` will be appear on top of the scene (irrespective of the `order` property), similar to a heads-up display. This is useful for compositing labels on top of the scene. `inlay` will cause features to be interwoven into the scene at an appropriate depth, according to their `order` value. To illustrate the difference: a street label drawn with `overlay` will be visible *over* any geometry covering the street, such as a nearby building, while a label drawn with `inlay` will display *behind* the building (but will still be partially visible where it is not covered by the building).
+The `translucent` blend mode provides alpha blending for front-facing polygons, while culling backfaces and occluding other features (such as buildings).
+
+The `overlay` and `inlay` blend modes apply traditional transparency using the alpha channel, without performing any occlusion or backface culling. Features drawn with `overlay` will be appear on top of the scene (irrespective of the `order` property), similar to a heads-up display. This is useful for compositing labels on top of the scene. `inlay` will cause features to be interwoven into the scene at an appropriate depth, according to their `order` value. To illustrate the difference: a street label drawn with `overlay` will be visible *over* any geometry covering the street, such as a nearby building, while a label drawn with `inlay` will display *behind* the building (but will still be partially visible where it is not covered by the building).
 
 `add` and `multiply` apply Photoshop-filter-like operations: features composited with `add` will tend to accumulate toward white, and `multiply` will tend to acculumate toward black.
 
