@@ -380,7 +380,7 @@ layers:
                     order: 2   # this layer's order is now 2
 ```
 
-Note that by default, `points` and `text` layers are drawn with the _overlay_ [blend mode](styles.md#blend), which draws everything _on top_ of any other visible features using traditional alpha compositing. When the _overlay_ [blend mode](styles.md#blend) is used with any _draw style_, _order_ will have no effect and is not required.
+Note that by default, `points` and `text` layers are drawn with the `overlay` [blend mode](styles.md#blend), which draws everything _on top_ of any other visible features using traditional alpha compositing. When `overlay` is used in any _draw style_, `order` will have no effect and is not required.
 
 #### `outline`
 Optional element. Defines the start of an outline style block.
