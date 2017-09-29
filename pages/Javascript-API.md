@@ -119,7 +119,7 @@ Reloads and rebinds [textures](textures.md) in the scene.
 Textures will only be reloaded if any of the texture definition's parameters changed, or if the texture is tied to a DOM element.
 
 #### `queryFeatures()`
-Queries the tiles which intersect the viewport and returns the features contained in those tiles. (For querying a single feature at a given pixel location, see [`scene.getFeatureAt()`](#getfeatureatpixel).)
+Queries the tiles which intersect the viewport and returns the features contained in those tiles. (For querying a single feature at a given pixel location, see [`scene.getFeatureAt()`](#getfeatureatpixel--radius-).)
 
 The query method has the following signature and default parameters: `queryFeatures({ filter = null, visible = null, unique = true, group_by = null, geometry = false })`
 
@@ -315,7 +315,7 @@ Enables feature selection for all features, regardless of their [`interactive`](
 
 Enabling or disabling introspection at run-time will cause the scene to rebuild automatically to reflect the new setting.
 
-For more about using feature selection, see [`getFeatureAt()`](Javascript-API.md#getfeatureatpixel).
+For more about using feature selection, see [`getFeatureAt()`](#getfeatureatpixel--radius-).
 
 [[JS-only](https://github.com/tangrams/tangram)] An `introspection` parameter is also available on the Leaflet layer:
 
