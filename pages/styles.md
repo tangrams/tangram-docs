@@ -55,9 +55,11 @@ styles:
 ```
 
 #### `blend`
-Optional _string_, one of `opaque`, `add`, `multiply`, `overlay`, or `inlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have a default of `opaque`.
+Optional _string_, one of `opaque`, `translucent`, `add`, `multiply`, `overlay`, or `inlay`. The `points` and `text` draw styles have a default `blend` value of `overlay` – the `polygons` and `lines` draw styles have a default of `opaque`.
 
 When set, features drawn with this style will be composited into the scene using the method specified, for a transparent effect.
+
+The `translucent` blend mode provides alpha blending for front-facing polygons, while culling backfaces and occluding other features (such as buildings).
 
 In most cases, for _layers_ drawn with a given _draw style_, [`order`](draw.md#order) must also be defined:
 
@@ -283,15 +285,39 @@ styles:
 ```
 
 #### `texture`
-Optional _URL_, _texture object_, or _named texture_ on the "points" _draw style_. No default.
+Optional _URL_, _texture object_, or _named texture_ on the "points" _draw style_ or within a points-based _draw group_. No default.
 
 Assigns a _texture_ for use as the color of the point.
+
+When used within a _draw style_ definition, `texture` sets the default texture to be used with a given point style:
 
 ```yaml
 styles:
     ghosts:
         base: points
-        texture: images/ghost.png
+        texture: images/inky.png
+```
+
+When used within a _draw group_, `texture` may be used to override or clear a texture declaration:
+
+```yaml
+layers:
+    ghosts:
+        filter: ...
+        draw:
+            points:
+                ... # use default
+        blinky:
+            filter: ...
+            draw:
+                points:
+                    style: ghosts
+                    texture: images/blinky.png # override in sublayer
+        other:
+            filter: ...
+            draw:
+                ghosts:
+                    texture: null # override in sublayer
 ```
 
 For more, see [textures#texture](textures.md#texture).
