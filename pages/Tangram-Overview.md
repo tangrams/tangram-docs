@@ -73,7 +73,7 @@ This object may contain any of the [standard Leaflet layer options](http://leafl
 
 #### introspection
 
-When set to `true`, this parameter will load the scene with `introspection` enabled, making a call to [`scene.setIntrospection(true)`](JavaScript-API.md#setintrospection_boolean_) unnecessary.
+When set to `true`, this parameter will load the scene with `introspection` enabled, making a call to [`scene.setIntrospection(true)`](Javascript-API.md#setintrospection_boolean_) unnecessary.
 
 ```javascript
 var layer = Tangram.leafletLayer({
