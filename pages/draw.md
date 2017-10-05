@@ -757,6 +757,42 @@ text:
     text_wrap: false # disables wrapping.
 ```
 
+#### `texture`
+Optional _texture object_, as specified in [`texure`](textures.md#)
+
+Applies to `points`. Enables the per-layer re-assignment or de-assignment of a texture used by a `points`-based style.
+
+If a new texture is assigned here, it will override the default texture specified in the style:
+
+```yaml
+styles:
+    custom:
+        base: points
+        texture: default.png # set default texture
+
+layers:
+    pois:
+        draw:
+            custom:
+                texture: custom.png # override
+```
+
+If the texture is set to `null`, the points will be drawn with no texture:
+
+```yaml
+styles:
+    custom:
+        base: points
+        texture: default.png # set default texture
+
+layers:
+    pois:
+        draw:
+            custom:
+                texture: null # no texture used
+```
+
+
 #### `tile_edges`
 Optional _boolean_, one of `true` or `false`. Default is `false`.
 
