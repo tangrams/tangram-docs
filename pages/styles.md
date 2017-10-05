@@ -137,6 +137,8 @@ styles:
         dash: [.5, 1]
 ```
 
+Dash patterns may be changed or removed at the _draw layer_ with the `draw` group's `dash`(draw.md#dash) parameter.
+
 ##### Dash coloring
 
 The dashes are colored using the feature's _color_ as assigned by the layer's _draw_ group (aka the "vertex color").

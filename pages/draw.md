@@ -111,6 +111,39 @@ text:
     anchor: bottom-left # the label will use `align: right` by default
 ```
 
+#### `dash`
+Optional _object_, following the specification of the [`dash`](styles.md#dash) parameter.
+
+Applies to `lines` styles. Allows the re-assignment or un-assignment of the dash pattern for a style, at the layer of a _draw layer_.
+
+```yaml
+layers:
+  roads:
+    data: ...
+    draw:
+      lines: # by default, draw roads with NO dash pattern
+        width: 5px
+        color: white
+        ...
+
+      paths:
+        filter: { kind: path }
+        draw:
+          lines:
+            dash: [2, 1] # draw paths with a dash pattern
+            ...
+
+      ferries:
+        filter: { kind: ferry }
+        draw:
+          lines:
+            dash: [1, 3, 1] # draw ferries with a different dash pattern
+            ...
+```
+
+The dash pattern can also be removed in a sub-layer draw by setting `dash: null`.
+
+
 #### `flat` 
 [[ES-only](https://github.com/tangrams/tangram-es)]
 
