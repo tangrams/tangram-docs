@@ -99,10 +99,10 @@ scene:
 … is converted after loading to this JSON object:
 
 ```javascript
-{ 'import': {'import1.yaml'},
-  'scene': {
-    'background': {
-      'color': 'grey'
+{ import: {'import1.yaml'},
+  scene: {
+    background: {
+      color: 'grey'
     }
   }
 }
