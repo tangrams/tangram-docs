@@ -43,7 +43,7 @@ If a texture is provided for a _lines_ style, the texture is repeated across the
 
 #### draw group texture parameter
 
-Textures may also be re-assigned or un-assigned per _draw group_ – see [`texture`](draw.md#texture).
+Textures may also be re-assigned or un-assigned per _draw group_ with Tangram-JS only – see [`texture`](draw.md#texture).
 
 ## texture parameters
 
