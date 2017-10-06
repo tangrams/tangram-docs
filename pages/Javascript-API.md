@@ -353,6 +353,8 @@ Re-parses the `scene.config` object and triggers [`scene.rebuild()`](#rebuild) w
 scene.updateConfig()
 ```
 
+Note that `updateConfig()` will not load changes to the `scene.config.import` object. As the [`import`](import.md) block must be parsed before loading the rest of the scene file, any changes to `import` must be handled with [`load()`](#loadscene_url-base_path-file_type).
+
 ## Events
 
 Tangram provides a number of event handlers and emitters.
