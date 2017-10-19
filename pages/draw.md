@@ -339,7 +339,20 @@ Applies to `text` styles. Moves the label into the tile if the label would other
 
 Note that this parameter is not available for `points` styles, nor for text labels attached to points.
 
-#### `offset`
+#### `offset` (_lines_)
+Optional _float_ or _stops_, in `px` or `m`. No default. Default units is `px`.
+
+Applies to _lines_ styles. Offsets each segment of the line from its original location, perpendicular to its original orientation.
+
+Note that offsetting a curved line will change its shape, and may invert the curve if the offset distance is greater than the radius of the curve.
+
+```yaml
+draw:
+    lines:
+        offset: [[15, 3.5px], [16, 6.5px]]
+```
+
+#### `offset` (_points_, _text_)
 Optional _[float x, float y]_ _array_ or _stops_, in `px`. No default.
 
 Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen.
