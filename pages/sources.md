@@ -141,6 +141,21 @@ mapbox:
     url: https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=...
 ```
 
+##### MBTiles
+
+[[ES-only](https://github.com/tangrams/tangram-es)] If the _URL_ of a data source has a file extension of `.mbtiles` then the specified file will be accessed as an MBTiles database and used as a tile set according to version 1.1 of the MBTiles specification: https://github.com/mapbox/mbtiles-spec
+
+In addition to PNG and JPEG raster tiles, MBTiles can also provide vector tiles using any of the supported [`type`](#type) values. The `type` for an MBTiles data source should match the format of the tile data in the MBTiles database.
+
+Here is an example configuration of an MBTiles source:
+
+```yaml
+mbtiles-source:
+    type: TopoJSON # The source expects TopoJSON tile data.
+    url: data/tileset.mbtiles # The MBTiles file is located relative to the scene file.
+    max_zoom: 16 # Other parameters are applied as usual.
+```
+
 ### optional source parameters
 
 #### `bounds`
