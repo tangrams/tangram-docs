@@ -156,6 +156,8 @@ mbtiles-source:
     max_zoom: 16 # Other parameters are applied as usual.
 ```
 
+If you are developing an Android application that uses an MBTiles file located in external storage, your application will need to [request permissions](https://developer.android.com/training/permissions/index.html) to read the file.
+
 ### optional source parameters
 
 #### `bounds`
