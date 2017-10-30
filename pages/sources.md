@@ -143,7 +143,7 @@ mapbox:
 
 ##### MBTiles
 
-[[ES-only](https://github.com/tangrams/tangram-es)] If the _URL_ of a data source has a file extension of `.mbtiles` then the specified file will be accessed as an MBTiles database and used as a tile set according to version 1.1 of the MBTiles specification: https://github.com/mapbox/mbtiles-spec
+[[ES-only](https://github.com/tangrams/tangram-es)] If the _URL_ of a data source has a file extension of `.mbtiles` then the specified file will be accessed as an MBTiles database and used as a tile set according to the MBTiles specification (following the proposed [version 2.0](https://github.com/pnorman/mbtiles-spec/blob/2.0/2.0/spec.md)).
 
 In addition to PNG and JPEG raster tiles, MBTiles can also provide vector tiles using any of the supported [`type`](#type) values. The `type` for an MBTiles data source should match the format of the tile data in the MBTiles database.
 
