@@ -4,7 +4,7 @@ The easiest way to use Tangram in a web page is via [Mapzen.js](https://mapzen.c
 
 ## Script Tag Setup
 
-Tangram-JS is a JavaScript library designed for use in [Leaflet](http://leaflet.org) maps.
+Tangram JS is a JavaScript library designed for use in [Leaflet](http://leaflet.org) maps.
 
 The [latest release of Tangram](github.com/tangrams/tangram/releases) can be included in your web page with a `script` tag:
 
@@ -28,13 +28,13 @@ For a complete manual setup tutorial, see our [Tangram Walkthrough](walkthrough.
 
 ### JavaScript Bundling
 
-Tangram-JS may be imported or required as a module in ES6, CommonJS, or AMD (Asynchronous Module Definition).
+Tangram JS may be imported or required as a module in ES6, CommonJS, or AMD (Asynchronous Module Definition).
 
-## Tangram-ES
+## Tangram ES
 
-Tangram-ES is the C++ version of Tangram, based on OpenGL ES, designed for mobile and embedded systems. It currently targets five platforms: Android, iOS, Mac OS X, Ubuntu Linux, and Raspberry Pi.
+Tangram ES is the C++ version of Tangram, based on OpenGL ES, designed for mobile and embedded systems. It currently targets five platforms: Android, iOS, Mac OS X, Ubuntu Linux, and Raspberry Pi.
 
-For a complete tutorial for setting up Tangram-ES on Android, see our [Android Walkthrough](android-walkthrough.md).
+For a complete tutorial for setting up Tangram ES on Android, see our [Android Walkthrough](android-walkthrough.md).
 
 ## API keys
 
