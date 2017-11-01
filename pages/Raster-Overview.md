@@ -149,7 +149,7 @@ layers:
 
 ![tangram-wed mar 30 2016 21-39-44 gmt-0400 edt](https://cloud.githubusercontent.com/assets/16733/14163150/7bff64d6-f6c0-11e5-9c22-555d8075b8dd.png)
 
-###Direct Sampler Access
+### Direct Sampler Access
 
 When a style declares `raster: custom`, any shaders defined in that style can directly sample the raster for custom effects.
 

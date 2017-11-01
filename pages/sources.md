@@ -102,7 +102,7 @@ https://tile.mapzen.com/mapzen/vector/v1/buildings/{z}/{x}/{y}.topojson
 ```
 
 ##### curly braces
-When tiles are requested, Tangram will parse the datasource url and interpret items in curly braces according to the convention used by Leaflet and others.
+When tiles are requested, Tangram will parse the datasource url and interpret items in curly braces according to conventions used by Leaflet and others. Tangram currently supports `{x}` `{y}` for tile coordinates and `{z}` for zoom level, as well as `{s}` for subdomain when paired with the [`url_subdomains`](#url_subdomains) parameter.
 
 ```yaml
 mapzen:
@@ -114,6 +114,24 @@ In the example above, Tangram will automatically replace `{x}`, `{y}`, and `{z}`
 
 `https://tile.mapzen.com/mapzen/vector/v1/all/16/19296/24640.topojson`
 
+#### url_subdomains
+
+If an `{s}` parameter is used in a url, the `url_subdomains` parameter should define an array specifying the subdomains to be used in tile requests:
+
+```yaml
+sources:
+    source-name:
+        type: MVT
+        url: https://{s}.some-tile-server.com/{z}/{y}/{x}.mvt
+        url_subdomains: [a, b, c]
+```
+
+This example would cause the following hosts to be used for tile requests:
+
+https://a.some-tile-server.com/{z}/{y}/{x}.mvt
+https://b.some-tile-server.com/{z}/{y}/{x}.mvt
+https://c.some-tile-server.com/{z}/{y}/{x}.mvt
+
 ##### access tokens
 The `url` may require an access token:
 
@@ -122,6 +140,23 @@ mapbox:
     type: MVT
     url: https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6-dev/{z}/{x}/{y}.vector.pbf?access_token=...
 ```
+
+##### MBTiles
+
+[[ES-only](https://github.com/tangrams/tangram-es)] If the _URL_ of a data source has a file extension of `.mbtiles` then the specified file will be accessed as an MBTiles database and used as a tile set according to the MBTiles specification (following the proposed [version 2.0](https://github.com/pnorman/mbtiles-spec/blob/2.0/2.0/spec.md)).
+
+In addition to PNG and JPEG raster tiles, MBTiles can also provide vector tiles using any of the supported [`type`](#type) values. The `type` for an MBTiles data source should match the format of the tile data in the MBTiles database.
+
+Here is an example configuration of an MBTiles source:
+
+```yaml
+mbtiles-source:
+    type: TopoJSON # The source expects TopoJSON tile data.
+    url: data/tileset.mbtiles # The MBTiles file is located relative to the scene file.
+    max_zoom: 16 # Other parameters are applied as usual.
+```
+
+If you are developing an Android application that uses an MBTiles file located in external storage, your application will need to [request permissions](https://developer.android.com/training/permissions/index.html) to read the file.
 
 ### optional source parameters
 
@@ -148,6 +183,17 @@ These scripts will be loaded before the data is processed so that they are avail
 
 ```yaml
 scripts: [ 'https://url.com/js/script.js', 'local_script.js']
+```
+
+#### `tms`
+Setting `tms: true` on the source will enable support for the TMS tile coordinate protocol.
+
+```yaml
+sources:
+    mapzen:    
+        type: TopoJSON
+        url: http://demo.opengeo.org/geoserver/gwc/service/tms/ 1.0.0/ne:ne@EPSG:900913@png/{z}/{x}/{y}.png
+        tms: true
 ```
 
 #### `extra_data`
@@ -215,7 +261,7 @@ sources:
     local:
         type: GeoJSON
         url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.json
-        max_display_zoom: 9
+        min_display_zoom: 9
         max_display_zoom: 18
 ```
 
@@ -254,7 +300,22 @@ When a `Raster` source itself has additional raster sources set in the `rasters`
 
 For more, see the [Raster Overview](Raster-Overview.md).
 
-####`transform`
+#### `tile_size`
+Optional _int_. Must be a power of 2, greater than or equal to `256`. Default is `256`. No units.
+
+This specifies the size in pixels that each map tile will cover in the viewport (when the camera is positioned top-down). Traditionally map tiles for the "web Mercator" projection are 256x256 pixels, but some tile services now provide tiles intended for display at 512x512 pixels as well.
+
+For backwards compatability, Tangram will fetch the zoom level which would cover the equivalent geographical area as a traditional 256px tile. For instance, `tile_size: 512` will cause tiles from _one zoom level lower_ than the current view zoom.
+
+```yaml
+sources:
+   mapzen:
+      type: ...
+      url: ...
+      tile_size: 512
+```
+
+#### `transform`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _function_.
 
 This allows the data to be manipulated *after* it is loaded but *before* it is styled. Transform functions are useful for custom post-processing, either where you may not have direct control over the source data, or where you have a dynamic manipulation you would like to perform that incorporates other data separate from the source. The `transform` function is passed a `data` object, with a GeoJSON FeatureCollection assigned to each layer name, e.g. `data.buildings` would provide data from the `buildings` layer, with individual features accessible in `data.buildings.features`.

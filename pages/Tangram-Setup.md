@@ -2,9 +2,9 @@
 
 The easiest way to use Tangram in a web page is via [Mapzen.js](https://mapzen.com/documentation/mapzen-js/), which is Mapzen's JavaScript SDK. Mapzen.js combines web support for a variety of Mapzen services, including Tangram, [Mapzen Search](https://mapzen.com/products/search/), and the [Mapzen Basemap Styles](https://mapzen.com/documentation/cartography/styles/).
 
-## Manual JavaScript Setup
+## Script Tag Setup
 
-Tangram-JS is a JavaScript library designed for use in [Leaflet](http://leaflet.org) maps.
+Tangram JS is a JavaScript library designed for use in [Leaflet](http://leaflet.org) maps.
 
 The [latest release of Tangram](github.com/tangrams/tangram/releases) can be included in your web page with a `script` tag:
 
@@ -12,7 +12,7 @@ The [latest release of Tangram](github.com/tangrams/tangram/releases) can be inc
 <script src="https://mapzen.com/tangram/tangram.min.js"></script>
 ```
 
-Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](Tangram-Overview/#leaflet-options):
+Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](Tangram-Overview.md#leaflet-options):
 
 ```javascript
 var map = L.map();
@@ -22,13 +22,19 @@ var layer = Tangram.leafletLayer({
 });
 ```
 
-For a complete setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
+A Tangram map may be de-instantiated, with all associated resources de-allocated, by calling `layer.remove()` on the leafletLayer.
 
-## Tangram-ES
+For a complete manual setup tutorial, see our [Tangram Walkthrough](walkthrough.md).
 
-Tangram-ES is the C++ version of Tangram, based on OpenGL ES, designed for mobile and embedded systems. It currently targets five platforms: Android, iOS, Mac OS X, Ubuntu Linux, and Raspberry Pi.
+### JavaScript Bundling
 
-For a complete tutorial for setting up Tangram-ES on Android, see our [Android Walkthrough](android-walkthrough.md).
+Tangram JS may be imported or required as a module in ES6, CommonJS, or AMD (Asynchronous Module Definition).
+
+## Tangram ES
+
+Tangram ES is the C++ version of Tangram, based on OpenGL ES, designed for mobile and embedded systems. It currently targets five platforms: Android, iOS, Mac OS X, Ubuntu Linux, and Raspberry Pi.
+
+For a complete tutorial for setting up Tangram ES on Android, see our [Android Walkthrough](android-walkthrough.md).
 
 ## API keys
 
