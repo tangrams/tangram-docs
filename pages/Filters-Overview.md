@@ -2,7 +2,7 @@ Tangram is designed to work with vector tiles in a number of formats. Data sourc
 
 The Tangram scene file filters data in two ways: with top-level **layer filters** and lower-level **feature filters**.
 
-## Layer filters
+# Layer filters
 
 Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layers`](layers.md) object allows you to split the data by layer, by matching against the layer name.
 
@@ -25,7 +25,7 @@ Specifying `layer: roads` in the [`data`](layers.md#data) block matches this Geo
 }
 ```
 
-#### Layer name shortcut
+## Layer name shortcut
 
 If a `layer` filter is not specified, Tangram will attempt to use the _layer name_ as the filter. In this example, the layer name "roads" matches a layer in the data:
 
@@ -37,7 +37,7 @@ layers:
         draw: ...
 ```
 
-## Feature filters
+# Feature filters
 
 Once a top-level `layer` filter has been applied, feature-level [`filter`](layers.md#filter) objects can be defined to filter by feature properties, in order to further narrow down the data of interest and refine the styles applied to the data.
 
@@ -56,19 +56,19 @@ Here, a top-level layer named "roads" matches the "roads" layer in the "osm" dat
 
 Then, a _sublayer_ named "highway" is declared, with its own `filter` and `draw`. Its `draw` block will apply only to roads which match its `filter` – in this case, those with the property "kind", with a value of "highway".
 
-#### Inheritance
+## Inheritance
 
 Higher-level filters continue to apply at lower levels, which means that higher-level `draw` parameters will be inherited by lower levels, unless the lower level explicitly overrides it.
 
 Using sublayers and inheritance, you may specify increasingly specific filters and draw styles to account for as many special cases as you like.
 
-## Matching
+# Matching
 
 Each feature in a `layer` is first tested against each top-level `filter`, and if the feature's data matches the filter, that feature will be assigned any associated [`draw`](draw.md) styles, and passed on to any _sublayers_. If any _sublayer_ filters match the feature, that _sublayer_'s `draw` styles will overwrite any previously-assigned styling rules for those matching features, and so on down the chain of inheritance.
 
 Feature filters can match any named feature property in the data, as well as a few special _reserved keywords_.
 
-#### Feature properties
+## Feature properties
 
 Feature properties in a GeoJSON datasource are listed in a JSON member specifically named "properties":
 
@@ -97,32 +97,43 @@ filter: function() { return feature.kind == "commercial"; }
 The simplest type of feature filter is a statement about one named property of a feature.
 
 A filter can match an exact value:
+
 ```yaml
 filter:
     kind: residential
 ```
+
 any value in a list:
+
 ```yaml
 filter:
     kind: [residential, commercial]
 ```
+
 or a value in a numeric range:
+
 ```yaml
 filter:
     area: { min: 100, max: 500 }
 ```
+
 A Boolean value of "true" will pass a feature that contains the named property, ignoring the property's value. A value of "false" will pass a feature that does _not_ contain the named property:
+
 ```yaml
 filter:
     kind: true
     area: false
 ```
+
 To match a property whose value is a boolean, use the list syntax:
+
 ```yaml
 filter:
     boolean_property: [true]
 ```
+
 A feature filter can also evaluate one or more properties in a JavaScript function:
+
 ```yaml
 filter:
     function() { return feature.area > 100000 }
@@ -156,7 +167,7 @@ filter: function() { return feature.height <= 100; }
 filter: function() { return false; }
 ```
 
-#### Keyword properties
+## Keyword properties
 
 The keyword `$geometry` matches the feature's geometry type, for cases when a FeatureCollection includes more than one type of kind of geometry. Valid geometry types are:
 
@@ -198,7 +209,7 @@ filter:
 filter: function() { return $zoom <= 10 }   # matches zooms 10 and below
 ```
 
-#### `label_placement`
+## `label_placement`
 
 The `label_placement` property is given only to special auto-generated _point_ geometries, and may be used for placing a single label in the center of a polygon, instead of once per tile. To add these _points_ to a datasource, add the `generate_label_centroids` property to its [source] block:
 
@@ -206,7 +217,7 @@ The `label_placement` property is given only to special auto-generated _point_ g
 sources:
     mapzen:
         type: TopoJSON
-        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+        url:  https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
         generate_label_centroids: true
 
 layers:
@@ -219,9 +230,9 @@ layers:
 
 See [`generate_label_centroids`](sources.md#generate_label_centroids)
 
-#### Filter functions
+## Filter functions
 
-##### Range functions
+### Range functions
 
 The filter functions `min` and `max` are equivalent to `>=` and `<` in a JavaScript function, and can be used in combination.
 
@@ -236,7 +247,8 @@ filter:
     $zoom: { min: 5, max: 10 }  # matches zooms 5-9
 ```
 
-##### `px2`
+### `px2`
+
 Range functions can also accept a special screen-space area unit called `px2`:
 
 ```yaml
@@ -251,7 +263,7 @@ The `px2` unit syntax can be used to simplify more cumbersome per-zoom filters.
 
 Note that a `px2` area filter can only be applied if the data source already contains a suitable area property – it does not need to be named area, as any property name can be specified in the filter, but it must already exist in the data source.
 
-##### Boolean functions
+### Boolean functions
 
 The following Boolean filter functions are also available:
 
@@ -270,7 +282,7 @@ filter:
     not: { kind: [bar, pub] }
 ```
 
- `any`, `all`, and `none` take lists of filter objects:
+`any`, `all`, and `none` take lists of filter objects:
 
 ```yaml
 filter:
@@ -290,7 +302,7 @@ filter:
         - { kind: aerodrome }
 ```
 
-#### Lists imply `any`, Mappings imply `all`
+## Lists imply `any`, Mappings imply `all`
 
 A _list_ of several filters is a shortcut for using the `any` function. These two filters are equivalent:
 
@@ -314,7 +326,7 @@ filter:
         - $zoom: { min: 13 }
 ```
 
-#### Matching collisions
+## Matching collisions
 
 In some cases, filters at the same level may return overlapping results:
 
@@ -329,7 +341,7 @@ roads:
         draw: { lines: { color: blue } }
 ```
 
-In this case, "highways" are colored red, and "bridges" are blue. However, if any feature is both a "highway" *and* a "bridge", it will match twice. Because YAML maps are technically "orderless", there's no way to guarantee that one of these styles will consistently be shown over the other. The solution here is to restructure the styles so that each case matches explicitly:
+In this case, "highways" are colored red, and "bridges" are blue. However, if any feature is both a "highway" _and_ a "bridge", it will match twice. Because YAML maps are technically "orderless", there's no way to guarantee that one of these styles will consistently be shown over the other. The solution here is to restructure the styles so that each case matches explicitly:
 
 ```yaml
 roads:

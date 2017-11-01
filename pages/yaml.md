@@ -45,11 +45,18 @@ This is because the value of "parameter1" can't be both "value1" and an object c
 
 In this documentation, we refer to both parameters and elements as "objects".
 
+Note: YAML key names can't start with a number.
+
+```yaml
+sources:
+    1860: # THIS WON'T WORK
+```
+
 ## object syntax
 
 YAML supports two kinds of syntax when writing nested objects: _block syntax_ and _flow syntax_.
 
-####block syntax
+#### block syntax
 
 _Block syntax_ requires each level of an object to be indented with spaces – any number of spaces or tabs is allowed, as long as it's consistent throughout the file. It is relatively easy to read, though it tends to result in longer files.
 
@@ -96,7 +103,7 @@ element:
         - item 3
 ```
 
-####flow lists
+#### flow lists
 ```yaml
 element: { parameter: [ item1, item2, item3 ] }
 ```
@@ -197,17 +204,10 @@ Strings starting with `function` will be passed to the style builder as JavaScri
 
 ```yaml
 # Single-line JavaScript example:
-width: function () { return 2.5 * Math.log(zoom); }
+width: function () { return 2.5 * Math.log($zoom); }
 ```
 
-#### `$zoom`
-
-The `$zoom` keyword may be used to define [filters](Filters-Overview.md) with optional `min` and `max` parameters.
-
-```yaml
-outline:
-   filter: { $zoom: { min: 15, max: 20 } }
-```
+Note that functions cannot return a unit type – so in cases where a function is specifying a width, the default unit of _meters_ will be assumed. To return _pixel_ values, use the [`$meters_per_pixel`](#$meters_per_pixel) keyword.
 
 #### `$geometry`
 
@@ -223,6 +223,41 @@ Allowable values for this filter are:
 labels:
    filter: { $geometry: point }
 ```
+
+See [keyword properties](Filters-Overview.md#keyword-properties).
+
+#### `$layer`
+
+The `$layer` keyword can specify a [feature filter](Filters-Overview.md) to match a feature from a given named layer in the datasource, for cases when a Tangram layer's [`source`](sources.md) includes multiple layers.
+
+```yaml
+data: { source: osm, layer: [buildings, pois] }
+buildings:
+    filter: { $layer: buildings }
+```
+
+See [keyword properties](Filters-Overview.md#keyword-properties).
+
+#### `$meters_per_pixel`
+
+The `$meters_per_pixel` keyword is equal to the number of meters equivalent to a single pixel at the current zoom level. It may be used in [draw](draw.md) style functions, which assume that all returned values specifying a length or size are in meters. This keyword can therefore be used to return an amount in pixels.
+
+```yaml
+width: function() { return $zoom / 4. * $meters_per_pixel; }
+```
+
+See [keyword properties](Filters-Overview.md#keyword-properties).
+
+#### `$zoom`
+
+The `$zoom` keyword may be used to define [filters](Filters-Overview.md) with optional `min` and `max` parameters.
+
+```yaml
+outline:
+   filter: { $zoom: { min: 15, max: 20 } }
+```
+
+See [keyword properties](Filters-Overview.md#keyword-properties).
 
 ## multi-line strings
 

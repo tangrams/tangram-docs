@@ -1,6 +1,6 @@
 *This is the technical documentation for Tangram's `textures` block. For an overview of the ways textures can be used by Tangram, see the [Materials Overview](Materials-Overview.md).*
 
-##`textures`
+## `textures`
 The `textures` element is an optional top-level element in the [scene file](Scene-file.md). It has only one kind of sub-element: a named _texture object_.
 
 ```yaml
@@ -43,7 +43,7 @@ If a texture is provided for a _lines_ style, the texture is repeated across the
 
 ## texture parameters
 
-####`url`
+#### `url`
 Optional _string_, though either `url` or [`element`](#element) is required ([JS-only](https://github.com/tangrams/tangram). This element is required for [ES](https://github.com/tangrams/tangram-es)). Specifies the path to a texture source file. No default.
 
 URLs can be absolute or relative.

@@ -1,5 +1,7 @@
 *This is the technical documentation for Tangram's `global` block. For a conceptual overview of the Tangram scene file, see the [scene file](Scene-file.md) page.*
 
+*For the shader block, see [`global`](shaders.md#global).*
+
 ## `global`
 The `global` element is an optional top-level element in a Tangram scene file. It declares the beginning of the `global` block. It takes only one kind of parameter: a _property_. Any number of _properties_ can be declared.
 

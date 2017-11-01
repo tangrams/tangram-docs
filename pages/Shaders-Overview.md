@@ -64,16 +64,16 @@ styles:
         shaders:
             blocks:
                 position: |
-                    vec3 pos = worldPosition().xyz*0.1;
-                    if(position.z > 0.){
-                        position.xyz += vec3(cos(pos.x+u_time)*5.,
-                                         sin(pos.y+u_time)*5.,
-                                         sin(pos.x+u_time)*10.+
-                                         cos(pos.y+u_time)*5. );
+                    vec3 pos = worldPosition().xyz;
+                    if (position.z > 0.) {
+                        position.xyz += vec3(
+                            cos(pos.x+u_time*5.),
+                            sin(pos.y+u_time*5.),
+                            sin(pos.x+u_time))*2.;
                     }
 ```
 
-[ ![](images/position.png) ](http://tangrams.github.io/tangram-docs/?shaders/position.yaml)
+[ ![](images/shaders-position.gif) ](http://tangrams.github.io/tangram-docs/?shaders/position.yaml)
 
 #### `normal`
 
@@ -90,17 +90,11 @@ styles:
         shaders:
             blocks:
                 normal: |
-                    vec3 pos = worldPosition().xyz*0.1;
-                    normal.xyz += vec3( cos(pos.x+u_time)+
-                                        cos(pos.x*0.5+u_time*2.0),
-                                        sin(pos.y*2.0+u_time*0.4)*0.54+
-                                        sin(pos.y*1.5+u_time*0.7),
-                                        sin(pos.z*0.7+u_time*1.5)+
-                                        cos(pos.z+u_time)*1.1 )*0.5;
-                    normal = normalize(normal);
+                    vec3 pos = worldPosition().xyz*0.02;
+                    normal.x += sin(pos.x + u_time);
 ```
 
-[ ![](images/normal.png) ](http://tangrams.github.io/tangram-docs/?shaders/normal.yaml)
+[ ![](images/shaders-normal.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/normal.yaml)
 
 #### `color`
 
@@ -116,29 +110,18 @@ styles:
             diffuse: 1.0
         shaders:
             blocks:
-                global: |
-                    float random(in vec3 _st){ 
-                        return fract(sin(dot(_st.xyz,
-                                             vec3(12.9898,78.233,32.4355)))* 
-                            43758.5453123);
-                    }
-
-                    vec3 hsb2rgb( in float hue, in float sat, in float bri ){
-                        vec3 rgb = clamp(abs(mod(hue*6.0+vec3(0.0,4.0,2.0),
-                                                 6.0)-3.0)-1.0, 
-                                         0.0, 
-                                         1.0 );
-                        rgb = rgb*rgb*(3.0-2.0*rgb);
-                        return bri * mix(vec3(1.0), rgb, sat);
-                    }
                 color: |
-                    vec3 pos = worldPosition().xyz*0.05;
-                    color.xyz *= hsb2rgb( random(abs(floor(pos))) , .5, .8 );
+                    vec3 pos = worldPosition().xyz*0.01;
+                    color.r *= sin(pos.x + u_time * 0.5);
+                    color.g *= sin(pos.x + u_time * 1.0);
+                    color.b *= sin(pos.x + u_time * 1.5);
 ```
 
-[ ![](images/color.png) ](http://tangrams.github.io/tangram-docs/?shaders/color.yaml)
+[ ![](images/shaders-color.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/color.yaml)
 
 #### `filter`
+
+_[For data filters, see [`filters`](filters.md).]_
 
 In this `block` you can change the `color` value of a surface pixel by pixel, post-lighting. The `color` variable is a `vec4(r,g,b,a)`. This is the right place to apply effects like crosshatching, color adjustments, and halftones.
 
@@ -152,27 +135,17 @@ styles:
             diffuse: 1.0
         shaders:
             blocks:
-                global: |
-                    float random(in vec3 _st){ 
-                        return fract(sin(dot(_st.xyz,
-                                             vec3(12.9898,78.233,32.4355)))* 
-                            43758.5453123);
-                    }
-
-                    vec3 hsb2rgb( in float hue, in float sat, in float bri ){
-                        vec3 rgb = clamp(abs(mod(hue*6.0+vec3(0.0,4.0,2.0),
-                                                 6.0)-3.0)-1.0, 
-                                         0.0, 
-                                         1.0 );
-                        rgb = rgb*rgb*(3.0-2.0*rgb);
-                        return bri * mix(vec3(1.0), rgb, sat);
-                    }
+                color: |
+                    // brighten with height
+                    color = vec4(worldPosition().z * .002 + .5);
                 filter: |
-                    vec3 pos = worldPosition().xyz*0.05;
-                    color.xyz = hsb2rgb( random(abs(floor(pos))) , .5, .8 );
+                    // animated green bars
+                    vec3 filter = vec3(0.5, 1.0, 0.5) * abs(floor(sin(worldPosition().x * .05 + u_time)));
+                    // add green after lighting
+                    color.rgb += filter;
 ```
 
-[ ![](images/filter.png) ](http://tangrams.github.io/tangram-docs/?shaders/filter.yaml)
+[ ![](images/shaders-filter.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/filter.yaml)
 
 #### Defines and Uniforms
 

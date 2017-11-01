@@ -1,6 +1,6 @@
 *This is the technical documentation for the "layers" block in Tangram's scene file. For a conceptual overview of the way Tangram applies styles to data, see the [Filters Overview](Filters-Overview.md) and the [Styles Overview](Styles-Overview.md).*
 
-####`layers`
+#### `layers`
 The `layers` element is a required top-level element in the [scene file](Scene-file.md). It has only one kind of sub-element: a *layer name*, which defines individual layers with a layer filter.
 
 ```yaml
@@ -17,9 +17,12 @@ layers:
     landuse:
         ...
 ```
+
+Note: If a `layer` filter is not specified in a `data` parameter, Tangram will attempt to use the _layer name_ as the filter. See [Layer Name Shortcut](Filters-Overview.md#layer-name-shortcut).
+
 ## layer parameters
 
-####`data`
+#### `data`
 Required parameter. Defines the beginning of a [data block](#data-parameters). Usable by top-level layers only. No default.
 ```yaml
 layers:
@@ -27,7 +30,7 @@ layers:
         data: { source: osm }
 ```
 
-####`filter`
+#### `filter`
 Optional _object_ or _function_. No default.
 
 A `filter` element may be included once in any layer or sublayer. Only features matching the filter will be included in that layer (and its sublayers). For more on the filtering system, see [Filters Overview](Filters-Overview.md).
@@ -39,17 +42,21 @@ layers:
         filter: { kind: highway }
 ```
 
-####`visible`
+#### `enabled`
 Optional _Boolean_. Allows layer to be turned off and on. Default is `true`.
 
 ```yaml
 layers:
     landuse:
         data: { source: osm }
-        visible: false
+        enabled: false
 ```
 
-####`draw`
+Unlike the `draw`-level [`visible`](draw.md#visible) parameter, once set, the `enabled` parameter _cannot_ be overridden by any descendant layers. This is useful for culling large portions of the layer tree, e.g. for layer-toggle controls and/or overlays.
+
+[This parameter was renamed from `visible` to avoid confusion with the `-draw`-level `visible` parameter. Layer-level `visible` parameters will be supported through v0.12, but will be deprecated in a future release.]
+
+#### `draw`
 Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [draw](draw.md) entry.
 ```yaml
 layers:
@@ -59,7 +66,7 @@ layers:
             ...
 ```
 
-####sublayer name
+#### sublayer name
 Optional _string_. Can be anything except the other sublayer parameters: "draw", "filter", and "properties". No default.
 
 Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested.
@@ -85,7 +92,7 @@ layers:
 
 ## `data` parameters
 
-####`source`
+#### `source`
 Required _string_, naming one of the sources defined in the [sources](sources.md) block.
 
 ```yaml
@@ -93,7 +100,7 @@ data:
     source: osm
 ```
 
-####`layer`
+#### `layer`
 Optional _string_ or _[strings]_, naming a top-level named object in the source datalayer. In GeoJSON, this is a _FeatureCollection_. If a `layer` is not specified, the _layer name_ will be used.
 ```yaml
 data:

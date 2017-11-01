@@ -1,0 +1,8 @@
+import: https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/simple-basemap.yaml
+
+layers:
+    roads:
+        major_road:
+            draw:
+                lines:
+                    color: orange

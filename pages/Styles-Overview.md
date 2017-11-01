@@ -1,31 +1,35 @@
 *This is an overview of Tangram's styling system. For a complete technical reference of the custom style-creation system, see [styles](styles.md), and for all the technical details of drawing with those styles, see [draw](draw.md).*
 
-Tangram currently has five built-in _draw styles_: `polygons`, `lines`, `points`, `text`, and `raster`. Each draw style displays data in a different way, and some of them require specific data types and properties.
+## draw styles
 
 Draw styles are referenced in two places in the scene file: when defining custom [styles](styles.md) and again in [draw](draw.md) groups.
 
-## draw styles
+Tangram currently has five built-in _draw styles_: `polygons`, `lines`, `points`, `text`, and `raster`. Each draw style displays data in a different way, and some of them require specific data types and properties.
 
 #### `polygons`
-The `polygons` _draw style_ tessellates and extrudes vector shapes into 3D geometry. It requires polygonal data. See [`polygons`](#polygons-1).
+The `polygons` _draw style_ tessellates and extrudes vector shapes into 3D geometry. It requires polygonal data. See [`polygons`](#polygons_1).
 
 #### `lines`
-The `lines` _draw style_ can turn either polygonal or line data into lines. See [`lines`](#lines-1).
+The `lines` _draw style_ can turn either polygonal or line data into lines. See [`lines`](#lines_1).
 
 #### `points`
 The `points` _draw style_ draws a filled circle at the location of the data point. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
+_[JS only]_ Only points from the same datasource will collide with each other.
+
 Technically, this draw style creates a small quad, which is then colored with a default shader which draws a dot. This behavior can be overridden with either a custom shader or a texture.
 
-See [`points`](#points-1).
+See [`points`](#points_1).
 
 #### `text`
 The `text` _draw style_ draws text labels at a given point. It can work with point, line, or polygon data. When used with lines, the label will be drawn along the line. When used with polygons, the label will be drawn at the polygon's centroid. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
 
-See [`text`](#text-1).
+_[JS only]_ Only text elements from the same datasource will collide with each other.
+
+See [`text`](#text_1).
  
 #### `raster`
-The `raster` _draw style_ draws one tile-sized square per tile and paints it with the appropriate tile from a `Raster` data source. See [`raster`](#raster-1).
+The `raster` _draw style_ draws one tile-sized square per tile and paints it with the appropriate tile from a `Raster` data source. See [`raster`](#raster_1).
 
 ## Using Styles
 
@@ -118,6 +122,8 @@ The `points` draw style is used to draw dots or sprites at points of interest. I
 If the point is used to draw a dot, the size and color of this circle can be specified in the scene file with the `size` and `color` parameters.
 
 `points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the [`priority`](draw.md#priority) draw parameter.
+
+_[JS only]_ Only points and text elements from the same datasource will collide with each other.
 
 #### `points` draw group requirements
 [Draw groups](draw.md#draw-group) which use the `points` draw style must specify, at minimum, the following parameters in order to be drawn:

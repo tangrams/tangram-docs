@@ -57,7 +57,7 @@ sources:
         url: http://a.tile.stamen.com/terrain-background/{z}/{x}/{y}.jpg
     mapzen-osm:
         type: TopoJSON
-        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
         rasters: [stamen-terrain] # attach stamen terrain
 
 layers:
@@ -122,10 +122,11 @@ This example loads pre-computed "normal" tiles as a normal map, which can be lit
 sources:
     terrain-normals:
         type: Raster
-        url: https://terrain-preview.mapzen.com/normal/{z}/{x}/{y}.png
+        url: https://tile.mapzen.com/mapzen/terrain/v1/normal/{z}/{x}/{y}.png
+
     mapzen-osm:
         type: TopoJSON
-        url: https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
         rasters: [terrain-normals]
 
 styles:
@@ -148,7 +149,7 @@ layers:
 
 ![tangram-wed mar 30 2016 21-39-44 gmt-0400 edt](https://cloud.githubusercontent.com/assets/16733/14163150/7bff64d6-f6c0-11e5-9c22-555d8075b8dd.png)
 
-###Direct Sampler Access
+### Direct Sampler Access
 
 When a style declares `raster: custom`, any shaders defined in that style can directly sample the raster for custom effects.
 
@@ -159,7 +160,7 @@ styles:
     elevation:
         base: polygons
         raster: custom
-        shaders: 
+        shaders:
             blocks:
                 global: |
                     // Unpack RGB elevation
@@ -208,4 +209,3 @@ layers:
 ```
 
 ![tangram-wed mar 30 2016 17-20-15 gmt-0400 edt](https://cloud.githubusercontent.com/assets/16733/14158040/074abc0e-f69c-11e5-9cc5-a2852f24b46d.png)
-

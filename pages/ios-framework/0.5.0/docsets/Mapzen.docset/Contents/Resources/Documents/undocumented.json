@@ -1,0 +1,12 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/karim/Dropbox/mapzen/dev/tangram-es/platforms/ios/src/TangramMap/TGGeoPoint.h",
+      "line": 19,
+      "symbol": "TGGeoPoint",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/karim/Dropbox/mapzen/dev/tangram-es/platforms/ios"
+}
