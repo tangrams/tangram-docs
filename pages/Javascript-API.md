@@ -82,12 +82,35 @@ layer.setSelectionEvents (events, { radius: 5 }) // radius of 5px
 
 When using a radius, the feature closest to the center point will be returned. As with existing feature selection, only features marked as interactive: true will register.
 
-#### `load(scene_url, { base_path, file_type })`
-Loads the specified scene by URL and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
+#### `load({scene_url|config object}, { base_path, file_type })`
+Loads the specified scene, either by URL or by object, and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
 
 `scene_url` is the path to a scene file. By default, relative paths within this file (for images, fonts, or other resources) are relative to this URL. For example, for a scene loaded from `https://example.com/path/to/scene.yaml`, an image `texture.png` referenced in that scene file would resolve to `https://example.com/path/to/texture.png`.
 
-Other options may be passed inside an object.
+A _config object_ is the JSON equivalent of the contents of a YAML scene file. For instance, this yaml:
+
+```yaml
+import: ['import1.yaml']
+scene:
+  background:
+    color: grey
+```
+
+… is converted after loading to this JSON object:
+
+```javascript
+{ import: {'import1.yaml'},
+  scene: {
+    background: {
+      color: 'grey'
+    }
+  }
+}
+```
+
+An object in this form, or a pointer to such an object, may be passed to `load()` instead of a URL. In this way custom scene files may be generated and loaded at runtime.
+
+Other options may be passed to `load()` inside an object:
 
 `base_path` is an optional argument specifying an alternate base URL for resolving relative paths in the scene file. It is primarily useful for development and debugging.
 
@@ -101,6 +124,23 @@ Using `Scene.load()`:
 
 ```javascript
 scene.load(zip_blob_url, { file_type: 'zip' });
+```
+
+Using a JSON object:
+```javascript
+var styleobject = {
+  'import': [
+    'import1.yaml',
+    'import2.yaml'
+  ],
+  'scene': {
+    'background': {
+      'color': 'grey'
+    }
+  }
+}
+
+scene.load(styleobject);
 ```
 
 Using `Tangram.leafletLayer`:
