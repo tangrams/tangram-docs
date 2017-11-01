@@ -132,13 +132,11 @@ Due to architectural limitations, there can be only one Tangram map per "browsin
 
 An iframe counts as a separate browsing context, so we make frequent use of the [Tangram-frame repository](https://github.com/tangrams/tangram-frame) for this purpose, by using Tangram-frame links as the "src" of iframes.
 
-
 ## The Scene File
 
 Tangram uses a "scene file" written in YAML to configure data sources, filters, and styling rules. Its structure and syntax is interchangable between Tangram JS and Tangram ES, with a very small number of exceptions as noted in the documentation with `[JS only]` or `[ES only]`.
 
 See [Scene File](Scene-file.md).
-
 
 ## Scene Bundling
 
@@ -152,17 +150,15 @@ For example, with Tangram JS:
     var layer = Tangram.leafletLayer({
         scene: 'scene.zip'
     });
-    
+
     layer.addTo(map);
 ```
 
 Tangram will unpack the zip internally, expecting only a single .yaml file to be in the zip's root, which it will use as the scene file. Any other bundled .yaml files (eg [basemaps](https://mapzen.com/blog/introducing-refill-cinnabar-and-zinc-styles-for-tangram/) or [blocks](https://github.com/tangrams/blocks) included with the [import](import.md) block) must therefore be in subdirectories, and all paths in the .yaml file must be relative to this root scene file.
 
-
 ## Getting Started
 
 Check out our [Tangram Setup Guides](Tangram-Setup.md) for more information about getting started with your Tangram installation.
-
 
 ## Contributing
 

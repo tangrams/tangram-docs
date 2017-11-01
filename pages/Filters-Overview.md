@@ -72,7 +72,7 @@ Feature filters can match any named feature property in the data, as well as a f
 
 Feature properties in a GeoJSON datasource are listed in a JSON member specifically named "properties":
 
-```json
+```
 {
     "type": "Feature",
     "id": "248156318",
