@@ -573,8 +573,8 @@ roads:
 ```
 
 #### `size`
-Optional _number_ in `px`, _[x, y]_ in `px`, _stops_ having either 1D or 2D values (mixed 1D and
-2D stop values are not allowed), or _function_. Default is `px`.
+Optional 1D _number_ in `px` or `%`, 2D _[x|`auto`, y|`auto`]_ in `px` or `%`, _stops_ having either 1D or 2D values (mixed 1D and
+2D stop values are not allowed), or _function_. No default value, default units are `px`.
 
 Applies to `points`.
 
@@ -597,6 +597,61 @@ draw:
     points:
         size: function() { return (feature.height||0)/10 + 3; } # add 1px for every 10 meters of height (plus 3px base)
         color: red
+```
+
+##### `size: %`
+
+The percent (`%`) may be used when a [_sprite_](draw.md#sprite) is drawn referencing a [_texture_](texture.md) with a [`density`](testures.md#density) parameter set:
+
+```yaml
+draw:
+    points:
+        size: 50%
+```
+
+The percentage is applied to the sprite's size in _CSS pixels_. For example:
+
+- A texture with actual pixel width of `64px` and `density: 2` has an intended CSS pixel display size of 32px.
+- A setting of `size: 100%` will display this sprite at 32px CSS pixels (e.g. 32px actual pixels on a 1x display, or 64px on a 2x retina display).
+
+Percent scaling can also be used with zoom interpolation, including mixing with explicit px sizing:
+
+```yaml
+size: [[13, 50%]], [20, 100%]] # scale from 50% to 100% across a zoom range
+```
+
+```yaml
+size: [[13, 12px]], [20, 100%]] # scale from 12px square to 100% across a zoom range
+```
+Percent scaling can accept values greater than 100%, e.g. `size: 200%` will scale the sprite to twice its native size.
+
+##### `size: auto`
+
+The `auto` keyword may be used in place of one of the dimensions in a 2D `size`:
+
+```yaml
+size: [32px, auto] # scale the sprite to 32px wide, with auto-calc height
+```
+```yaml
+size: [auto, 16px] # scale the sprite to 16px high, with auto-calc width
+```
+
+Auto-scaling can also be used with zoom interpolation, including mixing with percent scaling:
+
+```yaml
+size: [[15, [auto, 12px], [20, [auto, 20px]] # scale between two heights, with auto-calc width
+```
+```yaml
+size: [[13, [auto, 12px]], [20, 100%]] # scale from 12px high at z13, up to full size at z20
+```
+
+**Note:** Since both percent-based and ratio-constrained scaling only make sense in the context of a _sprite_ (not a simple colored shader point), specifying these for layers without both a [`texture`](textures.md) and a [`sprite`](draw.md#sprite) defined will generate warnings and draw nothing, for example:
+
+```yaml
+draw: { points: { color: red, size: 50% } }
+```
+```yaml
+draw: { points: { color: red, size: [auto, 20px] } }
 ```
 
 #### `sprite`
