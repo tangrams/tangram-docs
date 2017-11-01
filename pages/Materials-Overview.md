@@ -4,7 +4,7 @@ Materials describe how an object responds to illumination by [lights](Lights-Ove
 
 The most common material properties control the reflection of those three terms, and share their names:
 
-###`diffuse`
+### `diffuse`
 This is the primary color of an object as it would appear in pure white light, in the absence of highlights. By default: `diffuse: white`.
 
 ```yaml
@@ -26,7 +26,7 @@ styles:
 ![](images/diffuse-surface.png)
 ![](images/diffuse.png)
 
-###`ambient`
+### `ambient`
 This is is the color of the object in the presence of ambient light. By default, the ambient color will be the same as the `diffuse` value, unless otherwise specified.
 
 ```yaml
@@ -51,7 +51,7 @@ styles:
 ![](images/ambient-sphere.png)
 
 
-###`specular`
+### `specular`
 In our lighting model, "specular" is the "highlight" color of a material. It can be thought of as the reflection of the light source itself on the surface of an object. The `shininess` parameter controls the size of the highlight: larger numbers produce smaller highlights, which makes the object appear shinier.
 
 By default, these are set to `specular: 0` and `shininess: 0.2`
@@ -80,7 +80,7 @@ styles:
 ![](images/shininess.png)
 
 
-###`emission`
+### `emission`
 When an `emission` color is set, the object will take on that color independent of any lights, including ambient, as though it is glowing (although it will not illuminate neighboring objects, as it is not a true light source). By default, it is set to `emission: 0`.
 
 ```yaml
@@ -117,7 +117,7 @@ material:
         texture: ./images/grid.jpg
 ```
 
-###Mapping
+### Mapping
 When using a texture, you must specify one of four `mapping` modes, which determine the method used to apply the texture to an object. In every case, texture coordinates are applied to the vertices of the geometry, and the image is drawn according to those coordinates.
 
 ### `mapping: uv`
@@ -133,7 +133,7 @@ material:
 ```
 [ ![](images/uv.jpg) ](http://tangrams.github.io/tangram-docs/?material/uv.yaml#19/40.70533/-74.00975)
 
-###`mapping: planar`
+### `mapping: planar`
 Planar mapping uses only 2D world coordinates. As you can see the pattern is constant across surfaces that face up but is stretched on the sides of geometries.
 
 ```yaml
@@ -146,7 +146,7 @@ material:
 
 [ ![](images/planar.jpg) ](http://tangrams.github.io/tangram-docs/?material/planar.yaml#19/40.70533/-74.00975)
 
-###`mapping: triplanar`
+### `mapping: triplanar`
 This is similar to `planar`, but along all three world-space axes. Where a face does not point directly along one axis, the result will be a blend of more than one axis; thus it is computationally more expensive.
 
 ```yaml
@@ -159,7 +159,7 @@ material:
 
 [ ![](images/triplanar.jpg) ](http://tangrams.github.io/tangram-docs/?material/triplanar.yaml#19/40.70533/-74.00975)
 
-###`mapping: spheremap`
+### `mapping: spheremap`
 A "spherical environment map", or "spheremap", is an unusual kind of mapping which is dependent on camera position. It uses a texture to color faces depending on their relative angle to the camera. You can think of a spheremap as a hemisphere over the scene, on which the texture has been painted – each polygon in the scene is colored depending on the part of the texture at which it points.
 
 In this example, all polygons which face straight toward the camera will be given the color at the center of the spheremap's texture: white. All polys which face south will be tinted blue, east green, west red, north yellow, and so on.
@@ -175,7 +175,7 @@ material:
 
 [ ![](images/spheremap.png) ](http://tangrams.github.io/tangram-docs/?material/spheremap.yaml#19/40.70533/-74.00975)
 
-###Other properties
+### Other properties
 Each `texture` can also have the following properties:
 
 * `scale`: use for `uv`, `planar` and `triplanar`. This scales the value of the texture coordinates. Usually, bigger values result in smaller textures. Can be a single float value, or a two/three dimensional value. By default: `scale: [1,1]`
@@ -209,7 +209,7 @@ material:
 
 [ ![](images/normals.png) ](http://tangrams.github.io/tangram-docs/?material/normals.yaml#19/40.70533/-74.00975)
 
-#Composition
+# Composition
 
 Any of these `material` properties is magical on its own, but even more sophisticated effects become possible when combining them. You will need to experiment to find the right combination to produce the effect that you want.
 

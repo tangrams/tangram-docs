@@ -8,8 +8,7 @@ test:
 
 deployment:
   release:
-    branch: "master"
+    branch: "gh-pages"
     commands:
-      - pip install 'Circle-Tickler == 1.0.1'
-      # remove the first run once new repo is verified
-      - tickle-circle mapzen mapzen-docs-generator master $CIRCLE_TOKEN || tickle-circle mapzen documentation master $CIRCLE_TOKEN
+      - pip install 'Circle-Beacon == 2.0.0'
+      - alert-circle mapzen documentation master $CIRCLE_TOKEN

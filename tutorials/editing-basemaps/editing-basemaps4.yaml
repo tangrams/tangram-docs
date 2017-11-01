@@ -1,4 +1,9 @@
-import: https://mapzen.com/carto/refill-style-no-labels/refill-style-no-labels.yaml
+import: https://mapzen.com/carto/refill-style-no-labels/6/refill-style-no-labels.yaml
+
+global:
+    # Sign up for a Mapzen API key to enjoy higher rate limits
+    # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
+    sdk_mapzen_api_key: mapzen-AvWa8DQ     # set this value to your Mapzen API key
 
 layers:
     roads:
@@ -146,7 +151,6 @@ layers:
             draw:
                 lines:
                     color: red
-            early:
             pedestrian:
                 draw:
                     lines:

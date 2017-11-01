@@ -10,9 +10,9 @@ All of these effects are possible thanks to [OpenGL](https://en.wikipedia.org/wi
 
 Tangram is available in two delicious flavors: [Tangram JS](https://github.com/tangrams/tangram) is a [Leaflet](http://leafletjs.com/) plugin for browser-based mapping, and [Tangram ES](https://github.com/tangrams/tangram-es) is a C++ library for native mobile and embedded devices.
 
-### Conceptual Overviews
+### Concept Overviews
 
-Tangram supports standard map styling conventions, but a Tangram map is also technically a 3D scene. You don't have to know anything about 3D to make a Tangram map, but if you'd like to dig deeper into the unique world of Tangram styles, the **Concept Overviews** section is a good place to start.
+Tangram supports standard map styling conventions, but a Tangram map is also technically a 3D scene. You don't have to know anything about 3D to make a Tangram map, but if you'd like to dig deeper into the unique world of Tangram styles, the **[Concept Overviews](https://mapzen.com/documentation/tangram/Tangram-Overview/)** section is a good place to start.
 
 ### Technical Reference
 
@@ -21,6 +21,8 @@ Tangram maps are styled using a custom styling syntax inside of a YAML scene fil
 The **Syntax Reference** section of the documentation enumerates and describes the objects allowed in the scene file, and enumerates all of their properties.
 
 Specific documentation about implementing Tangram on various platforms is available in the **API documentation**. The scene file syntax is platform-independent, and should function the same way everywhere – any exceptions are marked.
+
+Note: the documentation always refers to the [latest release of Tangram](https://github.com/tangrams/tangram/releases) – reverse compatibility of scene file syntax is not guaranteed.
 
 ### Demos and Examples
 
