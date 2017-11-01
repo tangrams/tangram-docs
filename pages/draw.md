@@ -385,7 +385,7 @@ Note that by default, `points` and `text` layers are drawn with the `overlay` [b
 #### `outline`
 Optional element. Defines the start of an outline style block.
 
-Applies to `points` and `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters.
+Applies to `points` and `lines`. Draws an outline around the feature. `outline` elements can take any `lines` style parameters. The following parameters will be inherited from the parent `lines` style if not explicitly specified: `order`, `miterLimit` and `interactive`.
 
 ```yaml
 draw:
@@ -609,6 +609,8 @@ Applies to _points_ styles only. (For the `text` _draw style_, see the [Styles O
 This block allows _points_ styles to define an associated text label for each point, such as for POIs.
 
 Text added in this way can be styled with the same syntax as the _text_ rendering style, but with different default values that take into account the "parent" point (see "[Text behavior](draw.md#text_behavior)" below).
+
+The following parameters will be inherited from the parent `points` style if not explicitly specified: `interactive` and `repeat_group`.
 
 For example, to create an icon with a _text_ label, using a style "icons" that has `base: points`:
 
