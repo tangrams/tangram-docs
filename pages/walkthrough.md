@@ -1,8 +1,8 @@
-# Walkthrough: Make a map with Tangram
+# JavaScript setup guide
 
 With the [Tangram map renderer](https://mapzen.com/products/tangram), you quickly can make beautiful and useful 2D and 3D maps. With easy customizations, you can have fine control over almost every aspect of your map's appearance, including symbols, lighting, geometry, and feature labels, and see your changes immediately. Tangram is [open source](https://github.com/tangrams/tangram), and supports several vector data formats.
 
-Follow this step-by-step walkthrough to make your first Tangram map. You will get a sample Tangram map running on your machine and be able to make simple changes to the map's appearance by editing a few lines of code. After you are done styling the map, you can host it on a website to share it with others.
+Follow this step-by-step walkthrough to use Tangram locally on your machine. 
 
 To complete this walkthrough, you need a [browser that supports WebGL](https://get.webgl.org/), a [text editor](https://mapzen.com/documentation/guides/install-text-editor/), and [Python](https://www.python.org/downloads/), which may already be installed as part of your operating system. You will need to maintain an Internet connection while you are working so you can access the map source data, which is being streamed from Mapzen's servers. While the steps are written for a Mac, you could use other operating systems as long as you can run a web server locally. It should take you about an hour to complete the exercises.
 
@@ -53,7 +53,7 @@ Checking connectivity... done.
 Serving HTTP on 0.0.0.0 port 8000 ...
 ```
 
-Be sure to keep the terminal window open while you are working on this walkthrough. If you need more help, see the [server environment documentation](https://mapzen.com/documentation/guides/server-environment/#start-a-local-web-server).
+Be sure to keep the terminal window open while you are editing the Tangram map. If you need more help with your server setup, see the [server environment documentation](https://mapzen.com/documentation/guides/server-environment/#start-a-local-web-server).
 
 ### View the Tangram scene file
 
@@ -72,70 +72,13 @@ Beyond the steps in this walkthrough, you can play with other elements and their
     	light1:
 
 	sources:
-    	osm:
+		mapzen:
 
 	layers:
-    	earth:
+		earth:
 	```
 
-This part of the walkthrough has given you an introduction to Tangram and the contents of the scene file.  Now, you will edit the scene file to change the map's lighting and symbols.
-
-### Update the scene lighting
-
-Lighting enables visual effects like making the map appear as if it is being illuminated by the sun, viewed after dark, or lit only by the beam of a flashlight. The appearance of light is also affected by the materials it shines on, but setting properties of materials is beyond the scope of this walkthrough.
-
-Currently, the map has a light source defined as `directional`, which you can think of as being sunlight. In these steps, you will add a new `light` element that resembles a flashlight shining from above. Darkening a scene by dimming the lighting parameters is a quick way to simulate night conditions, but you may need to modify the symbol colors if you are truly designing a map for viewing at night.
-
-1. In `scene.yaml`, under `lights:`, add a  new `light2:` element at the same level as `light1:`.
-```
-lights:
-	light1:
-		[...]
-	light2:
-```
-2. Define `light2` with the following parameters, being careful to indent the lines under `light2:`.
-```
-light2:
-	visible: true
-	type: point
-	position: [-74.0170, 40.7031, 100]
-	origin: world
-	ambient: .3
-	diffuse: 1
-	specular: .2
-```
-
-3. Save `scene.yaml` and refresh the map.
-
-The `position` parameter defines a light originating at an x-,y- coordinate location and at a z-value in meters from the ground, giving the appearance of a light pointed at the tip of Manhattan. You can learn more about lights and their parameters from the [lights documentation](lights.md).
-
-![simple-demo with new light](images/simple-demo-new-light.png)
-
-The updated map looks washed out and the new spot light is barely visible, so you can adjust `light1` to make the map look better.
-
-1. Under `light1:`, change the `diffuse:` parameter to `.1`.
-2. Change `ambient:` to `.3`. Your `lights:` section should look like this:
-```
-lights:
-  light1:
-    type: directional
-    direction: [0, 1, -.5]
-    diffuse: .1
-    ambient: .3
-  light2:
-    visible: true
-    type: point
-    position: [-74.0170, 40.7031, 100]
-    origin: world
-    ambient: .3
-    diffuse: 1
-    specular: .2
-```
-3. Save `scene.yaml` and refresh the map.
-
-	![simple-demo with combined lights](images/simple-demo-mod-light.png)
-
-In these steps, you blended lights to achieve different effects. However, if you want to turn off a light completely, you can set its `visible` property to `false.`
+This part of the walkthrough has given you an introduction to Tangram and the contents of the scene file.  
 
 ### Update the layers in the map
 
@@ -146,14 +89,16 @@ After you specify the source, you need to list the layers from that source that 
 You specify how the display the features in the layers in the `draw:` block. There, you can enter basic information about colors and symbol sizes, as well as use more complex drawing techniques. For example, you can define shading or animations, enter code blocks, or reference other `.yaml` files. You can also specify the drawing order of layers to put certain layers on top of others. For example, in `scene.yaml`, the earth polygon layer, which represents landmasses, has an order of 0, meaning it will be underneath all other layers. Layers with order values of greater numbers are drawn on top of those with smaller numbers.
 
 1. In `scene.yaml`, review the items under `layers:` to see which layers and feature types (`kind:`) are displayed in the map, and review the `draw:` block under each layer.
-2. Under `water:`, change the `color:` value to `'#003366'`. Be sure to enclose the value in quotation marks. Your `water:` block should look like this.
-```yaml
-water:
-  data: { source: mapzen }
-    draw:
-      polygons:
-        order: 2
-        color: '#003366'
+2. Under `water:`, change the `color:` value to `'#003366'`. Be sure to enclose the value in single quotation marks. Your `water:` block should look like this.
+```
+[...]
+	water:
+		data: { source: mapzen }
+		draw:
+			polygons:
+				order: 2
+					color: '#003366'
+[...]
 ```
 3. Save `scene.yaml` and refresh the browser to see the updates.
 
@@ -167,8 +112,6 @@ When you are done, close the terminal window to shutdown the server and close yo
 
 Now that you have made changes to the scene locally, you may want to share your map on a website. The next part of the walkthrough describes how to get your map on the web.
 
-If you prefer, you can skip this part of the walkthrough.
-
 There are many options for getting a map on the web. For example, if you have your own web hosting service, you can use that. An alternative is to use the free hosting service from GitHub called [GitHub Pages](https://pages.github.com/), which is what this walkthrough will use. These instructions show you how to get your Tangram map on the web through GitHub Pages.
 
 To complete these exercises, you must have a GitHub user account. See the [GitHub documentation](https://help.github.com/articles/signing-up-for-a-new-github-account/) for information on signing up for service.
@@ -176,7 +119,6 @@ To complete these exercises, you must have a GitHub user account. See the [GitHu
 This section assumes some knowledge of GitHub terminology and workflows. You can refer to the [GitHub documentation](https://help.github.com/) if you need more detailed steps. Note that there are many ways to perform the tasks described, including through the website, desktop applications, and the command line. This exercise generally follows the website and desktop application, but you can use the method that is most comfortable to you.
 
 ### Create a repository for your map website
-
 To add a project to GitHub, you need to have a repository in which to store your files. For this walkthrough, you will create a new repository in your user account.
 
 1. Sign in to your account on the [GitHub website](https://github.com).
@@ -213,12 +155,13 @@ Optionally, go back to the README file and update it on the gh-pages branch to d
 
 This map uses Mapzen's vector tile service for the data. If you want to put this map into production beyond the purposes of this tutorial, you'll need to [sign up for a Mapzen account](https://mapzen.com/documentation/overview/account-settings/#sign-up-for-a-mapzen-account) and substitute your own API key for the one provided in the demo. Follow these steps to learn how to change the API key.
 
-1. Sign in at https://mapzen.com and [create a new API key](https://mapzen.com/documentation/overview/api-keys/#create-an-api-key).
-2. Optionally, set a name for the project, such as My Tangram Map.
-3. Copy the text of the key to your clipboard.
-4. Open the scene.yaml file.
-5. In the `sources:` block, paste your API key for the `api_key:` parameter.
-6. Commit the change to the master branch.
+1. Sign in at https://mapzen.com/developers/ using your GitHub account.
+2. Under API key, click `+New Key.`
+3. Optionally, set a name for the project, such as 'My Tangram Map'.
+4. Copy the text of the key to your clipboard. It should take the form of `mapzen-xxxxxx`.
+5. Open the scene.yaml file.
+6. In the `sources:` block, paste your API key for the `api_key:` parameter.
+7. Commit the change to the master branch.
 
 ### Summary and next steps
 
