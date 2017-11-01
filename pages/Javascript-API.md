@@ -82,7 +82,7 @@ layer.setSelectionEvents (events, { radius: 5 }) // radius of 5px
 
 When using a radius, the feature closest to the center point will be returned. As with existing feature selection, only features marked as interactive: true will register.
 
-#### `load({scene_url, config object}, { base_path, file_type })`
+#### `load({scene_url|config object}, { base_path, file_type })`
 Loads the specified scene, either by URL or by object, and rebuilds the geometry. If no arguments are specified, the current scene will be reloaded.
 
 `scene_url` is the path to a scene file. By default, relative paths within this file (for images, fonts, or other resources) are relative to this URL. For example, for a scene loaded from `https://example.com/path/to/scene.yaml`, an image `texture.png` referenced in that scene file would resolve to `https://example.com/path/to/texture.png`.
