@@ -626,33 +626,40 @@ For example, to create an icon with a _text_ label, using a style "icons" that h
 #### Text behavior
 
 The default text style behavior is adjusted to account for the parent point:
-- **Anchor**:
-  - `anchor` defaults to `bottom` instead of `center` (though it is possible to composite a text label over a sprite by setting `anchor: center` and `collide: false`).
-  - The point and text can have separate `anchor` values:
+
+**Anchor**:
+`anchor` defaults to `bottom` instead of `center` (though it is possible to composite a text label over a sprite by setting `anchor: center` and `collide: false`).
+
+The point and text can have separate `anchor` values:
     - The `anchor` of the `text` controls the text's placement *relative to the size and position* of its parent point.
     - The `anchor` of the `points` portion moves the *entire entity* (point + text) relative to the underlying geometry point.
-- **Collision**:
-  - The point is required, but its text is not: while the `points` portion of the style will render according to its collision test, the `text` portion will only render if **both** it and its parent point passed collision tests, e.g. if the point is occluded, then the text won't render either, even if it is not occluded.
-  - Different collision behaviors can be achieved by setting the `collide: false` flag on either or both of the point and text:
+
+**Collision**:
+The point is required, but its text is not: while the `points` portion of the style will render according to its collision test, the `text` portion will only render if **both** it and its parent point passed collision tests, e.g. if the point is occluded, then the text won't render either, even if it is not occluded.
+Different collision behaviors can be achieved by setting the `collide: false` flag on either or both of the point and text:
     - Both `collide: true` (default): nothing will overlap, text will only be rendered if point also fits.
     - Points `collide: false`, text `collide: true` (default) and text `optional: true`: all points will render, text will render over points when the text fits (text will collide text but not points). This setting is helpful for labeling a dot density map.
     - Points `collide: false`, text `collide: true` (default): only points with text that fits will render
     - Points `collide: true` (default), text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
     - Both `collide: false`: all points and text should render, regardless of overlap.
-- **Offset**:
-  - Text is automatically offset to account for its anchor relative to its parent point (see description above).
-  - Further manual offset is possible with the `offset` parameter, which moves the text in screen space, e.g. text with `anchor: bottom` will automatically be placed below the sprite, and an additional `offset: [8px, 0]` in the scene file would move the text another 8 pixels to the right.
-- **Priority**:
-  - The text's `priority` is assigned a default value of `0.5` below the `priority` of its parent point (numerically this means the priority is `+0.5`, since lower numbers are "higher priority"). This can be explicitly overridden by setting a `priority` value in the `text` block, though the text's priority may not be set higher than that of its parent point. This is similar to `outline` handling, where the `order` of the outline cannot be higher than the line fill. (In both cases, the values are capped to their highest/lowest allowed values.)
-  - For example, in this case, the icon has `priority: 3`, so the text portion is assigned a priority of `3.5`:
-   ```
-      draw:
-         icons:
-            ...
-            priority: 3
-            text:
-               ...
-    ```
+
+**Offset**:
+Text is automatically offset to account for its anchor relative to its parent point (see description above).
+Further manual offset is possible with the `offset` parameter, which moves the text in screen space, e.g. text with `anchor: bottom` will automatically be placed below the sprite, and an additional `offset: [8px, 0]` in the scene file would move the text another 8 pixels to the right.
+
+**Priority**:
+The text's `priority` is assigned a default value of `0.5` below the `priority` of its parent point (numerically this means the priority is `+0.5`, since lower numbers are "higher priority"). This can be explicitly overridden by setting a `priority` value in the `text` block, though the text's priority may not be set higher than that of its parent point. This is similar to `outline` handling, where the `order` of the outline cannot be higher than the line fill. (In both cases, the values are capped to their highest/lowest allowed values.)
+
+For example, in this case, the icon has `priority: 3`, so the text portion is assigned a priority of `3.5`:
+
+```yaml
+  draw:
+     icons:
+        ...
+        priority: 3
+        text:
+           ...
+```
 
 #### `text_source`
 Optional _string_, _function_, _array_, or _mapping_. Default is `name`.
