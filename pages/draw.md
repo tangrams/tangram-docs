@@ -829,7 +829,7 @@ text:
 [[JS-only](https://github.com/tangrams/tangram)]
 Optional _texture object_, as specified in [`texure`](textures.md#)
 
-Applies to `points`. Enables the per-layer re-assignment or de-assignment of a texture used by a `points`-based style.
+Applies to `points` and `lines`. Enables the per-layer re-assignment or de-assignment of a texture used by a `points`-based style.
 
 If a new texture is assigned here, it will override the default texture specified in the style:
 
