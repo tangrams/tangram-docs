@@ -41,6 +41,10 @@ These textures will use the default [parameters](#texture parameters) described 
 
 If a texture is provided for a _lines_ style, the texture is repeated across the line, with the width of the texture matching the width of the line, and the texture y coordinate scaled to match the aspect ratio of the image (its height over its width).
 
+#### draw group texture parameter
+
+Textures may also be re-assigned or un-assigned per _draw group_ with Tangram-JS only – see [`texture`](draw.md#texture).
+
 ## texture parameters
 
 #### `url`

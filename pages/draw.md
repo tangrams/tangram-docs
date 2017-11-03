@@ -111,6 +111,39 @@ text:
     anchor: bottom-left # the label will use `align: right` by default
 ```
 
+#### `dash`
+Optional _object_, following the specification of the [`dash`](styles.md#dash) parameter.
+
+Applies to `lines` styles. Allows the re-assignment or un-assignment of the dash pattern for a style, at the layer of a _draw layer_.
+
+```yaml
+layers:
+  roads:
+    data: ...
+    draw:
+      lines: # by default, draw roads with NO dash pattern
+        width: 5px
+        color: white
+        ...
+
+      paths:
+        filter: { kind: path }
+        draw:
+          lines:
+            dash: [2, 1] # draw paths with a dash pattern
+            ...
+
+      ferries:
+        filter: { kind: ferry }
+        draw:
+          lines:
+            dash: [1, 3, 1] # draw ferries with a different dash pattern
+            ...
+```
+
+The dash pattern can also be removed in a sub-layer draw by setting `dash: null`.
+
+
 #### `flat` 
 [[ES-only](https://github.com/tangrams/tangram-es)]
 
@@ -306,7 +339,20 @@ Applies to `text` styles. Moves the label into the tile if the label would other
 
 Note that this parameter is not available for `points` styles, nor for text labels attached to points.
 
-#### `offset`
+#### `offset` (_lines_)
+Optional _float_ or _stops_, in `px` or `m`. No default. Default units is `px`.
+
+Applies to _lines_ styles. Offsets each segment of the line from its original location, perpendicular to its original orientation.
+
+Note that offsetting a curved line will change its shape, and may invert the curve if the offset distance is greater than the radius of the curve.
+
+```yaml
+draw:
+    lines:
+        offset: [[15, 3.5px], [16, 6.5px]]
+```
+
+#### `offset` (_points_, _text_)
 Optional _[float x, float y]_ _array_ or _stops_, in `px`. No default.
 
 Applies to styles with a `points` or `text` base. Moves the feature from its original location. For `points`, and `text` labels of point features, the offset is in *screen-space*, e.g. a Y offset of 10px will move the point or label 10 pixels down on the screen.
@@ -527,8 +573,8 @@ roads:
 ```
 
 #### `size`
-Optional _number_ in `px`, _[x, y]_ in `px`, _stops_ having either 1D or 2D values (mixed 1D and
-2D stop values are not allowed), or _function_. Default is `px`.
+Optional 1D _number_ in `px` or `%`, 2D _[x|`auto`, y|`auto`]_ in `px` or `%`, _stops_ having either 1D or 2D values (mixed 1D and
+2D stop values are not allowed), or _function_. No default value, default units are `px`.
 
 Applies to `points`.
 
@@ -551,6 +597,61 @@ draw:
     points:
         size: function() { return (feature.height||0)/10 + 3; } # add 1px for every 10 meters of height (plus 3px base)
         color: red
+```
+
+##### `size: %`
+
+The percent (`%`) may be used when a [_sprite_](draw.md#sprite) is drawn referencing a [_texture_](texture.md) with a [`density`](testures.md#density) parameter set:
+
+```yaml
+draw:
+    points:
+        size: 50%
+```
+
+The percentage is applied to the sprite's size in _CSS pixels_. For example:
+
+- A texture with actual pixel width of `64px` and `density: 2` has an intended CSS pixel display size of 32px.
+- A setting of `size: 100%` will display this sprite at 32px CSS pixels (e.g. 32px actual pixels on a 1x display, or 64px on a 2x retina display).
+
+Percent scaling can also be used with zoom interpolation, including mixing with explicit px sizing:
+
+```yaml
+size: [[13, 50%]], [20, 100%]] # scale from 50% to 100% across a zoom range
+```
+
+```yaml
+size: [[13, 12px]], [20, 100%]] # scale from 12px square to 100% across a zoom range
+```
+Percent scaling can accept values greater than 100%, e.g. `size: 200%` will scale the sprite to twice its native size.
+
+##### `size: auto`
+
+The `auto` keyword may be used in place of one of the dimensions in a 2D `size`:
+
+```yaml
+size: [32px, auto] # scale the sprite to 32px wide, with auto-calc height
+```
+```yaml
+size: [auto, 16px] # scale the sprite to 16px high, with auto-calc width
+```
+
+Auto-scaling can also be used with zoom interpolation, including mixing with percent scaling:
+
+```yaml
+size: [[15, [auto, 12px], [20, [auto, 20px]] # scale between two heights, with auto-calc width
+```
+```yaml
+size: [[13, [auto, 12px]], [20, 100%]] # scale from 12px high at z13, up to full size at z20
+```
+
+**Note:** Since both percent-based and ratio-constrained scaling only make sense in the context of a _sprite_ (not a simple colored shader point), specifying these for layers without both a [`texture`](textures.md) and a [`sprite`](draw.md#sprite) defined will generate warnings and draw nothing, for example:
+
+```yaml
+draw: { points: { color: red, size: 50% } }
+```
+```yaml
+draw: { points: { color: red, size: [auto, 20px] } }
 ```
 
 #### `sprite`
@@ -732,6 +833,43 @@ text:
     text_wrap: 10 # sets a maximum line length of 10 characters.
     text_wrap: false # disables wrapping.
 ```
+
+#### `texture`
+[[JS-only](https://github.com/tangrams/tangram)]
+Optional _texture object_, as specified in [`texure`](textures.md#)
+
+Applies to `points` and `lines`. Enables the per-layer re-assignment or de-assignment of a texture used by a `points`-based style.
+
+If a new texture is assigned here, it will override the default texture specified in the style:
+
+```yaml
+styles:
+    custom:
+        base: points
+        texture: default.png # set default texture
+
+layers:
+    pois:
+        draw:
+            custom:
+                texture: custom.png # override
+```
+
+If the texture is set to `null`, the points will be drawn with no texture:
+
+```yaml
+styles:
+    custom:
+        base: points
+        texture: default.png # set default texture
+
+layers:
+    pois:
+        draw:
+            custom:
+                texture: null # no texture used
+```
+
 
 #### `tile_edges`
 Optional _boolean_, one of `true` or `false`. Default is `false`.
