@@ -28,7 +28,7 @@ For a complete manual setup tutorial, see our [Tangram Walkthrough](walkthrough.
 
 ### JavaScript Bundling
 
-Tangram JS may be imported or required as a module in ES6, CommonJS, or AMD (Asynchronous Module Definition).
+Tangram JS may be imported or required as a module in ES6, CommonJS, or AMD (Asynchronous Module Definition). For more information about bundling Tangram, see the [Advanced Tangram for Front-End Engineers](https://github.com/tangrams/tangram-play/wiki/Advanced-Tangram-for-front-end-engineers:-bundlers,-frameworks,-etc) page on the [Tangram Play wiki](https://github.com/tangrams/tangram-play/).
 
 ## Tangram ES
 
