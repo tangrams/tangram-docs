@@ -274,6 +274,25 @@ When the value of this parameter is:
 
 Since features drawn as `lines` have no height (e.g. they are flat 2D objects), they do not use the `min_height` values. They are simply raised to the specified `height`.
 
+```yaml
+# extrude by feature.height:
+extrude: true
+```
+
+```yaml
+# extrude by another feature property:
+extrude: |
+    function() {
+        return feature.area / 100.;
+    }
+```
+
+```yaml
+# extrude by fixed value, in meters:
+extrude: 10
+```
+
+
 #### `font`
 Required element for the `text` style. Defines the start of a font style block. (See [font-parameters](draw.md#font-parameters).)
 
