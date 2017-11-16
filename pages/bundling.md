@@ -16,6 +16,9 @@ If you just want to see some sample code (aka "boilerplate"), we have a few repo
 
 If you'd like to learn how to set up repos like these from scratch, here are some guides for bundling and using Tangram with the two most popular bundling tools, Browserify and Webpack, on Mac OS X.
 
+- [Browserify Bundling Guide](#browserify-bundling-guide)
+- [Webpack Bundling Guide](#webpack-bundling-guide)
+
 # Browserify Bundling Guide
 
 Browserify is the original gangsta of node-style CommonJS module importing in the browser. Here's how to more-or-less recreate the [browserify-tangram-boilerplate](https://github.com/tangrams/browserify-tangram-boilerplate) repo. (This guide assumes you have the latest version of [node.js](https://nodejs.org/download/) installed – it comes with npm.)
