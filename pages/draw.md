@@ -466,7 +466,7 @@ draw:
 ```yaml
 draw:
     points:
-        width: 10px
+        size: 10px
         color: white
         outline:
             width: 1px
