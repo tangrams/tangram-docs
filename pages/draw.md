@@ -114,7 +114,34 @@ text:
 #### `dash`
 Optional _object_, following the specification of the [`dash`](styles.md#dash) parameter.
 
-Applies to `lines` styles. Allows the re-assignment or un-assignment of the dash pattern for a style, at the layer of a _draw layer_.
+Applies to `lines` styles. Allows a `dash` pattern to be set in a _draw layer_.
+
+```yaml
+layers:
+  roads:
+    data: ...
+    draw:
+      lines:
+        dash: [2, 1] # draw paths with a dash pattern
+```
+
+This parameter also allows the re-assignment or un-assignment of a previously-set `dash` pattern in a custom [`style`](styles.md#dash).
+
+```yaml
+styles:
+  dashes:
+    base: lines
+    dash: [2, 1]
+
+layers:
+  roads:
+    data: ...
+    draw:
+      dashes:
+        dash: [2, 2] # override style's dash pattern
+```
+
+Inheritance works the same way as other parameters:
 
 ```yaml
 layers:
