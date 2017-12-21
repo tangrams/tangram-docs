@@ -81,17 +81,17 @@ styles:
                     normal += snoise(vec3(worldPosition().xy*0.08,u_time*.5))*0.02;
 
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: mapzen-rtjEFK2
+            api_key: 3XqXMjEdT2StnrIRJ4HYbg
         max_zoom: 16
 
 layers:
     earth:
         data:
-            source: mapzen
+            source: nextzen
             layer: earth
         draw:
             polygons:
@@ -99,7 +99,7 @@ layers:
                 color: '#abb'
     landuse:
         data:
-            source: mapzen
+            source: nextzen
             layer: landuse
         draw:
             polygons:
@@ -107,7 +107,7 @@ layers:
                 color: '#aaffaa'
     water:
         data:
-            source: mapzen
+            source: nextzen
             layer: water
         draw:
             polygons:
@@ -116,7 +116,7 @@ layers:
                 color: '#88bbee'
     roads:
         data:
-            source: mapzen
+            source: nextzen
             layer: roads
         filter: { not: { kind: [path, rail, ferry] } }
         draw:
@@ -126,7 +126,7 @@ layers:
                 width: 8
     buildings:
         data:
-            source: mapzen
+            source: nextzen
             layer: buildings
         draw:
             polygons:

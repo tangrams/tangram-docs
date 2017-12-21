@@ -11,7 +11,7 @@ var map = L.Mapzen.map('map', {
 Or, you can put your own data on top of them with [Tangram](https://mapzen.com/products/tangram/), using the [`import`](https://mapzen.com/documentation/tangram/import/) feature.
 
 ```yaml
-import: https://mapzen.com/carto/walkabout-style/walkabout-style.yaml
+import: https://www.nextzen.org/carto/walkabout-style/walkabout-style.yaml
 
 global:
     sdk_mapzen_api_key: mapzen-xxxxxxx     # set this value to your Mapzen API key
@@ -47,15 +47,15 @@ Before we start pulling apart a house style, let's start with a simpler example 
 
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=mapzen-xxxxxxx
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=xxxxxxx
 scene:
     background:
         color: white
 layers:
     roads:
-        data: { source: mapzen }
+        data: { source: nextzen }
         draw:
             lines:
                 color: gray
@@ -97,7 +97,7 @@ layers:
 
 The Mapzen house styles are significantly more complex. Take the case of [Refill](https://github.com/tangrams/refill-style), which is deceptively simple-looking. Though it is monochrome, it includes dozens of places where road color is specified, depending on the classification of road, its datasource, even the zoom level at which it's drawn. This means you'll have to change color values in many places.
 
-So let's try it. First, download the Refill scene file and look it over in the text editor of your choice: https://mapzen.com/carto/refill-style-no-labels/6/refill-style-no-labels.yaml
+So let's try it. First, download the Refill scene file and look it over in the text editor of your choice: https://www.nextzen.org/carto/refill-style-no-labels/6/refill-style-no-labels.yaml
 
 (We'll be working with version 6 of the Refill style. As Mapzen's basemap styles are still in active development we recommend pegging an import to a specific major version, so you enjoy any minor and patch updates but are ensured of stable named scene elements. See the [cartography docs](https://mapzen.com/documentation/cartography/versioning/) for info and current [major versions](https://mapzen.com/documentation/cartography/styles/).)
 
@@ -105,7 +105,7 @@ Once you have the scene file open, search for the "roads" layer, which can be fo
 
 ```yaml
 roads:
-    data: { source: mapzen, layer: roads }
+    data: { source: nextzen, layer: roads }
     filter: { not: { kind: rail } }
     draw:
         lines:

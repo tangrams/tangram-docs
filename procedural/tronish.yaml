@@ -106,31 +106,31 @@ styles:
                     float pct = grid(v_texcoord,10.,0.1)*0.5;
                     color.rgb = mix(vec3(0.051,0.071,0.278)*0.8,vec3(0.239,0.431,0.718)*0.6,pct)*0.5;
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: mapzen-rtjEFK2
+            api_key: 3XqXMjEdT2StnrIRJ4HYbg
         max_zoom: 16
 
 layers:
     earth:
         data:
-            source: mapzen
+            source: nextzen
         draw:
             grid:
                 order: function() { return feature.sort_rank; }
                 color: '#ddeeee'
     landuse:
         data:
-            source: mapzen
+            source: nextzen
         draw:
             grid:
                 order: function() { return feature.sort_rank; }
                 color: '#ff00ff'
     water:
         data:
-            source: mapzen
+            source: nextzen
         draw:
             tiledCross:
                 order: function() { return feature.sort_rank; }
@@ -143,7 +143,7 @@ layers:
                 tile_edges: false
     roads:
         data:
-            source: mapzen
+            source: nextzen
         draw:
             roads:
                 order: function() { return feature.sort_rank; }
@@ -192,7 +192,7 @@ layers:
                     width: 3
     buildings:
         data:
-            source: mapzen
+            source: nextzen
         draw:
             walls:
                 order: function() { return feature.sort_rank; }
@@ -212,7 +212,7 @@ layers:
                     extrude: function () { return feature.height > 20 || $zoom >= 16; }
 
     road_labels:
-        data: { source: mapzen, layer: roads }
+        data: { source: nextzen, layer: roads }
         filter: { name: true, $zoom: { min: 14 } }
         draw:
             text:
@@ -223,7 +223,7 @@ layers:
                     fill: [.9,.9,1.]
                     stroke: { color: black , width: 3 }
     places:
-        data: { source: mapzen }
+        data: { source: nextzen }
         filter: { name: true }
         draw:
             text:

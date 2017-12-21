@@ -1,9 +1,9 @@
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: mapzen-AvWa8DQ
+            api_key: 3XqXMjEdT2StnrIRJ4HYbg
 
 styles:
     _custom:
@@ -11,7 +11,7 @@ styles:
 
 layers:
     buildings:
-        data: { source: mapzen }
+        data: { source: nextzen }
         draw:
             _custom:
                 order: 1

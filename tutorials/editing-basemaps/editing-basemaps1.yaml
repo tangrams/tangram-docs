@@ -1,9 +1,9 @@
-import: https://mapzen.com/carto/walkabout-style/walkabout-style.yaml
+import: https://www.nextzen.org/carto/walkabout-style/walkabout-style.yaml
 
 global:
-    # Sign up for a Mapzen API key to use the Mapzen basemaps
-    # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
-    sdk_mapzen_api_key: mapzen-AvWa8DQ     # set this value to your Mapzen API key
+    # Sign up for a Nextzen API key to use the Nextzen basemaps
+    # https://developers.nextzen.org
+    sdk_mapzen_api_key: 3XqXMjEdT2StnrIRJ4HYbg     # set this value to your Nextzen API key
 
 sources:
     _mine:
