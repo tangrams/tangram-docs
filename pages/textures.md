@@ -64,6 +64,26 @@ textures:
         url: http://ghostimages.com/ghost.png
 ```
 
+#### `density`
+Optional _number_. Default is `1`.
+
+Indicates the intended native pixel density of the texture, to allow the texture to be drawn correctly at various display densities. The number is effectively used as a devisor when calculating display pixels.
+
+This is specifically useful when style rules don't explicitly define the size of a sprite.
+
+```yaml
+textures:
+    pois:
+        url: pois.png
+        density: 2 # authored at 2x resolution
+        sprites:
+            # define sprites: [x origin, y origin, width, height]
+            airport: [0, 0, 64, 64]
+            ...
+```
+
+In the example above, the sprite will be drawn as a 32-pixel square.
+
 #### `element`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _string_, though either [`url`](#url) or `element` is required. Specifies a CSS element selector string. No default.
 
