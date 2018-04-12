@@ -58,7 +58,7 @@ Then, a _sublayer_ named "highway" is declared, with its own `filter` and `draw`
 
 ## Inheritance
 
-Higher-level filters continue to apply at lower levels, which means that higher-level `draw` parameters will be inherited by lower levels, unless the lower level explicitly overrides it.
+Higher-level filters continue to apply at lower levels, which means that higher-level `draw` parameters will be inherited by lower levels, unless the lower level explicitly changes the `draw` parameters.
 
 Using sublayers and inheritance, you may specify increasingly specific filters and draw styles to account for as many special cases as you like.
 
