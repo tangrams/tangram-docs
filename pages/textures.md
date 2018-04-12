@@ -37,7 +37,7 @@ styles:
                 texture: images/rock.jpg
                 mapping: uv
 ```
-These textures will use the default [parameters](#texture parameters) described below. To use custom parameters for a texture, you must declare it in the `textures` element.
+These textures will use the default [parameters](#texture-parameters) described below. To use custom parameters for a texture, you must declare it in the `textures` element.
 
 If a texture is provided for a _lines_ style, the texture is repeated across the line, with the width of the texture matching the width of the line, and the texture y coordinate scaled to match the aspect ratio of the image (its height over its width).
 
