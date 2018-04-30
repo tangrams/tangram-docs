@@ -701,7 +701,7 @@ draw: { points: { color: red, size: [auto, 20px] } }
 ```
 
 #### `sprite`
-Optional _string_, one of any named `sprites` in the style's `texture` element, or a _function_ returning such a string.
+Optional _string_, one of any named [`sprite`](textures.md#sprite) in the style's [`texture`](styles.md#texture) element, or a _function_ returning such a string.
 
 Applies to `points`. Sets the `sprite` to be used when drawing a feature.
 
