@@ -619,8 +619,8 @@ roads:
 ```
 
 #### `size`
-Optional 1D _number_ in `px` or `%`, 2D _[x|`auto`, y|`auto`]_ in `px` or `%`, _stops_ having either 1D or 2D values (mixed 1D and
-2D stop values are not allowed, except when 1D stop uses `%`), or _function_. No default value, default units are `px`.
+Optional 1D _number_ in `px` or `%`, 2D _[x|`auto`, y|`auto`]_ in `px` or `%`, _stops_ having either 1D or 2D values, or _function_. Mixed 1D and
+2D stop values are not allowed, except with 1D values in `%`. No default value, default units are `px`.
 
 Applies to `points`.
 
@@ -635,6 +635,13 @@ draw:
 draw:
     points:
         size: [[13, 64px], [16, 18px], [18, 22px]]
+        sprite: highway
+```
+
+```yaml
+draw:
+    points:
+        size: [[13, [32px,30px]], [16, 100%]]
         sprite: highway
 ```
 
