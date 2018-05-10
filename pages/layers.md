@@ -103,12 +103,21 @@ data:
 #### `layer`
 Optional _string_ or _[strings]_, naming a top-level named object in the source datalayer. In GeoJSON, this is a _FeatureCollection_. If a `layer` is not specified, the _layer name_ will be used.
 ```yaml
-data:
-    source: osm
-    layer: buildings
+layers:
+	buildings:
+		data:
+		    source: osm
+		    layer: buildings
 ```
 
-The above `layer` refers to the below object:
+Many of our examples use [_flow syntax_](yaml.md#flow-syntax) for `data` blocks:
+```yaml
+layers:
+	buildings:
+		data: {source: osm, layer: buildings}
+```
+
+The specified "buildings" `layer` will match this named object in the "osm" datasource:
 ```json
 {"buildings":
     {"type":"FeatureCollection","features":[
@@ -117,7 +126,7 @@ The above `layer` refers to the below object:
 }
 ```
 
-Because the _layer name_ is the same as the name of the GeoJSON object, the `data` object's `layer` parameter can be omitted. Most of our examples, use this form.
+Because the _layer name_ "buildings" is the same as the name of the desired GeoJSON object, the `data` object's `layer` parameter can be omitted; when no `layer` is specified, Tangram will attempt to use the _layer name_ as the _data layer_. Most of our examples use this [layer name shortcut](Filters-Overview.md#layer-name-shortcut).
 ```yaml
 layer:
     buildings:
@@ -125,7 +134,6 @@ layer:
 ```
 
 When an array of layer names may is used as the value of the `layer` parameter, the corresponding data layers will be combined client-side. This allows easy styling of multiple layers at once:
-
 ```yaml
 layer:
     labels:
