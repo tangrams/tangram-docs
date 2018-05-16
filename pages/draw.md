@@ -229,8 +229,6 @@ Applies to `points` and `text`.
 
 A point or text draw group marked with `collide: false` will not be checked for any collisions.
 
-_[JS only]_ Only points and text elements from the same datasource will collide with each other.
-
 ```yaml
 poi-icons:
     draw:
