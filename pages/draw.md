@@ -652,7 +652,7 @@ draw:
 
 ##### `size: %`
 
-The percent (`%`) may be used when a [_sprite_](draw.md#sprite) is drawn referencing a [_texture_](texture.md) with a [`density`](testures.md#density) parameter set:
+The percent (`%`) may be used when a point is drawn referencing either a [_texture_](texture.md) or a [_sprite_](draw.md#sprite).
 
 ```yaml
 draw:
@@ -660,10 +660,12 @@ draw:
         size: 50%
 ```
 
-The percentage is applied to the sprite's size in _CSS pixels_. For example:
+The percentage is applied to the sprite or texture's size in _CSS pixels_, using the texture's [`density`](textures.md#density) as a factor. For example:
 
-- A texture with actual pixel width of `64px` and `density: 2` has an intended CSS pixel display size of 32px.
+- A texture with actual pixel width of `64px` and `density: 2` is interpreted as having a CSS pixel display size of 32px.
 - A setting of `size: 100%` will display this sprite at 32px CSS pixels (e.g. 32px actual pixels on a 1x display, or 64px on a 2x retina display).
+
+(If `density` is not set, it defaults to a value of `1`.)
 
 Percent scaling can also be used with zoom interpolation, including mixing with explicit px sizing:
 
@@ -681,10 +683,10 @@ Percent scaling can accept values greater than 100%, e.g. `size: 200%` will scal
 The `auto` keyword may be used in place of one of the dimensions in a 2D `size`:
 
 ```yaml
-size: [32px, auto] # scale the sprite to 32px wide, with auto-calc height
+size: [32px, auto] # scale the sprite or texture to 32px wide, with auto-calc height
 ```
 ```yaml
-size: [auto, 16px] # scale the sprite to 16px high, with auto-calc width
+size: [auto, 16px] # scale the sprite or texture to 16px high, with auto-calc width
 ```
 
 Auto-scaling can also be used with zoom interpolation, including mixing with percent scaling:
@@ -696,7 +698,7 @@ size: [[15, [auto, 12px], [20, [auto, 20px]] # scale between two heights, with a
 size: [[13, [auto, 12px]], [20, 100%]] # scale from 12px high at z13, up to full size at z20
 ```
 
-**Note:** Since both percent-based and ratio-constrained scaling only make sense in the context of a _sprite_ (not a simple colored shader point), specifying these for layers without both a [`texture`](textures.md) and a [`sprite`](draw.md#sprite) defined will generate warnings and draw nothing, for example:
+**Note:** Since both percent-based and ratio-constrained scaling only make sense in the context of a _sprite_ or _texture_ (not a simple colored shader point), specifying these for simple point layers will generate warnings and draw nothing, for example:
 
 ```yaml
 draw: { points: { color: red, size: 50% } }
@@ -724,7 +726,7 @@ draw:
         sprite: function() { return feature.kind } # look for a sprite matching the feature's 'kind' property
 ```
 
-Note that if any `sprites` are defined for a texture, a `sprite` must be declared for any _points_ drawn with that texture, or nothing will be drawn.
+If any `sprites` are defined for a texture, a `sprite` must be declared for any _points_ drawn with that texture, or nothing will be drawn.
 
 #### `sprite_default`
 Optional _string_. Sets a default sprite for cases when the matching function fails.
