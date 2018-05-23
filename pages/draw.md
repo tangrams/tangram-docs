@@ -698,7 +698,7 @@ size: [[15, [auto, 12px], [20, [auto, 20px]] # scale between two heights, with a
 size: [[13, [auto, 12px]], [20, 100%]] # scale from 12px high at z13, up to full size at z20
 ```
 
-**Note:** Since both percent-based and ratio-constrained scaling only make sense in the context of a _sprite_ or _texture_ (not a simple colored shader point), specifying these for simple point layers will generate warnings and draw nothing, for example:
+**Note:** Since both percent-based and ratio-constrained scaling only make sense in the context of a _texture_ or _sprite_ (not a simple colored shader point), specifying these for layers without either a [`texture`](textures.md) or a texture and a [`sprite`](draw.md#sprite) defined will generate warnings and draw nothing, for example:
 
 ```yaml
 draw: { points: { color: red, size: 50% } }
