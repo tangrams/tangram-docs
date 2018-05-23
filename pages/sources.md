@@ -5,28 +5,28 @@ The `sources` element is a required top-level element in a Tangram scene file. I
 
 ```yaml
 sources:
-    # Mapzen tiles in TopoJSON format
-    mapzen-topojson:
+    # Nextzen tiles in TopoJSON format
+    nextzen-topojson:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
 
-    # Mapzen tiles in GeoJSON format
-    mapzen-geojson:
+    # Nextzen tiles in GeoJSON format
+    nextzen-geojson:
         type: GeoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.json
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.json
 
-    # Mapzen tiles in Mapbox Vector Tile format
-    mapzen-mvt:
+    # Nextzen tiles in Mapbox Vector Tile format
+    nextzen-mvt:
         type: MVT
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.mvt
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.mvt
 
-    # Mapzen terrain tiles
-    mapzen-terrain:
+    # Nextzen terrain tiles
+    nextzen-terrain:
         type: Raster
-        url: https://tile.mapzen.com/mapzen/terrain/v1/normal/{z}/{x}/{y}.png
+        url: https://tile.nextzen.org/tilezen/terrain/v1/normal/{z}/{x}/{y}.png
 ```
 
-All of our demos were created using the [Mapzen Vector Tiles](https://github.com/mapzen/vector-datasource) service, which hosts tiled [OpenStreetMap](http://openstreetmap.org) data.
+All of our demos were created using the [Mapzen Vector Tiles](https://github.com/tilezen/vector-datasource) service, which hosts tiled [OpenStreetMap](http://openstreetmap.org) data.
 
 #### source names
 Required _string_, can be anything. No default.
@@ -36,9 +36,9 @@ Specifies the beginning of a source block.
 The source below is named `mapzen`:
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: GeoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.json
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.json
 ```
 
 ### required source parameters
@@ -63,9 +63,9 @@ Required _string_. Specifies the source's _URL_. No default.
 
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: MVT
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.mvt
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.mvt
 ```
 
 The URL to a tiled datasource will include special tokens ("{x}", "{z}", etc.) which will be automatically replaced with the appropriate position and zoom coordinates to fetch the correct tile at a given point. Use of `https://` (SSL) is recommended when possible, to avoid browser security warnings: in cases where the page hosting the map is loaded securely via `https://`, most browsers require other resources including tiles to be as well).
@@ -95,10 +95,10 @@ Depending on the datasource, you may be able to request specific layers from the
 
 ```yaml
 # all layers
-https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.json
+https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.json
 
 # building layer only
-https://tile.mapzen.com/mapzen/vector/v1/buildings/{z}/{x}/{y}.topojson
+https://tile.nextzen.org/tilezen/vector/v1/buildings/{z}/{x}/{y}.topojson
 ```
 
 ##### curly braces
@@ -107,12 +107,12 @@ When tiles are requested, Tangram will parse the datasource url and interpret it
 ```yaml
 mapzen:
     type: TopoJSON
-    url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+    url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
 ```
 
 In the example above, Tangram will automatically replace `{x}`, `{y}`, and `{z}` with the correct tile coordinates and zoom level for each tile, depending on which tiles are visible in the current scene, and the result will be something like:
 
-`https://tile.mapzen.com/mapzen/vector/v1/all/16/19296/24640.topojson`
+`https://tile.nextzen.org/tilezen/vector/v1/all/16/19296/24640.topojson`
 
 #### url_subdomains
 
@@ -167,9 +167,9 @@ The `bounds` of a data source are specified as a single, flattened 4-element arr
 
 ```yaml
 sources:
-    mapzen:    
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         bounds: [-74.1274, 40.5780, -73.8004, 40.8253] # [w, s, e, n]
 ```
 
@@ -190,7 +190,7 @@ Setting `tms: true` on the source will enable support for the TMS tile coordinat
 
 ```yaml
 sources:
-    mapzen:    
+    nextzen:
         type: TopoJSON
         url: http://demo.opengeo.org/geoserver/gwc/service/tms/ 1.0.0/ne:ne@EPSG:900913@png/{z}/{x}/{y}.png
         tms: true
@@ -246,7 +246,7 @@ If the feature in question is a multipolygon, the centroid _point_ will be added
 sources:
     local:
         type: GeoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.json
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.json
         max_zoom: 15
         generate_label_centroids: true
 ```
@@ -260,7 +260,7 @@ Optional _integer_. No default.
 sources:
     local:
         type: GeoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.json
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.json
         min_display_zoom: 9
         max_display_zoom: 18
 ```
@@ -276,7 +276,7 @@ There is no corresponding `min_zoom` parameter, for reasons of performance.
 sources:
     local:
         type: GeoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.json
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.json
         max_zoom: 15
 ```
 
@@ -293,7 +293,7 @@ Attaching a `Raster` to another `source` makes that `Raster` available to any sh
 sources:
   terrain-normals:
       type: Raster
-      url: https://tile.mapzen.com/mapzen/terrain/v1/normal/{z}/{x}/{y}.png
+      url: https://tile.nextzen.org/tilezen/terrain/v1/normal/{z}/{x}/{y}.png
 ```
 
 When a `Raster` source itself has additional raster sources set in the `rasters` property, the "parent" source will be the first raster sampler, and those from `rasters` will be added afterward. (essentially it is as if the parent source was inserted as the first item in the rasters array).
@@ -345,7 +345,7 @@ The `url_params` block can contain any number of key-value pairs which will be a
 ```yaml
 sources:
     vector-tiles:
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: vector-tiles-h2UV1dw
+            api_key: 3XqXMjEdT2StnrIRJ4HYbg
 ```

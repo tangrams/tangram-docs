@@ -16,13 +16,13 @@ Add a datasource to your map with a [`sources`](https://mapzen.com/documentation
 
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.topojson
 
 layers:
     roads:
-        data: { source: mapzen }
+        data: { source: nextzen }
         draw:
             lines:
                 order: 1
@@ -49,9 +49,9 @@ So far our new style isn't used anywhere, so no dashes will be seen. To fix this
 
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.topojson
 
 styles:
     _dashes:
@@ -60,7 +60,7 @@ styles:
 
 layers:
     roads:
-        data: { source: mapzen }
+        data: { source: nextzen }
         draw:
             _dashes:
                 order: 1
@@ -87,7 +87,7 @@ You can also apply an `outline`:
 ```yaml
 layers:
     roads:
-        data: { source: mapzen }
+        data: { source: nextzen }
         draw:
             _dashes:
                 order: 1
@@ -110,13 +110,13 @@ Start with a buildings data layer drawn with a basic `polygons` style:
 
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.topojson
 
 layers:
     buildings:
-        data: { source: mapzen }
+        data: { source: nextzen }
         draw:
             polygons:
                 order: 1
@@ -134,9 +134,9 @@ The `blend` modes respect alpha, so let's add an alpha value of `.5`, which is 5
 
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.topojson
 
 styles:
     _transparent:
@@ -145,7 +145,7 @@ styles:
 
 layers:
     buildings:
-        data: { source: mapzen }
+        data: { source: nextzen }
         draw:
             _transparent:
                 order: 1
@@ -165,9 +165,9 @@ Then, add a `shaders` block to the style, with a `blocks` block and a `color` bl
 
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.topojson
 
 styles:
     _custom:
@@ -179,7 +179,7 @@ styles:
 
 layers:
     buildings:
-        data: { source: mapzen }
+        data: { source: nextzen }
         draw:
             _custom:
                 order: 1

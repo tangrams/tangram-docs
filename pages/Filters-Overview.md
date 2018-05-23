@@ -10,7 +10,7 @@ Vector tiles typically contain top-level structures which can be thought of as "
 layers:
     my-roads-layer:
         data:
-            source: mapzen
+            source: nextzen
             layer: roads
         draw: ...
 ```
@@ -33,7 +33,7 @@ If a `layer` filter is not specified, Tangram will attempt to use the _layer nam
 layers:
     roads:
         data:
-            source: mapzen
+            source: nextzen
         draw: ...
 ```
 
@@ -44,7 +44,7 @@ Once a top-level `layer` filter has been applied, feature-level [`filter`](layer
 ```yaml
 layers:
     roads:
-        data: { source: mapzen }
+        data: { source: nextzen }
 
         highway:
             filter:
@@ -187,7 +187,7 @@ The keyword `$layer` matches the feature's layer name, for cases when a data lay
 
 ```yaml
 labels:
-    data: { source: mapzen, layer: [places, pois] }
+    data: { source: nextzen, layer: [places, pois] }
     draw:
         ...
     pois-only:
@@ -215,14 +215,14 @@ The `label_placement` property is given only to special auto-generated _point_ g
 
 ```yaml
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url:  https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url:  https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         generate_label_centroids: true
 
 layers:
     landuse:
-        data: {source: mapzen}
+        data: {source: nextzen}
         points:
             filter:
                 label_placement: true
@@ -332,7 +332,7 @@ In some cases, filters at the same level may return overlapping results:
 
 ```yaml
 roads:
-    data: { source: mapzen }
+    data: { source: nextzen }
     highway:
         filter: { kind: highway }
         draw: { lines: { color: red } }

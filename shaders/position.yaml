@@ -24,9 +24,9 @@ styles:
 sources:
     osm:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: mapzen-rtjEFK2
+            api_key: 3XqXMjEdT2StnrIRJ4HYbg
         max_zoom: 16
 
 layers:

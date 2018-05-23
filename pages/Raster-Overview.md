@@ -57,12 +57,12 @@ sources:
         url: http://a.tile.stamen.com/terrain-background/{z}/{x}/{y}.jpg
     mapzen-osm:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         rasters: [stamen-terrain] # attach stamen terrain
 
 layers:
    terrain:
-       data: { source: mapzen-osm, layer: landuse } # render landuse layer from vector data source
+       data: { source: nextzen-osm, layer: landuse } # render landuse layer from vector data source
        draw:
            raster:
                order: 0 # draw on bottom
@@ -122,11 +122,11 @@ This example loads pre-computed "normal" tiles as a normal map, which can be lit
 sources:
     terrain-normals:
         type: Raster
-        url: https://tile.mapzen.com/mapzen/terrain/v1/normal/{z}/{x}/{y}.png
+        url: https://tile.nextzen.org/tilezen/terrain/v1/normal/{z}/{x}/{y}.png
 
     mapzen-osm:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         rasters: [terrain-normals]
 
 styles:
@@ -140,7 +140,7 @@ lights:
 
 layers:
     earth:
-        data: { source: mapzen-osm }
+        data: { source: nextzen-osm }
         draw:
             normals:
                 color: white

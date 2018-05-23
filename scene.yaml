@@ -12,50 +12,50 @@ lights:
         ambient: 1
 
 sources:
-    mapzen:
+    nextzen:
         type: TopoJSON
-        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: mapzen-rtjEFK2
+            api_key: 3XqXMjEdT2StnrIRJ4HYbg
         max_zoom: 16
 
 layers:
     earth:
         data:
-            source: mapzen
+            source: nextzen
             layer: earth
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: function() { return feature.sort_rank || 0; }
                 color: '#ddeeee'
     landuse:
         data:
-            source: mapzen
+            source: nextzen
             layer: landuse
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: function() { return feature.sort_rank || 0; }
                 color: '#aaffaa'
                 interactive: true
 
     water:
         data:
-            source: mapzen
+            source: nextzen
             layer: water
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: function() { return feature.sort_rank || 0; }
                 color: '#88bbee'
 
     roads:
         data:
-            source: mapzen
+            source: nextzen
             layer: roads
         filter:
             not: {kind: [ferry, rail, path]}
         draw:
             lines:
-                order: function() { return feature.sort_rank; }
+                order: function() { return feature.sort_rank || 0; }
                 color: gray    
                 width: 8
         highway:
@@ -77,11 +77,11 @@ layers:
                     width: 5    
     buildings:
         data:
-            source: mapzen
+            source: nextzen
             layer: buildings
         draw:
             polygons:
-                order: function() { return feature.sort_rank; }
+                order: function() { return feature.sort_rank || 0; }
                 color: |
                     function () {
                         var h = feature.height || 20;

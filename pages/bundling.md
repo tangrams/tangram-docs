@@ -54,9 +54,9 @@ npm install --save-dev http-server
 
 These requirements will be added to your package.json's "dev-dependencies" section. (There's not really any difference between these two for us now, but it's a nice habit to get into for when you're making your own npm packages.) Now on to the code!
 
-First, you'll need a ticket to ride the Mapzen API train. Use your Mapzen account to pick up a free API key here: https://mapzen.com/dashboard. It'll look like `mapzen-XXXXXXX` but with fewer `X`s.
+First, you'll need a ticket to ride the Nextzen API train. Pick up a free API key here: https://developers.nextzen.org. It'll look like `XXXXXXXXXXXXXXX` but with fewer `X`s.
 
-If you don't have a Mapzen account, you'll need to make one to get a key. To do that, you'll need either a [github](http://github.com) account (which is cool and fun) or an email address. If you don't have an email address I salute you, and wish you luck.
+If you don't have a Nextzen account, you'll need to make one to get a key. To do that, you'll need either a [github](http://github.com) account (which is cool and fun) or an email address. If you don't have an email address I salute you, and wish you luck.
 
 Once you get an API key, write it down on a sticky note and affix it to the bottom of your monitor. If you don't do this the next steps won't make sense.
 
@@ -73,11 +73,11 @@ var Tangram = require('tangram');
 var map = L.map('map');
 var layer = Tangram.leafletLayer({
   scene: {
-    'import': 'https://mapzen.com/carto/bubble-wrap-style/8/bubble-wrap-style.zip',
-    // TODO: get your own API key at https://mapzen.com/dashboard/. It's free!
+    'import': 'https://www.nextzen.org/carto/bubble-wrap-style/8/bubble-wrap-style.zip',
+    // TODO: get your own API key at https://developers.nextzen.org/
     'global': { 'sdk_mapzen_api_key': 'YOUR-KEY-HERE' }
   },
-  attribution: '<a href="https://mapzen.com/tangram">Tangram</a> | &copy; OSM contributors | <a href="https://mapzen.com/">Mapzen</a>'
+  attribution: '<a href="https://github.com/tangrams/tangram">Tangram</a> | &copy; OSM contributors'
 });
 
 layer.addTo(map);
@@ -160,9 +160,9 @@ npm install --save-dev http-server
 
 These requirements will be downloaded and added to your package.json's "dev-dependencies" section. (There's no practical difference between these two for us now, but it's a nice habit to get into for when you're publishing your own npm packages.) Now on to the code!
 
-First, you'll need a free Mapzen API key. They're like Bitcoin, but free. Get yours here: https://mapzen.com/dashboard. It'll look like `mapzen-XXXXXXX`, but different.
+First, you'll need a free Nextzen API key. They're like Bitcoin, but free. Get yours here: https://developers.nextzen.org. It'll look like `XXXXXXXXXXXXXXXXXX`, but different.
 
-If you don't have a Mapzen account, you'll need to make one to get a key. To do that, you'll need either a [github](http://github.com) account (which is cool and fun) or an email address. Counseling you on your resistance to either of those technologies is beyond the scope of this guide.
+If you don't have a Nextzen account, you'll need to make one to get a key. To do that, you'll need either a [github](http://github.com) account (which is cool and fun) or an email address. Counseling you on your resistance to either of those technologies is beyond the scope of this guide.
 
 Once you get an API key, write it down backwards on your forehead, unless you can read backwards writing easier than you can write it. If this is the case, don't worry, it's very common.
 
@@ -179,11 +179,11 @@ import Tangram from 'tangram';
 var map = L.map('map');
 var layer = Tangram.leafletLayer({
   scene: {
-    'import': 'https://mapzen.com/carto/bubble-wrap-style/8/bubble-wrap-style.zip',
-    // TODO: get your own API key at https://mapzen.com/dashboard/. It's free!
+    'import': 'https://www.nextzen.org/carto/bubble-wrap-style/8/bubble-wrap-style.zip',
+    // TODO: get your own API key at https://developers.nextzen.org/
     'global': { 'sdk_mapzen_api_key': 'YOUR-KEY-HERE' }
   },
-  attribution: '<a href="https://mapzen.com/tangram">Tangram</a> | &copy; OSM contributors | <a href="https://mapzen.com/">Mapzen</a>'
+  attribution: '<a href="https://github.com/tangrams/tangram">Tangram</a> | &copy; OSM contributors'
 });
 
 layer.addTo(map);
