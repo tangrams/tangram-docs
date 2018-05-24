@@ -73,7 +73,7 @@ styles:
                     }
 ```
 
-[ ![](images/shaders-position.gif) ](http://tangrams.github.io/tangram-docs/?shaders/position.yaml)
+[ ![](images/shaders-position.gif) ](http://tangrams.github.io/tangram-docs/map/?shaders/position.yaml)
 
 #### `normal`
 
@@ -94,7 +94,7 @@ styles:
                     normal.x += sin(pos.x + u_time);
 ```
 
-[ ![](images/shaders-normal.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/normal.yaml)
+[ ![](images/shaders-normal.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/normal.yaml)
 
 #### `color`
 
@@ -117,11 +117,11 @@ styles:
                     color.b *= sin(pos.x + u_time * 1.5);
 ```
 
-[ ![](images/shaders-color.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/color.yaml)
+[ ![](images/shaders-color.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/color.yaml)
 
 #### `filter`
 
-_[For data filters, see [`filters`](filters.md).]_
+_[For data filters, see [`filters`](Filters-Overview.md).]_
 
 In this `block` you can change the `color` value of a surface pixel by pixel, post-lighting. The `color` variable is a `vec4(r,g,b,a)`. This is the right place to apply effects like crosshatching, color adjustments, and halftones.
 
@@ -145,7 +145,7 @@ styles:
                     color.rgb += filter;
 ```
 
-[ ![](images/shaders-filter.jpg) ](http://tangrams.github.io/tangram-docs/?shaders/filter.yaml)
+[ ![](images/shaders-filter.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/filter.yaml)
 
 #### Defines and Uniforms
 

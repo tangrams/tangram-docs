@@ -652,7 +652,7 @@ draw:
 
 ##### `size: %`
 
-The percent (`%`) may be used when a point is drawn referencing either a [_texture_](texture.md) or a [_sprite_](draw.md#sprite).
+The percent (`%`) may be used when a point is drawn referencing either a [_texture_](textures.md) or a [_sprite_](draw.md#sprite).
 
 ```yaml
 draw:
