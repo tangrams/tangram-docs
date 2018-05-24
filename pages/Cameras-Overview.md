@@ -21,7 +21,7 @@ cameras:
         type: perspective
 ```
 
-[ ![](images/cameras-perspective.jpg) ](http://tangrams.github.io/tangram-docs/map/?cameras/perspective.yaml)
+[ ![](images/cameras-perspective.jpg) ](http://tangrams.github.io/tangram-frame/?url=http://tangrams.github.io/tangram-docs/cameras/perspective.yaml)
 
 #### `focal_length`
 The `focal_length` parameter is connected to the camera's height, and they modify each other in order to maintain a consistent view area. This allows the "zoom level" of a particular map view to remain constant unless changed directly. (You might know this trick as a "[dolly zoom](https://en.wikipedia.org/wiki/Dolly_zoom)", first used in Hitchcock's _Vertigo_.)
