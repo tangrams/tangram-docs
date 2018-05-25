@@ -1,7 +1,7 @@
-*This is the technical documentation for the "layers" block in Tangram's scene file. For a conceptual overview of the way Tangram applies styles to data, see the [Filters Overview](Filters-Overview.md) and the [Styles Overview](Styles-Overview.md).*
+*This is the technical documentation for the "layers" block in Tangram's scene file. For a conceptual overview of the way Tangram applies styles to data, see the [Filters Overview](../Overviews/Filters-Overview.md) and the [Styles Overview](../Overviews/Styles-Overview.md).*
 
 #### `layers`
-The `layers` element is a required top-level element in the [scene file](Scene-file.md). It has only one kind of sub-element: a *layer name*, which defines individual layers with a layer filter.
+The `layers` element is a required top-level element in the [scene file](../Overviews/Scene-File.md). It has only one kind of sub-element: a *layer name*, which defines individual layers with a layer filter.
 
 ```yaml
 layers:
@@ -18,7 +18,7 @@ layers:
         ...
 ```
 
-Note: If a `layer` filter is not specified in a `data` parameter, Tangram will attempt to use the _layer name_ as the filter. See [Layer Name Shortcut](Filters-Overview.md#layer-name-shortcut).
+Note: If a `layer` filter is not specified in a `data` parameter, Tangram will attempt to use the _layer name_ as the filter. See [Layer Name Shortcut](../Overviews/Filters-Overview.md#layer-name-shortcut).
 
 ## layer parameters
 
@@ -33,7 +33,7 @@ layers:
 #### `filter`
 Optional _object_ or _function_. No default.
 
-A `filter` element may be included once in any layer or sublayer. Only features matching the filter will be included in that layer (and its sublayers). For more on the filtering system, see [Filters Overview](Filters-Overview.md).
+A `filter` element may be included once in any layer or sublayer. Only features matching the filter will be included in that layer (and its sublayers). For more on the filtering system, see [Filters Overview](../Overviews/Filters-Overview.md).
 
 ```yaml
 layers:
@@ -71,7 +71,7 @@ Optional _string_. Can be anything except the other sublayer parameters: "draw",
 
 Defines a _sublayer_. Sublayers can have all `layer` parameters except `data`, and can be nested.
 
-All parameters not explicitly defined in a sublayer will be inherited from the parent layer, including `draw`, `properties`, and `filter` definitions. Note that `filter` objects in different sublayers may match simultaneously – see the [Filters Overview](Filters-Overview.md).
+All parameters not explicitly defined in a sublayer will be inherited from the parent layer, including `draw`, `properties`, and `filter` definitions. Note that `filter` objects in different sublayers may match simultaneously – see the [Filters Overview](../Overviews/Filters-Overview.md).
 
 ```yaml
 layers:
@@ -126,7 +126,7 @@ The specified "buildings" `layer` will match this named object in the "osm" data
 }
 ```
 
-Because the _layer name_ "buildings" is the same as the name of the desired GeoJSON object, the `data` object's `layer` parameter can be omitted; when no `layer` is specified, Tangram will attempt to use the _layer name_ as the _data layer_. Most of our examples use this [layer name shortcut](Filters-Overview.md#layer-name-shortcut).
+Because the _layer name_ "buildings" is the same as the name of the desired GeoJSON object, the `data` object's `layer` parameter can be omitted; when no `layer` is specified, Tangram will attempt to use the _layer name_ as the _data layer_. Most of our examples use this [layer name shortcut](../Overviews/Filters-Overview.md#layer-name-shortcut).
 ```yaml
 layer:
     buildings:

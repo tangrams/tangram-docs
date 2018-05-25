@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram's `scene` block. For a conceptual overview of the scene file, see the [Scene File overview page](Scene-file.md).*
+*This is the technical documentation for Tangram's `scene` block. For a conceptual overview of the scene file, see the [Scene File overview page](../Overviews/Scene-File.md).*
 
 ## `scene`
 The `scene` element is an optional top-level element in a Tangram scene file. It declares the beginning of a `sources` block. It allows various scene-wide options to be set:

@@ -1,8 +1,8 @@
-*This is the technical documentation for Tangram's cameras. For a conceptual overview of the camera system, see the [Cameras Overview](../Cameras-Overview).*
+*This is the technical documentation for Tangram's cameras. For a conceptual overview of the camera system, see the [Cameras Overview](../Overviews/Cameras-Overview).*
 
 #### `cameras`
 
-The `cameras` element is an optional top-level element in the [scene file](Scene-file.md). Individual cameras are defined by a *camera name* under this element.
+The `cameras` element is an optional top-level element in the [scene file](../Overviews/Scene-File.md). Individual cameras are defined by a *camera name* under this element.
 ```yaml
 cameras:
     camera1:
@@ -69,7 +69,7 @@ camera1:
 #### `active`
 Optional _boolean_. `true` or `false`. No default.
 
-Sets the camera which provides the active view of the map when it is first loaded. If multiple cameras are defined, only one may be active at a time. If multiple cameras are set as `active: true`, the behavior will be unpredictable (see the [yaml#mappings](yaml.md#mappings) entry). The [JavaScript API](Javascript-API.md) can be used to [get](Javascript-API.md#getactivecamera) or [set](Javascript-API.md#setactivecamera_string_-camera) the active camera.
+Sets the camera which provides the active view of the map when it is first loaded. If multiple cameras are defined, only one may be active at a time. If multiple cameras are set as `active: true`, the behavior will be unpredictable (see the [yaml#mappings](yaml.md#mappings) entry). The [JavaScript API](../API-Reference/Javascript-API.md) can be used to [get](../API-Reference/Javascript-API.md#getactivecamera) or [set](../API-Reference/Javascript-API.md#setactivecamera_string_-camera) the active camera.
 
 ```yaml
 camera1:

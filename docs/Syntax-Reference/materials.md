@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram’s materials. For a conceptual overview of the material system, see the [Materials Overview](Materials-Overview.md).*
+*This is the technical documentation for Tangram’s materials. For a conceptual overview of the material system, see the [Materials Overview](../Overviews/Materials-Overview.md).*
 
 #### `material`
 

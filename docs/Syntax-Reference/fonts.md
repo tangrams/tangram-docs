@@ -1,7 +1,7 @@
-*This is the technical documentation for Tangram's `fonts` block. For an overview of Tangram's labeling capabilities, see the [`text`](Styles-Overview.md#text-1) entry in the [Styles Overview](Styles-Overview.md).*
+*This is the technical documentation for Tangram's `fonts` block. For an overview of Tangram's labeling capabilities, see the [`text`](../Overviews/Styles-Overview.md#text-1) entry in the [Styles Overview](../Overviews/Styles-Overview.md).*
 
 ## `fonts`
-The `fonts` element is an optional top-level element in the [scene file](Scene-file.md). It has only one kind of sub-element: a named _font definition_.
+The `fonts` element is an optional top-level element in the [scene file](../Overviews/Scene-File.md). It has only one kind of sub-element: a named _font definition_.
 
 A _font definition_ can define a font in one of two ways: through _external CSS_, or with any number of `font face definitions`.
 

@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram's `import` block. For a conceptual overview of the scene file, see the [Scene File overview page](Scene-file.md).*
+*This is the technical documentation for Tangram's `import` block. For a conceptual overview of the scene file, see the [Scene File overview page](../Overviews/Scene-File.md).*
 
 ## `import`
 

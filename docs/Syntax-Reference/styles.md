@@ -1,7 +1,7 @@
-*This is the technical documentation for Tangram's `styles` object. For a conceptual overview of the styling system, see the [Styles Overview](Styles-Overview.md).*
+*This is the technical documentation for Tangram's `styles` object. For a conceptual overview of the styling system, see the [Styles Overview](../Overviews/Styles-Overview.md).*
 
 #### `styles`
-The `styles` element is an optional top-level element in the [scene file](Scene-file.md). It takes only one kind of element, a named _style object_.
+The `styles` element is an optional top-level element in the [scene file](../Overviews/Scene-File.md). It takes only one kind of element, a named _style object_.
 
 Styles defined under this element can be referenced by name inside a [draw](draw.md) group with the `style` parameter.
 ```yaml
@@ -43,7 +43,7 @@ styles:
         base: points
 ```
 
-For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
+For more, see the [Styles Overview](../Overviews/Styles-Overview.md#draw-styles).
 
 #### `animated`
 Optional _boolean_, `true` or `false`. When `true`, the renderer will attempt to redraw the style every frame.
@@ -107,7 +107,7 @@ styles:
         ...
 ```
 
-For more, see the [Styles Overview](Styles-Overview.md#draw-styles).
+For more, see the [Styles Overview](../Overviews/Styles-Overview.md#draw-styles).
 
 #### `dash`
 Optional _array_ of _numbers_. Defines a dash pattern for use with line textures. No default.
@@ -252,7 +252,7 @@ styles:
         mix: [styleA, styleB, styleC]
 ```
 
-For more, see the [Styles Overview](Styles-Overview.md#style-composition-with-mix).
+For more, see the [Styles Overview](../Overviews/Styles-Overview.md#style-composition-with-mix).
 
 #### `raster`
 Optional _string_, one of `color`, `normal`, or `custom`. Controls interpretation of any attached `Raster` sources. Default is `color`.
@@ -270,7 +270,7 @@ When a style has `raster: custom`, any shaders defined in the style can directly
 - `vec2 currentRasterPixel(int N)`: Returns the current pixel position for the Nth raster source. Useful along with the above for sampling nearby pixels (e.g. to derive a normal map, perform a convolution kernel, etc).
 - `vec2 rasterPixelSize(int N)`: A uniform array providing the pixel dimensions of the Nth raster source.
 
-For examples, see [Raster Overview#Direct Sampler Access](Raster-Overview.md#Direct-Sampler-Access).
+For examples, see [Raster Overview#Direct Sampler Access](../Overviews/Raster-Overview.md#Direct-Sampler-Access).
 
 #### `shaders`
 Optional _string_. Begins the shaders definition object. For more on materials, see the [shaders technical reference](shaders.md).

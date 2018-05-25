@@ -110,7 +110,7 @@ element: { parameter: [ item1, item2, item3 ] }
 
 Note that _lists_ and _mappings_ are interpreted differently in various situations.
 
-See also: [Lists Imply Any, Mappings Imply All](Filters-Overview.md#lists-imply-any-mappings-imply-all)
+See also: [Lists Imply Any, Mappings Imply All](../Overviews/Filters-Overview.md#lists-imply-any-mappings-imply-all)
 
 ## syntax mixing
 
@@ -211,7 +211,7 @@ Note that functions cannot return a unit type – so in cases where a function i
 
 #### `$geometry`
 
-The `$geometry` keyword can specify a [filter](Filters-Overview.md) to match a specific type of geometry, for cases when a FeatureCollection includes multiple geometry types.
+The `$geometry` keyword can specify a [filter](../Overviews/Filters-Overview.md) to match a specific type of geometry, for cases when a FeatureCollection includes multiple geometry types.
 
 Allowable values for this filter are:
 
@@ -224,11 +224,11 @@ labels:
    filter: { $geometry: point }
 ```
 
-See [keyword properties](Filters-Overview.md#keyword-properties).
+See [keyword properties](../Overviews/Filters-Overview.md#keyword-properties).
 
 #### `$layer`
 
-The `$layer` keyword can specify a [feature filter](Filters-Overview.md) to match a feature from a given named layer in the datasource, for cases when a Tangram layer's [`source`](sources.md) includes multiple layers.
+The `$layer` keyword can specify a [feature filter](../Overviews/Filters-Overview.md) to match a feature from a given named layer in the datasource, for cases when a Tangram layer's [`source`](sources.md) includes multiple layers.
 
 ```yaml
 data: { source: osm, layer: [buildings, pois] }
@@ -236,7 +236,7 @@ buildings:
     filter: { $layer: buildings }
 ```
 
-See [keyword properties](Filters-Overview.md#keyword-properties).
+See [keyword properties](../Overviews/Filters-Overview.md#keyword-properties).
 
 #### `$meters_per_pixel`
 
@@ -246,18 +246,18 @@ The `$meters_per_pixel` keyword is equal to the number of meters equivalent to a
 width: function() { return $zoom / 4. * $meters_per_pixel; }
 ```
 
-See [keyword properties](Filters-Overview.md#keyword-properties).
+See [keyword properties](../Overviews/Filters-Overview.md#keyword-properties).
 
 #### `$zoom`
 
-The `$zoom` keyword may be used to define [filters](Filters-Overview.md) with optional `min` and `max` parameters.
+The `$zoom` keyword may be used to define [filters](../Overviews/Filters-Overview.md) with optional `min` and `max` parameters.
 
 ```yaml
 outline:
    filter: { $zoom: { min: 15, max: 20 } }
 ```
 
-See [keyword properties](Filters-Overview.md#keyword-properties).
+See [keyword properties](../Overviews/Filters-Overview.md#keyword-properties).
 
 ## multi-line strings
 

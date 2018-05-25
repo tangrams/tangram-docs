@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram's `sources` block. For a conceptual overview of the way Tangram works with data sources, see the [Filters Overview](Filters-Overview.md).*
+*This is the technical documentation for Tangram's `sources` block. For a conceptual overview of the way Tangram works with data sources, see the [Filters Overview](../Overviews/Filters-Overview.md).*
 
 ## `sources`
 The `sources` element is a required top-level element in a Tangram scene file. It declares the beginning of a `sources` block. It takes only one kind of parameter: the _source name_. Any number of _source names_ can be declared.
@@ -236,7 +236,7 @@ Optional _boolean_. Default is _false_.
 
 A toggle for creating labels at the centroids of polygons for non-tiled GeoJSON and TopoJSON sources.
 
-When set to `true` new _point_ geometries will be added to the data source, one located at the geometrical center (or "centroid") of every _polygon_. Each point will receive a [`{"label_placement" : "true"}`](Filters-Overview.md#label_placement) property which may be filtered against, as well as a copy of the associated feature's properties.
+When set to `true` new _point_ geometries will be added to the data source, one located at the geometrical center (or "centroid") of every _polygon_. Each point will receive a [`{"label_placement" : "true"}`](../Overviews/Filters-Overview.md#label_placement) property which may be filtered against, as well as a copy of the associated feature's properties.
 
 This allows a single label to be placed at the centroid of a polygon region, instead of multiple labels when the polygon is tiled.
 
@@ -285,7 +285,7 @@ Optional _list_ of `Raster` sources to be "attached" to the `source`. No default
 
 Attaching a `Raster` to another `source` makes that `Raster` available to any shaders used to draw that `source` via the [`sampleRaster()`](styles.md#raster) function.
 
-(See [Geometry Masking](Raster-Overview.md#Geometry-Masking) for examples.)
+(See [Geometry Masking](../Overviews/Raster-Overview.md#Geometry-Masking) for examples.)
 
 **Note:** a simple _string_ value will not function correctly – even a single `raster` must be in _list_ format, e.g. surrounded by square brackets:
 
@@ -298,7 +298,7 @@ sources:
 
 When a `Raster` source itself has additional raster sources set in the `rasters` property, the "parent" source will be the first raster sampler, and those from `rasters` will be added afterward. (essentially it is as if the parent source was inserted as the first item in the rasters array).
 
-For more, see the [Raster Overview](Raster-Overview.md).
+For more, see the [Raster Overview](../Overviews/Raster-Overview.md).
 
 #### `tile_size`
 Optional _int_. Must be a power of 2, greater than or equal to `256`. Default is `256`. No units.

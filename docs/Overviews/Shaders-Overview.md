@@ -14,7 +14,7 @@ Each of the [styles](Styles-Overview.md) on Tangram is related to both a geometr
 
 In the builder step, the data coming from the data source is positioned, extruded, and tessellated.
 
-![](images/geometry-builder.jpg)
+![](../images/geometry-builder.jpg)
 
 Here is some example data:
 ```json
@@ -43,7 +43,7 @@ Here is some example data:
 
 The Tangram Engine is designed to let you interact with and modify this pipeline at specific points. In order to customize your own shaders it is important to know what this pipeline looks like, and where you can change things.
 
-![](images/shader.jpg)
+![](../images/shader.jpg)
 
 Looking closely at the steps in the previous diagram you will note some red arrows – they correspond to the *position*, *normal*, *color*, and *filter* steps. Those steps are points where the user can add a `block` of code.
 
@@ -73,7 +73,7 @@ styles:
                     }
 ```
 
-[ ![](images/shaders-position.gif) ](http://tangrams.github.io/tangram-docs/map/?shaders/position.yaml)
+[ ![](../images/shaders-position.gif) ](http://tangrams.github.io/tangram-docs/map/?shaders/position.yaml)
 
 #### `normal`
 
@@ -94,7 +94,7 @@ styles:
                     normal.x += sin(pos.x + u_time);
 ```
 
-[ ![](images/shaders-normal.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/normal.yaml)
+[ ![](../images/shaders-normal.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/normal.yaml)
 
 #### `color`
 
@@ -117,7 +117,7 @@ styles:
                     color.b *= sin(pos.x + u_time * 1.5);
 ```
 
-[ ![](images/shaders-color.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/color.yaml)
+[ ![](../images/shaders-color.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/color.yaml)
 
 #### `filter`
 
@@ -145,7 +145,7 @@ styles:
                     color.rgb += filter;
 ```
 
-[ ![](images/shaders-filter.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/filter.yaml)
+[ ![](../images/shaders-filter.jpg) ](http://tangrams.github.io/tangram-docs/map/?shaders/filter.yaml)
 
 #### Defines and Uniforms
 

@@ -92,7 +92,7 @@ For more on defines, see [http://www.cprogramming.com/reference/preprocessor/def
 ## `uniforms`
 Optional parameter. Defines the start of a `uniforms` block.
 
-The `uniforms` block allows shortcuts for declaring globally-accessible _uniform_ variables, for use in the `global`, `position`, `normal`, `color` and `filter` blocks. Uniforms declared here may also be accessed and manipulated through the [JavaScript API](Javascript-API.md).
+The `uniforms` block allows shortcuts for declaring globally-accessible _uniform_ variables, for use in the `global`, `position`, `normal`, `color` and `filter` blocks. Uniforms declared here may also be accessed and manipulated through the [JavaScript API](../API-Reference/Javascript-API.md).
 
 A "uniform" is a GLSL variable which is constant across all vertices and fragments (aka pixels).
 
@@ -310,7 +310,7 @@ vec4 light_accumulator_diffuse = vec4(0.0);
 vec4 light_accumulator_specular = vec4(0.0);    // available if specular is defined
 ```
 
-When [UV maps](Materials-Overview.md#mapping-uv) are used, the following functions are available for use in shader blocks:
+When [UV maps](../Overviews/Materials-Overview.md#mapping-uv) are used, the following functions are available for use in shader blocks:
 
 ```glsl
 vec4 getSphereMap (in sampler2D _tex, in vec3 _eyeToPoint, in vec3 _normal, in vec2 _skew );

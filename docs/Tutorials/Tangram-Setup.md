@@ -6,13 +6,13 @@ The easiest way to use Tangram in a web page is via [Mapzen.js](https://mapzen.c
 
 Tangram JS is a JavaScript library designed for use in [Leaflet](http://leaflet.org) maps.
 
-The [latest release of Tangram](github.com/tangrams/tangram/releases) can be included in your web page with a `script` tag:
+The [latest release of Tangram](https://github.com/tangrams/tangram/releases) can be included in your web page with a `script` tag:
 
 ```html
 <script src="https://mapzen.com/tangram/tangram.min.js"></script>
 ```
 
-Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](Tangram-Overview.md#leaflet-options):
+Then, Tangram can be instantiated as a Leaflet layer, passing (at a minimum) the scene URL through the [options object](../Overviews/Tangram-Overview.md#leaflet-options):
 
 ```javascript
 var map = L.map();

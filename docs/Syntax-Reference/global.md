@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram's `global` block. For a conceptual overview of the Tangram scene file, see the [scene file](Scene-file.md) page.*
+*This is the technical documentation for Tangram's `global` block. For a conceptual overview of the Tangram scene file, see the [scene file](../Overviews/Scene-File.md) page.*
 
 *For the shader block, see [`global`](shaders.md#global).*
 
