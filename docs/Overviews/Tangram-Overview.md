@@ -23,21 +23,21 @@ Tangram JS versions are matched to Leaflet versions to ensure ongoing compatabil
 
 The latest release of Tangram JS may always be referenced at:
 
-https://mapzen.com/tangram/tangram.min.js
+https://unpkg.com/tangram/dist/tangram.min.js
 
 for the minified version, and 
 
-https://mapzen.com/tangram/tangram.debug.js
+https://unpkg.com/tangram/dist/tangram.debug.js
 
 for the debug version.
 
 If you'd like to use a specific release of Tangram JS, you may specify its version number in its url:
 
 ```html
-<script src="https://mapzen.com/tangram/0.8/tangram.min.js"></script>
+<script src="https://unpkg.com/tangram@0.15.1/dist/tangram.min.js"></script>
 ```
 
-[See the latest Tangram JS release here.](https://github.com/tangrams/tangram/releases/latest)
+[See details of the latest Tangram JS release here.](https://github.com/tangrams/tangram/releases/latest)
 
 Tangram ES releases are tagged according to their target platform. 
 
