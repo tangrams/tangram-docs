@@ -108,38 +108,47 @@ Origin can be specified as relative to three different spaces: *world*, *camera*
 
 - In *world space*, the light position is relative to a point on the map:
 
-    ```yaml
-    type: point
-    position: [-74.0170, 40.7031, 100]
-    origin: world
-    ambient: .3
-    diffuse: 1.
-    specular: .2
-    ```
+```yaml
+lights:
+    light1:
+        type: point
+        position: [-74.0170, 40.7031, 100]
+        origin: world
+        ambient: .3
+        diffuse: 1.
+        specular: .2
+```
+
 [ ![](../images/lights-pointlight.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-00.yaml)
     
 - In *camera space*, the position is relative to the camera:
 
-    ```yaml
-    type: point
-    position: [0, 0, -1800]
-    origin: camera
-    ambient: .3
-    diffuse: 1.
-    specular: .2
-    ```
+```yaml
+lights:
+    light1:
+        type: point
+        position: [0, 0, -1800]
+        origin: camera
+        ambient: .3
+        diffuse: 1.
+        specular: .2
+```
+
 [ ![](../images/lights-pointlight-01.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-01.yaml)
 
 - In *ground space*, the position is relative to the point on the ground in the center of the current view:
 
-    ```yaml
-    type: point
-    position: [0, 0, 100px]
-    origin: ground
-    ambient: .3
-    diffuse: 1.
-    specular: .2
-    ```
+```yaml
+lights:
+    light1:
+        type: point
+        position: [0, 0, 100px]
+        origin: ground
+        ambient: .3
+        diffuse: 1.
+        specular: .2
+```
+
 [ ![](../images/lights-pointlight-02.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-02.yaml)
 
 ### Other light parameters
@@ -152,67 +161,84 @@ A light radius defines the limit of the light's effect. It can be specified in o
 
 - A single value sets an outer radius:
 
-    ```yaml
-    type: point
-    position: [-74.0170, 40.7031, 100]
-    radius: 500
-    ambient: .3
-    diffuse: 1.
-    specular: .2
-    ```
-    [ ![](../images/lights-radius.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-radius-00.yaml)
+```yaml
+lights:
+    light1:
+        type: point
+        position: [-74.0170, 40.7031, 100]
+        radius: 500
+        ambient: .3
+        diffuse: 1.
+        specular: .2
+```
+
+[ ![](../images/lights-radius.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-radius-00.yaml)
 
 - A pair of values sets an inner and outer radius. The inner radius defines an area of constant illumunation, without any attenuation.
 
-    ```yaml
-    type: point
-    position: [-74.0170, 40.7031, 100]
-    radius: [500, 700]
-    ambient: .3
-    diffuse: 1.
-    specular: .2
-    ```
-    [ ![](../images/lights-radius2.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-radius-01.yaml)
+```yaml
+lights:
+    light1:
+        type: point
+        position: [-74.0170, 40.7031, 100]
+        radius: [500, 700]
+        ambient: .3
+        diffuse: 1.
+        specular: .2
+```
+
+[ ![](../images/lights-radius2.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-radius-01.yaml)
 
 #### attenuation 
 
 The attenuation of a light defines the way a light's intensity decreases as the outer radius is approached. The *attenuation* value is the exponent factor of the falloff function: a value of `0` = no falloff, `1` = a linear curve, `2` = a quadratic curve, etc. In general, higher values result in sharper light edges.
 
 - If no radius is defined, the attenuation curve goes to infinity:
-    ```yaml
-    type: point
-    position: [-74.0170, 40.7031, 100]
-    attenuation: 0.1
-    ambient: .3
-    diffuse: 1.
-    specular: .2
-    ```
-    [ ![](../images/lights-attenuation.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-attenuation-00.yaml)
+
+```yaml
+lights:
+    light1:
+        type: point
+        position: [-74.0170, 40.7031, 100]
+        attenuation: 0.1
+        ambient: .3
+        diffuse: 1.
+        specular: .2
+```
+
+[ ![](../images/lights-attenuation.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-attenuation-00.yaml)
 
 - With a single radius value, the attenuation curve operates between the position of the light to the outer radius.
-    ```yaml
-    type: point
-    position: [-74.0170, 40.7031, 100]
-    radius: 700
-    attenuation: 2.0
-    ambient: .3
-    diffuse: 1.
-    specular: .2
-    ```
-    [ ![](../images/lights-attenuation2.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-attenuation-01.yaml)
+
+```yaml
+lights:
+    light1:
+        type: point
+        position: [-74.0170, 40.7031, 100]
+        radius: 700
+        attenuation: 2.0
+        ambient: .3
+        diffuse: 1.
+        specular: .2
+```
+
+[ ![](../images/lights-attenuation2.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-attenuation-01.yaml)
 
 - With a pair of inner/outer radius values, the attenuation curve will operate between the inner and the outer radius.
-    ```yaml
-    type: point
-    position: [-74.0170, 40.7031, 100]
-    radius: [500,700]
-    attenuation: 2.0
-    ambient: .3
-    diffuse: 1.
-    specular: .2
-    ```
-    [ ![](../images/lights-attenuation3.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-attenuation-02.yaml)
 
+```yaml
+lights:
+    light1:
+        type: point
+        position: [-74.0170, 40.7031, 100]
+        radius: [500,700]
+        attenuation: 2.0
+        ambient: .3
+        diffuse: 1.
+        specular: .2
+```
+
+[ ![](../images/lights-attenuation3.jpg) ](http://tangrams.github.io/tangram-docs/map/?lights/pointlight-attenuation-02.yaml)
 
 ### Spotlight
 
