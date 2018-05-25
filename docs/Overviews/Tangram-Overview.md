@@ -73,7 +73,7 @@ This object may contain any of the [standard Leaflet layer options](http://leafl
 
 #### introspection
 
-When set to `true`, this parameter will load the scene with `introspection` enabled, making a call to [`scene.setIntrospection(true)`](Javascript-API.md#setintrospection_boolean_) unnecessary.
+When set to `true`, this parameter will load the scene with `introspection` enabled, making a call to [`scene.setIntrospection(true)`](../API-Reference/Javascript-API.md#setintrospection_boolean_) unnecessary.
 
 ```javascript
 var layer = Tangram.leafletLayer({
@@ -82,7 +82,7 @@ var layer = Tangram.leafletLayer({
 ```
 
 #### scene
-The required `scene` parameter specifies the URL of the [scene file](Scene-file.md) to be loaded.
+The required `scene` parameter specifies the URL of the [scene file](Scene-File.md) to be loaded.
 ```javascript
 var layer = Tangram.leafletLayer({
     scene: 'scene.yaml'
@@ -137,7 +137,7 @@ An iframe counts as a separate browsing context, so we make frequent use of the 
 
 Tangram uses a "scene file" written in YAML to configure data sources, filters, and styling rules. Its structure and syntax is interchangable between Tangram JS and Tangram ES, with a very small number of exceptions as noted in the documentation with `[JS only]` or `[ES only]`.
 
-See [Scene File](Scene-file.md).
+See [Scene File](Scene-File.md).
 
 
 ## Scene Bundling
@@ -156,7 +156,7 @@ For example, with Tangram JS:
     layer.addTo(map);
 ```
 
-Tangram will unpack the zip internally, expecting only a single .yaml file to be in the zip's root, which it will use as the scene file. Any other bundled .yaml files (eg [basemaps](https://mapzen.com/blog/introducing-refill-cinnabar-and-zinc-styles-for-tangram/) or [blocks](https://github.com/tangrams/blocks) included with the [import](import.md) block) must therefore be in subdirectories, and all paths in the .yaml file must be relative to this root scene file.
+Tangram will unpack the zip internally, expecting only a single .yaml file to be in the zip's root, which it will use as the scene file. Any other bundled .yaml files (eg [basemaps](https://mapzen.com/blog/introducing-refill-cinnabar-and-zinc-styles-for-tangram/) or [blocks](https://github.com/tangrams/blocks) included with the [import](../Syntax-Reference/import.md) block) must therefore be in subdirectories, and all paths in the .yaml file must be relative to this root scene file.
 
 
 ## Getting Started

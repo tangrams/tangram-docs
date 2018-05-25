@@ -14,7 +14,7 @@ The `scene` object is the interface for controlling your Tangram scene at runtim
 The methods and properties below are accessed through this `scene` object.
 
 #### `config`
-This contains a deserialized, runtime JavaScript object version of the [scene file](Scene-file.md) which can be modified on the fly:
+This contains a deserialized, runtime JavaScript object version of the [scene file](../Overviews/Scene-File) which can be modified on the fly:
 
 ```javascript
 > scene.config
@@ -154,7 +154,7 @@ layer = Tangram.leafletLayer({
 ```
 
 #### `loadTextures()`
-Reloads and rebinds [textures](textures.md) in the scene.
+Reloads and rebinds [textures](../Syntax-Reference/textures) in the scene.
 
 Textures will only be reloaded if any of the texture definition's parameters changed, or if the texture is tied to a DOM element.
 
@@ -174,7 +174,7 @@ Optional parameters described below will further limit the set of features retur
 Because tiles usually include some area outside the viewport, the `queryFeatures()` method can be thought of as roughly querying the visible area, but results may include some nearby features as well. This effect can also be caused by tile over-zooming, for data sources with a `max_zoom`.
 
 ##### `filter`
-An optional [filter](Filters-Overview.md) object can be provided, using the same syntax used for selecting features for styling in layers. If no filter is provided, all features will be returned (subject to other parameters defined below).
+An optional [filter](../Overviews/Filters-Overview) object can be provided, using the same syntax used for selecting features for styling in layers. If no filter is provided, all features will be returned (subject to other parameters defined below).
 
 This example will return all restaurants in the pois layer in the visible tiles:
 
@@ -322,7 +322,7 @@ The promise resolves with an object containing three properties:
 scene.screenshot().then(function(screenshot) { window.open(screenshot.url); });
 ```
 
-The optional `background` parameter allows a background color to be set for screenshots. The default is "white". This may be any [`color`](draw.md#color) value, including `transparent`.
+The optional `background` parameter allows a background color to be set for screenshots. The default is "white". This may be any [`color`](../Syntax-Reference/draw/#color) value, including `transparent`.
 
 ```javascript
 scene.screenshot({ background: 'transparent' }).then(s => window.open(s.url))
@@ -332,9 +332,9 @@ scene.screenshot({ background: 'transparent' }).then(s => window.open(s.url))
 Sets the active camera to the camera specified by name, as named in the scene file.
 
 #### `setDataSource(_string_ name, _object_ config)`
-Loads a new `source` object (see [`sources`](sources.md)), returning a Promise which fulfills when the `source` is loaded.
+Loads a new `source` object (see [`sources`](../Syntax-Reference/sources)), returning a Promise which fulfills when the `source` is loaded.
 
-If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the [`sources`](sources.md#sources) specification.
+If `name` doesn't match an existing source, a new source object will be created. The `source` object must follow the [`sources`](../Syntax-Reference/sources) specification.
 
 ```javascript
 scene.setDataSource('osm', { type: 'TopoJSON', url: 'https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson' });
@@ -349,7 +349,7 @@ scene.setDataSource('dynamic_data', { type: 'GeoJSON', data: geojson_data });
 ```
 
 #### `setIntrospection(_boolean_)`
-Enables feature selection for all features, regardless of their [`interactive`](draw.md#interactive) setting in the [scene file](Scene-file.md).
+Enables feature selection for all features, regardless of their [`interactive`](../Syntax-Reference/draw.md#interactive) setting in the [scene file](../Overviews/Scene-File).
 
 `scene.setIntrospection(true);`
 
@@ -393,7 +393,7 @@ Re-parses the `scene.config` object and triggers [`scene.rebuild()`](#rebuild) w
 scene.updateConfig()
 ```
 
-Note that `updateConfig()` will not load changes to the `scene.config.import` object. As the [`import`](import.md) block must be parsed before loading the rest of the scene file, any changes to `import` must be handled with [`load()`](#loadscene_url-base_path-file_type).
+Note that `updateConfig()` will not load changes to the `scene.config.import` object. As the [`import`](../Syntax-Reference/import) block must be parsed before loading the rest of the scene file, any changes to `import` must be handled with [`load()`](#loadscene_url-base_path-file_type).
 
 ## Events
 
@@ -447,7 +447,7 @@ layer.setSelectionEvents({
 
 Or, to remove an event, `layer.setSelectionEvents({ click: null });`.
 
-To activate the feature picking functionality for a particular layer, set the [`interactive`](draw.md#interactive) parameter.
+To activate the feature picking functionality for a particular layer, set the [`interactive`](../Syntax-Reference/draw.md#interactive) parameter.
 
 #### `load`
 This event handler can be used to catch 'load' events, which are fired when the scene was loaded. The event callback is passed an object with a `config` property, containing the just-loaded scene config object.

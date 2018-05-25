@@ -7,47 +7,47 @@ There are a variety of top-level elements allowed in a scene file. Each defines 
 #### `cameras`
 Optional element. The `cameras` block allows modifications to the view of the map.
 
-See [Cameras Overview](Cameras-Overview.md) and [cameras](cameras.md).
+See [Cameras Overview](Cameras-Overview.md) and [cameras](../Syntax-Reference/cameras.md).
 
 #### `layers`
 Required element. The `layers` block divides the data into layers and assigns styling parameters.
 
-See [Styles Overview](Styles-Overview.md) and [layers](layers.md).
+See [Styles Overview](Styles-Overview.md) and [layers](../Syntax-Reference/layers.md).
 
 #### `global`
 Optional element. The `global` block allows the addition of custom named parameters which can be substituted for values elsewhere in the scene file.
 
-See [global](global.md).
+See [global](../Syntax-Reference/global.md).
 
 #### `import`
 Optional element. The `import` block allows other .yaml files, containing any combination of Tangram scene blocks, specified from the top-level blocks outward, up to entire scene files, to be imported into the current scene, through a simple text-based merge.
 
-See [import](import.md).
+See [import](../Syntax-Reference/import.md).
 
 #### `lights`
 Optional element. The `lights` block allows control of the lighting of the map.
 
-See [Lights Overview](Lights-Overview.md) and [lights](lights.md).
+See [Lights Overview](Lights-Overview.md) and [lights](../Syntax-Reference/lights.md).
 
 #### `scene`
 Optional element. The `scene` block sets various scene-wide parameters.
 
-See [scene](scene.md).
+See [scene](../Syntax-Reference/scene.md).
 
 #### `sources`
 Required element. The `sources` block identifies datasources.
 
-See [sources](sources.md).
+See [sources](../Syntax-Reference/sources.md).
 
 #### `styles`
-Optional element. The `styles` block defines rendering styles, which are composed of [materials](materials.md) and [shaders](shaders.md).
+Optional element. The `styles` block defines rendering styles, which are composed of [materials](../Syntax-Reference/materials.md) and [shaders](../Syntax-Reference/shaders.md).
 
-See [Styles Overview](Styles-Overview.md) and [styles](styles.md).
+See [Styles Overview](Styles-Overview.md) and [styles](../Syntax-Reference/styles.md).
 
 #### `textures`
-Optional element. The `textures` block allows for advanced configuration of textures within [materials](materials.md).
+Optional element. The `textures` block allows for advanced configuration of textures within [materials](../Syntax-Reference/materials.md).
 
-See [Materials Overview](Materials-Overview.md) and [textures](textures.md).
+See [Materials Overview](Materials-Overview.md) and [textures](../Syntax-Reference/textures.md).
 
 
 ## The basics

@@ -4,7 +4,7 @@ Tangram allows raster data sources to be loaded, displayed, and combined with ve
 
 The simplest way to use raster data is to display it directly, without any combinations or modifications.
 
-The example below loads a tiled raster data source in the scene file, under the [`sources`](sources.md) block:
+The example below loads a tiled raster data source in the scene file, under the [`sources`](../Syntax-Reference/sources.md) block:
 
 ```yaml
 sources:
@@ -13,7 +13,7 @@ sources:
         url: http://a.tile.stamen.com/terrain-background/{z}/{x}/{y}.jpg
 ```
 
-Then it is rendered with the built-in [`raster` style](styles.md#raster), which is provided for typical rendering cases. This style generates tile-sized geometry and textures it with the appropriate raster data.
+Then it is rendered with the built-in [`raster` style](../Syntax-Reference/styles.md#raster), which is provided for typical rendering cases. This style generates tile-sized geometry and textures it with the appropriate raster data.
 
 ```yaml
 layers:
@@ -48,7 +48,7 @@ layers:
 
 ### Geometry Masking
 
-The `raster` style can also be applied to a non-`Raster` source that has a raster sampler attached, using the [`rasters`](sources.md#rasters) parameter. In this case, the Stamen terrain is attached to and masked against the OSM landuse polygons:
+The `raster` style can also be applied to a non-`Raster` source that has a raster sampler attached, using the [`rasters`](../Syntax-Reference/sources.md#rasters) parameter. In this case, the Stamen terrain is attached to and masked against the OSM landuse polygons:
 
 ```yaml
 sources:
@@ -153,7 +153,7 @@ layers:
 
 When a style declares `raster: custom`, any shaders defined in that style can directly sample the raster for custom effects.
 
-This example uses the [`sampleRaster()`](styles.md#raster) method to unpack Mapzen elevation tiles for color display:
+This example uses the [`sampleRaster()`](../Syntax-Reference/styles.md#raster) method to unpack Mapzen elevation tiles for color display:
 
 ```yaml
 styles:

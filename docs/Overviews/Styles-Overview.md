@@ -1,8 +1,8 @@
-*This is an overview of Tangram's styling system. For a complete technical reference of the custom style-creation system, see [styles](styles.md), and for all the technical details of drawing with those styles, see [draw](draw.md).*
+*This is an overview of Tangram's styling system. For a complete technical reference of the custom style-creation system, see [styles](../Syntax-Reference/styles.md), and for all the technical details of drawing with those styles, see [draw](../Syntax-Reference/draw.md).*
 
 ## draw styles
 
-Draw styles are referenced in two places in the scene file: when defining custom [styles](styles.md) and again in [draw](draw.md) groups.
+Draw styles are referenced in two places in the scene file: when defining custom [styles](../Syntax-Reference/styles.md) and again in [draw](../Syntax-Reference/draw.md) groups.
 
 Tangram currently has five built-in _draw styles_: `polygons`, `lines`, `points`, `text`, and `raster`. Each draw style displays data in a different way, and some of them require specific data types and properties.
 
@@ -13,7 +13,7 @@ The `polygons` _draw style_ tessellates and extrudes vector shapes into 3D geome
 The `lines` _draw style_ can turn either polygonal or line data into lines. See [`lines`](#lines_1).
 
 #### `points`
-The `points` _draw style_ draws a filled circle at the location of the data point. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+The `points` _draw style_ draws a filled circle at the location of the data point. It can work with point data, lines, or polygons. Points will "collide" with each other, with only the winner being drawn, determined by the [`priority`](../Syntax-Reference/draw.md#priority) draw parameter.
 
 _[JS only]_ Only points from the same datasource will collide with each other.
 
@@ -22,7 +22,7 @@ Technically, this draw style creates a small quad, which is then colored with a 
 See [`points`](#points_1).
 
 #### `text`
-The `text` _draw style_ draws text labels at a given point. It can work with point, line, or polygon data. When used with lines, the label will be drawn along the line. When used with polygons, the label will be drawn at the polygon's centroid. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](draw.md#priority) draw parameter.
+The `text` _draw style_ draws text labels at a given point. It can work with point, line, or polygon data. When used with lines, the label will be drawn along the line. When used with polygons, the label will be drawn at the polygon's centroid. Text labels will "collide" with each other, with only the winner being drawn, determined by the [`priority`](../Syntax-Reference/draw.md#priority) draw parameter.
 
 _[JS only]_ Only text elements from the same datasource will collide with each other.
 
@@ -86,16 +86,16 @@ Styles which are extensions of the `polygons` draw style can take the following 
 - `texcoords`
 - `animated`
 - `blend`
-- `materials` : see [materials](materials.md)
-- `shaders`: see [shaders](shaders.md)
+- `materials` : see [materials](../Syntax-Reference/materials.md)
+- `shaders`: see [shaders](../Syntax-Reference/shaders.md)
 
 #### `polygons` draw group requirements
-[Draw groups](draw.md#draw-group) which use the `polygons` draw style must specify, at minimum, the following parameters in order to be drawn:
+[Draw groups](../Syntax-Reference/draw.md#draw-group) which use the `polygons` draw style must specify, at minimum, the following parameters in order to be drawn:
 
-- [color](draw.md#color)
+- [color](../Syntax-Reference/draw.md#color)
 
 ## lines
-The *lines* style requires a datasource containing connected coordinates. Thus it can accept either linear or polygonal input data. It draws a rectangle along each line segment, and can optionally draw special [`join`](draw.md#join) and [`cap`](draw.md#cap) styles.
+The *lines* style requires a datasource containing connected coordinates. Thus it can accept either linear or polygonal input data. It draws a rectangle along each line segment, and can optionally draw special [`join`](../Syntax-Reference/draw.md#join) and [`cap`](../Syntax-Reference/draw.md#cap) styles.
 
 #### `lines` parameters
 Styles which are extensions of the `lines` draw style can take the following parameters:
@@ -103,14 +103,14 @@ Styles which are extensions of the `lines` draw style can take the following par
 - `texcoords`
 - `animated`
 - `blend`
-- `materials` : see [materials](materials.md)
-- `shaders`: see [shaders](shaders.md)
+- `materials` : see [materials](../Syntax-Reference/materials.md)
+- `shaders`: see [shaders](../Syntax-Reference/shaders.md)
 
 #### `lines` draw group requirements
-[Draw groups](draw.md#draw-group) which use the `lines` draw style must specify, at minimum, the following parameters in order to be drawn:
+[Draw groups](../Syntax-Reference/draw.md#draw-group) which use the `lines` draw style must specify, at minimum, the following parameters in order to be drawn:
 
-- [color](draw.md#color)
-- [width](draw.md#width)
+- [color](../Syntax-Reference/draw.md#color)
+- [width](../Syntax-Reference/draw.md#width)
 
 ## points
 The `points` draw style is used to draw dots or sprites at points of interest. It also builds a rectangle at a point, and can be colored in a variety of ways:
@@ -121,47 +121,47 @@ The `points` draw style is used to draw dots or sprites at points of interest. I
 
 If the point is used to draw a dot, the size and color of this circle can be specified in the scene file with the `size` and `color` parameters.
 
-`points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the [`priority`](draw.md#priority) draw parameter.
+`points` and `text` have a special relationship, which is useful for creating custom labels and icons. They will also collide with each other – the "winner" is drawn and the "loser" is not, as determined by the [`priority`](../Syntax-Reference/draw.md#priority) draw parameter.
 
 _[JS only]_ Only points and text elements from the same datasource will collide with each other.
 
 #### `points` draw group requirements
-[Draw groups](draw.md#draw-group) which use the `points` draw style must specify, at minimum, the following parameters in order to be drawn:
+[Draw groups](../Syntax-Reference/draw.md#draw-group) which use the `points` draw style must specify, at minimum, the following parameters in order to be drawn:
 
-- [color](draw.md#color)
-- [size](draw.md#size)
+- [color](../Syntax-Reference/draw.md#color)
+- [size](../Syntax-Reference/draw.md#size)
 
 ## text
 The `text` style is similar to the `sprites` style, in that it builds a rectangle at a point. However, instead of being colored with a custom texture, this style builds its own texture, containing text.
 
-The content of the text is based on the [`text_source`](draw.md#text-source) parameter. The style of the text is specified by the [`font`](draw.md#font-parameters) parameters.
+The content of the text is based on the [`text_source`](../Syntax-Reference/draw.md#text-source) parameter. The style of the text is specified by the [`font`](../Syntax-Reference/draw.md#font-parameters) parameters.
 
 #### `text` parameters
 Styles which are extensions of the `text` style can take the following special parameters:
 
-- [`font`](draw.md#font-parameters): Sets font's typeface, style, size, color, and outline.
-- [`text_source`](draw.md#text_source): Determines label text, defaults to the feature's `name` property.
-- [`priority`](draw.md#priority): Sets the priority of the label relative to other labels and points/sprites.
-- [`align`](draw.md#align): Controls text alignment.
-- [`anchor`](draw.md#anchor): Controls text's relative positioning.
-- [`offset`](draw.md#offset): Controls text's position offset.
-- [`text_wrap`](draw.md#text_wrap): Sets number of characters before text wraps to multiple lines.
-- [`repeat_distance`](draw.md#repeat_distance): Sets the distance beyond which label text may repeat.
-- [`repeat_group`](draw.md#repeat_group): Optional grouping mechanism for fine-grained control over text repetition.
-- [`collide`](draw.md#collide): Sets whether label collides with other labels or points/sprites.
-- [`move_into_tile`](draw.md#move_into_tile): Increases number of labels that will display, by moving some to fit within tile bounds (JS-only)
+- [`font`](../Syntax-Reference/draw.md#font-parameters): Sets font's typeface, style, size, color, and outline.
+- [`text_source`](../Syntax-Reference/draw.md#text_source): Determines label text, defaults to the feature's `name` property.
+- [`priority`](../Syntax-Reference/draw.md#priority): Sets the priority of the label relative to other labels and points/sprites.
+- [`align`](../Syntax-Reference/draw.md#align): Controls text alignment.
+- [`anchor`](../Syntax-Reference/draw.md#anchor): Controls text's relative positioning.
+- [`offset`](../Syntax-Reference/draw.md#offset): Controls text's position offset.
+- [`text_wrap`](../Syntax-Reference/draw.md#text_wrap): Sets number of characters before text wraps to multiple lines.
+- [`repeat_distance`](../Syntax-Reference/draw.md#repeat_distance): Sets the distance beyond which label text may repeat.
+- [`repeat_group`](../Syntax-Reference/draw.md#repeat_group): Optional grouping mechanism for fine-grained control over text repetition.
+- [`collide`](../Syntax-Reference/draw.md#collide): Sets whether label collides with other labels or points/sprites.
+- [`move_into_tile`](../Syntax-Reference/draw.md#move_into_tile): Increases number of labels that will display, by moving some to fit within tile bounds (JS-only)
 
-These parameters are described in the [draw](draw.md) entry.
+These parameters are described in the [draw](../Syntax-Reference/draw.md) entry.
 
 #### `text` draw group requirements
-[Draw groups](draw.md#draw-group) which use the `text` draw style must specify, at minimum, the following parameters in order to be drawn:
+[Draw groups](../Syntax-Reference/draw.md#draw-group) which use the `text` draw style must specify, at minimum, the following parameters in order to be drawn:
 
-- [font](draw.md#font)
+- [font](../Syntax-Reference/draw.md#font)
 
 ## `raster`
-The `raster` style renders [Raster data sources](sources.md#Raster), such as traditional raster tiles.
+The `raster` style renders [Raster data sources](../Syntax-Reference/sources.md#Raster), such as traditional raster tiles.
 
-Note that `Raster` sources can also be used by other styles, by "attaching" the sources to the styles with the [rasters](sources.md#rasters) parameter. See the [Rasters Overview](Raster-Overview.md).
+Note that `Raster` sources can also be used by other styles, by "attaching" the sources to the styles with the [rasters](../Syntax-Reference/sources.md#rasters) parameter. See the [Rasters Overview](Raster-Overview.md).
 
 ## style composition with `mix`
 

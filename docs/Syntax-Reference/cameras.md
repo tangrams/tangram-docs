@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram's cameras. For a conceptual overview of the camera system, see the [Cameras Overview](Cameras-Overview.md).*
+*This is the technical documentation for Tangram's cameras. For a conceptual overview of the camera system, see the [Cameras Overview](../Cameras-Overview).*
 
 #### `cameras`
 

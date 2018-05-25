@@ -1,4 +1,4 @@
-*This is the conceptual overview for Tangram's materials system. For technical reference, see the [Materials page](materials.md).*
+*This is the conceptual overview for Tangram's materials system. For technical reference, see the [Materials page](../Syntax-Reference/materials.md).*
 
 Materials describe how an object responds to illumination by [lights](Lights-Overview.md). In the [OpenGL lighting model](https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model), lights can emit ***diffuse***, ***ambient***, or ***specular*** light components (often known as "terms"), and the properties of a material describe how (or whether) an object will reflect those terms.
 
@@ -109,7 +109,7 @@ Material properties can be controlled with pixel-level detail when used with ***
 
 ![](images/earth.png)
 
-Textures are loaded by setting the `texture` parameter to the url of an image or the name of an entry in the [`textures`](textures.md) block:
+Textures are loaded by setting the `texture` parameter to the url of an image or the name of an entry in the [`textures`](../Syntax-Reference/textures.md) block:
 
 ```yaml
 material:

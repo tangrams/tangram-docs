@@ -191,4 +191,4 @@ u_speed = 2.5;
 u_color = vec3(0.5, 1.5, 0.0);
 ```
 
-Tangram provides a set of [default uniforms](shaders.md#built-in-uniforms) that are useful for common shader-based calculations.
+Tangram provides a set of [default uniforms](../Syntax-Reference/shaders.md#built-in-uniforms) that are useful for common shader-based calculations.

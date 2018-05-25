@@ -1,10 +1,10 @@
-Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](sources.md) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
+Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](../Syntax-Reference/sources) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
 
 The Tangram scene file filters data in two ways: with top-level **layer filters** and lower-level **feature filters**.
 
 # Layer filters
 
-Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layers`](layers.md) object allows you to split the data by layer, by matching against the layer name.
+Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layers`](../Syntax-Reference/layers) object allows you to split the data by layer, by matching against the layer name.
 
 ```yaml
 layers:
@@ -15,7 +15,7 @@ layers:
         draw: ...
 ```
 
-Specifying `layer: roads` in the [`data`](layers.md#data) block matches this GeoJSON object:
+Specifying `layer: roads` in the [`data`](../Syntax-Reference/layers.md#data) block matches this GeoJSON object:
 
 ```json
 {"roads":
@@ -39,7 +39,7 @@ layers:
 
 # Feature filters
 
-Once a top-level `layer` filter has been applied, feature-level [`filter`](layers.md#filter) objects can be defined to filter by feature properties, in order to further narrow down the data of interest and refine the styles applied to the data.
+Once a top-level `layer` filter has been applied, feature-level [`filter`](../Syntax-Reference/layers.md#filter) objects can be defined to filter by feature properties, in order to further narrow down the data of interest and refine the styles applied to the data.
 
 ```yaml
 layers:
@@ -64,7 +64,7 @@ Using sublayers and inheritance, you may specify increasingly specific filters a
 
 # Matching
 
-Each feature in a `layer` is first tested against each top-level `filter`, and if the feature's data matches the filter, that feature will be assigned any associated [`draw`](draw.md) styles, and passed on to any _sublayers_. If any _sublayer_ filters match the feature, that _sublayer_'s `draw` styles will overwrite any previously-assigned styling rules for those matching features, and so on down the chain of inheritance.
+Each feature in a `layer` is first tested against each top-level `filter`, and if the feature's data matches the filter, that feature will be assigned any associated [`draw`](../Syntax-Reference/draw.md) styles, and passed on to any _sublayers_. If any _sublayer_ filters match the feature, that _sublayer_'s `draw` styles will overwrite any previously-assigned styling rules for those matching features, and so on down the chain of inheritance.
 
 Feature filters can match any named feature property in the data, as well as a few special _reserved keywords_.
 
@@ -228,7 +228,7 @@ layers:
                 label_placement: true
 ```
 
-See [`generate_label_centroids`](sources.md#generate_label_centroids)
+See [`generate_label_centroids`](../Syntax-Reference/sources.md#generate_label_centroids)
 
 ## Filter functions
 
