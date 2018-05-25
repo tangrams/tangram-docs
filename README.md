@@ -4,4 +4,4 @@
 
 This repo stores the source files for our documentation site:
 
-## 👉 https://mapzen.com/documentation/tangram/ 👈
+## 👉 https://tangrams.readthedocs.io/ 👈
