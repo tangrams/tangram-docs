@@ -2,7 +2,7 @@ Tangram draws map features using its [built-in _draw styles_](https://mapzen.com
 
 This tutorial will explore three things you can make with custom styles: dashed lines, transparent polygons, and shader effects.
 
-![three views of tangram scenes](https://mapzen-assets.s3.amazonaws.com/images/tangram-tutorials/custom-styles.jpg)
+![three views of tangram scenes](https://tangrams.github.io/tangram-docs/tutorials/custom/custom-styles.jpg)
 
 Note: in the examples in this tutorial, we are relying on the [layer name shortcut](https://mapzen.com/documentation/tangram/Filters-Overview/#layer-name-shortcut) and [style name shortcut](https://mapzen.com/documentation/tangram/Styles-Overview/#using-styles).
 

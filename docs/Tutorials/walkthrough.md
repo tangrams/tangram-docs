@@ -11,7 +11,7 @@ To complete this walkthrough, you need a [browser that supports WebGL](https://g
 1. Open a browser to the [Tangram sample website](https://tangrams.github.io/simple-demo/). This is an example map showing some of the basic features of Tangram. By default, the map opens to the southern (lower) tip of Manhattan in New York City, United States.
 2. Use your mouse to pan and zoom the map. Take note of the map's appearance, as you will be updating the scene later in the exercise.
 
-	![simple-demo initial map](images/simple-demo-initial.png)
+	![simple-demo initial map](../images/simple-demo-initial.png)
 
 3. Close the browser.
 
@@ -102,7 +102,7 @@ You specify how the display the features in the layers in the `draw:` block. The
 ```
 3. Save `scene.yaml` and refresh the browser to see the updates.
 
-	![Water with a darker color](images/change-water-color.png)
+	![Water with a darker color](../images/change-water-color.png)
 
 If you want to continue experimenting with Tangram symbols, try changing the `draw` values of other layers. For more on available drawing parameters, see the [styles documentation](../Syntax-Reference/styles.md).
 

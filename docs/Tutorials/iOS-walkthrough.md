@@ -21,7 +21,7 @@ pod try Tangram-es
 
 This will open up XCode, you can then build and run the sample project.
 
-![sample project](images/iOS-Simulator.png)
+![sample project](../images/iOS-Simulator.png)
 
 ### Adding Tangram to an iOS application
 
@@ -43,7 +43,7 @@ You can learn more about setting up a Pod file from [the CocoaPods documentation
 
 If you are not using CocoaPods, you can download the latest version of the framework from [our releases](https://github.com/tangrams/tangram-es/releases), then simply drag and drop the framework into your iOS project. Then, from your poject settings under `Embedded Binaries`, click on `+` to add `TangramMap.framework`, and make sure that the framework appears in the build phases with _Code Sign On Copy_ checked.
 
-![Xcode screenshot](images/XCode-Codesign.png)
+![Xcode screenshot](../images/XCode-Codesign.png)
 
 **If you are using CocoaPods, make sure to open your `xcworkspace` project (not `xcodeproj`).**
 
@@ -71,16 +71,16 @@ class ViewController: TGMapViewController {
 
 Make sure to select the storyboard you want the map to be rendered on, then add the `GLKit View` that Tangram will use to perform rendering.
 
-![GLKit view](images/XCode-GLKView.png)
+![GLKit view](../images/XCode-GLKView.png)
 
 Once added to your storyboard, make sure that the custom class of your GLKit View is referencing the custom class that we just created.
 
-![Create custom class](images/XCode-CustomClass.png)
+![Create custom class](../images/XCode-CustomClass.png)
 
 #### 4. Add scene file to your application assets. 
 
 The [scene file is a YAML document](https://mapzen.com/documentation/tangram/Scene-file/) that specifies the appearance of your map. You can write your own scene file or use one of the Mapzen styles like [Bubble Wrap](https://github.com/tangrams/bubble-wrap), [Walkabout](https://github.com/tangrams/walkabout-style), [Cinnabar](https://github.com/tangrams/cinnabar-style), or [Refill](https://github.com/tangrams/refill-style). Once you've chosen a Mapzen scene or made your own, drag and drop the scene and all of its resources to your XCode project, and make sure that all the resources appear in the _Copy Bundle Resources_ step of your iOS application _Build Phases_:
-![XCode resources](images/XCode-SceneResources.png)
+![XCode resources](../images/XCode-SceneResources.png)
 
 _Mapzen’s [vector tile service](https://mapzen.com/projects/vector-tiles/) provides GeoJSON, TopoJSON, and MVT tiles that you can use with Tangram. Mapzen scene files use this service as their data source. If you want to use Mapzen vector tiles, you will need to sign up for a free API key at [mapzen.com/developers](https://mapzen.com/developers)._
 
