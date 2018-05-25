@@ -10,7 +10,7 @@ Note: in the examples in this tutorial, we are relying on the [layer name shortc
 
 Let's use one of the built-in style customization options, [`dash`](https://mapzen.com/documentation/tangram/styles#dash), to draw some dashed lines.
 
-(To follow along, use [Tangram Play](https://tangram.city/play/), a custom [Tangram setup](Tangram-Setup), or follow the links to the examples throughout this tutorial.)
+(To follow along, use [Tangram Play](https://tangram.city/play/), a custom [Tangram setup](Tangram-Setup.md), or follow the links to the examples throughout this tutorial.)
 
 Add a datasource to your map with a [`sources`](https://mapzen.com/documentation/tangram/sources) entry, then add some lines to your map - in our example, we'll start with road features from the [Mapzen Vector Tile Service](https://mapzen.com/projects/vector-tiles/).
 

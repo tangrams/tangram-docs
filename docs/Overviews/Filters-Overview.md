@@ -1,10 +1,10 @@
-Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](../Syntax-Reference/sources) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
+Tangram is designed to work with vector tiles in a number of formats. Data sources are specified in the [`sources`](../Syntax-Reference/sources.md) block of Tangram's scene file. Once a datasource is specified, **filters** allow you to style different parts of your data in different ways.
 
 The Tangram scene file filters data in two ways: with top-level **layer filters** and lower-level **feature filters**.
 
 # Layer filters
 
-Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layers`](../Syntax-Reference/layers) object allows you to split the data by layer, by matching against the layer name.
+Vector tiles typically contain top-level structures which can be thought of as "layers" – inside a GeoJSON file, these would be the _FeatureCollection_ objects. Inside a Tangram scene file, the [`layers`](../Syntax-Reference/layers.md) object allows you to split the data by layer, by matching against the layer name.
 
 ```yaml
 layers:
