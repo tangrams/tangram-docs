@@ -88,7 +88,7 @@ roads:
 ```
 
 #### Syntax examples
-For further examples, check out our many fine [demos](https://github.com/tangrams?query=demo)!
+For further examples, check out our many fine [demos](https://github.com/tangrams?q=demo)!
 
 ## lists
 
