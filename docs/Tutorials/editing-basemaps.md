@@ -35,7 +35,7 @@ layers:
 ```
 
 ![refill basemap with custom data on top](https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps1.jpg)
-[( Open this example in Play ▶)](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps1.yaml&lines=1#5/38.720/-79.717)
+[( Open this example in Play ▶)](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps1.yaml&lines=1#5/38.720/-79.717)
 
 But what if you want to customize the house style itself? This is a bit trickier, and involves a bit of detective work.
 
@@ -68,7 +68,7 @@ layers:
                     width: 2px
 ```
 ![simple road map](https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps2.jpg)
-[( Open in Play ▶)](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/simple-basemap.yaml#11.8002/41.3381/69.2698)
+[( Open in Play ▶)](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/simple-basemap.yaml#11.8002/41.3381/69.2698)
 
 This scene file can be imported as a base style in another Tangram scene file, like so:
 
@@ -91,7 +91,7 @@ layers:
                     color: orange
 ```
 ![simple map with colored major roads](https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps3.jpg)
-[( Open in Play ▶)](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps3.yaml#11.8002/41.3381/69.2698)
+[( Open in Play ▶)](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps3.yaml#11.8002/41.3381/69.2698)
 
 ## Customizing a House Style
 
@@ -156,7 +156,7 @@ Here's an example scene file: https://github.com/tangrams/tangram-docs/blob/gh-p
 And here's what it looks like rendered by Tangram:
 
 ![Refill with red roads](https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps4.jpg)
-[( Open in Play ▶)](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps4.yaml#11.8002/41.3381/69.2698)
+[( Open in Play ▶)](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/editing-basemaps/editing-basemaps4.yaml#11.8002/41.3381/69.2698)
 
 Congratulations! Those are the basics of customizing an imported scene file. In fact, there are no advanced techniques – that's it.
 

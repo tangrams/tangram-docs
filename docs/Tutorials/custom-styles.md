@@ -10,7 +10,7 @@ Note: in the examples in this tutorial, we are relying on the [layer name shortc
 
 Let's use one of the built-in style customization options, [`dash`](https://mapzen.com/documentation/tangram/styles#dash), to draw some dashed lines.
 
-(To follow along, use [Tangram Play](https://mapzen.com/tangram/play), a custom [Tangram setup](https://mapzen.com/documentation/tangram/Tangram-Setup), or follow the links to the examples throughout this tutorial.)
+(To follow along, use [Tangram Play](https://tangram.city/play/), a custom [Tangram setup](Tangram-Setup), or follow the links to the examples throughout this tutorial.)
 
 Add a datasource to your map with a [`sources`](https://mapzen.com/documentation/tangram/sources) entry, then add some lines to your map - in our example, we'll start with road features from the [Mapzen Vector Tile Service](https://mapzen.com/projects/vector-tiles/).
 
@@ -30,7 +30,7 @@ layers:
                 color: gray
 ```
 ![simple road map](https://tangrams.github.io/tangram-docs/tutorials/custom/custom1.jpg)
-[( Open in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom1.yaml#16.50417/40.78070/-73.96085)
+[( Open in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom1.yaml#16.50417/40.78070/-73.96085)
 
 Now make a custom _draw style_ called "_dashes" – this name could be anything, and the leading underscore isn't required, but it's a handy way to remember which things we named ourselves.
 
@@ -68,7 +68,7 @@ layers:
                 color: gray
 ```
 ![dashed lines](https://tangrams.github.io/tangram-docs/tutorials/custom/custom3.jpg)
-[( Try different values for dash and width in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom3.yaml&lines=9,17#16.50417/40.78070/-73.96085)
+[( Try different values for dash and width in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom3.yaml&lines=9,17#16.50417/40.78070/-73.96085)
 
 By default, the `dash` style has a transparent background, but you can give the background a solid color using the `dash_background_color` option:
 
@@ -80,7 +80,7 @@ styles:
         dash_background_color: pink
 ```
 ![dashed lines with pink background](https://tangrams.github.io/tangram-docs/tutorials/custom/custom4.jpg)
-[( Open in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom4.yaml&lines=10#16.50417/40.78070/-73.96085)
+[( Open in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom4.yaml&lines=10#16.50417/40.78070/-73.96085)
 
 You can also apply an `outline`:
 
@@ -98,7 +98,7 @@ layers:
                     width: 1px
 ```
 ![dashed lines with an outline](https://tangrams.github.io/tangram-docs/tutorials/custom/custom5.jpg)
-[( Open in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom5.yaml&lines=20-22#16.50417/40.78070/-73.96085)
+[( Open in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom5.yaml&lines=20-22#16.50417/40.78070/-73.96085)
 
 ## Transparency with Blend Modes
 
@@ -124,7 +124,7 @@ layers:
                 extrude: true
 ```
 ![basic buildings map](https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.jpg)
-[( Open in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.yaml#17/40.76442/-73.98058)
+[( Open in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom6.yaml#17/40.76442/-73.98058)
 
 Add a new style based on the `polygons` style – ours is named "\_transparent". Then, add a `blend` mode of `overlay`, and set the buildings _draw style_ to match the name of the custom style.
 
@@ -153,7 +153,7 @@ layers:
                 extrude: true
 ```
 ![transparent buildings](https://tangrams.github.io/tangram-docs/tutorials/custom/custom9.jpg)
-[( Experiment with different RGB and alpha values in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom9.yaml&lines=17#17/40.76442/-73.98058)
+[( Experiment with different RGB and alpha values in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom9.yaml&lines=17#17/40.76442/-73.98058)
 
 (Check out Tangram's [color documentation](https://mapzen.com/documentation/tangram/draw/#color) to see how color values may be specified.)
 
@@ -186,7 +186,7 @@ layers:
                 extrude: true
 ```
 ![magenta buildings](https://tangrams.github.io/tangram-docs/tutorials/custom/custom11.jpg)
-[( Open in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom11.yaml&lines=12#17.00000/40.76442/-73.98060)
+[( Open in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom11.yaml&lines=12#17.00000/40.76442/-73.98060)
 
 (You'll notice shading on the sides of buildings – this is because of the default light settings. Read more about these in our [lighting documentation](https://mapzen.com/documentation/tangram/lights/#lights).)
 
@@ -202,7 +202,7 @@ styles:
                     color.rgb *= vec3(worldPosition().z) / 100.;
 ```
 ![tall buildings are brighter](https://tangrams.github.io/tangram-docs/tutorials/custom/custom12.jpg)
-[( Open in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom12.yaml#17/40.76442/-73.98058)
+[( Open in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom12.yaml#17/40.76442/-73.98058)
 
 And when `animated: true` is added to the style, you can make effects based on the `u_time` internal variable:
 
@@ -218,7 +218,7 @@ styles:
                     color *= sin(u_time);
 ```
 ![buildings fading alternately bright and dark](https://tangrams.github.io/tangram-docs/tutorials/custom/fade.gif)
-[( Open in Play ▶ )](https://mapzen.com/tangram/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom13.yaml#17/40.76442/-73.98058)
+[( Open in Play ▶ )](https://tangram.city/play/?scene=https://tangrams.github.io/tangram-docs/tutorials/custom/custom13.yaml#17/40.76442/-73.98058)
 
 Experiment with different `color` values to see the way the shader's `color` and the draw layer's `color` interact.
 
