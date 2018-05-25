@@ -7,7 +7,7 @@ styles:
         base: polygons
         material:
             diffuse:
-                texture: https://raw.githubusercontent.com/tangrams/tangram-docs/gh-pages/pages/images/uv-grid.png
+                texture: https://raw.githubusercontent.com/tangrams/tangram-docs/master/docs/images/uv-grid.png
                 mapping: planar
                 scale: 0.008
 
