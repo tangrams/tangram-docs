@@ -164,7 +164,7 @@ At intermediate zoom levels, values will be interpolated linearly, with behavior
 Outside of the range specified by the stops, the values are capped by the highest and lowest values in the range – so in the above example, the value at zoom 9 is also 3m, and the value at zoom 18 is still 9m.
 
 ```yaml
-color: [10, [0.3, 0.4, 0.3], [14, [0.5, 0.825, 0.5]]]
+color: [[10, [0.3, 0.4, 0.3]], [14, [0.5, 0.825, 0.5]]]
 width: [[13, 0px], [14, 3px], [16, 5px], [18, 10px]]
 ```
 
