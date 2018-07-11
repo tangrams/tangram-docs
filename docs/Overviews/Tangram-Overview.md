@@ -114,6 +114,16 @@ var layer = Tangram.leafletLayer({
 });
 ```
 
+#### modifyZoomBehavior
+By default, Tangram modifies Leaflet's double-click and zoom behavior, to keep the Tangram layer in sync with marker/SVG layers. If this interferes with your application, you can disable this behavior with the optional `modifyZoomBehavior` option:
+
+```javascript
+var layer = Tangram.leafletLayer({
+    modifyZoomBehavior: false,
+    ...
+});
+```
+
 #### webGLContextOptions
 Using this option, WebGL context options may be explicitly added or overridden.
 
