@@ -179,7 +179,7 @@ sources:
 #### `scripts`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _[strings]_, specifying the URL of a JavaScript file.
 
-These scripts will be loaded before the data is processed so that they are available to the [`transform`](sources.md#transform) function.
+These scripts will be loaded before the data is processed so that they are available to the [`transform`](#transform) function.
 
 ```yaml
 scripts: [ 'https://url.com/js/script.js', 'local_script.js']
@@ -199,7 +199,7 @@ sources:
 #### `extra_data`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _YAML_, defining custom data to be used in post-processing.
 
-This data is made available to `transform` functions as the second parameter. `extra_data` could also be manipulated dynamically at run-time, via the `scene.config` variable (the serialized form of the scene file); for example, `scene.config.sources.source_name.extra_data` could be assigned an arbitrary JSON object, after which `scene.rebuild()` could be called to re-process the tile data.
+This data is made available to [`transform`](#transform) functions as the second parameter. `extra_data` could also be manipulated dynamically at run-time, via the `scene.config` variable (the serialized form of the scene file); for example, `scene.config.sources.source_name.extra_data` could be assigned an arbitrary JSON object, after which `scene.rebuild()` could be called to re-process the tile data.
 
 ```yaml
 extra_data:
