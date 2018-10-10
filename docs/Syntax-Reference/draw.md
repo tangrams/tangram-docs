@@ -923,6 +923,24 @@ layers:
                 texture: null # no texture used
 ```
 
+If a referenced texture has defined sprites, they may also be referenced along with the texture override:
+
+```yaml
+textures:
+    pois:
+        url: sprites.png
+        sprites:
+            airport: [0, 0, 32, 32]
+
+layers:
+    airports:
+        data: { source: datasource }
+        draw:
+            points:
+                texture: pois
+                sprite: airport
+```
+
 
 #### `tile_edges`
 Optional _boolean_, one of `true` or `false`. Default is `false`.
