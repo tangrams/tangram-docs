@@ -1,4 +1,4 @@
-*To see reference documentation for the iOS Framework, go to the [framework documentation](https://mapzen.com/documentation/tangram/ios-framework/0.9.0/).*
+*To see reference documentation for the iOS Framework, go to the [framework documentation](ios-framework/0.10.0/index.html).*
 
 *To learn how to get started with the Tangram iOS framework, see the [iOS Walkthrough](https://mapzen.com/documentation/tangram/iOS-walkthrough/).*
 
