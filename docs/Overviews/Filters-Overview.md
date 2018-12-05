@@ -196,15 +196,16 @@ labels:
             ...
 ```
 
-The keyword `$zoom` matches the current zoom level of the map. It can be used with the `min` and `max` functions.
+The keyword `$zoom` matches the current zoom level of the map. It can be used with specific values, or with the `min` and `max` parameters.
 
 ```yaml
-filter: { $zoom: 14 }
+filter: { $zoom: 14 }                       # matches only zoom 14
 
 filter: { $zoom: { min: 10 } }              # matches zooms 10 and up
 
-filter:
-    $zoom: { min: 12, max: 15 }             # matches zooms 12-14
+filter: { $zoom: { min: 12, max: 15 } }     # matches zooms 12-14
+
+filter: { $zoom: [8, 9] }                   # matches only zooms 8 and 9
 
 filter: function() { return $zoom <= 10 }   # matches zooms 10 and below
 ```
