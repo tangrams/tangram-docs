@@ -1083,7 +1083,7 @@ font:
 ```
 
 #### `size`
-Optional _number_ or _stops_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
+Optional _number_, _stops_, or _function_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
 
 ```yaml
 font:
@@ -1095,6 +1095,12 @@ font:
 font:
     family: Helvetica
     size: [[14, 12px], [16, 16px], [20, 24px]]
+```
+
+```yaml
+font:
+    family: Helvetica
+    size: function() {return 30 - (20 - $zoom)}
 ```
 
 #### `stroke`
