@@ -201,6 +201,8 @@ sources:
 
 This data is made available to [`transform`](#transform) functions as the second parameter. `extra_data` could also be manipulated dynamically at run-time, via the `scene.config` variable (the serialized form of the scene file); for example, `scene.config.sources.source_name.extra_data` could be assigned an arbitrary JSON object, after which `scene.rebuild()` could be called to re-process the tile data.
 
+If a `transform` function is defined, it must `return data` to make it available to the rest of the engine.
+
 ```yaml
 extra_data:
     Broadway: Wide St.
