@@ -9,7 +9,7 @@ sources:
         type: TopoJSON
         url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: 3XqXMjEdT2StnrIRJ4HYbg
+            api_key: d161Q8KATMOhSOcVGNyQ8g
         max_zoom: 16
 
 layers:
@@ -49,7 +49,7 @@ layers:
             lines:
                 order: 3
                 color: lightgray
-                width: 8    
+                width: 8
     buildings:
         data:
             source: nextzen

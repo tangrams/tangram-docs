@@ -3,7 +3,7 @@ import: https://www.nextzen.org/carto/refill-style-no-labels/6/refill-style-no-l
 global:
     # Sign up for a Nextzen API key to use these tilesets
     # https://developers.nextzen.org
-    sdk_mapzen_api_key: 3XqXMjEdT2StnrIRJ4HYbg # set this value to your Nextzen API key
+    sdk_mapzen_api_key: d161Q8KATMOhSOcVGNyQ8g # set this value to your Nextzen API key
 
 layers:
     roads:

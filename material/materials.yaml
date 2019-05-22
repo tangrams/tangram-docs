@@ -38,7 +38,7 @@ styles:
                 mapping: triplanar
                 scale: 0.005
                 amount: 0.5
-    
+
     roads:
         base: polygons
         material:
@@ -112,7 +112,7 @@ sources:
         type: TopoJSON
         url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: 3XqXMjEdT2StnrIRJ4HYbg
+            api_key: d161Q8KATMOhSOcVGNyQ8g
         max_zoom: 16
 
 layers:
@@ -150,9 +150,9 @@ layers:
         draw:
             lines:
                 order: function() { return feature.sort_rank; }
-                color: gray    
+                color: gray
                 width: 8
-    
+
     buildings:
         data:
             source: nextzen
