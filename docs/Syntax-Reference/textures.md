@@ -1,4 +1,4 @@
-*This is the technical documentation for Tangram's `textures` block. For an overview of the ways textures can be used by Tangram, see the [Materials Overview](../Overviews/Materials-Overview.md).*
+*This is the technical documentation for Tangram's `textures` block. For the JS-only draw-level parameter, see [`texture`](draw.md#texture). For an overview of the ways textures can be used by Tangram, see the [Materials Overview](../Overviews/Materials-Overview.md).*
 
 ## `textures`
 The `textures` element is an optional top-level element in the [scene file](../Overviews/Scene-File.md). It has only one kind of sub-element: a named _texture object_.
@@ -43,7 +43,7 @@ If a texture is provided for a _lines_ style, the texture is repeated across the
 
 #### draw group texture parameter
 
-Textures may also be re-assigned or un-assigned per _draw group_ with Tangram-JS only – see [`texture`](draw.md#texture).
+Textures may also be assigned, re-assigned, or un-assigned per _draw group_ with Tangram-JS only – see [`texture`](draw.md#texture).
 
 ## texture parameters
 

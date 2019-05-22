@@ -6,7 +6,7 @@ The `scene` element is an optional top-level element in a Tangram scene file. It
 - `background`
 - `animated`
 
-#### `background`
+#### background
 Optional block that can be used to set the map's background color, using a `color` property.
 
 

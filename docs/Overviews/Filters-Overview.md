@@ -196,22 +196,23 @@ labels:
             ...
 ```
 
-The keyword `$zoom` matches the current zoom level of the map. It can be used with the `min` and `max` functions.
+The keyword `$zoom` matches the current zoom level of the map. It can be used with specific values, or with the `min` and `max` parameters.
 
 ```yaml
-filter: { $zoom: 14 }
+filter: { $zoom: 14 }                       # matches only zoom 14
 
 filter: { $zoom: { min: 10 } }              # matches zooms 10 and up
 
-filter:
-    $zoom: { min: 12, max: 15 }             # matches zooms 12-14
+filter: { $zoom: { min: 12, max: 15 } }     # matches zooms 12-14
+
+filter: { $zoom: [8, 9] }                   # matches only zooms 8 and 9
 
 filter: function() { return $zoom <= 10 }   # matches zooms 10 and below
 ```
 
 ## `label_placement`
 
-The `label_placement` property is given only to special auto-generated _point_ geometries, and may be used for placing a single label in the center of a polygon, instead of once per tile. To add these _points_ to a datasource, add the `generate_label_centroids` property to its [source] block:
+The `label_placement` property is given only to _point_ geometries created by setting `generate_label_centroids` on a datasource to `true`. This option creates a new "centroid" _point_ feature in the geometric center of each polygon in the datasource. Then, with `label_placement` set to `true`, a single label may be drawn in the center of each polygonal feature, instead of one label per tile, which is the default behavior. To add these centroid _points_ to a datasource, add the `generate_label_centroids` property to its [source] block:
 
 ```yaml
 sources:

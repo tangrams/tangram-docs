@@ -785,17 +785,18 @@ The default text style behavior is adjusted to account for the parent point:
 `anchor` defaults to `bottom` instead of `center` (though it is possible to composite a text label over a sprite by setting `anchor: center` and `collide: false`).
 
 The point and text can have separate `anchor` values:
-    - The `anchor` of the `text` controls the text's placement *relative to the size and position* of its parent point.
-    - The `anchor` of the `points` portion moves the *entire entity* (point + text) relative to the underlying geometry point.
+- The `anchor` of the `text` controls the text's placement *relative to the size and position* of its parent point.
+- The `anchor` of the `points` portion moves the *entire entity* (point + text) relative to the underlying geometry point.
 
 **Collision**:
 The point is required, but its text is not: while the `points` portion of the style will render according to its collision test, the `text` portion will only render if **both** it and its parent point passed collision tests, e.g. if the point is occluded, then the text won't render either, even if it is not occluded.
+
 Different collision behaviors can be achieved by setting the `collide: false` flag on either or both of the point and text:
-    - Both `collide: true` (default): nothing will overlap, text will only be rendered if point also fits.
-    - Points `collide: false`, text `collide: true` (default) and text `optional: true`: all points will render, text will render over points when the text fits (text will collide text but not points). This setting is helpful for labeling a dot density map.
-    - Points `collide: false`, text `collide: true` (default): only points with text that fits will render
-    - Points `collide: true` (default), text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
-    - Both `collide: false`: all points and text should render, regardless of overlap.
+- Both `collide: true` (default): nothing will overlap, text will only be rendered if point also fits.
+- Points `collide: false`, text `collide: true` (default) and text `optional: true`: all points will render, text will render over points when the text fits (text will collide text but not points). This setting is helpful for labeling a dot density map.
+- Points `collide: false`, text `collide: true` (default): only points with text that fits will render
+- Points `collide: true` (default), text `collide: false`: points will render if they fit, in which case their attached text will also render, even if it overlaps something else.
+- Both `collide: false`: all points and text should render, regardless of overlap.
 
 **Offset**:
 Text is automatically offset to account for its anchor relative to its parent point (see description above).
@@ -921,6 +922,24 @@ layers:
         draw:
             custom:
                 texture: null # no texture used
+```
+
+If a referenced texture has defined sprites, they may also be referenced along with the texture override:
+
+```yaml
+textures:
+    pois:
+        url: sprites.png
+        sprites:
+            airport: [0, 0, 32, 32]
+
+layers:
+    airports:
+        data: { source: datasource }
+        draw:
+            points:
+                texture: pois
+                sprite: airport
 ```
 
 
@@ -1065,7 +1084,7 @@ font:
 ```
 
 #### `size`
-Optional _number_ or _stops_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
+Optional _number_, _stops_, or _function_, specifying a font size in `px`, `pt`, or `em`. Sets the size of the text. Default is `12`. Default units are `px`.
 
 ```yaml
 font:
@@ -1077,6 +1096,12 @@ font:
 font:
     family: Helvetica
     size: [[14, 12px], [16, 16px], [20, 24px]]
+```
+
+```yaml
+font:
+    family: Helvetica
+    size: function() {return 30 - (20 - $zoom)}
 ```
 
 #### `stroke`
