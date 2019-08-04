@@ -557,7 +557,7 @@ draw:
 ```
 
 #### `repeat_distance`
-Optional _number_, in `px`. Default is `256px`.
+Optional _number_, _stops_, or _function_, in `px`. Default is `256px`. Functions must return a number without units (e.g. return the number `100`, not a string like `"100px"`).
 
 Applies to `text`. Specifies minimum distance between labels in the same `repeat_group`, measuring from the center of each label. Only applies per tile – labels may still be drawn closer than the `repeat_distance` across a tile boundary.
 
