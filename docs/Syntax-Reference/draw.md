@@ -376,13 +376,6 @@ draw:
       miter_limit: 2
 ```
 
-#### `move_into_tile`
-[[JS-only](https://github.com/tangrams/tangram)] Optional _boolean_. Default is _true_.
-
-Applies to `text` styles. Moves the label into the tile if the label would otherwise cross a tile boundary.
-
-Note that this parameter is not available for `points` styles, nor for text labels attached to points.
-
 #### `offset` (_lines_)
 Optional _float_ or _stops_, in `px` or `m`. No default. Default units is `px`.
 
