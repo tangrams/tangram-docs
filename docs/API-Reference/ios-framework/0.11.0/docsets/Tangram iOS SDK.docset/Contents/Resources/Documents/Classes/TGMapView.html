@@ -1,0 +1,2902 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TGMapView Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    <link rel='shortcut icon' href='https://mapzen.com/common/styleguide/images/favicon.ico' type='image/x-icon' />
+
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/objc/Class/TGMapView" class="dashAnchor"></a>
+
+    <a title="TGMapView Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Tangram iOS SDK Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/tangrams/tangram-es">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Tangram iOS SDK Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      TGMapView Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGCameraPosition.html">TGCameraPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGDefaultURLHandler.html">TGDefaultURLHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGGeoPolygon.html">TGGeoPolygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGGeoPolyline.html">TGGeoPolyline</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGLabelPickResult.html">TGLabelPickResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMapData.html">TGMapData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMapFeature.html">TGMapFeature</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMapView.html">TGMapView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMarker.html">TGMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGMarkerPickResult.html">TGMarkerPickResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@TGErrorDomain">TGErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@TangramMapVersionNumber">TangramMapVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Constants.html#/c:@TangramMapVersionString">TangramMapVersionString</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGCameraType.html">TGCameraType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGDebugFlag.html">TGDebugFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGEaseType.html">TGEaseType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGError.html">TGError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TGLabelType.html">TGLabelType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TGMapViewDelegate.html">TGMapViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TGRecognizerDelegate.html">TGRecognizerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TGURLHandler.html">TGURLHandler</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Type%20Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type%20Definitions.html#/c:TGGeometry.h@T@TGCoordinateBounds">TGCoordinateBounds</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type%20Definitions.html#/c:TGURLHandler.h@T@TGDownloadCompletionHandler">TGDownloadCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type%20Definitions.html#/c:TGMapFeature.h@T@TGFeatureProperties">TGFeatureProperties</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/c:TGGeometry.h@F@TGDegreesFromRadians">TGDegreesFromRadians</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/c:TGGeometry.h@F@TGRadiansFromDegrees">TGRadiansFromDegrees</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TGCoordinateBounds.html">TGCoordinateBounds</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>TGMapView</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code>
+<span class="k">@interface</span> <span class="nc">TGMapView</span> <span class="p">:</span> <span class="nc">UIView</span> <span class="o">&lt;</span><span class="n">UIGestureRecognizerDelegate</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>TGMapView</code> is a flexible and customizable map view managing the lifecycle of an OpenGL ES map. This view provides
+gesture handlers for tap, double-tap, long press, pan, pinch, rotate, and shove gestures.</p>
+
+<p>The public interface provides dynamic map marker placement, change of camera view settings, and map description changes
+through scene updates.</p>
+
+<p>This view uses scene files described by the <a href="https://tangrams.readthedocs.io/en/latest/Overviews/Scene-File/">
+Tangram scene format</a> allowing you to fully customize your map using your own data.
+Some pre-made basemap styles can be found <a href="https://www.nextzen.org/">here</a> using Nextzen data sources.</p>
+
+<p>To use basemap styles you can <a href="https://developers.nextzen.org/"> sign up for an API key</a> and load it
+through your application:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">sceneURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="s">"https://www.nextzen.org/carto/bubble-wrap-style/9/bubble-wrap-style.zip"</span><span class="p">);</span>
+<span class="k">let</span> <span class="nv">sceneUpdates</span> <span class="o">=</span> <span class="p">[</span> <span class="kt">TGSceneUpdate</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="s">"global.sdk_api_key"</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="s">"YOUR_API_KEY"</span><span class="p">)</span> <span class="p">];</span>
+<span class="n">view</span><span class="o">.</span><span class="nf">loadScene</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">sceneURL</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="n">sceneUpdates</span><span class="p">);</span>
+</code></pre>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    All the screen positions used in this inteface are in <em>logical pixel</em> or <em>drawing coordinate system</em> (based on a
+<code>UIKit</code> coordinate system), which is independent of the phone pixel density. Refer to the
+<a href="https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/GraphicsDrawingOverview/GraphicsDrawingOverview.html">Apple documentation</a>
+regarding <em>Coordinate Systems and Drawing in iOS</em> for more information.
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialize%20the%20View"></a>
+                <a name="//apple_ref/objc/Section/Initialize the View" class="dashAnchor"></a>
+                <a href="#/Initialize%20the%20View">
+                  <h3 class="section-name">Initialize the View</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)initWithFrame:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithFrame:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)initWithFrame:">-initWithFrame:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and returns a new map view with no scene loaded.</p>
+
+<p>To load a map scene use one of:</p>
+
+<p><code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(im)loadSceneFromURL:withUpdates:">-[TGMapView loadSceneFromURL:withUpdates:]</a></code></p>
+
+<p><code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(im)loadSceneAsyncFromURL:withUpdates:">-[TGMapView loadSceneAsyncFromURL:withUpdates:]</a></code></p>
+
+<p><code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(im)loadSceneFromYAML:relativeToURL:withUpdates:">-[TGMapView loadSceneFromYAML:relativeToURL:withUpdates:]</a></code></p>
+
+<p><code>-[TGMapView loadSceneAsyncFromYAML:relativeToUrl:withUpdates:]</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithFrame</span><span class="p">:(</span><span class="n">CGRect</span><span class="p">)</span><span class="nv">frame</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>frame</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The view frame.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An initialized map view.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)initWithFrame:urlHandler:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithFrame:urlHandler:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)initWithFrame:urlHandler:">-initWithFrame:urlHandler:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and returns a new map view with no scene loaded.</p>
+
+<p>To load a map scene use one of:</p>
+
+<p><code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(im)loadSceneFromURL:withUpdates:">-[TGMapView loadSceneFromURL:withUpdates:]</a></code></p>
+
+<p><code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(im)loadSceneAsyncFromURL:withUpdates:">-[TGMapView loadSceneAsyncFromURL:withUpdates:]</a></code></p>
+
+<p><code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(im)loadSceneFromYAML:relativeToURL:withUpdates:">-[TGMapView loadSceneFromYAML:relativeToURL:withUpdates:]</a></code></p>
+
+<p><code>-[TGMapView loadSceneAsyncFromYAML:relativeToUrl:withUpdates:]</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithFrame</span><span class="p">:(</span><span class="n">CGRect</span><span class="p">)</span><span class="nv">frame</span>
+                           <span class="nf">urlHandler</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/TGURLHandler.html">TGURLHandler</a></span><span class="o">&gt;</span><span class="p">)</span><span class="nv">urlHandler</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>frame</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The view frame.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>urlHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code><a href="../Protocols/TGURLHandler.html">TGURLHandler</a></code> for customizing URL request behavior.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An initialized map view.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Loading%20Scenes"></a>
+                <a name="//apple_ref/objc/Section/Loading Scenes" class="dashAnchor"></a>
+                <a href="#/Loading%20Scenes">
+                  <h3 class="section-name">Loading Scenes</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)loadSceneFromURL:withUpdates:"></a>
+                    <a name="//apple_ref/objc/Method/-loadSceneFromURL:withUpdates:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)loadSceneFromURL:withUpdates:">-loadSceneFromURL:withUpdates:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load a scene file synchronously from a URL with a list of updates.</p>
+
+<p>If an error occurs while applying updates the new scene will not be applied. See <code><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></code> for details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">loadSceneFromURL</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+            <span class="nf">withUpdates</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">updates</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">loadScene</span><span class="p">(</span><span class="n">from</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">with</span> <span class="nv">updates</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An http(s) or file URL for the scene file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>updates</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A list of <code><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></code> to apply to the scene, or <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The integer ID for the new scene or -1 if the scene cannot be loaded.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)loadSceneAsyncFromURL:withUpdates:"></a>
+                    <a name="//apple_ref/objc/Method/-loadSceneAsyncFromURL:withUpdates:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)loadSceneAsyncFromURL:withUpdates:">-loadSceneAsyncFromURL:withUpdates:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load a scene file asynchronously from a URL with a list of updates.</p>
+
+<p>Calls <code><a href="../Protocols/TGMapViewDelegate.html#/c:objc(pl)TGMapViewDelegate(im)mapView:didLoadScene:withError:">-[TGMapViewDelegate mapView:didLoadScene:withError:]</a></code> on the <code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(py)mapViewDelegate">mapViewDelegate</a></code> when it completes.</p>
+
+<p>If an error occurs while applying updates the new scene will not be applied. See <code><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></code> for details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">loadSceneAsyncFromURL</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+                 <span class="nf">withUpdates</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">updates</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">loadSceneAsync</span><span class="p">(</span><span class="n">from</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">with</span> <span class="nv">updates</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An http(s) or file URL for the scene file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>updates</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A list of <code><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></code> to apply to the scene, or <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The integer ID for the new scene or -1 if the scene cannot be loaded.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)loadSceneFromYAML:relativeToURL:withUpdates:"></a>
+                    <a name="//apple_ref/objc/Method/-loadSceneFromYAML:relativeToURL:withUpdates:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)loadSceneFromYAML:relativeToURL:withUpdates:">-loadSceneFromYAML:relativeToURL:withUpdates:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load a scene synchronously from string with a list of updates.</p>
+
+<p>Calls <code><a href="../Protocols/TGMapViewDelegate.html#/c:objc(pl)TGMapViewDelegate(im)mapView:didLoadScene:withError:">-[TGMapViewDelegate mapView:didLoadScene:withError:]</a></code> on the <code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(py)mapViewDelegate">mapViewDelegate</a></code> when it completes.</p>
+
+<p>If an error occurs while applying updates the new scene will not be applied. See <code><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></code> for details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">loadSceneFromYAML</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">yaml</span>
+           <span class="nf">relativeToURL</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+             <span class="nf">withUpdates</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">updates</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">loadScene</span><span class="p">(</span><span class="n">fromYAML</span> <span class="nv">yaml</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">relativeTo</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">with</span> <span class="nv">updates</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>yaml</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>YAML scene string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The base URL used to resolve relative URLs in the scene.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>updates</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A list of <code><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></code> to apply to the scene, or <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The integer ID for the new scene or -1 if the scene cannot be loaded.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)loadSceneAsyncFromYAML:relativeToURL:withUpdates:"></a>
+                    <a name="//apple_ref/objc/Method/-loadSceneAsyncFromYAML:relativeToURL:withUpdates:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)loadSceneAsyncFromYAML:relativeToURL:withUpdates:">-loadSceneAsyncFromYAML:relativeToURL:withUpdates:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load a scene asynchronously from string with a list of updates.</p>
+
+<p>Calls <code><a href="../Protocols/TGMapViewDelegate.html#/c:objc(pl)TGMapViewDelegate(im)mapView:didLoadScene:withError:">-[TGMapViewDelegate mapView:didLoadScene:withError:]</a></code> on the <code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(py)mapViewDelegate">mapViewDelegate</a></code> when it completes.</p>
+
+<p>If an error occurs while applying updates the new scene will not be applied. See <code><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></code> for details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">loadSceneAsyncFromYAML</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">yaml</span>
+                <span class="nf">relativeToURL</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+                  <span class="nf">withUpdates</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">updates</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">loadSceneAsync</span><span class="p">(</span><span class="n">fromYAML</span> <span class="nv">yaml</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">relativeTo</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">with</span> <span class="nv">updates</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>yaml</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>YAML scene string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The base URL used to resolve relative URLs in the scene.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>updates</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A list of <code><a href="../Classes/TGSceneUpdate.html">TGSceneUpdate</a></code> to apply to the scene, or <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The integer ID for the new scene or -1 if the scene cannot be loaded.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Delegates"></a>
+                <a name="//apple_ref/objc/Section/Delegates" class="dashAnchor"></a>
+                <a href="#/Delegates">
+                  <h3 class="section-name">Delegates</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)gestureDelegate"></a>
+                    <a name="//apple_ref/objc/Property/gestureDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)gestureDelegate">gestureDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The gesture recognizer delegate
+May be <code>nil</code>. See <code><a href="../Protocols/TGRecognizerDelegate.html">TGRecognizerDelegate</a></code> for more details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/TGRecognizerDelegate.html">TGRecognizerDelegate</a></span><span class="o">&gt;</span>
+    <span class="n">gestureDelegate</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)mapViewDelegate"></a>
+                    <a name="//apple_ref/objc/Property/mapViewDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)mapViewDelegate">mapViewDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The map view delegate
+May be <code>nil</code>. See <code><a href="../Protocols/TGMapViewDelegate.html">TGMapViewDelegate</a></code> for more details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/TGMapViewDelegate.html">TGMapViewDelegate</a></span><span class="o">&gt;</span> <span class="n">mapViewDelegate</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Changing%20the%20Map%20Viewport"></a>
+                <a name="//apple_ref/objc/Section/Changing the Map Viewport" class="dashAnchor"></a>
+                <a href="#/Changing%20the%20Map%20Viewport">
+                  <h3 class="section-name">Changing the Map Viewport</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)cameraPosition"></a>
+                    <a name="//apple_ref/objc/Property/cameraPosition" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)cameraPosition">cameraPosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The current position and orientation of the map camera.</p>
+
+<p>Setting this property will move the map immediately. To animate the movement use
+<code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(im)setCameraPosition:withDuration:easeType:callback:">-[TGMapView setCameraPosition:withDuration:easeType:callback:]</a></code> or
+<code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(im)flyToCameraPosition:withDuration:callback:">-[TGMapView flyToCameraPosition:withDuration:callback:]</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">cameraPosition</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@NSCopying</span> <span class="k">var</span> <span class="nv">cameraPosition</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)minimumZoomLevel"></a>
+                    <a name="//apple_ref/objc/Property/minimumZoomLevel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)minimumZoomLevel">minimumZoomLevel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The minimum zoom level for the map view.</p>
+
+<p>The default minimum zoom is 0. Values less than the default will be clamped. Assigning a value greater than the current
+maximum zoom will set the maximum zoom to this value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">CGFloat</span> <span class="n">minimumZoomLevel</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">minimumZoomLevel</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)maximumZoomLevel"></a>
+                    <a name="//apple_ref/objc/Property/maximumZoomLevel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)maximumZoomLevel">maximumZoomLevel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The maximum zoom level for the map view.</p>
+
+<p>The default maximum zoom is 20.5. Values greater than the default will be clamped. Assigning a value less than the
+current minimum zoom will set the minimum zoom to this value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">CGFloat</span> <span class="n">maximumZoomLevel</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">maximumZoomLevel</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)cameraType"></a>
+                    <a name="//apple_ref/objc/Property/cameraType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)cameraType">cameraType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Assign a <code><a href="../Enums/TGCameraType.html">TGCameraType</a></code> to the view camera</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Enums/TGCameraType.html">TGCameraType</a></span> <span class="n">cameraType</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">cameraType</span><span class="p">:</span> <span class="kt"><a href="../Enums/TGCameraType.html">TGCameraType</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)setCameraPosition:withDuration:easeType:callback:"></a>
+                    <a name="//apple_ref/objc/Method/-setCameraPosition:withDuration:easeType:callback:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)setCameraPosition:withDuration:easeType:callback:">-setCameraPosition:withDuration:easeType:callback:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Move the map camera to a new position with an easing animation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setCameraPosition</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">cameraPosition</span>
+             <span class="nf">withDuration</span><span class="p">:(</span><span class="n">NSTimeInterval</span><span class="p">)</span><span class="nv">duration</span>
+                 <span class="nf">easeType</span><span class="p">:(</span><span class="n"><a href="../Enums/TGEaseType.html">TGEaseType</a></span><span class="p">)</span><span class="nv">easeType</span>
+                 <span class="nf">callback</span><span class="p">:(</span><span class="n">nullable</span> <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">BOOL</span><span class="p">))</span><span class="nv">callback</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setCameraPosition</span><span class="p">(</span><span class="n">_</span> <span class="nv">cameraPosition</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span><span class="p">,</span> <span class="n">withDuration</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">easeType</span><span class="p">:</span> <span class="kt"><a href="../Enums/TGEaseType.html">TGEaseType</a></span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">((</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cameraPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new camera position</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The animation duration in seconds</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>easeType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of easing animation</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A callback to execute when the animation completes</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)flyToCameraPosition:callback:"></a>
+                    <a name="//apple_ref/objc/Method/-flyToCameraPosition:callback:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)flyToCameraPosition:callback:">-flyToCameraPosition:callback:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Move the map camera to a new position with an animation that pans and zooms in a smooth arc.</p>
+
+<p>The animation duration is calculated based on the distance to the new camera position assuming a speed scaling factor of 1.0</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">flyToCameraPosition</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">cameraPosition</span>
+                   <span class="nf">callback</span><span class="p">:(</span><span class="n">nullable</span> <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">BOOL</span><span class="p">))</span><span class="nv">callback</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fly</span><span class="p">(</span><span class="n">to</span> <span class="nv">cameraPosition</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">((</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cameraPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new camera position</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A callback to execute when the animation completes</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)flyToCameraPosition:withDuration:callback:"></a>
+                    <a name="//apple_ref/objc/Method/-flyToCameraPosition:withDuration:callback:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)flyToCameraPosition:withDuration:callback:">-flyToCameraPosition:withDuration:callback:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Move the map camera to a new position with an animation that pans and zooms in a smooth arc.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">flyToCameraPosition</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">cameraPosition</span>
+               <span class="nf">withDuration</span><span class="p">:(</span><span class="n">NSTimeInterval</span><span class="p">)</span><span class="nv">duration</span>
+                   <span class="nf">callback</span><span class="p">:(</span><span class="n">nullable</span> <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">BOOL</span><span class="p">))</span><span class="nv">callback</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fly</span><span class="p">(</span><span class="n">to</span> <span class="nv">cameraPosition</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span><span class="p">,</span> <span class="n">withDuration</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">((</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cameraPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new camera position</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Duration of the animation in seconds</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A callback to execute when the animation completes</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)flyToCameraPosition:withSpeed:callback:"></a>
+                    <a name="//apple_ref/objc/Method/-flyToCameraPosition:withSpeed:callback:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)flyToCameraPosition:withSpeed:callback:">-flyToCameraPosition:withSpeed:callback:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Move the map camera to a new position with an animation that pans and zooms in a smooth arc.</p>
+
+<p>The animation duration is calculated based on the distance to the new camera position and the specified speed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">flyToCameraPosition</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">cameraPosition</span>
+                  <span class="nf">withSpeed</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">speed</span>
+                   <span class="nf">callback</span><span class="p">:(</span><span class="n">nullable</span> <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">BOOL</span><span class="p">))</span><span class="nv">callback</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fly</span><span class="p">(</span><span class="n">to</span> <span class="nv">cameraPosition</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span><span class="p">,</span> <span class="n">withSpeed</span> <span class="nv">speed</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">((</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cameraPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new camera position</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>speed</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specified speed scaling factor</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A callback to execute when the animation completes</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)cameraThatFitsBounds:withPadding:"></a>
+                    <a name="//apple_ref/objc/Method/-cameraThatFitsBounds:withPadding:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)cameraThatFitsBounds:withPadding:">-cameraThatFitsBounds:withPadding:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a camera position that encloses the given bounds with at least the given amount of padding on each side.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span> <span class="o">*</span><span class="p">)</span><span class="nf">cameraThatFitsBounds</span><span class="p">:(</span><span class="n"><a href="../Structs/TGCoordinateBounds.html">TGCoordinateBounds</a></span><span class="p">)</span><span class="nv">bounds</span>
+                                       <span class="nf">withPadding</span><span class="p">:(</span><span class="n">UIEdgeInsets</span><span class="p">)</span><span class="nv">padding</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">cameraThatFitsBounds</span><span class="p">(</span><span class="n">_</span> <span class="nv">bounds</span><span class="p">:</span> <span class="kt"><a href="../Structs/TGCoordinateBounds.html">TGCoordinateBounds</a></span><span class="p">,</span> <span class="n">withPadding</span> <span class="nv">padding</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/TGCameraPosition.html">TGCameraPosition</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bounds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The map bounds to enclose</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>padding</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The minimum distance to keep between the bounds and the edges of the view</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)position"></a>
+                    <a name="//apple_ref/objc/Property/position" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)position">position</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The longitude and latitude of the center of the map view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">CLLocationCoordinate2D</span> <span class="n">position</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)zoom"></a>
+                    <a name="//apple_ref/objc/Property/zoom" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)zoom">zoom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The zoom level of the map view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">CGFloat</span> <span class="n">zoom</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)bearing"></a>
+                    <a name="//apple_ref/objc/Property/bearing" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)bearing">bearing</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The orientation of to the map view clockwise from true North</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">CLLocationDirection</span> <span class="n">bearing</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bearing</span><span class="p">:</span> <span class="kt">CLLocationDirection</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)pitch"></a>
+                    <a name="//apple_ref/objc/Property/pitch" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)pitch">pitch</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The tilt angle of the map view in degrees away from straight down</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">CGFloat</span> <span class="n">pitch</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">pitch</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Coordinate%20Conversions"></a>
+                <a name="//apple_ref/objc/Section/Coordinate Conversions" class="dashAnchor"></a>
+                <a href="#/Coordinate%20Conversions">
+                  <h3 class="section-name">Coordinate Conversions</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)viewPositionFromCoordinate:"></a>
+                    <a name="//apple_ref/objc/Method/-viewPositionFromCoordinate:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)viewPositionFromCoordinate:">-viewPositionFromCoordinate:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert a longitude and latitude to a view position.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nf">viewPositionFromCoordinate</span><span class="p">:(</span><span class="n">CLLocationCoordinate2D</span><span class="p">)</span><span class="nv">coordinate</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">viewPosition</span><span class="p">(</span><span class="n">from</span> <span class="nv">coordinate</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGPoint</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>coordinate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The geographic coordinate to convert</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The view position of the input coordinate</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)coordinateFromViewPosition:"></a>
+                    <a name="//apple_ref/objc/Method/-coordinateFromViewPosition:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)coordinateFromViewPosition:">-coordinateFromViewPosition:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert a position in view coordinates into the longitude and latitude of the corresponding geographic location.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">CLLocationCoordinate2D</span><span class="p">)</span><span class="nf">coordinateFromViewPosition</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">viewPosition</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">coordinate</span><span class="p">(</span><span class="n">fromViewPosition</span> <span class="nv">viewPosition</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CLLocationCoordinate2D</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the position in view coordinates to convert</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the longitude and latitude</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Markers"></a>
+                <a name="//apple_ref/objc/Section/Markers" class="dashAnchor"></a>
+                <a href="#/Markers">
+                  <h3 class="section-name">Markers</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)markerRemoveAll"></a>
+                    <a name="//apple_ref/objc/Method/-markerRemoveAll" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)markerRemoveAll">-markerRemoveAll</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove all the Markers from the map.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">markerRemoveAll</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">markerRemoveAll</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)markerAdd"></a>
+                    <a name="//apple_ref/objc/Method/-markerAdd" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)markerAdd">-markerAdd</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a marker and add it to the map.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>The new Marker will not be usable until you set its styling, geometry, or image depending on your use case.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMarker.html">TGMarker</a></span> <span class="o">*</span><span class="p">)</span><span class="n">markerAdd</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">markerAdd</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/TGMarker.html">TGMarker</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The new Marker.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)markerRemove:"></a>
+                    <a name="//apple_ref/objc/Method/-markerRemove:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)markerRemove:">-markerRemove:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove a Marker from the map.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Do not use a Marker after removing it from the map.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">markerRemove</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/TGMarker.html">TGMarker</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">marker</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">markerRemove</span><span class="p">(</span><span class="n">_</span> <span class="nv">marker</span><span class="p">:</span> <span class="kt"><a href="../Classes/TGMarker.html">TGMarker</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>marker</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Marker to remove.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)markers"></a>
+                    <a name="//apple_ref/objc/Property/markers" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)markers">markers</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access the Markers added to the map.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/TGMarker.html">TGMarker</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">markers</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">markers</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/TGMarker.html">TGMarker</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/File%20Handling"></a>
+                <a name="//apple_ref/objc/Section/File Handling" class="dashAnchor"></a>
+                <a href="#/File%20Handling">
+                  <h3 class="section-name">File Handling</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)resourceRoot"></a>
+                    <a name="//apple_ref/objc/Property/resourceRoot" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)resourceRoot">resourceRoot</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Assign the resource root for this map view.</p>
+
+<p>Scene file URLs will be resolved relative to this URL.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    By default the resource root is the main bundle resource URL. Using the default resource root: <code>scene.yaml</code> is
+resolved to <code>file://&lt;main bundle path&gt;/Resources/scene.yaml</code>, <code>/path/scene.yaml</code> is resolved to
+<code>file:///path/scene.yaml</code>, and <code>https://my.host/scene.yaml</code> is resolved to itself.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">resourceRoot</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">resourceRoot</span><span class="p">:</span> <span class="kt">URL</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Rendering%20Behavior"></a>
+                <a name="//apple_ref/objc/Section/Rendering Behavior" class="dashAnchor"></a>
+                <a href="#/Rendering%20Behavior">
+                  <h3 class="section-name">Rendering Behavior</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)requestRender"></a>
+                    <a name="//apple_ref/objc/Method/-requestRender" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)requestRender">-requestRender</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Request the view to draw another frame.</p>
+
+<p>Typically there is no need to call this. The map view re-draws automatically when needed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">requestRender</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">requestRender</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)preferredFramesPerSecond"></a>
+                    <a name="//apple_ref/objc/Property/preferredFramesPerSecond" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)preferredFramesPerSecond">preferredFramesPerSecond</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The rate you want the map view to re-draw its contents.</p>
+
+<p>The default value is 60 frames per second.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSInteger</span> <span class="n">preferredFramesPerSecond</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">preferredFramesPerSecond</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)displayLink"></a>
+                    <a name="//apple_ref/objc/Property/displayLink" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)displayLink">displayLink</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The CADisplayLink used by the renderer. Exposed mostly for the ability to pause/unpause rendering without having to initiate
+a scene update, as animations defined within the stylesheet force a continuous rendering regardless of the <code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(py)continuous">continuous</a></code>
+setting defined in code.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>This property is manipulated by the rendering subsystem depending on lifecycle events coming from the OS as well as
+certain events within Tangram itself. As such, do not expect your manipulation of individual settings (such as <code>paused</code>) to
+be long lived. An example of this is setting displayLink.paused to YES, then backgrounding and foregrounding the app. Tangram
+will respond to the OS lifecycle events and pause/unpause the map rendering, respectively, thereby overriding your setting.
+This is intended functionality and will not be changed.</p>
+
+</div>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>This property, even though it is marked NS_ASSUME_NONNULL at the top of the header, <em>will be nil</em> until the view is
+added to some kind of view hierarchy (window or subview). In a future PR we should clean up this assumption, but until then,
+you have been warned :)</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">CADisplayLink</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">displayLink</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">displayLink</span><span class="p">:</span> <span class="kt">CADisplayLink</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)continuous"></a>
+                    <a name="//apple_ref/objc/Property/continuous" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)continuous">continuous</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If <code>continuous</code> is <code>YES</code>, the map view will re-draw continuously. Otherwise, the map will re-draw only when an event
+changes the map view.</p>
+
+<p>Scenes can be configured as <code>animated</code> (see the <a href="https://mapzen.com/documentation/tangram/scene/#animated">
+animated property documentation</a> for details). When a scene is loaded this property is set to match the animated
+value from the scene.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Changing this property will override the inferred value from the scene. Enabling continuous rendering can
+significantly increase the energy usage of an application.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">continuous</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">continuous</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Gesture%20Recognizers"></a>
+                <a name="//apple_ref/objc/Section/Gesture Recognizers" class="dashAnchor"></a>
+                <a href="#/Gesture%20Recognizers">
+                  <h3 class="section-name">Gesture Recognizers</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)tapGestureRecognizer"></a>
+                    <a name="//apple_ref/objc/Property/tapGestureRecognizer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)tapGestureRecognizer">tapGestureRecognizer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the tap gesture recognizer used by the map view and adds it to the UIView.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
+    <span class="n">UITapGestureRecognizer</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">tapGestureRecognizer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">tapGestureRecognizer</span><span class="p">:</span> <span class="kt">UITapGestureRecognizer</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)doubleTapGestureRecognizer"></a>
+                    <a name="//apple_ref/objc/Property/doubleTapGestureRecognizer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)doubleTapGestureRecognizer">doubleTapGestureRecognizer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the double tap gesture recognizer used by the map view and adds it to the UIView.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
+    <span class="n">UITapGestureRecognizer</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">doubleTapGestureRecognizer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">doubleTapGestureRecognizer</span><span class="p">:</span> <span class="kt">UITapGestureRecognizer</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)panGestureRecognizer"></a>
+                    <a name="//apple_ref/objc/Property/panGestureRecognizer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)panGestureRecognizer">panGestureRecognizer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the pan gesture recognizer used by the map view and adds it to the UIView.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
+    <span class="n">UIPanGestureRecognizer</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">panGestureRecognizer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">panGestureRecognizer</span><span class="p">:</span> <span class="kt">UIPanGestureRecognizer</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)pinchGestureRecognizer"></a>
+                    <a name="//apple_ref/objc/Property/pinchGestureRecognizer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)pinchGestureRecognizer">pinchGestureRecognizer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the pinch gesture recognizer used by the map view and adds it to the UIView.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
+    <span class="n">UIPinchGestureRecognizer</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">pinchGestureRecognizer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">pinchGestureRecognizer</span><span class="p">:</span> <span class="kt">UIPinchGestureRecognizer</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)rotationGestureRecognizer"></a>
+                    <a name="//apple_ref/objc/Property/rotationGestureRecognizer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)rotationGestureRecognizer">rotationGestureRecognizer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the rotation gesture recognizer used by the map view and adds it to the UIView.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
+    <span class="n">UIRotationGestureRecognizer</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">rotationGestureRecognizer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rotationGestureRecognizer</span><span class="p">:</span> <span class="kt">UIRotationGestureRecognizer</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)shoveGestureRecognizer"></a>
+                    <a name="//apple_ref/objc/Property/shoveGestureRecognizer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)shoveGestureRecognizer">shoveGestureRecognizer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the shove gesture recognizer used by the map view and adds it to the UIView.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
+    <span class="n">UIPanGestureRecognizer</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">shoveGestureRecognizer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">shoveGestureRecognizer</span><span class="p">:</span> <span class="kt">UIPanGestureRecognizer</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(py)longPressGestureRecognizer"></a>
+                    <a name="//apple_ref/objc/Property/longPressGestureRecognizer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(py)longPressGestureRecognizer">longPressGestureRecognizer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the long press gesture recognizer used by the map view and adds it to the UIView.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
+    <span class="n">UILongPressGestureRecognizer</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">longPressGestureRecognizer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">longPressGestureRecognizer</span><span class="p">:</span> <span class="kt">UILongPressGestureRecognizer</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Map%20region%20change%20state%20notifiers"></a>
+                <a name="//apple_ref/objc/Section/Map region change state notifiers" class="dashAnchor"></a>
+                <a href="#/Map%20region%20change%20state%20notifiers">
+                  <h3 class="section-name">Map region change state notifiers</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)notifyGestureDidBegin"></a>
+                    <a name="//apple_ref/objc/Method/-notifyGestureDidBegin" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)notifyGestureDidBegin">-notifyGestureDidBegin</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Client can use these to trigger explicit <code>TGMapRegionChangeState</code> changes
+Notifies that client is going to begin map region animation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">notifyGestureDidBegin</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">notifyGestureDidBegin</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)notifyGestureIsChanging"></a>
+                    <a name="//apple_ref/objc/Method/-notifyGestureIsChanging" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)notifyGestureIsChanging">-notifyGestureIsChanging</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Client can use these to trigger explicit <code>TGMapRegionChangeState</code> changes
+Notifies that client is animating map region</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">notifyGestureIsChanging</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">notifyGestureIsChanging</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)notifyGestureDidEnd"></a>
+                    <a name="//apple_ref/objc/Method/-notifyGestureDidEnd" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)notifyGestureDidEnd">-notifyGestureDidEnd</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Client can use these to trigger explicit <code>TGMapRegionChangeState</code> changes
+Notifies that client is stopping animating map region</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">notifyGestureDidEnd</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">notifyGestureDidEnd</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Data%20Layers"></a>
+                <a name="//apple_ref/objc/Section/Data Layers" class="dashAnchor"></a>
+                <a href="#/Data%20Layers">
+                  <h3 class="section-name">Data Layers</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)addDataLayer:generateCentroid:"></a>
+                    <a name="//apple_ref/objc/Method/-addDataLayer:generateCentroid:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)addDataLayer:generateCentroid:">-addDataLayer:generateCentroid:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a named data layer to the map.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>You cannot create more than one data source with the same name. If you call this with a name that is already in
+use, the previously returned object will be returned again.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="n"><a href="../Classes/TGMapData.html">TGMapData</a></span> <span class="o">*</span><span class="p">)</span><span class="nf">addDataLayer</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span>
+                    <span class="nf">generateCentroid</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">generateCentroid</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addDataLayer</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">generateCentroid</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/TGMapData.html">TGMapData</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the data layer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>generateCentroid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If YES, a point feature will be added at the centroid of every polygon feature. This can be
+useful for labeling.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The map data, or <code>nil</code> if the data source can&rsquo;t be initialized.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Screenshots"></a>
+                <a name="//apple_ref/objc/Section/Screenshots" class="dashAnchor"></a>
+                <a href="#/Screenshots">
+                  <h3 class="section-name">Screenshots</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)captureScreenshot:"></a>
+                    <a name="//apple_ref/objc/Method/-captureScreenshot:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)captureScreenshot:">-captureScreenshot:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Capture a screenshot of the map view.</p>
+
+<p>The captured screenshot will be delivered to the <code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(py)mapViewDelegate">mapViewDelegate</a></code> by the <code>mapView:didCaptureScreenshot:</code> method. The
+delegate must implement this method to receive the screenshot.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">captureScreenshot</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">waitForViewComplete</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">captureScreenshot</span><span class="p">(</span><span class="n">_</span> <span class="nv">waitForViewComplete</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>waitForViewComplete</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If YES, the view will wait for all parts of the map in the current view to finish loading
+before taking the screenshot.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Picking%20Map%20Objects"></a>
+                <a name="//apple_ref/objc/Section/Picking Map Objects" class="dashAnchor"></a>
+                <a href="#/Picking%20Map%20Objects">
+                  <h3 class="section-name">Picking Map Objects</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)setPickRadius:"></a>
+                    <a name="//apple_ref/objc/Method/-setPickRadius:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)setPickRadius:">-setPickRadius:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set the radius in logical pixels to use when picking features on the map (default is <code>0.5</code>).</p>
+
+<p>The <code>-pick*</code> methods will retrieve all <code>interactive</code> map objects from a circular area with this radius around the pick
+location. Setting a larger radius can help ensure that desired features are retrieved from an imprecise touch input.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setPickRadius</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">pixels</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setPickRadius</span><span class="p">(</span><span class="n">_</span> <span class="nv">pixels</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pixels</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The pick radius in logical pixels.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)pickFeatureAt:"></a>
+                    <a name="//apple_ref/objc/Method/-pickFeatureAt:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)pickFeatureAt:">-pickFeatureAt:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Select a visible feature marked as <code>interactive</code> from the map view.</p>
+
+<p>The pick result will be delivered to the <code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(py)mapViewDelegate">mapViewDelegate</a></code> by <code>mapView:didSelectFeature:atScreenPosition:</code>.</p>
+
+<p>The scene file determines which features can be picked. See the
+<a href="https://mapzen.com/documentation/tangram/draw/#interactive">interactive property documentation</a> for
+details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">pickFeatureAt</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">viewPosition</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pickFeature</span><span class="p">(</span><span class="n">at</span> <span class="nv">viewPosition</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position in the view to pick from, in logical pixels.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)pickLabelAt:"></a>
+                    <a name="//apple_ref/objc/Method/-pickLabelAt:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)pickLabelAt:">-pickLabelAt:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Select a label marked as <code>interactive</code> from the map view.</p>
+
+<p>The pick result will be delivered to the <code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(py)mapViewDelegate">mapViewDelegate</a></code> by <code>mapView:didSelectFeature:atScreenPosition:</code>.</p>
+
+<p>The scene file determines which features can be picked. See the
+<a href="https://mapzen.com/documentation/tangram/draw/#interactive"> interactive property documentation</a> for
+details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">pickLabelAt</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">viewPosition</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pickLabel</span><span class="p">(</span><span class="n">at</span> <span class="nv">viewPosition</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position in the view to pick from, in logical pixels.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)pickMarkerAt:"></a>
+                    <a name="//apple_ref/objc/Method/-pickMarkerAt:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)pickMarkerAt:">-pickMarkerAt:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Select a Marker marked as <code>interactive</code> from the map view.</p>
+
+<p>The pick result will be delivered to the <code><a href="../Classes/TGMapView.html#/c:objc(cs)TGMapView(py)mapViewDelegate">mapViewDelegate</a></code> by <code>mapView:didSelectFeature:atScreenPosition:</code>.</p>
+
+<p>To pick a marker you must set the <code>interactive</code> property when styling it:</p>
+<pre class="highlight swift"><code><span class="kt">TGMarker</span> <span class="n">marker</span><span class="p">;</span>
+<span class="n">marker</span><span class="o">.</span><span class="n">styling</span> <span class="o">=</span> <span class="s">"{ style: 'points', interactive : true,  color: 'white', size: [30px, 30px], order: 500 }"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">pickMarkerAt</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">viewPosition</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pickMarker</span><span class="p">(</span><span class="n">at</span> <span class="nv">viewPosition</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position in the view to pick from, in logical pixels.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Memory%20Management"></a>
+                <a name="//apple_ref/objc/Section/Memory Management" class="dashAnchor"></a>
+                <a href="#/Memory%20Management">
+                  <h3 class="section-name">Memory Management</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)didReceiveMemoryWarning"></a>
+                    <a name="//apple_ref/objc/Method/-didReceiveMemoryWarning" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)didReceiveMemoryWarning">-didReceiveMemoryWarning</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reduce memory usage by freeing currently unused resources.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">didReceiveMemoryWarning</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">didReceiveMemoryWarning</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Debugging"></a>
+                <a name="//apple_ref/objc/Section/Debugging" class="dashAnchor"></a>
+                <a href="#/Debugging">
+                  <h3 class="section-name">Debugging</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)setDebugFlag:value:"></a>
+                    <a name="//apple_ref/objc/Method/-setDebugFlag:value:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)setDebugFlag:value:">-setDebugFlag:value:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set a <code><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></code> on the map view.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setDebugFlag</span><span class="p">:(</span><span class="n"><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></span><span class="p">)</span><span class="nv">debugFlag</span> <span class="nf">value</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">on</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setDebugFlag</span><span class="p">(</span><span class="n">_</span> <span class="nv">debugFlag</span><span class="p">:</span> <span class="kt"><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></span><span class="p">,</span> <span class="n">value</span> <span class="nv">on</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>debugFlag</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The debug flag to set.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>on</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the flag is on or off.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)getDebugFlag:"></a>
+                    <a name="//apple_ref/objc/Method/-getDebugFlag:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)getDebugFlag:">-getDebugFlag:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the status of a <code><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getDebugFlag</span><span class="p">:(</span><span class="n"><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></span><span class="p">)</span><span class="nv">debugFlag</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getDebugFlag</span><span class="p">(</span><span class="n">_</span> <span class="nv">debugFlag</span><span class="p">:</span> <span class="kt"><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>debugFlag</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The debug flag to get the status of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether the flag is currently on or off for the map view.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)TGMapView(im)toggleDebugFlag:"></a>
+                    <a name="//apple_ref/objc/Method/-toggleDebugFlag:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)TGMapView(im)toggleDebugFlag:">-toggleDebugFlag:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Invert the state of a <code><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">toggleDebugFlag</span><span class="p">:(</span><span class="n"><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></span><span class="p">)</span><span class="nv">debugFlag</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">toggle</span><span class="p">(</span><span class="n">_</span> <span class="nv">debugFlag</span><span class="p">:</span> <span class="kt"><a href="../Enums/TGDebugFlag.html">TGDebugFlag</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>debugFlag</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The debug flag to toggle the state of.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.12.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
