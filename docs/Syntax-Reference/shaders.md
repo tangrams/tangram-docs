@@ -193,7 +193,7 @@ blocks:
 ```
 
 #### `color`
-Optional element. Defines the start of a `color` block, written in GLSL, which is injected into the _fragment_ shader when `lighting: fragment`, or into the _vertex_ shader when `lighting: vertex` (it is not injected when `lighting: false`).
+Optional element. Defines the start of a `color` block, written in GLSL, which is injected into the _fragment_ shader.
 
 This block has access to the `color` variable, which takes the form `vec4(r, g, b, a)`. Lighting is applied after this `color` is set (either per-vertex or per-fragment, as with the `normal` block described above).
 
