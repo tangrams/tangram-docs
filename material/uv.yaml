@@ -7,7 +7,7 @@ styles:
         base: polygons
         material:
             diffuse:
-                texture: https://raw.githubusercontent.com/tangrams/tangram-docs/gh-pages/pages/images/uv-grid.png
+                texture: https://raw.githubusercontent.com/tangrams/tangram-docs/master/docs/images/uv-grid.png
                 mapping: uv
                 scale: 0.008
 
@@ -31,7 +31,7 @@ sources:
         type: TopoJSON
         url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         url_params:
-            api_key: 3XqXMjEdT2StnrIRJ4HYbg
+            api_key: d161Q8KATMOhSOcVGNyQ8g
         max_zoom: 16
 
 layers:
