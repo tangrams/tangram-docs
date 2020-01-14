@@ -2,7 +2,7 @@ Tangram allows raster data sources to be loaded, displayed, and combined with ve
 
 ## Basic Raster Display
 
-The simplest way to use raster data is to display it directly, without any combinations or modifications. This is done by specifying a [`source`](sources.md) of type `raster`, either tiled or untiled.
+The simplest way to use raster data is to display it directly, without any combinations or modifications. This is done by specifying a [`source`](sources.md) of type `raster`, either tiled or untiled. A source `url` which includes the `{x}/{y}/{z}` url token pattern. Sources without this pattern will be treated as untiled.
 
 The example below loads a tiled raster data source:
 
@@ -68,11 +68,11 @@ layers:
                order: 0 # draw on bottom
 ```
 
-![tangram-wed mar 30 2016 17-07-48 gmt-0400 edt](https://cloud.githubusercontent.com/assets/16733/14157713/52108590-f69a-11e5-8553-361a7893e257.png)
+![Raster terrain data with vector mask](https://cloud.githubusercontent.com/assets/16733/14157713/52108590-f69a-11e5-8553-361a7893e257.png)
 
-This technique can be used for combining shaded relief with landcover classifications. For example, here is a base terrain layer in gray, with landuse polygons tinted green:
+This technique can be used for combining shaded relief with landcover classifications. For example, here is a base raster terrain layer in gray, with vector landuse polygons tinted green:
 
-![tangram-fri apr 01 2016 12-35-12 gmt-0400 edt](https://cloud.githubusercontent.com/assets/16733/14213503/4b24aa5a-f806-11e5-8bbc-ba3d61f33bed.png)
+![Raster terrain data with tinted landuse polygons](https://cloud.githubusercontent.com/assets/16733/14213503/4b24aa5a-f806-11e5-8bbc-ba3d61f33bed.png)
 
 ## High-Resolution Tile Support
 
@@ -112,7 +112,7 @@ sources:
 
 This example shows a USGS historical map from the Chelan, WA area, overlaid on top of the Mapzen Walkabout base map:
 
-https://user-images.githubusercontent.com/16733/51869261-0ae0b380-231e-11e9-9fd5-55ec4120a9fc.png
+![Raster map positioned over vector data](https://user-images.githubusercontent.com/16733/51869261-0ae0b380-231e-11e9-9fd5-55ec4120a9fc.png)
 
 Three additional parameters exist for fine-tuning raster behavior:
 
