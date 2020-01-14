@@ -208,6 +208,10 @@ sources:
             ...
 ```
 
+This image shows a large collection of aerial drone images of crop fields, composited into a single raster source, where each field is a separate image:
+
+![Composite raster data source showing aerial drone images of crop fields](https://user-images.githubusercontent.com/16733/51883837-bf94c800-2352-11e9-9af7-8fadb0fcdad2.png)
+
 An alpha value can be set either for the entire data source, or per image within the composite array (with the latter taking precedence):
 
 ```yaml
