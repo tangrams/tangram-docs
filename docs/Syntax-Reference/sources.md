@@ -304,6 +304,13 @@ sources:
         generate_label_centroids: true
 ```
 
+#### `max_display_density`
+Optional _float_. No default.
+
+This parameter will limit the internal resolution at which a raster source is re-sampled. Values follow the [`devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) convention, which measures the ratio between physical pixels on a device's screen versus logical pixels. Common values include `1` for standard displays, `2` for "Retina" displays, and higher values for newer mobile devices.
+
+Setting this parameter to a low value like `max_display_density: 1` will reduce texture memory usage on high-density displays at the expense of some visual resolution.
+
 #### `max_display_zoom`, `min_display_zoom`
 Optional _integer_. No default.
 
