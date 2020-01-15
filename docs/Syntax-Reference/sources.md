@@ -409,3 +409,19 @@ sources:
         url_params:
             api_key: 3XqXMjEdT2StnrIRJ4HYbg
 ```
+
+#### `zoom_offset`
+Optional _integer_. No default.
+
+When applied, this parameter will cause a data source to request lower zooms than the current zoom level.
+
+For example, `zoom_offset: 1` will down-sample the tile data by one level; so at zoom 12, zoom 11 tiles will be loaded instead.
+
+```yaml
+sources:
+    vector-tiles:
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
+        zoom_offset: 1
+```
+
+Note: sources with `tile_size: 512` already do this implicitly, loading one level lower than the typical Web Mercator "view" zoom level; any `zoom_offset` is applied in addition to the tile size adjustment, e.g. `zoom_offset: 1` with `tile_size: 512` will request tiles from two zoom levels earlier.
