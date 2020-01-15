@@ -2,7 +2,7 @@ Tangram allows raster data sources to be loaded, displayed, and combined with ve
 
 ## Basic Raster Display
 
-The simplest way to use raster data is to display it directly, without any combinations or modifications. This is done by specifying a [`source`](sources.md) of type `raster`, either tiled or untiled. A source `url` which includes the `{x}/{y}/{z}` url token pattern. Sources without this pattern will be treated as untiled.
+The simplest way to use raster data is to display it directly, without any combinations or modifications. This is done by specifying a [`source`](../Syntax-Reference/sources.md) of type `raster`, either tiled or untiled. A source `url` which includes the `{x}/{y}/{z}` url token pattern. Sources without this pattern will be treated as untiled.
 
 The example below loads a tiled raster data source:
 
@@ -82,7 +82,7 @@ Some raster tile sources support multiple resolutions for better quality on high
 
 `https://tiles.maps.com/{z}/{x}/{y}{r}.png`
 
-The most common case is a source that supports 1x and 2x tiles, and this is the default configuration. However, other resolutions are also possible. Multiple resolutions can be supported with the [`url_density_scales`](sources.md#url_density_scales) parameter. For example, Wikimedia maps has several resolutions, which can be rendered in Tangram with:
+The most common case is a source that supports 1x and 2x tiles, and this is the default configuration. However, other resolutions are also possible. Multiple resolutions can be supported with the [`url_density_scales`](../Syntax-Reference/sources.md#url_density_scales) parameter. For example, Wikimedia maps has several resolutions, which can be rendered in Tangram with:
 
 ```yaml
 sources:
@@ -96,7 +96,7 @@ The default value for url_density_scales is [1, 2], meaning it will load either 
 
 ### Downsampling
 
-In some circumstances, the default tiles for a source may be either too large (in file size) or too detailed (in feature density or coordinate precision) than needed for the current application. The [`zoom_offset`](sources.md#zoom_offset) parameter allows the user to request lower zooms for each zoom level, reducing tile size and visual detail. (`zoom_offset` also works for vector data!)
+In some circumstances, the default tiles for a source may be either too large (in file size) or too detailed (in feature density or coordinate precision) than needed for the current application. The [`zoom_offset`](../Syntax-Reference/sources.md#zoom_offset) parameter allows the user to request lower zooms for each zoom level, reducing tile size and visual detail. (`zoom_offset` also works for vector data!)
 
 This gif compares Mapzen terrain normal tiles to a version using `zoom_offset: 1`, effectively generalizing the terrain while lowering network bandwidth:
     ![zoom_offset terrain](https://user-images.githubusercontent.com/16733/51883976-53669400-2353-11e9-9241-9de27eea6f6d.gif)
@@ -119,9 +119,9 @@ This example shows a USGS historical map from the Chelan, WA area, overlaid on t
 
 Three additional parameters exist for fine-tuning raster behavior:
 
-- [`composite`](sources.md#rasters-composite) allows multiple images to be combined into a single data source;
-- [`alpha`](sources.md#rasters-alpha) sets an alpha value for the entire data source;
-- [`max-display-density`](sources.md#rasters-max-display-density) allows a cap to be set on oversampling, to limit texture memory use.
+- [`composite`](../Syntax-Reference/sources.md#rasters-composite) allows multiple images to be combined into a single data source;
+- [`alpha`](../Syntax-Reference/sources.md#rasters-alpha) sets an alpha value for the entire data source;
+- [`max-display-density`](../Syntax-Reference/sources.md#rasters-max-display-density) allows a cap to be set on oversampling, to limit texture memory use.
 
 ## Custom Styles
 
