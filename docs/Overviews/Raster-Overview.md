@@ -98,6 +98,9 @@ The default value for url_density_scales is [1, 2], meaning it will load either 
 
 In some circumstances, the default tiles for a source may be either too large (in file size) or too detailed (in feature density or coordinate precision) than needed for the current application. The [`zoom_offset`](sources.md#zoom_offset) parameter allows the user to request lower zooms for each zoom level, reducing tile size and visual detail. (`zoom_offset` also works for vector data!)
 
+This gif compares Mapzen terrain normal tiles to a version using `zoom_offset: 1`, effectively generalizing the terrain while lowering network bandwidth:
+    ![zoom_offset terrain](https://user-images.githubusercontent.com/16733/51883976-53669400-2353-11e9-9241-9de27eea6f6d.gif)
+
 ## Untiled Raster Sources
 
 Untiled raster image data may also be loaded, by specifying a single image file in the source's `url` parameter, as well as a bounding box in the `bounds` parameter:
