@@ -569,10 +569,9 @@ draw:
 ```
 
 #### `repeat_group`
-Optional _string_. No default.
+Optional _string_. Default is the name of the top-level parent layer.
 
-Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same set `draw` layer and label text belong to the same `repeat_group`.
-
+Applies to `text`. Allows the grouping of different label types for purposes of fine-tuning label repetition. By default, all labels with the same `draw` layer and label text belong to the same `repeat_group`.
 
 For example: labels from the two layers below can be drawn near each other, because they are in different repeat groups by default:
 

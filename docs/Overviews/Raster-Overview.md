@@ -2,9 +2,9 @@ Tangram allows raster data sources to be loaded, displayed, and combined with ve
 
 ## Basic Raster Display
 
-The simplest way to use raster data is to display it directly, without any combinations or modifications.
+The simplest way to use raster data is to display it directly, without any combinations or modifications. This is done by specifying a [`source`](sources.md) of type `raster`, either tiled or untiled. A source `url` which includes the `{x}/{y}/{z}` url token pattern. Sources without this pattern will be treated as untiled.
 
-The example below loads a tiled raster data source in the scene file, under the [`sources`](../Syntax-Reference/sources.md) block:
+The example below loads a tiled raster data source:
 
 ```yaml
 sources:
@@ -68,13 +68,62 @@ layers:
                order: 0 # draw on bottom
 ```
 
-![tangram-wed mar 30 2016 17-07-48 gmt-0400 edt](https://cloud.githubusercontent.com/assets/16733/14157713/52108590-f69a-11e5-8553-361a7893e257.png)
+![Raster terrain data with vector mask](https://cloud.githubusercontent.com/assets/16733/14157713/52108590-f69a-11e5-8553-361a7893e257.png)
 
-This technique can be used for combining shaded relief with landcover classifications. For example, here is a base terrain layer in gray, with landuse polygons tinted green:
+This technique can be used for combining shaded relief with landcover classifications. For example, here is a base raster terrain layer in gray, with vector landuse polygons tinted green:
 
-![tangram-fri apr 01 2016 12-35-12 gmt-0400 edt](https://cloud.githubusercontent.com/assets/16733/14213503/4b24aa5a-f806-11e5-8bbc-ba3d61f33bed.png)
+![Raster terrain data with tinted landuse polygons](https://cloud.githubusercontent.com/assets/16733/14213503/4b24aa5a-f806-11e5-8bbc-ba3d61f33bed.png)
 
-### Custom Styles
+## High-Resolution Tile Support
+
+### Multiple-Resolution Sources
+
+Some raster tile sources support multiple resolutions for better quality on high-density displays, following the `@2x` file naming convention for web and mobile assets. This is supported by Tangram raster data sources with the `{r}` URL template token, as shown below:
+
+`https://tiles.maps.com/{z}/{x}/{y}{r}.png`
+
+The most common case is a source that supports 1x and 2x tiles, and this is the default configuration. However, other resolutions are also possible. Multiple resolutions can be supported with the [`url_density_scales`](sources.md#url_density_scales) parameter. For example, Wikimedia maps has several resolutions, which can be rendered in Tangram with:
+
+```yaml
+sources:
+  raster:
+    type: Raster
+    url: https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png
+    url_density_scales: [1, 1.3, 1.5, 2, 2.6, 3]
+```
+
+The default value for url_density_scales is [1, 2], meaning it will load either "plain" tile URLs like tile.png, or tile@2x.png tiles on displays with a display density >= 2.
+
+### Downsampling
+
+In some circumstances, the default tiles for a source may be either too large (in file size) or too detailed (in feature density or coordinate precision) than needed for the current application. The [`zoom_offset`](sources.md#zoom_offset) parameter allows the user to request lower zooms for each zoom level, reducing tile size and visual detail. (`zoom_offset` also works for vector data!)
+
+This gif compares Mapzen terrain normal tiles to a version using `zoom_offset: 1`, effectively generalizing the terrain while lowering network bandwidth:
+    ![zoom_offset terrain](https://user-images.githubusercontent.com/16733/51883976-53669400-2353-11e9-9241-9de27eea6f6d.gif)
+
+## Untiled Raster Sources
+
+Untiled raster image data may also be loaded, by specifying a single image file in the source's `url` parameter, as well as a bounding box in the `bounds` parameter:
+
+```yaml
+sources:
+  chelan:
+    type: Raster # can now indicate either tiled or un-tiled image source
+    url: images/chelan.jpg # no tile XYZ pattern in URL indicates standalone image
+    bounds: [-120.588, 47.467, -119.904, 48.033] # geo-extent of the image
+```
+
+This example shows a USGS historical map from the Chelan, WA area, overlaid on top of the Mapzen Walkabout base map:
+
+![Raster map positioned over vector data](https://user-images.githubusercontent.com/16733/51869261-0ae0b380-231e-11e9-9fd5-55ec4120a9fc.png)
+
+Three additional parameters exist for fine-tuning raster behavior:
+
+- [`composite`](sources.md#rasters-composite) allows multiple images to be combined into a single data source;
+- [`alpha`](sources.md#rasters-alpha) sets an alpha value for the entire data source;
+- [`max-display-density`](sources.md#rasters-max-display-density) allows a cap to be set on oversampling, to limit texture memory use.
+
+## Custom Styles
 
 The `raster` style is derived from the `polygons` rendering style, and provides the same shader blocks. This allows for custom raster styles to be defined with `base: raster`. For example, this style converts raster tiles to grayscale:
 
@@ -106,7 +155,7 @@ layers:
 
 ![tangram-wed mar 30 2016 16-59-03 gmt-0400 edt](https://cloud.githubusercontent.com/assets/16733/14157381/b90ec916-f698-11e5-8697-5e99a66faf23.png)
 
-## Advanced Raster Styles
+### Advanced Raster Styles
 
 Styles can enable raster samplers with the `raster` parameter, which can have the following values:
 

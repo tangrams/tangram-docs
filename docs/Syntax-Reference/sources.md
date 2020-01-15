@@ -160,6 +160,25 @@ If you are developing an Android application that uses an MBTiles file located i
 
 ### optional source parameters
 
+#### `alpha`
+Optional _float_ from 0 - 1. Default is `1`.
+
+Applies to `Raster` data sources only.
+
+Sets the alpha value of a non-`opaque` data source.
+
+```yaml
+sources:
+    raster-source:
+        type: Raster
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
+        alpha: 0.7 # apply 70% alpha to images
+```
+
+For the `alpha` parameter to be applied, you must render the raster source with non-opaque blend modes such as `translucent` or `overlay`, as the default `opaque` blend mode does not process alpha values. This parameter is therefore ignored (with a warning) when the data source is drawn using `opaque`.
+
+For more information see [`blend`](styles.md#blend).
+
 #### `bounds`
 Optional _array of lat/lngs_. No default.
 
@@ -171,6 +190,38 @@ sources:
         type: TopoJSON
         url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
         bounds: [-74.1274, 40.5780, -73.8004, 40.8253] # [w, s, e, n]
+```
+
+#### `composite`
+Optional _array of raster image sources_. No default.
+
+This parameter allows multiple images to be combined into a single data source.
+
+```yaml
+sources:
+    images:
+        type: Raster
+        composite:
+            - { url: image1.png, bounds: [...] }
+            - { url: image2.png, bounds: [...] }
+            - { url: image3.png, bounds: [...] }
+            ...
+```
+
+This image shows a large collection of aerial drone images of crop fields, composited into a single raster source, where each field is a separate image:
+
+![Composite raster data source showing aerial drone images of crop fields](https://user-images.githubusercontent.com/16733/51883837-bf94c800-2352-11e9-9af7-8fadb0fcdad2.png)
+
+An alpha value can be set either for the entire data source, or per image within the composite array (with the latter taking precedence):
+
+```yaml
+sources:
+    image:
+        type: Raster
+        alpha: 0.7 # apply 70% alpha to images
+        composite:
+            - { url: ..., bounds: ... }
+            - { url: ..., bounds: ..., alpha: 1 } # override to apply full alpha to this image
 ```
 
 #### `enforce_winding`
@@ -253,6 +304,13 @@ sources:
         generate_label_centroids: true
 ```
 
+#### `max_display_density`
+Optional _float_. No default.
+
+This parameter will limit the internal resolution at which a raster source is re-sampled. Values follow the [`devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) convention, which measures the ratio between physical pixels on a device's screen versus logical pixels. Common values include `1` for standard displays, `2` for "Retina" displays, and higher values for newer mobile devices.
+
+Setting this parameter to a low value like `max_display_density: 1` will reduce texture memory usage on high-density displays at the expense of some visual resolution.
+
 #### `max_display_zoom`, `min_display_zoom`
 Optional _integer_. No default.
 
@@ -298,7 +356,7 @@ sources:
       url: https://tile.nextzen.org/tilezen/terrain/v1/normal/{z}/{x}/{y}.png
 ```
 
-When a `Raster` source itself has additional raster sources set in the `rasters` property, the "parent" source will be the first raster sampler, and those from `rasters` will be added afterward. (essentially it is as if the parent source was inserted as the first item in the rasters array).
+When a `Raster` source itself has additional raster sources set in the `rasters` property, the "parent" source will be the first raster sampler, and those from `rasters` will be added afterward. (Essentially it is as if the parent source was inserted as the first item in the rasters array.)
 
 For more, see the [Raster Overview](../Overviews/Raster-Overview.md).
 
@@ -351,3 +409,19 @@ sources:
         url_params:
             api_key: 3XqXMjEdT2StnrIRJ4HYbg
 ```
+
+#### `zoom_offset`
+Optional _integer_. No default.
+
+When applied, this parameter will cause a data source to request lower zooms than the current zoom level.
+
+For example, `zoom_offset: 1` will down-sample the tile data by one level; so at zoom 12, zoom 11 tiles will be loaded instead.
+
+```yaml
+sources:
+    vector-tiles:
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
+        zoom_offset: 1
+```
+
+Note: sources with `tile_size: 512` already do this implicitly, loading one level lower than the typical Web Mercator "view" zoom level; any `zoom_offset` is applied in addition to the tile size adjustment, e.g. `zoom_offset: 1` with `tile_size: 512` will request tiles from two zoom levels earlier.
