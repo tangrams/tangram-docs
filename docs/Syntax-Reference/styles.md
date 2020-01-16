@@ -107,7 +107,15 @@ styles:
         ...
 ```
 
-For more, see the [Styles Overview](../Overviews/Styles-Overview.md#draw-styles).
+`blend_order` may _also_ be set at the `draw` group level:
+
+```yaml
+layers:
+    overlays:
+        draw:
+            polygons-overlay:
+                blend_order: 3
+```
 
 #### `dash`
 Optional _array_ of _numbers_. Defines a dash pattern for use with line textures. No default.

@@ -79,6 +79,15 @@ sources:
         url: http://localhost:8000/tiles/{x}-{y}-{z}.json
 ```
 
+The [quadkey](https://docs.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system) tile URL scheme is available with the `{q}` token. For example, a Microsoft aerial imagery raster layer:
+
+```yaml
+sources:
+    msft-aerial:
+        type: Raster
+        url: https://ecn.t3.tiles.virtualearth.net/tiles/a{q}.jpeg?g=587
+```
+
 An untiled datasource will have a simple _URL_ to a single file:
 
 ```yaml
@@ -425,3 +434,15 @@ sources:
 ```
 
 Note: sources with `tile_size: 512` already do this implicitly, loading one level lower than the typical Web Mercator "view" zoom level; any `zoom_offset` is applied in addition to the tile size adjustment, e.g. `zoom_offset: 1` with `tile_size: 512` will request tiles from two zoom levels earlier.
+
+#### `zooms`
+Optional _array of integers_. No default.
+
+Defines specific zoom levels at which tiles are requested. Tiles will not be requested below the first zoom. At zooms between specified levels, tiles will be overzoomed.
+
+```yaml
+sources:
+    odd-source:
+        url: https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
+        zooms: [1, 3, 5, 7, 9, 11, 13, 15] # odd-numbered zooms only
+```

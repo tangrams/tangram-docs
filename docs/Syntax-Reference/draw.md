@@ -111,6 +111,21 @@ text:
     anchor: bottom-left # the label will use `align: right` by default
 ```
 
+#### `blend_order`
+Optional _integer_ greater than or equal to 0. No default.
+
+This parameter matches the behavior of the `style`-level `blend_order` parameter, but permits fine-tuning of blend ordering at the draw group level.
+
+```yaml
+layers:
+    overlays:
+        draw:
+            polygons-overlay:
+                blend_order: 3
+```
+
+For more, see (`blend_order`)[styles.md#blend_order].
+
 #### `dash`
 Optional _object_, following the specification of the [`dash`](styles.md#dash) parameter.
 
