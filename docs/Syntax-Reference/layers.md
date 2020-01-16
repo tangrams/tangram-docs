@@ -30,16 +30,15 @@ layers:
         data: { source: osm }
 ```
 
-#### `filter`
-Optional _object_ or _function_. No default.
 
-A `filter` element may be included once in any layer or sublayer. Only features matching the filter will be included in that layer (and its sublayers). For more on the filtering system, see [Filters Overview](../Overviews/Filters-Overview.md).
-
+#### `draw`
+Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [draw](draw.md) entry.
 ```yaml
 layers:
-    roads:
+    landuse:
         data: { source: osm }
-        filter: { kind: highway }
+        draw:
+            ...
 ```
 
 #### `enabled`
@@ -54,16 +53,48 @@ layers:
 
 Unlike the `draw`-level [`visible`](draw.md#visible) parameter, once set, the `enabled` parameter _cannot_ be overridden by any descendant layers. This is useful for culling large portions of the layer tree, e.g. for layer-toggle controls and/or overlays.
 
-[This parameter was renamed from `visible` to avoid confusion with the `-draw`-level `visible` parameter. Layer-level `visible` parameters will be supported through v0.12, but will be deprecated in a future release.]
+[This parameter was renamed from `visible` to avoid confusion with the `-draw`-level `visible` parameter. Layer-level `visible` parameters are be supported through v0.12, but are deprecated in later releases.]
 
-#### `draw`
-Required parameter. Defines the beginning of a [draw block](#draw-parameters). For draw parameters, see the [draw](draw.md) entry.
+#### `exclusive`
+Optional _boolean_. Ensures that no other sublayers at the same level will match the same features contained in the current sublayer. No default.
+
 ```yaml
 layers:
-    landuse:
+  layerA:
+    filter: { kind: building }
+    exclusive: true
+  layerB:
+    filter: { name: "tower" } # no features of "kind: building" will match here.
+```
+
+#### `filter`
+Optional _object_ or _function_. No default.
+
+A `filter` element may be included once in any layer or sublayer. Only features matching the filter will be included in that layer (and its sublayers). For more on the filtering system, see [Filters Overview](../Overviews/Filters-Overview.md).
+
+```yaml
+layers:
+    roads:
         data: { source: osm }
-        draw:
-            ...
+        filter: { kind: highway }
+```
+
+#### `priority`
+Optional _integer_. Controls the order in which sub-layers at the same level are matched, and which one "wins" when multiple matching layers are merged.
+
+When used with [`exclusive`](#exclusive), if/else filter patterns can be expressed:
+```yaml
+layers:
+    layerA:             # if matches layerA...
+        filter: ...
+        priority: 1
+        exclusive: true
+        draw: ...
+    layerB:             # else if matches layerB...
+        filter: ...
+        priority: 2
+        exclusive: true
+        draw: ...
 ```
 
 #### sublayer name
