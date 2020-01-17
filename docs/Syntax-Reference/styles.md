@@ -70,7 +70,7 @@ The `overlay` and `inlay` blend modes apply traditional transparency using the a
 
 `inlay` will cause features to be interwoven into the scene at an appropriate depth, according to their `order` value. To illustrate the difference between `inlay` and `overlay`: a street label drawn with `overlay` will be visible *over* any geometry covering the street, such as a nearby building, while a label drawn with `inlay` will display *behind* the building (but will still be partially visible where it is not covered by the building).
 
-`add` and `multiply` apply Photoshop-filter-like operations: features composited with `add` will tend to accumulate toward white, and `multiply` will tend to acculumate toward black.
+`add` and `multiply` apply Photoshop-filter-like operations: features composited with `add` will tend to accumulate toward white, and those with `multiply` will tend to acculumate toward black.
 
 ```yaml
 styles:
@@ -86,6 +86,18 @@ Styles will be rendered in the following order:
 - All non-opaque styles with a defined `blend_order` render last, sorted by `blend_order` (ascending), sub-sorted by `add`, `multiply`, `inlay`, `overlay`.
 
 Each group above also now has a final sub-sort by style name, to provide a consistent render order and resolve ambiguities.
+
+##### blend combo styles
+
+Tangram includes built-in blend combination draw styles, to make it easier to use the different blend modes without having to write boilerplate styles. For each combination of [`blend mode`](#blend) (opaque, overlay, etc.) and [`style base`](#base) (polygons, lines, etc.), a style is automatically created at scene load-time with the naming scheme "blend_base", e.g. `translucent_polygons`, `overlay_lines`, etc. Each of these is a minimal style definition:
+
+```yaml
+translucent_polygons:
+    base: polygons
+    blend: translucent
+```
+
+To maintain backwards compatibility, any of these new "bootstrapped" styles is skipped if the user has already defined one with the same name in their scene.
 
 #### `blend_order`
 Optional _integer_ greater than or equal to 0. No default.
