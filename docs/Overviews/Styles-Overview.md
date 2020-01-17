@@ -4,7 +4,9 @@
 
 Draw styles are referenced in two places in the scene file: when defining custom [styles](../Syntax-Reference/styles.md) and again in [draw](../Syntax-Reference/draw.md) groups.
 
-Tangram currently has five built-in _draw styles_: `polygons`, `lines`, `points`, `text`, and `raster`. Each draw style displays data in a different way, and some of them require specific data types and properties.
+Tangram currently has five built-in _base draw styles_: `polygons`, `lines`, `points`, `text`, and `raster`. Each draw style displays data in a different way, and some of them require specific data types and properties.
+
+For each _base draw style_, `blend` mode _combo styles_ are also available with the naming pattern "blend_base", eg `translucent_polygons`, `overlay_lines` etc. For more information see [`blend`](styles.md#blend-combo-styles).
 
 #### `polygons`
 The `polygons` _draw style_ tessellates and extrudes vector shapes into 3D geometry. It requires polygonal data. See [`polygons`](#polygons-1).
