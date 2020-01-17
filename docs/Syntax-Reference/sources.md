@@ -236,6 +236,27 @@ sources:
 #### `enforce_winding`
 *This parameter has been deprecated as of Tangram JS v0.5.1. The deprecation is backwards compatible, and data sources will behave correctly with or without this parameter*.
 
+#### `parse_json`
+Optional _boolean_ or _array of property names_. No default.
+
+Enables client-side parsing of feature properties as JSON rather than vector data.
+
+Some MVT data sources include properties with a richer object format than just strings or numbers – e.g. arrays, nested objects, etc. The MVT spec [doesn't prescribe explicit behavior](https://docs.mapbox.com/vector-tiles/specification/#how-to-encode-attributes-that-arent-strings-or-numbers) for these cases, but notes that common tools such as [Tippecanoe](https://github.com/mapbox/tippecanoe) and Mapnik will encode these properties as stringified JSON.
+
+If `parse_json` is `true`, each property will be checked to see if it "looks like" stringified JSON (defined as a string starting with `{` or `[`); if so, it is parsed as JSON (with [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)).
+
+If `parse_json` is an array of property names, only those specific properties are checked for JSON parsing. This is preferred to the above, because it limits the parsing impact to only the fields that need it.
+
+If `parse_json` is undefined/null/false, no special parsing of properties is done (e.g. the current behavior).
+
+```yaml
+sources:
+  tiles:
+    type: MVT
+    url: https://...
+    parse_json: [prop_a, prop_b] # treat feature properties 'prop_a' and 'prop_b' as stringified JSON
+```
+
 #### `scripts`
 [[JS-only](https://github.com/tangrams/tangram)] Optional _[strings]_, specifying the URL of a JavaScript file.
 
