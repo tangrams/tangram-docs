@@ -239,7 +239,7 @@ The filter functions `min` and `max` are equivalent to `>=` and `<` in a JavaScr
 
 ```yaml
 filter:
-    area: { max: 1000 } }      # matches areas up to 1000 sq meters
+    area: { max: 1000 } }      # matches areas below 1000 sq meters
 
 filter:
     height: { min: 70 } }       # matches heights 70 and up
@@ -247,6 +247,30 @@ filter:
 filter:
     $zoom: { min: 5, max: 10 }  # matches zooms 5-9
 ```
+
+### Array functions
+
+- `includes_any`: check if an array `a` contains one or more of the values `p`, `q`, `r`:
+
+`filter: { a: { includes_any: [p, q, r] } }`
+
+For example:
+
+```yaml
+filter:
+    kind: { includes_any: [bus, rail, road] }
+```
+
+- `includes_all`: check if an array `a` contains the values `p`, `q`, AND `r`:
+
+`filter: { a: { includes_all: [p, q, r] } }`
+
+For example:
+```yaml
+filter:
+    kind: { includes_any: [bus, rail, road] }
+```
+
 
 ### `px2`
 
@@ -264,7 +288,7 @@ The `px2` unit syntax can be used to simplify more cumbersome per-zoom filters.
 
 Note that a `px2` area filter can only be applied if the data source already contains a suitable area property – it does not need to be named area, as any property name can be specified in the filter, but it must already exist in the data source.
 
-### Boolean functions
+## Boolean functions
 
 The following Boolean filter functions are also available:
 
@@ -303,7 +327,7 @@ filter:
         - { kind: aerodrome }
 ```
 
-## Lists imply `any`, Mappings imply `all`
+### Lists imply `any`, Mappings imply `all`
 
 A _list_ of several filters is a shortcut for using the `any` function. These two filters are equivalent:
 
