@@ -231,6 +231,19 @@ layers:
 
 See [`generate_label_centroids`](../Syntax-Reference/sources.md#generate_label_centroids)
 
+## Dot notation
+
+Dot notation with `.` can be used to access nested feature properties, which may be encoded in a GeoJSON/TopoJSON source, or parsed from MVT stringified JSON properties. These properties can also be accessed through custom JS filter functions.
+
+Given a feature property `a: { b: { c: 'test' } }`, this filter will match:
+`filter: { a.b.c: test }`
+
+Feature property names that include a `.` can be escaped with `\.`, e.g. a feature property named `'d.e.f': 'escaped'` will match with:
+`filter: { d\.e\.f: escaped }`
+
+These could be mixed, e.g. a property `{ 'a.b': { c: 'mixed' }` would match with:
+`filter: { a\.b.c: mixed }`
+
 ## Filter functions
 
 ### Range functions
