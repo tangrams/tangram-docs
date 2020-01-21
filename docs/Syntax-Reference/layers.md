@@ -123,12 +123,13 @@ layers:
 
 ## `data` parameters
 
-#### `source`
-Required _string_, naming one of the sources defined in the [sources](sources.md) block.
+#### `all_layers`
+Optional _boolean_. Matches all layers in the data source. Useful for source introspection, without knowing or needing to specify all the layers in the data source by name.
 
 ```yaml
 data:
-    source: osm
+    source: newsource
+    all_layers: true
 ```
 
 #### `layer`
@@ -175,6 +176,14 @@ layer:
                 ...
 ```
 The above example combines the "buildings" and "pois" layers into a new layer called "labels", for drawing with the `text` _draw style_.
+
+#### `source`
+Required _string_, naming one of the sources defined in the [sources](sources.md) block.
+
+```yaml
+data:
+    source: osm
+```
 
 ## `draw` parameters
 
