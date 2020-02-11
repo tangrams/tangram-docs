@@ -75,6 +75,8 @@ styles:
 
 [ ![](../images/shaders-position.gif) ](http://tangrams.github.io/tangram-docs/map/?shaders/position.yaml)
 
+Vertex shaders may also be used to implement [map projections](projections.md).
+
 #### `normal`
 
 In this `block` you can change the `normal` value of a surface pixel by pixel. The `normal` variable is a `vec3(x, y, z)`, where the final value is the normalized vector (aka an angle) produced by the combination of the three axes. In the below example, two lights (blue and purple) are lighting the scene from different directions. The surface normals of the buildings are being modified on the fly to point in different directions, which changes the reflected color. 
