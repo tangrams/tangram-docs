@@ -1,6 +1,6 @@
 # Map Projections
 
-Tangram is optimized for standard [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) tiles. However, through the use of a vertex shader, the position of vector data may be modified in real-time:
+Tangram is optimized for standard [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) tiles. However, through the clever use of vertex shaders, the apparent position of vector data may be modified.
 
 Shaders are created as part of a custom _draw style_. The style used to create the above effect looks like this:
 
@@ -19,21 +19,21 @@ styles:
 
 The whole scene file is only 26 lines long, and can be found [here](https://github.com/meetar/projection-tests/blob/master/wavy.yaml).
 
-The general idea for any Tangram projection is the same: use a custom style with a vertex shader in it, to modify the position of the web mercator data.
+The general idea for any Tangram projection is the same: use a custom style with a vertex shader in it, to modify the position of the geometry generated from the data.
 
 # Making a new Tangram projection
 
 ## Some fine print
 
-Most web projections start with "geodetic" coordinates (latitude and longitude) as their starting point. Many tilesets, including Nextzen's vector tiles, encode data in this format. However, in the process of importing and displaying this data, Tangram converts it to screenspace coordinates, measured in meters at the equator. Due to the Mercator distortion, these "Mercator meters" aren't a constant size – as they're based on projected screenspace, they represent increasingly smaller distances the further you get from the equator.
+Most map projections start with "geodetic" coordinates (latitude and longitude, often represented by "phi" ϕ and "lambda" λ) as their starting point. Many tilesets, including Nextzen's vector tiles, encode data in this format. However, by the time this data gets to the vertex shader, it's been converted into screenspace coordinates, measured in "Mercator meters." These strange units equal standard meters at the equator but represent increasingly smaller distances the further you get from the equator, because Mercator.
 
-This isn't a problem if you want to distort the Web Mercator data directly, as the "wavy" shader above does, but to reproduce any other kind of projection, you must first "unproject" these Mercator meters data back to spherical coordinates.
+This isn't a problem if you don't mind distorting the projected data directly, as the "wavy" shader above does, but to make it work with other standard projections, you must first "unproject" the data data back to spherical coordinates.
 
-Tangram vertex coordinates are measured in mercator meters from the center of the viewport. To convert a Tangram vertex position to latitude and longitude, we must also refer to another built-in "uniform" called "u_map_position", which stores the center of the viewport in Mercator meters from the top-left corner of the Web Mercator base tile, which is 180 W, 85.05 N.
+Tangram vertex coordinates are measured in Mercator meters from the center of the viewport. To convert a Tangram vertex position to latitude and longitude, we must also refer to another [built-in uniform](../shaders.md#built-in_uniforms) called "u_map_position", which stores the center of the viewport in Mercator meters from the top-left corner of the Web Mercator base tile, which is 180 W, 85.05 N.
 
 ## Unproject to geodetic coordinates
 
-To convert Tangram's Mercator coordinates to geodetic coordinates, two separate functions are needed, both of which reference the radius of the Earth:
+To convert Tangram's Mercator coordinates to standrd geodetic coordinates, two separate functions are needed:
 
 ```yaml
 float EARTH_RADIUS = 6378137.0 //radius of ellipsoid, WGS84
@@ -41,7 +41,7 @@ float y2lat_m (float y) { return 2.0*atan(exp((y/EARTH_RADIUS)))-HALF_PI; }
 float x2lon_m (float x) { return x/EARTH_RADIUS; }
 ```
 
-Pass the Mercator meters coordinates to these functions to get lat and lon:
+Pass the Mercator meters coordinates to these functions to get latitude and longitude:
 
 ```yaml
 // u_map_position = center of screen
@@ -53,9 +53,9 @@ float lon = x2lon_m(mercator.x);
 
 ## Reproject to taste
 
-Once you have lat & lon, you can retransform these any way you like.
+Once you have lat & lon, you can re-transform them any way you like.
 
-Here's a stereographic (aka "spherical") projection:
+Here's a basic stereographic (aka "spherical") projection:
 
 ```yaml
 // convert from lat, lon to position on a sphere
@@ -68,6 +68,12 @@ vec3 latLongToVector3(float lat, float lon, float radius) {
     float z = radius * sin(phi);
     return vec3(x,z,y);
 }
+```
+
+If you use this in a vector shader, it looks like this:
+
+```yaml
+position.xyz = latLongToVector3(lat, lon, 2.) * EARTH_RADIUS;
 ```
 
 ## Interaction Example: Globe
@@ -131,7 +137,7 @@ vec2 albers(float lat, float lng, float lat0, float lng0, float phi1, float phi2
 }
 ```
 
-This vertex shader implementation of this projection uses the viewport's center as the center of the projection, and arbitrarily uses latitudes +/- 10 degrees as the standard parallels, because I thought they looked nice. A couple of degree-to-radian functions (not shown) are used to convert values to the range expected by the projection. (The radians requirement isn't explicit in the projection, but it's very common, because when dealing with spheres and trig functions, using radians simplifies the number of steps.)
+This Albers implementation takes the viewport's center as the center of the projection, and arbitrarily uses latitudes +/- 10 degrees as the standard parallels, because I thought they looked nice. A couple of helper functions are used to convert values to the range expected by the projection, one to convert from meters to degrees, and another to convert to radians. (The radians requirement isn't explicit in the projection, but it's quite common, because trigonometry is built around radians.) (In fact this would all be a lot easier if latitude and longitude were in radians to begin with. I'll notify the Babylonians.)
 
 ```yaml
 position: |
@@ -147,11 +153,9 @@ position: |
     float centerlon = deg2rad(x2lon_m(u_map_position.x));
 
     // Standard_Parallel_1
-    float phi1 = deg2rad(10.);
-    // float phi1 = deg2rad(y2lat_m(u_map_position.y) + 10.);
+    float phi1 = deg2rad(y2lat_m(u_map_position.y) + 10.);
     // Standard_Parallel_2
-    float phi2 = deg2rad(-10.);
-    //float phi2 = deg2rad(y2lat_m(u_map_position.y) - 10.);
+    float phi2 = deg2rad(y2lat_m(u_map_position.y) - 10.);
 
     position.xy = albers(lat, lon, centerlat, centerlon, phi1, phi2)*EARTH_RADIUS;
 ```
@@ -170,7 +174,9 @@ Tiles will continue to be fetched for the current Web Mercator viewport, which m
 
 ## Layers
 
-Projections may appear to be drawn in 3D, but the invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you draw a _line_ layer over a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back of the globe may be drawn over water features in the front of the globe, because to the renderer there is no "front" or "back" – there are only flat layers being composited on the screen.
+Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you draw a _line_ layer over a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back of the globe may be drawn over water features in the front of the globe, because to the renderer there is no "front" or "back" – there are only flat layers being composited on the screen.
+
+
 
 ## Hinges
 
