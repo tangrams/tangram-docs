@@ -5,6 +5,7 @@ Tangram is optimized for standard [Web Mercator](https://en.wikipedia.org/wiki/W
 ![wavy](https://user-images.githubusercontent.com/459970/74368286-33501a00-4d88-11ea-8931-7d3896784946.gif)
 
 Shaders are created as part of a custom _draw style_. The style used to create the above effect looks like this:
+[Shaders](Shaders-Overview.md) are created as part of a custom [_draw style_](../Syntax-Reference/draw.md)). The style used to create the above effect looks like this:
 
 ```yaml
 styles:
@@ -27,15 +28,15 @@ The general idea for any Tangram projection is the same: use a custom style with
 
 ## Some fine print
 
-Most map projections start with "geodetic" coordinates (latitude and longitude, often represented by "phi" ϕ and "lambda" λ) as their starting point. Many tilesets, including Nextzen's vector tiles, encode data in this format. However, by the time this data gets to the vertex shader, it's been converted into screenspace coordinates, measured in "Mercator meters." These strange units equal standard meters at the equator but represent increasingly smaller distances the further you get from the equator, because Mercator.
+Most map projections work with spherical "geodetic" coordinates (aka latitude and longitude, often represented by "phi" ϕ and "lambda" λ). Many tilesets, including Nextzen's vector tiles, encode data in this format. However, by the time this data gets to the vertex shader, it's been converted into screenspace coordinates, measured in "Mercator meters." These strange units equal standard meters at the equator but represent increasingly smaller distances the further you get from the equator, because Mercator.
 
 This isn't a problem if you don't mind distorting the projected data directly, as the "wavy" shader above does, but to make it work with other standard projections, you must first "unproject" the data data back to spherical coordinates.
 
-Tangram vertex coordinates are measured in Mercator meters from the center of the viewport. To convert a Tangram vertex position to latitude and longitude, we must also refer to another [built-in uniform](../shaders.md#built-in_uniforms) called "u_map_position", which stores the center of the viewport in Mercator meters from the top-left corner of the Web Mercator base tile, which is 180 W, 85.05 N.
-
 ## Unproject to geodetic coordinates
 
-To convert Tangram's Mercator coordinates to standrd geodetic coordinates, two separate functions are needed:
+Tangram vertex coordinates are measured from the center of the viewport. To convert a vertex position to latitude and longitude, we must also refer to a [built-in uniform](../Syntax-Reference/shaders.md#built-in_uniforms) called "u_map_position", which stores the center of the viewport in Mercator meters from the top-left corner of the Web Mercator base tile, which is 180 W, 85.05 N.
+
+To convert Tangram's Mercator coordinates to standard geodetic coordinates, two separate functions are needed:
 
 ```yaml
 float EARTH_RADIUS = 6378137.0 //radius of ellipsoid, WGS84
@@ -193,7 +194,7 @@ This effect may be exacerbated by the fact that numerous optimization steps in t
 
 # Adding a Projection to a Style
 
-The simplest way to integrate a projection with an existing style is to [mix](../styles.md#mix) it in. Here's a sample structure:
+The simplest way to integrate a projection with an existing style is to [mix](../Syntax-Reference/styles.md#mix) it in. Here's a sample structure:
 
 ```yaml
 # my-projection.md
