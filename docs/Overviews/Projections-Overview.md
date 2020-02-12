@@ -2,6 +2,8 @@
 
 Tangram is optimized for standard [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) tiles. However, through the clever use of vertex shaders, the apparent position of vector data may be modified.
 
+![wavy](https://user-images.githubusercontent.com/459970/74368286-33501a00-4d88-11ea-8931-7d3896784946.gif)
+
 Shaders are created as part of a custom _draw style_. The style used to create the above effect looks like this:
 
 ```yaml
@@ -75,6 +77,8 @@ If you use this in a vector shader, it looks like this:
 ```yaml
 position.xyz = latLongToVector3(lat, lon, 2.) * EARTH_RADIUS;
 ```
+
+![globe](https://user-images.githubusercontent.com/459970/74368547-b96c6080-4d88-11ea-81f7-f7c90c2eedf7.png)
 
 ## Interaction Example: Globe
 
@@ -170,7 +174,10 @@ There are some limitations to these techniques – as they all take place entire
 
 ## Tiles
 
-Tiles will continue to be fetched for the current Web Mercator viewport, which means if your projection expands the effective view, tiles may appear to be missing.
+Tiles will continue to be fetched for the current Web Mercator viewport, which means if your projection expands the effective view, tiles may appear to be missing. In the example below, tiles to the north are missing, because Tangram didn't know they would be needed:
+
+![Albers with missing tiles](https://user-images.githubusercontent.com/459970/74368621-e15bc400-4d88-11ea-9fab-0ca9b79af1f1.png)
+
 
 ## Layers
 
@@ -181,6 +188,8 @@ Projections may appear to be drawn in 3D, but invidual layers are still being or
 Maps are drawn with lines, but vertex shaders can only change the position of vertices. If there are not enough vertices to draw a smooth line, you will get a straight line, which may produce unexpected results.
 
 This effect may be exacerbated by the fact that numerous optimization steps in the Tangram pipeline deliberately remove apparently "extraneous" detail, such as colinear vertices. These steps are fine for a Web Mercator map, but may produce unexpected results in other situations.
+
+![globe-glitch](https://user-images.githubusercontent.com/459970/74368939-621ac000-4d89-11ea-930c-f4a8e9523306.png)
 
 # Adding a Projection to a Style
 
