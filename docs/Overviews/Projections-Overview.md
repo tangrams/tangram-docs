@@ -176,10 +176,53 @@ Tiles will continue to be fetched for the current Web Mercator viewport, which m
 
 Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you draw a _line_ layer over a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back of the globe may be drawn over water features in the front of the globe, because to the renderer there is no "front" or "back" – there are only flat layers being composited on the screen.
 
-
-
 ## Hinges
 
 Maps are drawn with lines, but vertex shaders can only change the position of vertices. If there are not enough vertices to draw a smooth line, you will get a straight line, which may produce unexpected results.
 
-This effect may be exacerbated by the fact that numerous optimization steps in the Tangram pipeline deliberately remove apparently "extraneous" detail, such as colinear vertices. These steps are fine for a Web Mercator map, but may produce unexpected 
+This effect may be exacerbated by the fact that numerous optimization steps in the Tangram pipeline deliberately remove apparently "extraneous" detail, such as colinear vertices. These steps are fine for a Web Mercator map, but may produce unexpected results in other situations.
+
+# Adding a Projection to a Style
+
+The simplest way to integrate a projection with an existing style is to [mix](../styles.md#mix) it in. Here's a sample structure:
+
+```yaml
+# my-projection.md
+
+styles:
+    my-projection:
+        shaders:
+            blocks:
+                # you might have some helper globals 
+                globals:
+                # projection goes in here
+                position: |
+
+# existing-style.md
+
+# pull the projection in here
+import: my-projection.md
+
+styles:
+    existing-style:
+        base: polygon
+        mix: my-projection
+
+layers:
+    earth:
+        existing-style: # this style will now be projected
+```
+
+If you don't have any custom styles in your scene (or if you have lots of custom styles in your scene file), it might be useful to set up some custom base styles, like so:
+
+```yaml
+styles:
+    projected-polygons:
+        base: polygons
+        mix: my-projection
+    projected-lines:
+        base: lines
+        mix: my-projection
+```
+
+Then you can replace any instance of plain _polygons_ or _lines_ in your draw layers with the projected versions. If you have lots of custom styles, this trick allows you to do the mixes just once, instead of per style.
