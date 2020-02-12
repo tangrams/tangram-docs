@@ -27,11 +27,11 @@ The general idea for any Tangram projection is the same: use a custom style with
 
 ### Some fine print
 
-Most map projections work with spherical "geodetic" coordinates (aka latitude and longitude, often represented by "phi" ϕ and "lambda" λ). Many tilesets, including Nextzen's vector tiles, encode data in this format. However, by the time this data gets to the vertex shader, it's been converted into screenspace coordinates, measured in "Mercator meters." These strange units equal standard meters at the equator but represent increasingly smaller distances the further you get from the equator, because Mercator.
+Most map projections work with spherical "geodetic" coordinates (aka latitude and longitude, typically represented by phi (ϕ) and lambda (λ) respectively). Many tilesets, including [Nextzen's vector tiles](https://www.nextzen.org/), encode data in this format. However, by the time this data gets to Tangram's vertex shader, it's been converted to screenspace coordinates, measured in "Mercator meters." These strange units equal standard meters at the equator but represent increasingly smaller distances the further you get from the equator, because Mercator.
 
 This isn't a problem if you don't mind distorting the projected data directly, as the "wavy" shader above does, but to make it work with other standard projections, you must first "unproject" the data data back to spherical coordinates.
 
-### Geodetic coordinates
+### Convert to geodetic coordinates
 
 Tangram vertex coordinates are measured from the center of the viewport. To convert a vertex position to latitude and longitude, we must also refer to a [built-in uniform](../Syntax-Reference/shaders.md#built-in-uniforms) called "u_map_position", which stores the center of the viewport in Mercator meters from the top-left corner of the Web Mercator base tile, which is 180 W, 85.05 N.
 
@@ -116,9 +116,9 @@ position.xyz *= rotateX3D(-(centerlat));
 
 Now the globe will be centered on the map's location, and will respond to scrolling.
 
-Interactive demo: [http://meetar.github.io/projection-tests/?globe.yaml](http://meetar.github.io/projection-tests/?globe.yaml)
-Full scene file: [globe.yaml](https://github.com/meetar/projection-tests/blob/master/globe.yaml)
-Repo: [https://github.com/meetar/projection-tests/](https://github.com/meetar/projection-tests/)
+- Interactive demo: [http://meetar.github.io/projection-tests/?globe.yaml](http://meetar.github.io/projection-tests/?globe.yaml)
+- Full scene file: [globe.yaml](https://github.com/meetar/projection-tests/blob/master/globe.yaml)
+- Repo: [https://github.com/meetar/projection-tests/](https://github.com/meetar/projection-tests/)
 
 ### Interaction Example: Albers
 
@@ -164,9 +164,9 @@ position: |
     position.xy = albers(lat, lon, centerlat, centerlon, phi1, phi2)*EARTH_RADIUS;
 ```
 
-Interactive demo: [http://meetar.github.io/albers/](http://meetar.github.io/albers/)
-Full scene file: [scene.yaml](https://github.com/meetar/albers/blob/master/scene.yaml)
-Repo: [https://github.com/meetar/albers/](https://github.com/meetar/albers/)
+- Interactive demo: [http://meetar.github.io/albers/](http://meetar.github.io/albers/)
+- Full scene file: [scene.yaml](https://github.com/meetar/albers/blob/master/scene.yaml)
+- Repo: [https://github.com/meetar/albers/](https://github.com/meetar/albers/)
 
 ## Limitations
 
