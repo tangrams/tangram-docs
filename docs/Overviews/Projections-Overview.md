@@ -27,7 +27,7 @@ The general idea for any Tangram projection is the same: use a custom style with
 
 ### Some fine print
 
-Most map projections work with spherical "geodetic" coordinates (aka latitude and longitude, typically represented by phi (ϕ) and lambda (λ) respectively). Many tilesets, including [Nextzen's vector tiles](https://www.nextzen.org/), encode data in this format. However, by the time this data gets to Tangram's vertex shader, it's been converted to screenspace coordinates, measured in "Mercator meters." These strange units equal standard meters at the equator but represent increasingly smaller distances the further you get from the equator, because Mercator.
+Most map projections work with spherical "geodetic" coordinates, aka latitude and longitude, typically represented by phi (ϕ) and lambda (λ) respectively. Many tilesets, including [Nextzen's vector tiles](https://www.nextzen.org/), encode data in this format. However, by the time this data gets to Tangram's vertex shader, it's been converted to screenspace coordinates, measured in "Mercator meters." These strange units equal standard meters at the equator but represent increasingly smaller distances the further you get from the equator, because Mercator.
 
 This isn't a problem if you don't mind distorting the projected data directly, as the "wavy" shader above does, but to make it work with other standard projections, you must first "unproject" the data data back to spherical coordinates.
 
@@ -82,9 +82,9 @@ position.xyz = latLongToVector3(lat, lon, 2.) * EARTH_RADIUS;
 
 ### Interaction Example: Globe
 
-Projections may be adjusted through the use of special variables to become interactive – for instance, to center on a specific point on the globe – but the basic projection algorithm may not include that. In the above example, the projection will draw a globe with [0,0] on the right, the international dateline at the left, north up, and south down. As it stands there is no accomodation for other views.
+Projections may be adjusted through the use of special variables to become interactive – for instance, to center on a specific point on the globe – but the basic projection algorithm may not include that. In the above example, the projection draws a globe centered on the equator, with [0,0] on the right and north up. As it stands there is no accomodation for other views.
 
-We could add some variables to the function to make the projection interactive, but in this case it's simpler to modify the result of the basic projection with some extra steps:
+We could add some variables to the projection function to make it interactive, but in this case it's simpler to modify the result with some extra steps:
 
 ```yaml
 // rotation matrix transformations
@@ -114,7 +114,7 @@ position.xyz *= rotateY3D((-centerlon - 1.5708));
 position.xyz *= rotateX3D(-(centerlat));
 ```
 
-Now the globe will be centered on the map's location, and will respond to scrolling.
+Now the globe will be centered on the map's location, and will respond to navigation.
 
 - Interactive demo: [http://meetar.github.io/projection-tests/?globe.yaml](http://meetar.github.io/projection-tests/?globe.yaml)
 - Full scene file: [globe.yaml](https://github.com/meetar/projection-tests/blob/master/globe.yaml)
@@ -174,13 +174,13 @@ There are some limitations to these techniques – as they all take place entire
 
 ### Tiles
 
-Tiles will continue to be fetched for the current Web Mercator viewport, which means if your projection expands the effective view, tiles may appear to be missing. In the example below, tiles to the north are missing, because Tangram didn't know they would be needed:
+Tiles will continue to be fetched for the current Web Mercator viewport, which means if your projection expands the effective view, tiles may appear to be missing. In the example below, tiles to the north are missing, because Tangram doesn't realize they are needed:
 
 ![Albers with missing tiles](https://user-images.githubusercontent.com/459970/74368621-e15bc400-4d88-11ea-9fab-0ca9b79af1f1.png)
 
 ### Layers
 
-Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you draw a _line_ layer over a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back of the globe may be drawn over water features in the front of the globe, because to the renderer there is no "front" or "back" – there are only flat layers being composited on the screen.
+Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you set a the `order` of a _line_ layer above that of a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back of the globe may be drawn over water features in the front of the globe.
 
 ### Hinges
 
