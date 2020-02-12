@@ -197,30 +197,34 @@ In the example below, the projection is attempting to "bend" various large flat 
 The simplest way to integrate a projection with an existing style is to [mix](../Syntax-Reference/styles.md#mix) it in. Here's a sample structure:
 
 ```yaml
-# my-projection.md
+### my-projection.md
 
+# define your projection here
 styles:
-    my-projection:
+    my-projection-style:
         shaders:
             blocks:
                 # you might have some helper globals 
                 globals:
-                # projection goes in here
+                # projection code goes in the "position" block
                 position: |
+```
 
-# existing-style.md
+```yaml
+### existing-style.md
 
-# pull the projection in here
+# import the projection here
 import: my-projection.md
 
 styles:
     existing-style:
         base: polygon
-        mix: my-projection
+        # mix the projection in here
+        mix: my-projection-style
 
 layers:
     earth:
-        existing-style: # this style will now be projected
+        existing-style: # this style will now use your custom projection
 ```
 
 If you don't have any custom styles in your scene (or if you have lots of custom styles in your scene file), it might be useful to set up some custom base styles, like so:
