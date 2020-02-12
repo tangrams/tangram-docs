@@ -4,7 +4,6 @@ Tangram is optimized for standard [Web Mercator](https://en.wikipedia.org/wiki/W
 
 ![wavy](https://user-images.githubusercontent.com/459970/74368286-33501a00-4d88-11ea-8931-7d3896784946.gif)
 
-Shaders are created as part of a custom _draw style_. The style used to create the above effect looks like this:
 [Shaders](Shaders-Overview.md) are created as part of a custom [_draw style_](../Syntax-Reference/draw.md)). The style used to create the above effect looks like this:
 
 ```yaml
@@ -179,16 +178,17 @@ Tiles will continue to be fetched for the current Web Mercator viewport, which m
 
 ![Albers with missing tiles](https://user-images.githubusercontent.com/459970/74368621-e15bc400-4d88-11ea-9fab-0ca9b79af1f1.png)
 
-
 ## Layers
 
 Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you draw a _line_ layer over a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back of the globe may be drawn over water features in the front of the globe, because to the renderer there is no "front" or "back" – there are only flat layers being composited on the screen.
 
 ## Hinges
 
-Maps are drawn with lines, but vertex shaders can only change the position of vertices. If there are not enough vertices to draw a smooth line, you will get a straight line, which may produce unexpected results.
+Maps are drawn with lines, but vertex shaders can only change the position of vertices. If your projection wants to curve the map, and there are not enough vertices in your geometry to draw curved lines, you will get straight lines drawn directly between the available vertices instead.
 
 This effect may be exacerbated by the fact that numerous optimization steps in the Tangram pipeline deliberately remove apparently "extraneous" detail, such as colinear vertices. These steps are fine for a Web Mercator map, but may produce unexpected results in other situations.
+
+In the example below, the projection is attempting to "bend" flat ocean polygons backward in 3D space, but there aren't enough vertices in the sparse ocean geometry to produce smooth curves.
 
 ![globe-glitch](https://user-images.githubusercontent.com/459970/74368939-621ac000-4d89-11ea-930c-f4a8e9523306.png)
 
