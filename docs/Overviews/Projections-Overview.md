@@ -188,7 +188,7 @@ Maps are drawn with lines, but vertex shaders can only change the position of ve
 
 This effect may be exacerbated by the fact that numerous optimization steps in the Tangram pipeline deliberately remove apparently "extraneous" detail, such as colinear vertices. These steps are fine for a Web Mercator map, but may produce unexpected results in other situations.
 
-In the example below, the projection is attempting to "bend" flat ocean polygons backward in 3D space, but there aren't enough vertices in the sparse ocean geometry to produce smooth curves.
+In the example below, the projection is attempting to "bend" various large flat polygons backward in 3D space, but there aren't enough vertices in the sparse ocean geometry to produce smooth curves – so they wind up just going straight back to the next available polygon edge.
 
 ![globe-glitch](https://user-images.githubusercontent.com/459970/74368939-621ac000-4d89-11ea-930c-f4a8e9523306.png)
 
