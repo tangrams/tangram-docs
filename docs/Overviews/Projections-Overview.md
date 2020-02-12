@@ -1,10 +1,10 @@
-# Map Projections
+# Projections Overview
 
-Tangram is optimized for standard [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) tiles. However, through the clever use of vertex shaders, the apparent position of vector data may be modified.
+Tangram is optimized for standard [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) tiles. However, through the clever use of vertex shaders, the apparent position of vector data may be modified, effectively "reprojecting" the data on the fly.
 
 ![wavy](https://user-images.githubusercontent.com/459970/74368286-33501a00-4d88-11ea-8931-7d3896784946.gif)
 
-[Shaders](Shaders-Overview.md) are created as part of a custom [_draw style_](../Syntax-Reference/draw.md)). The style used to create the above effect looks like this:
+[Shaders](Shaders-Overview.md) are created as part of a custom [_style_](../Syntax-Reference/styles.md). The style used to create the above effect looks like this:
 
 ```yaml
 styles:
@@ -21,19 +21,19 @@ styles:
 
 The whole scene file is only 26 lines long, and can be found [here](https://github.com/meetar/projection-tests/blob/master/wavy.yaml).
 
-The general idea for any Tangram projection is the same: use a custom style with a vertex shader in it, to modify the position of the geometry generated from the data.
+The general idea for any Tangram projection is the same: use a custom style with a vertex shader in it, to modify the position of the geometry generated from the source data.
 
-# Making a new Tangram projection
+## Making a new Tangram projection
 
-## Some fine print
+### Some fine print
 
 Most map projections work with spherical "geodetic" coordinates (aka latitude and longitude, often represented by "phi" ϕ and "lambda" λ). Many tilesets, including Nextzen's vector tiles, encode data in this format. However, by the time this data gets to the vertex shader, it's been converted into screenspace coordinates, measured in "Mercator meters." These strange units equal standard meters at the equator but represent increasingly smaller distances the further you get from the equator, because Mercator.
 
 This isn't a problem if you don't mind distorting the projected data directly, as the "wavy" shader above does, but to make it work with other standard projections, you must first "unproject" the data data back to spherical coordinates.
 
-## Unproject to geodetic coordinates
+### Geodetic coordinates
 
-Tangram vertex coordinates are measured from the center of the viewport. To convert a vertex position to latitude and longitude, we must also refer to a [built-in uniform](../Syntax-Reference/shaders.md#built-in_uniforms) called "u_map_position", which stores the center of the viewport in Mercator meters from the top-left corner of the Web Mercator base tile, which is 180 W, 85.05 N.
+Tangram vertex coordinates are measured from the center of the viewport. To convert a vertex position to latitude and longitude, we must also refer to a [built-in uniform](../Syntax-Reference/shaders.md#built-in-uniforms) called "u_map_position", which stores the center of the viewport in Mercator meters from the top-left corner of the Web Mercator base tile, which is 180 W, 85.05 N.
 
 To convert Tangram's Mercator coordinates to standard geodetic coordinates, two separate functions are needed:
 
@@ -53,7 +53,7 @@ float lat = y2lat_m(mercator.y);
 float lon = x2lon_m(mercator.x);
 ```
 
-## Reproject to taste
+### Reproject to taste
 
 Once you have lat & lon, you can re-transform them any way you like.
 
@@ -80,7 +80,7 @@ position.xyz = latLongToVector3(lat, lon, 2.) * EARTH_RADIUS;
 
 ![globe](https://user-images.githubusercontent.com/459970/74368547-b96c6080-4d88-11ea-81f7-f7c90c2eedf7.png)
 
-## Interaction Example: Globe
+### Interaction Example: Globe
 
 Projections may be adjusted through the use of special variables to become interactive – for instance, to center on a specific point on the globe – but the basic projection algorithm may not include that. In the above example, the projection will draw a globe with [0,0] on the right, the international dateline at the left, north up, and south down. As it stands there is no accomodation for other views.
 
@@ -120,7 +120,7 @@ Interactive demo: [http://meetar.github.io/projection-tests/?globe.yaml](http://
 Full scene file: [globe.yaml](https://github.com/meetar/projection-tests/blob/master/globe.yaml)
 Repo: [https://github.com/meetar/projection-tests/](https://github.com/meetar/projection-tests/)
 
-## Interaction Example: Albers
+### Interaction Example: Albers
 
 For comparison, the Albers conic projection explicitly includes the concept of a center point plus two "standard parallels" – these function as variables which change the result.
 
@@ -168,21 +168,21 @@ Interactive demo: [http://meetar.github.io/albers/](http://meetar.github.io/albe
 Full scene file: [scene.yaml](https://github.com/meetar/albers/blob/master/scene.yaml)
 Repo: [https://github.com/meetar/albers/](https://github.com/meetar/albers/)
 
-# Limitations
+## Limitations
 
 There are some limitations to these techniques – as they all take place entirely in the vertex shader, Tangram doesn't "know" about them, and continues to fetch, build, and draw tiles as though they were still in standard Web Mercator.
 
-## Tiles
+### Tiles
 
 Tiles will continue to be fetched for the current Web Mercator viewport, which means if your projection expands the effective view, tiles may appear to be missing. In the example below, tiles to the north are missing, because Tangram didn't know they would be needed:
 
 ![Albers with missing tiles](https://user-images.githubusercontent.com/459970/74368621-e15bc400-4d88-11ea-9fab-0ca9b79af1f1.png)
 
-## Layers
+### Layers
 
 Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you draw a _line_ layer over a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back of the globe may be drawn over water features in the front of the globe, because to the renderer there is no "front" or "back" – there are only flat layers being composited on the screen.
 
-## Hinges
+### Hinges
 
 Maps are drawn with lines, but vertex shaders can only change the position of vertices. If your projection wants to curve the map, and there are not enough vertices in your geometry to draw curved lines, you will get straight lines drawn directly between the available vertices instead.
 
@@ -192,7 +192,7 @@ In the example below, the projection is attempting to "bend" various large flat 
 
 ![globe-glitch](https://user-images.githubusercontent.com/459970/74368939-621ac000-4d89-11ea-930c-f4a8e9523306.png)
 
-# Adding a Projection to a Style
+## Adding a Projection to a Style
 
 The simplest way to integrate a projection with an existing style is to [mix](../Syntax-Reference/styles.md#mix) it in. Here's a sample structure:
 
