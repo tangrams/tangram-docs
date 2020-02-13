@@ -191,7 +191,7 @@ Projections may appear to be drawn in 3D, but invidual layers are still being or
 
 ![Tangram map sandwich](https://user-images.githubusercontent.com/459970/74470393-4f6cbd80-4e53-11ea-940c-7c5cfb226cd7.png)
 
-This is because of the way Tangram's [`order`](../draw.md#order) system is optimized for 2D cartography, allowing layers to be rearranged and composited without requiring more complex 3D operations. Unfortunately this means more complex 3D operations aren't possible in the way they might be in a classical 3D application.
+This is because of the way Tangram's [`order`](../Syntax-Reference/draw.md#order) system is optimized for 2D cartography, allowing layers to be rearranged and composited without requiring more complex 3D operations. Unfortunately this means more complex 3D operations aren't possible in the way they might be in a classical 3D application.
 
 ### Hinges
 
