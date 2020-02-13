@@ -185,6 +185,22 @@ And in the globe example, at low zooms the earth is being drawn multiple times, 
 
 But not in the globe, because the repeated tiles are wrapped around and layered on top of each other. This can cause surprises if you are using any kind of transparency. There may be ways to "clip" the projection to only draw the front-facing hemisphere, but they may not work precisely as expected, due to the Hinges issue mentioned below.
 
+Here's code which prevents this kind of looping, by simply moving any vertices which are half a globe away from the center of the map back to the allowed limit:
+
+```yaml
+shaders:
+    defines:
+        EARTH_RADIUS: 6378137.0 //radius of ellipsoid, WGS84
+        HALF_CIRC: 20037508.5 //half-circumference of earth
+    blocks:
+        position:
+            // handle low-zoom longitude-repetition
+            if (position.x > HALF_CIRC) position.x = HALF_CIRC;
+            if (position.x < -HALF_CIRC) position.x = -HALF_CIRC;
+```
+
+This technique is used in the ["globe warp" example](http://meetar.github.io/projection-tests/?globe-warp.yaml).
+
 ### Layers
 
 Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you set a the `order` of a _line_ layer above that of a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back side of the globe may be drawn over water features in the front of the globe.
