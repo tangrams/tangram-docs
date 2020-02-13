@@ -174,13 +174,24 @@ There are some limitations to these techniques – as they all take place entire
 
 ### Tiles
 
-Tiles will continue to be fetched for the current Web Mercator viewport, which means if your projection expands the effective view, tiles may appear to be missing. In the example below, tiles to the north are missing, because Tangram doesn't realize they are needed:
+For instance, tiles will continue to be fetched for the current Web Mercator viewport, which means if your projection expands the effective view, tiles may appear to be missing or duplicated. In the example below, tiles to the north are missing, because Tangram doesn't realize they are needed:
 
 ![Albers with missing tiles](https://user-images.githubusercontent.com/459970/74368621-e15bc400-4d88-11ea-9fab-0ca9b79af1f1.png)
 
+And in the globe example, at low zooms the earth is being drawn multiple times, which is obvious in standard Web Mercator:
+
+![Wide Earth](https://user-images.githubusercontent.com/459970/74470644-c86c1500-4e53-11ea-997b-d41ab57cda78.png)
+
+
+But not in the globe, because the repeated tiles are wrapped around and layered on top of each other. This can cause surprises if you are using any kind of transparency. There may be ways to "clip" the projection to only draw the front-facing hemisphere, but they may not work precisely as expected, due to the Hinges issue mentioned below.
+
 ### Layers
 
-Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you set a the `order` of a _line_ layer above that of a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back of the globe may be drawn over water features in the front of the globe.
+Projections may appear to be drawn in 3D, but invidual layers are still being ordered in 2D space as specified in the scene file. For instance, in a globe projection, if you set a the `order` of a _line_ layer above that of a _polygon_ layer, that ordering will be in screenspace, not relative to the surface of the Earth. In this case, lines on the back side of the globe may be drawn over water features in the front of the globe.
+
+![Tangram map sandwich](https://user-images.githubusercontent.com/459970/74470393-4f6cbd80-4e53-11ea-940c-7c5cfb226cd7.png)
+
+This is because of the way Tangram's [`order`](../draw.md#order) system is optimized for 2D cartography, allowing layers to be rearranged and composited without requiring more complex 3D operations. Unfortunately this means more complex 3D operations aren't possible in the way they might be in a classical 3D application.
 
 ### Hinges
 
@@ -191,6 +202,26 @@ This effect may be exacerbated by the fact that numerous optimization steps in t
 In the example below, the projection is attempting to "bend" various large flat polygons backward in 3D space, but there aren't enough vertices in the sparse ocean geometry to produce smooth curves – so they wind up just going straight back to the next available polygon edge.
 
 ![globe-glitch](https://user-images.githubusercontent.com/459970/74368939-621ac000-4d89-11ea-930c-f4a8e9523306.png)
+
+This limitation may also be seen when "clipping" a projection – there's currently no way to slice a polygon at an arbitrary point without adding vertices. Maybe someday.
+
+### Iterations
+
+Many projections (such as the [Mollweide](https://en.wikipedia.org/wiki/Mollweide_projection)) include some kind of iterated step, intended to converge toward an ideal solution, which will theoretically be reached only if the iteration is performed an infinite number of times. In practice most people don't have that kind of patience, so the iterated step is performed until some kind of threshold is achieved.
+
+Unfortunately, vertex shaders don't allow this kind of non-deterministic loop. As part of the tradeoff for extremely fast execution, shaders must know beforehand exactly what code they'll be running. Loops are allowed only if they have a fixed number of iterations. So instead of testing for some kind of condition, just pick a number of loops that's good enough for your purposes. The result won't be as accurate in some cases, and less efficient in others, but it should mostly work out fine. This one from the Mollweide is being run `4` times, because it looks better than when it was run `3` times, and `5` times didn't look much different:
+
+```glsl
+// convert from lat/lon to mollweide -- Adapted from https://github.com/d3/d3-geo-projection/blob/master/src/mollweide.js
+float mollweideBromleyTheta(float phi) {
+    float cpsinPhi = PI * sin(phi);
+    for ( int i = 4; i != 0; i--) {
+        float delta = (phi + sin(phi) - cpsinPhi) / (1. + cos(phi));
+        phi -= delta;
+    }
+    return phi / 2.;
+}
+```
 
 ## Adding a Projection to a Style
 
@@ -240,21 +271,3 @@ styles:
 ```
 
 Then you can replace any instance of plain _polygons_ or _lines_ in your draw layers with the projected versions. If you have lots of custom styles, this trick allows you to do the mixes just once, instead of per style.
-
-## Iterations
-
-Many projections (such as the [Mollweide](https://en.wikipedia.org/wiki/Mollweide_projection)) include some kind of iterated step, intended to converge toward an ideal solution, which will theoretically be reached only if the iteration is performed an infinite number of times. In practice most people don't have that kind of patience, so the iterated step is performed until some kind of threshold is achieved.
-
-Unfortunately, vertex shaders don't allow this kind of run-time conditional loop execution. As part of the tradeoff for extremely fast execution, they must know beforehand exactly what code they'll be running. So loops are allowed, but only if they have a fixed number of repetitions. To solve this problem, simply placed the code to be loops inside a loop with a fixed number of steps – and that number is up to you. This one from the Mollweide is being run `4` times, because it looks better than `3` times, and `5` times didn't look that much different:
-
-```glsl
-// convert from lat/lon to mollweide -- Adapted from https://github.com/d3/d3-geo-projection/blob/master/src/mollweide.js
-float mollweideBromleyTheta(float phi) {
-    float cpsinPhi = PI * sin(phi);
-    for ( int i = 4; i != 0; i--) {
-        float delta = (phi + sin(phi) - cpsinPhi) / (1. + cos(phi));
-        phi -= delta;
-    }
-    return phi / 2.;
-}
-```
