@@ -141,7 +141,7 @@ vec2 albers(float lat, float lng, float lat0, float lng0, float phi1, float phi2
 }
 ```
 
-This Albers implementation takes the viewport's center as the center of the projection, and arbitrarily uses latitudes +/- 10 degrees as the standard parallels, because I thought they looked nice. A couple of helper functions are used to convert values to the range expected by the projection, one to convert from meters to degrees, and another to convert to radians. (The radians requirement isn't explicit in the projection, but it's quite common, because trigonometry is built around radians.) (In fact this would all be a lot easier if latitude and longitude were in radians to begin with. I'll notify the Babylonians.)
+The Albers implementation below takes the viewport's center as the center of the projection, and arbitrarily uses latitudes +/- 10 degrees as the standard parallels, because I thought they looked nice. A couple of helper functions are used to convert values to the range expected by the projection: one to convert from meters to degrees, and another to convert to radians. (The radians requirement isn't explicit in the projection, but it's quite common, because trigonometry is built around radians.) (In fact this would all be a lot easier if latitude and longitude were in radians to begin with. I'll notify the Babylonians.)
 
 ```yaml
 position: |
