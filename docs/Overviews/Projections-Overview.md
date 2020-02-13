@@ -240,3 +240,21 @@ styles:
 ```
 
 Then you can replace any instance of plain _polygons_ or _lines_ in your draw layers with the projected versions. If you have lots of custom styles, this trick allows you to do the mixes just once, instead of per style.
+
+## Iterations
+
+Many projections (such as the [Mollweide](https://en.wikipedia.org/wiki/Mollweide_projection)) include some kind of iterated step, intended to converge toward an ideal solution, which will theoretically be reached only if the iteration is performed an infinite number of times. In practice most people don't have that kind of patience, so the iterated step is performed until some kind of threshold is achieved.
+
+Unfortunately, vertex shaders don't allow this kind of run-time conditional loop execution. As part of the tradeoff for extremely fast execution, they must know beforehand exactly what code they'll be running. So loops are allowed, but only if they have a fixed number of repetitions. To solve this problem, simply placed the code to be loops inside a loop with a fixed number of steps – and that number is up to you. This one from the Mollweide is being run `4` times, because it looks better than `3` times, and `5` times didn't look that much different:
+
+```glsl
+// convert from lat/lon to mollweide -- Adapted from https://github.com/d3/d3-geo-projection/blob/master/src/mollweide.js
+float mollweideBromleyTheta(float phi) {
+    float cpsinPhi = PI * sin(phi);
+    for ( int i = 4; i != 0; i--) {
+        float delta = (phi + sin(phi) - cpsinPhi) / (1. + cos(phi));
+        phi -= delta;
+    }
+    return phi / 2.;
+}
+```
