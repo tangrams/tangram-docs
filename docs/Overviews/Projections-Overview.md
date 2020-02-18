@@ -82,7 +82,7 @@ position.xyz = latLongToVector3(lat, lon, 2.) * EARTH_RADIUS;
 
 ### Interaction Example: Globe
 
-Projections may be adjusted through the use of special variables to become interactive – for instance, to center on a specific point on the globe – but the basic projection algorithm may not include that. In the above example, the projection draws a globe centered on the equator, with [0,0] on the right and north up. As it stands there is no accomodation for other views.
+Projections may sometimes be adjustable through the use of special variables to become interactive – for instance, to center on a specific point on the globe – but not all projection algorithms include those sorts of variables. In the above example, the projection draws a globe centered on the equator, with [0,0] on the right and north up. As it stands there is no accomodation for other views.
 
 We could add some variables to the projection function to make it interactive, but in this case it's simpler to modify the result with some extra steps:
 
