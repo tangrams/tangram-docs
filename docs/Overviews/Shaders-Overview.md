@@ -75,7 +75,7 @@ styles:
 
 [ ![](../images/shaders-position.gif) ](http://tangrams.github.io/tangram-docs/map/?shaders/position.yaml)
 
-Vertex shaders may also be used to implement [map projections](projections.md).
+Vertex shaders may also be used to implement more elaborate transformations including [map projections](projections.md).
 
 #### `normal`
 
