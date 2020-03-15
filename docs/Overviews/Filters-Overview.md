@@ -212,13 +212,13 @@ filter: function() { return $zoom <= 10 }   # matches zooms 10 and below
 
 ## `label_placement`
 
-The `label_placement` property is given only to _point_ geometries created by setting `generate_label_centroids` on a datasource to `true`. This option creates a new "centroid" _point_ feature in the geometric center of each polygon in the datasource. Then, with `label_placement` set to `true`, a single label may be drawn in the center of each polygonal feature, instead of one label per tile, which is the default behavior. To add these centroid _points_ to a datasource, add the `generate_label_centroids` property to its [source] block:
+The special `label_placement` property is given only to _point_ geometries created by setting `generate_label_centroids` on a non-tiled datasource to `true`. This option creates a new "centroid" _point_ feature in the geometric center of each polygon in the datasource. Then, with `label_placement` set to `true`, a single label may be drawn in the center of each polygonal feature, instead of one label per tile, which is the default behavior. To add these centroid _points_ to a datasource, add the `generate_label_centroids` property to its [source] block:
 
 ```yaml
 sources:
     nextzen:
         type: TopoJSON
-        url:  https://tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.topojson
+        url: https://your.data.com/example.topojson
         generate_label_centroids: true
 
 layers:
