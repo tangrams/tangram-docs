@@ -344,7 +344,11 @@ Setting this parameter to a low value like `max_display_density: 1` will reduce 
 #### `max_display_zoom`, `min_display_zoom`
 Optional _integer_. No default.
 
-`max_display_zoom` sets the highest zoom level which will be requested from the datasource. `min_display_zoom` sets the lowest zoom level which will be requested from the datasource. Outside of this range, tiles will not be requested nor displayed.
+`min_display_zoom` sets the lowest zoom level at which data from the source will be *requested* or *displayed*. 
+
+`max_display_zoom` sets the highest zoom level at which data from the source will be *displayed* (see `max_zoom` to set the highest zoom level at which data will be *requested* from the server).
+
+Outside of this range, data will not be requested nor displayed.
 
 ```yaml
 sources:
@@ -360,7 +364,7 @@ Optional _integer_. Default is _18_.
 
 Sets the highest zoom level which will be requested from the datasource. At higher zoom levels, the data from this zoom level will continue to be displayed, a condition called "overzoom".
 
-There is no corresponding `min_zoom` parameter, for reasons of performance.
+There is no corresponding `min_zoom` parameter to "underzoom" tiles, for reasons of performance. See `min_display_zoom` and `max_display_zoom` for parameters controlling tile *visibility*.
 
 ```yaml
 sources:
