@@ -317,7 +317,7 @@ Setting `filtering: nearest` allows for the raster tiles to be pixelated when sc
 #### `generate_label_centroids`
 Optional _boolean_. Default is _false_.
 
-A toggle for creating labels at the centroids of polygons for non-tiled GeoJSON and TopoJSON sources.
+A toggle for creating labels at the centroids of polygons for non-tiled GeoJSON and TopoJSON sources. This parameter has no effect on tiled data sources.
 
 When set to `true` new _point_ geometries will be added to the data source, one located at the geometrical center (or "centroid") of every _polygon_. Each point will receive a [`{"label_placement" : "true"}`](../Overviews/Filters-Overview.md#label_placement) property which may be filtered against, as well as a copy of the associated feature's properties.
 
@@ -329,7 +329,7 @@ If the feature in question is a multipolygon, the centroid _point_ will be added
 sources:
     local:
         type: GeoJSON
-        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.json
+        url: https://your.data.com/example.geojson
         max_zoom: 15
         generate_label_centroids: true
 ```
