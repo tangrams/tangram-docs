@@ -478,6 +478,8 @@ layers:
                     order: 2   # this layer's order is now 2
 ```
 
+`order` only affects the drawing order of features that are at the same elevation. If you have a rooftop drawn at 5m elevation with `order: 1` overlapping a road drawn at 0m elevation with `order: 2`, the rooftop will still be drawn on top. If you have two overlapping roads drawn at 0m elevation, the one with the higher `order` will be drawn on top.
+
 Note that by default, `points` and `text` layers are drawn with the `overlay` [blend mode](styles.md#blend), which draws everything _on top_ of any other visible features using traditional alpha compositing. When `overlay` is used in any _draw style_, `order` will have no effect and is not required.
 
 #### `outline`
