@@ -97,6 +97,8 @@ layers:
         draw: ...
 ```
 
+Note that there is a separate style parameter that is also named [priority](draw.md#priority).
+
 #### sublayer name
 Optional _string_. Can be anything except the other sublayer parameters: "draw", "filter", and "properties". No default.
 
