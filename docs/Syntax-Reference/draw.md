@@ -566,6 +566,8 @@ draw:
         priority: function() { return Math.min(10 - Math.floor(feature.area / 1000), 10); }
 ```
 
+Note that there is a separate property for Layers that is also named [priority](layers.md#priority).
+
 #### `repeat_distance`
 Optional _number_, _stops_, or _function_, in `px`. Default is `256px`. Functions must return a number without units (e.g. return the number `100`, not a string like `"100px"`).
 
