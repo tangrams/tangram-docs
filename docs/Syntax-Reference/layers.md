@@ -80,9 +80,31 @@ layers:
 ```
 
 #### `priority`
-Optional _integer_. Controls the order in which sub-layers at the same level are matched, and which one "wins" when multiple matching layers are merged.
+Optional _integer_. Controls the order in which sub-layers within a layer are matched, and which one "wins" when multiple matching layers are merged.
 
-When used with [`exclusive`](#exclusive), if/else filter patterns can be expressed:
+Consider an example:
+```yaml
+layers:
+    layerA:
+        filter: ...
+        priority: 1
+        draw: { points: { color: red } }
+    layerB:
+        filter: ...
+        priority: 2
+        draw: { points: { color: blue } }
+    layerC:
+        filter: ...
+        draw: { points: { color: green } }
+```
+
+All three layers assign the `color` parameter for the `points` group. If a feature matches more than one of these layers, `priority` tells us which `color` value "wins".
+
+- `layerA` has the highest precedence because it has the lowest `priority` value. If a feature matches all three layers, `color: red` will win.
+- `layerB` has the next highest precedence because it has a `priority` value and `layerC` doesn't. If a feature matches `layerB` and `layerC`, `color: blue` will win.
+- `layerC` has the lowest precedence because it has no `priority` value.
+
+When `priority` is used with [`exclusive`](#exclusive), you can make if/else filter patterns:
 ```yaml
 layers:
     layerA:             # if matches layerA...
