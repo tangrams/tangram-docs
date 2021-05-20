@@ -1,6 +1,6 @@
 ## Script Tag Setup
 
-[Tangram JS](https://github.com/tangrams/tangram) is a JavaScript library designed for use in [Leaflet](http://leaflet.org) maps.
+[Tangram JS](https://github.com/tangrams/tangram) is a JavaScript library designed for use in [Leaflet](https://leafletjs.com/) maps.
 
 The [latest release of Tangram](https://github.com/tangrams/tangram/releases) can be included in your web page with a `script` tag:
 
