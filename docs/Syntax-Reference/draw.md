@@ -2,8 +2,8 @@
 
 #### `draw`
 `draw` is an optional element in a [layer](layers.md) or [sublayer](layers.md#sublayer-name). It provides one or more *draw groups* for rendering the features that match the _layer_ or _sublayer_ directly above it. These _draw groups_ are the sub-elements of the `draw` element, as in this example:
+
 ```yaml
-...
 layers:
     water:
         data: { source: osm }
@@ -13,6 +13,7 @@ layers:
             another_draw_group:
                 ...
 ```
+
 A `draw` element can specify multiple groups, indicating that matching features should be drawn multiple times. In the example above, features that match the "water" layer will be drawn twice, once according to the style of `draw_group` and once with that of `another_draw_group`.
 
 #### draw group
@@ -23,24 +24,23 @@ A _draw group_ must specify the _style_ that will be used to draw a feature. It 
  1. A _draw group_ may contain a parameter called `style` whose value names a _style_ (either a [built-in _style_](../Overviews/Styles-Overview.md#draw-styles) or one defined in the `styles` element of the scene file). For example:
 
  ```yaml
- ...
  draw:
      fancy_road_lines:
          style: lines
          ... # more parameters follow
  ```
- 2. If a _draw group_ does not contain a `style` parameter, the group's name is interpreted as the name of a _style_ (again, either a [built-in _style_](../Overviews/Styles-Overview.md#draw-styles) or one from the `styles` element).
+
+2. If a _draw group_ does not contain a `style` parameter, the group's name is interpreted as the name of a _style_ (again, either a [built-in _style_](../Overviews/Styles-Overview.md#draw-styles) or one from the `styles` element).
 
  ```yaml
- ...
  draw:
      lines:
          ... # no 'style' parameter follows
  ```
 
 The 2nd, shorthand syntax is the preferred way to specify a _style_, however an explicit `style` parameter is necessary sometimes. For example, to draw a feature using the _lines_ style twice, the `draw` element would need two _draw groups_ with different names, e.g.
+
 ```yaml
-...
 draw:
     first_line:
         style: lines
@@ -49,17 +49,16 @@ draw:
         style: lines
         ... # more parameters follow
 ```
+
 Note that two _draw groups_ both named "lines" would be invalid YAML:
 
 ```yaml
-...
 draw:
     lines:
         ... # more parameters
     lines: # <- You can't do this in YAML!
         ... # more parameters
 ```
-
 
 If the _style_ specified by a _draw group_ is neither a built-in _style_ nor a _style_ defined in the `styles` element, the group will draw nothing.
 
